@@ -1,99 +1,90 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e2861bbca91c0567ef32bc77fe054f9e",
-  "translation_date": "2025-07-09T16:12:12+00:00",
-  "source_file": "15-rag-and-vector-databases/README.md",
-  "language_code": "tr"
-}
--->
 # Retrieval Augmented Generation (RAG) ve Vektör Veritabanları
 
-[![Retrieval Augmented Generation (RAG) ve Vektör Veritabanları](../../../translated_images/15-lesson-banner.ac49e59506175d4fc6ce521561dab2f9ccc6187410236376cfaed13cde371b90.tr.png)](https://aka.ms/gen-ai-lesson15-gh?WT.mc_id=academic-105485-koreyst)
+[![Retrieval Augmented Generation (RAG) ve Vektör Veritabanları](../../../translated_images/tr/15-lesson-banner.ac49e59506175d4f.webp)](https://youtu.be/4l8zhHUBeyI?si=BmvDmL1fnHtgQYkL)
 
-Arama uygulamaları dersinde, kendi verilerinizi Büyük Dil Modellerine (LLM) nasıl entegre edeceğinizi kısaca öğrenmiştik. Bu derste, LLM uygulamanızda verilerinizi temel alma kavramlarına, sürecin işleyişine ve hem gömme (embedding) hem de metin verilerini depolama yöntemlerine daha derinlemesine bakacağız.
+Arama uygulamaları dersinde, kendi verilerinizi Büyük Dil Modellerine (LLM'ler) nasıl entegre edeceğinizi kısaca öğrendik. Bu derste, LLM uygulamanızda verilerinizi temel alma kavramına, sürecin mekaniklerine ve hem gömme hem de metin verilerinin depolanma yöntemlerine daha derinlemesine bakacağız.
 
 > **Video Yakında Gelecek**
 
 ## Giriş
 
-Bu derste aşağıdaki konuları ele alacağız:
+Bu derste şunları ele alacağız:
 
-- RAG’a giriş, ne olduğu ve yapay zekada (AI) neden kullanıldığı.
+- RAG'ın tanıtımı, ne olduğu ve yapay zekada (AI) neden kullanıldığı.
 
 - Vektör veritabanlarının ne olduğunu anlamak ve uygulamamız için bir tane oluşturmak.
 
-- RAG’ı bir uygulamaya nasıl entegre edeceğimize dair pratik bir örnek.
+- RAG'ı bir uygulamaya entegre etme üzerine pratik bir örnek.
 
 ## Öğrenme Hedefleri
 
-Bu dersi tamamladıktan sonra şunları yapabileceksiniz:
+Bu dersi tamamladıktan sonra:
 
-- RAG’ın veri alma ve işleme süreçlerindeki önemini açıklamak.
+- RAG'ın veri erişimi ve işleme açısından önemini açıklayabileceksiniz.
 
-- RAG uygulamasını kurmak ve verilerinizi bir LLM’e temel almak.
+- RAG uygulamasını kurup verilerinizi bir LLM'ye dayandırabileceksiniz.
 
-- RAG ve Vektör Veritabanlarının LLM uygulamalarında etkili entegrasyonu.
+- RAG ve Vektör Veritabanlarının LLM uygulamalarında etkili entegrasyonunu gerçekleştirebileceksiniz.
 
-## Senaryomuz: LLM’lerimizi kendi verilerimizle geliştirmek
+## Senaryomuz: Kendi verilerimizle LLM'lerimizi geliştirmek
 
-Bu derste, eğitim girişimimize kendi notlarımızı eklemek istiyoruz; böylece sohbet botu farklı konular hakkında daha fazla bilgi edinebilecek. Elimizdeki notları kullanarak, öğrenenler daha iyi çalışabilecek ve farklı konuları anlayarak sınavlarına daha kolay hazırlanabilecekler. Senaryomuzu oluşturmak için şunları kullanacağız:
+Bu ders için, eğitim girişimimize kendi notlarımızı eklemek istiyoruz; böylece sohbet botu farklı konular hakkında daha fazla bilgi alabilir. Elimizdeki notları kullanarak, öğrenciler daha iyi çalışıp farklı konuları anlayabilecek ve sınavlarına hazırlanmak daha kolay olacak. Senaryomuzu oluşturmak için şunları kullanacağız:
 
 - `Azure OpenAI:` sohbet botumuzu oluşturmak için kullanacağımız LLM
 
-- `AI for beginners' lesson on Neural Networks:` LLM’imizi temel alacağımız veri
+- `AI for beginners' lesson on Neural Networks`: LLM'imizi dayandıracağımız veri
 
-- `Azure AI Search` ve `Azure Cosmos DB:` verilerimizi depolamak ve arama dizini oluşturmak için vektör veritabanı
+- `Azure AI Search` ve `Azure Cosmos DB:` verilerimizi depolamak ve bir arama dizini oluşturmak için vektör veritabanı
 
-Kullanıcılar notlarından pratik quizler oluşturabilecek, tekrar kartları hazırlayabilecek ve bunları kısa özetlere dönüştürebilecekler. Başlamak için, RAG’ın ne olduğuna ve nasıl çalıştığına bakalım:
+Kullanıcılar notlarından pratik quizler oluşturabilecek, tekrar kartları hazırlayabilecek ve bunları özetleyerek kısa genel bakışlar elde edebilecekler. Başlamak için RAG'ın ne olduğunu ve nasıl çalıştığını inceleyelim:
 
 ## Retrieval Augmented Generation (RAG)
 
-LLM destekli bir sohbet botu, kullanıcıdan gelen girdileri işleyerek yanıtlar üretir. Etkileşimli olacak şekilde tasarlanmıştır ve kullanıcılarla çok çeşitli konularda iletişim kurar. Ancak yanıtları, sağlanan bağlam ve temel eğitim verileriyle sınırlıdır. Örneğin, GPT-4’ün bilgi kesim tarihi Eylül 2021’dir; yani bu tarihten sonraki olaylar hakkında bilgisi yoktur. Ayrıca, LLM’leri eğitmek için kullanılan veriler, kişisel notlar veya bir şirketin ürün kılavuzu gibi gizli bilgileri içermez.
+LLM destekli bir sohbet botu, kullanıcı istemlerini işleyerek yanıtlar oluşturur. Etkileşimli olacak şekilde tasarlanmıştır ve kullanıcılarla çok çeşitli konularda etkileşime girer. Ancak yanıtları, sağlanan bağlam ve temel eğitim verileri ile sınırlıdır. Örneğin, GPT-4'ün bilgi kesim tarihi Eylül 2021'dir; bu, bu tarihten sonra gerçekleşen olayları bilmediği anlamına gelir. Ayrıca, LLM'leri eğitmek için kullanılan veri, kişisel notlar veya bir şirketin ürün kılavuzu gibi gizli bilgileri içermez.
 
-### RAG’lar (Retrieval Augmented Generation) nasıl çalışır
+### RAG'lar (Retrieval Augmented Generation) nasıl çalışır?
 
-![RAG’ların nasıl çalıştığını gösteren çizim](../../../translated_images/how-rag-works.f5d0ff63942bd3a638e7efee7a6fce7f0787f6d7a1fca4e43f2a7a4d03cde3e0.tr.png)
+![RAG'ların nasıl çalıştığını gösteren çizim](../../../translated_images/tr/how-rag-works.f5d0ff63942bd3a6.webp)
 
-Diyelim ki notlarınızdan quizler oluşturan bir sohbet botu dağıtmak istiyorsunuz, bilgi tabanına bağlantı gerekecek. İşte burada RAG devreye girer. RAG’lar şu şekilde çalışır:
+Diyelim ki notlarınızdan quizler oluşturan bir sohbet botu dağıtmak istiyorsunuz; bilgi tabanına bağlantıya ihtiyacınız olacak. İşte burada RAG devreye girer. RAG'lar şu şekilde çalışır:
 
-- **Bilgi tabanı:** Geri getirme işleminden önce, bu belgeler alınır ve ön işleme tabi tutulur; genellikle büyük belgeler küçük parçalara bölünür, metin gömme (embedding) haline dönüştürülür ve bir veritabanında saklanır.
+- **Bilgi tabanı:** Erişimden önce, bu belgelerin alınması ve ön işlenmesi gerekir; genellikle büyük belgeler küçük parçalara bölünür, metin gömmeye dönüştürülür ve bir veritabanına kaydedilir.
 
-- **Kullanıcı Sorgusu:** kullanıcı bir soru sorar
+- **Kullanıcı Sorgusu:** kullanıcı soru sorar
 
-- **Geri Getirme:** Kullanıcı soru sorduğunda, gömme modeli bilgi tabanımızdan ilgili bilgileri alır ve bağlamı artırarak isteme (prompt) dahil edilir.
+- **Erişim:** Kullanıcı soru sorduğunda, gömme modeli bilgi tabanımızdan ilgili bilgileri alır ve isteğe bağlanacak daha fazla bağlam sağlamak için kullanır.
 
-- **Geliştirilmiş Üretim:** LLM, alınan verilere dayanarak yanıtını geliştirir. Böylece yanıt sadece önceden eğitilmiş verilere değil, eklenen bağlamdan gelen ilgili bilgilere de dayanır. Alınan veriler LLM’nin yanıtlarını zenginleştirmek için kullanılır. LLM ardından kullanıcının sorusuna yanıt verir.
+- **Geliştirilmiş Üretim:** LLM, alınan verilere dayanarak yanıtını geliştirir. Bu, oluşturulan yanıtın sadece önceden eğitilmiş verilere değil, eklenen bağlamdan alınan ilgili bilgilere dayanmasını sağlar. Erişilen veriler, LLM yanıtlarını geliştirmek için kullanılır. Sonra LLM, kullanıcının sorusuna cevap verir.
 
-![RAG mimarisini gösteren çizim](../../../translated_images/encoder-decode.f2658c25d0eadee2377bb28cf3aee8b67aa9249bf64d3d57bb9be077c4bc4e1a.tr.png)
+![RAG'ların mimarisini gösteren çizim](../../../translated_images/tr/encoder-decode.f2658c25d0eadee2.webp)
 
-RAG mimarisi, iki bölümden oluşan transformer yapısıyla uygulanır: bir encoder ve bir decoder. Örneğin, kullanıcı bir soru sorduğunda, giriş metni kelimelerin anlamını yakalayan vektörlere 'kodlanır' ve bu vektörler belge dizinimize 'çözülür' ve kullanıcı sorgusuna dayalı yeni metin oluşturulur. LLM, çıktı üretmek için hem encoder-decoder modelini kullanır.
+RAG mimarisi iki bölümden oluşan transformer kullanılarak uygulanır: bir kodlayıcı (encoder) ve bir çözücü (decoder). Örneğin, kullanıcı bir soru sorduğunda, giriş metni kelimelerin anlamını yakalayan vektörlere 'kodlanır' ve bu vektörler belgesi dizinine 'çözümlenir' ve kullanıcı sorgusuna göre yeni metin oluşturulur. LLM, çıktıyı üretmek için hem kodlayıcı-çözücü modelini kullanır.
 
-Önerilen makaleye göre RAG uygulamasında iki yaklaşım vardır: [Retrieval-Augmented Generation for Knowledge intensive NLP Tasks](https://arxiv.org/pdf/2005.11401.pdf?WT.mc_id=academic-105485-koreyst):
+Önerilen makaleye göre RAG uygulamalarında iki yaklaşım vardır: [Retrieval-Augmented Generation for Knowledge intensive NLP (natural language processing software) Tasks](https://arxiv.org/pdf/2005.11401.pdf?WT.mc_id=academic-105485-koreyst):
 
-- **_RAG-Sequence_**: alınan belgeleri kullanarak kullanıcı sorgusuna en iyi cevabı tahmin etmek
+- **_RAG-Sequence_**: Kullanıcının sorgusuna en iyi olası cevabı tahmin etmek için erişilen belgeleri kullanma
 
-- **RAG-Token**: belgeleri kullanarak sonraki token’ı üretmek, ardından kullanıcı sorgusuna yanıt vermek için belgeleri geri getirmek
+- **RAG-Token**: Belgeyi sonraki token'ı üretmek için kullanır, ardından kullanıcı sorgusunu yanıtlamak için geri getirir
 
-### Neden RAG kullanmalısınız?
+### Neden RAG kullanırsınız?
 
-- **Bilgi zenginliği:** metin yanıtlarının güncel ve doğru olmasını sağlar. Böylece, dahili bilgi tabanına erişerek alan bazlı görevlerde performansı artırır.
+- **Bilgi zenginliği:** Metin yanıtlarının güncel ve güncel kalmasını sağlar. Böylece, dahili bilgi tabanına erişerek alan özel görevlerde performansı artırır.
 
-- **Doğrulanabilir veri** kullanarak uydurmayı azaltır ve kullanıcı sorgularına bağlam sağlar.
+- Doğrulanabilir veriyi kullanarak **uydurma**yı azaltır ve kullanıcı sorgularına bağlam sağlar.
 
-- **Maliyet etkin:** LLM’yi ince ayar yapmaya kıyasla daha ekonomiktir.
+- Bir LLM'yi ince ayar yapmaya göre daha **maliyet etkili**dir.
 
-## Bilgi tabanı oluşturma
+## Bir bilgi tabanı oluşturmak
 
-Uygulamamız kişisel verilerimize dayanıyor, yani AI For Beginners müfredatındaki Neural Network dersi.
+Uygulamamız kişisel verilere dayanır; yani AI For Beginners müfredatındaki Sinir Ağları dersi.
 
 ### Vektör Veritabanları
 
-Vektör veritabanı, geleneksel veritabanlarından farklı olarak, gömülü vektörleri depolamak, yönetmek ve aramak için tasarlanmış özel bir veritabanıdır. Belgelerin sayısal temsillerini saklar. Veriyi sayısal gömme haline getirmek, yapay zeka sistemimizin veriyi anlamasını ve işlemesini kolaylaştırır.
+Vektör veritabanı, geleneksel veritabanlarından farklı olarak gömülü vektörleri saklamak, yönetmek ve aramak için tasarlanmış özel bir veritabanıdır. Belgelerin sayısal temsillerini depolar. Verileri sayısal gömme vektörlerine dönüştürmek, yapay zeka sistemimizin verileri anlamasını ve işlemesini kolaylaştırır.
 
-Gömme verilerimizi vektör veritabanlarında saklarız çünkü LLM’lerin kabul ettiği token sayısı sınırlıdır. Tüm gömmeleri LLM’ye veremeyeceğimiz için, bunları parçalara bölmemiz gerekir ve kullanıcı soru sorduğunda, soruya en uygun gömmeler istemle birlikte döndürülür. Parçalama ayrıca LLM’ye gönderilen token sayısını azaltarak maliyetleri düşürür.
+Gömme verilerimizi vektör veritabanlarında depolarız çünkü LLM'lerin giriş olarak kabul ettiği token sayısında bir sınır vardır. Tüm gömmeleri bir LLM'ye gönderemezsiniz, bu yüzden bunları parçalara ayırmanız gerekir ve kullanıcı bir soru sorduğunda, soruyla en çok eşleşen gömmeler isteğe birlikte geri döner. Parçalama, LLM'ye gönderilen token sayısının maliyetini de azaltır.
 
-Popüler vektör veritabanları arasında Azure Cosmos DB, Clarifyai, Pinecone, Chromadb, ScaNN, Qdrant ve DeepLake bulunur. Azure CLI kullanarak Azure Cosmos DB modeli oluşturabilirsiniz:
+Popüler bazı vektör veritabanları Azure Cosmos DB, Clarifyai, Pinecone, Chromadb, ScaNN, Qdrant ve DeepLake'dir. Azure CLI kullanarak Azure Cosmos DB modeli oluşturmak için şu komutu kullanabilirsiniz:
 
 ```bash
 az login
@@ -102,9 +93,9 @@ az cosmosdb create -n <cosmos-db-name> -r <resource-group-name>
 az cosmosdb list-keys -n <cosmos-db-name> -g <resource-group-name>
 ```
 
-### Metinden gömme oluşturma
+### Metinden gömme vektörlerine
 
-Verilerimizi depolamadan önce, veriyi veritabanına kaydetmeden önce vektör gömme haline dönüştürmemiz gerekir. Büyük belgeler veya uzun metinlerle çalışıyorsanız, beklediğiniz sorgulara göre parçalayabilirsiniz. Parçalama cümle veya paragraf seviyesinde yapılabilir. Parçalama, çevresindeki kelimelerden anlam çıkardığı için, parçaya belge başlığı veya parçadan önce/sonra gelen metin gibi ek bağlamlar ekleyebilirsiniz. Veriyi şu şekilde parçalayabilirsiniz:
+Verilerimizi depolamadan önce, önce onları vektör gömme biçimine dönüştürmemiz gerekir. Büyük belgeler veya uzun metinlerle çalışıyorsanız, beklediğiniz sorgulara göre parçalayabilirsiniz. Parçalama cümle veya paragraf seviyesinde yapılabilir. Parçalama, çevresindeki kelimelerden anlam çıkardığı için, bölüme başka bağlamlar ekleyebilirsiniz; örneğin, belge başlığını ekleyerek veya bölüme önce veya sonra bir metin ekleyerek. Verileri şöyle parçalayabilirsiniz:
 
 ```python
 def split_text(text, max_length, min_length):
@@ -118,70 +109,68 @@ def split_text(text, max_length, min_length):
             chunks.append(' '.join(current_chunk))
             current_chunk = []
 
-    # If the last chunk didn't reach the minimum length, add it anyway
+    # Son parça minimum uzunluğa ulaşmadıysa bile yine de ekle
     if current_chunk:
         chunks.append(' '.join(current_chunk))
 
     return chunks
 ```
 
-Parçalandıktan sonra, metnimizi farklı gömme modelleri kullanarak gömebiliriz. Kullanabileceğiniz bazı modeller: word2vec, OpenAI’nin ada-002 modeli, Azure Computer Vision ve daha fazlası. Kullanılacak model, kullandığınız dil, kodlanan içerik türü (metin/görüntü/ses), kodlayabileceği giriş boyutu ve gömme çıktısının uzunluğuna bağlıdır.
+Bölümlendikten sonra, metnimizi çeşitli gömme modelleri ile gömebiliriz. Kullanabileceğiniz modeller arasında word2vec, OpenAI tarafından ada-002, Azure Computer Vision ve daha fazlası vardır. Kullanılacak model, kullandığınız diller, kodlanan içerik türü (metin/görsel/ses), kodlanabilecek giriş boyutu ve gömme çıktısının uzunluğuna bağlıdır.
 
-OpenAI’nin `text-embedding-ada-002` modeliyle gömülen bir metin örneği:
-![cat kelimesinin gömme hali](../../../translated_images/cat.74cbd7946bc9ca380a8894c4de0c706a4f85b16296ffabbf52d6175df6bf841e.tr.png)
+OpenAI'nin `text-embedding-ada-002` modeli ile oluşturulmuş gömülü metne bir örnek:
+![cat kelimesinin gömmesi](../../../translated_images/tr/cat.74cbd7946bc9ca38.webp)
 
-## Geri getirme ve Vektör Arama
+## Erişim ve Vektör Arama
 
-Kullanıcı bir soru sorduğunda, geri getirme modeli bunu sorgu kodlayıcı ile vektöre dönüştürür, ardından belge arama dizinimizde girişle ilgili vektörleri arar. İşlem tamamlandığında, hem giriş vektörü hem de belge vektörleri metne dönüştürülür ve LLM’ye iletilir.
+Kullanıcı bir soru sorduğunda, erişici (retriever) sorguyu sorgu kodlayıcısı kullanarak vektöre dönüştürür, ardından belge arama dizinimizde girdiyle ilgili belgelerden ilgili vektörleri arar. İşlem tamamlandığında, hem giriş vektörünü hem de belge vektörlerini metne dönüştürür ve bunları LLM'ye geçirir.
 
-### Geri getirme
+### Erişim
 
-Geri getirme, sistemin arama kriterlerini karşılayan belgeleri dizinden hızlıca bulmaya çalıştığı aşamadır. Geri getirme modelinin amacı, bağlam sağlamak ve LLM’yi verilerinizle temel almaktır.
+Erişim, sistemin dizindeki arama kriterlerini karşılayan belgeleri hızlıca bulmaya çalıştığı andır. Erişimcinin (retriever's) amacı, bağlam sağlamak ve LLM'yi verilerinize dayandırmak üzere kullanılacak belgeleri almaktır.
 
 Veritabanımızda arama yapmak için birkaç yöntem vardır:
 
 - **Anahtar kelime araması** - metin aramaları için kullanılır
 
-- **Anlamsal arama** - kelimelerin anlamsal anlamını kullanır
+- **Vektör araması** - belgeleri metinden gömme modelleri aracılığıyla vektör temsillerine dönüştürerek, kelimelerin anlamını kullanarak **anlamsal arama** yapılmasına izin verir. Erişim, kullanıcının sorusuna en yakın vektör temsiline sahip belgeleri sorgulayarak gerçekleştirilir.
 
-- **Vektör araması** - belgeleri metinden gömme vektörlerine dönüştürür. Geri getirme, kullanıcı sorusuna en yakın vektörlere sahip belgeler sorgulanarak yapılır.
+- **Hibrit** - hem anahtar kelime hem de vektör aramasının birleşimidir.
 
-- **Hibrit** - anahtar kelime ve vektör aramasının birleşimi.
-
-Geri getirmede zorluk, veritabanında sorguya benzer yanıt olmadığında ortaya çıkar; sistem en iyi bilgiyi döndürür. Ancak, alaka düzeyi için maksimum mesafe ayarlamak veya anahtar kelime ile vektör aramasını birleştiren hibrit arama gibi taktikler kullanabilirsiniz. Bu derste hibrit arama kullanacağız. Verilerimizi, parçalar ve gömmeleri içeren sütunlara sahip bir dataframe’de saklayacağız.
+Erişim sorunları, veritabanında sorguya benzer yanıt olmadığında ortaya çıkar; sistem o zaman elde edebildiği en iyi bilgiyi döndürecektir. Ancak, uygunluğu maksimum mesafe ile sınırlandırmak veya hem anahtar kelime hem vektör aramasını birleştiren karma arama kullanmak gibi taktikler uygulanabilir. Bu derste, hem vektör hem anahtar kelime aramasının birleşimi olan hibrit aramayı kullanacağız. Verilerimizi, parçaları ve gömmeleri içeren sütunları olan bir veri çerçevesinde depolayacağız.
 
 ### Vektör Benzerliği
 
-Geri getirme modeli, bilgi tabanında birbirine yakın gömmeleri arar; en yakın komşu, benzer metinlerdir. Kullanıcı bir sorgu sorduğunda, önce gömülür ve benzer gömmelerle eşleştirilir. Farklı vektörlerin ne kadar benzer olduğunu ölçmek için yaygın kullanılan yöntem, iki vektör arasındaki açıya dayanan kosinüs benzerliğidir.
+Erişimci, bilgi veritabanında yakın olan gömmeleri arar; en yakın komşu, çünkü metinler benzerdir. Bir kullanıcı sorgu sorduğunda, öncelikle gömülür ve ardından benzer gömmelerle eşleştirilir. Farklı vektörlerin ne kadar benzer olduğunu ölçmek için yaygın kullanılan ölçüm, iki vektör arasındaki açıya göre hesaplanan kosinüs benzerliğidir.
 
-Benzerliği ölçmek için kullanabileceğimiz diğer yöntemler Euclidean mesafesi (vektör uç noktaları arasındaki düz çizgi) ve nokta çarpımıdır (iki vektörün karşılık gelen elemanlarının çarpımlarının toplamını ölçer).
+Benzerliği ölçmek için kullanılabilecek diğer alternatifler, vektör uç noktaları arasındaki doğru çizgi olan Öklid uzaklığı ve iki vektörün karşılık gelen elemanlarının çarpımlarının toplamını ölçen nokta çarpımıdır.
 
 ### Arama dizini
 
-Geri getirme yaparken, arama yapmadan önce bilgi tabanımız için bir arama dizini oluşturmamız gerekir. Dizin, gömmelerimizi saklar ve büyük bir veritabanında bile en benzer parçaları hızlıca bulabilir. Dizini yerel olarak şu şekilde oluşturabiliriz:
+Erişim yaparken, arama gerçekleştirmeden önce bilgi tabanımız için bir arama dizini oluşturmalıyız. Dizinimiz gömmelerimizi depolar ve büyük bir veritabanında bile en benzer parçaları hızlıca geri getirebilir. Dizini yerel olarak şöyle oluşturabiliriz:
 
 ```python
 from sklearn.neighbors import NearestNeighbors
 
 embeddings = flattened_df['embeddings'].to_list()
 
-# Create the search index
+# Arama indeksini oluşturun
 nbrs = NearestNeighbors(n_neighbors=5, algorithm='ball_tree').fit(embeddings)
 
-# To query the index, you can use the kneighbors method
+# İndeksi sorgulamak için kneighbors metodunu kullanabilirsiniz
 distances, indices = nbrs.kneighbors(embeddings)
 ```
 
 ### Yeniden sıralama
 
-Veritabanını sorguladıktan sonra, sonuçları en alakalıdan başlayarak sıralamanız gerekebilir. Yeniden sıralama LLM’si, makine öğrenimi kullanarak arama sonuçlarının alaka düzeyini artırır ve en alakalıdan başlayarak sıralar. Azure AI Search kullanıldığında, yeniden sıralama semantik yeniden sıralayıcı ile otomatik yapılır. En yakın komşular kullanılarak yeniden sıralamanın nasıl çalıştığına örnek:
+Veritabanını sorguladıktan sonra, sonuçları en uygun olandan başlayarak sıralamanız gerekebilir. Yeniden sıralama LLM'si, makine öğrenimi kullanarak arama sonuçlarının uygunluğunu artırır ve onları en alakalıdan itibaren sıralar. Azure AI Search kullanılırken, yeniden sıralama semantik bir yeniden sıralayıcı ile otomatik olarak yapılır. En yakın komşuları kullanarak yeniden sıralamanın nasıl çalıştığına bir örnek:
 
 ```python
-# Find the most similar documents
+# En benzer belgeleri bulun
 distances, indices = nbrs.kneighbors([query_vector])
 
 index = []
-# Print the most similar documents
+# En benzer belgeleri yazdırın
 for i in range(3):
     index = indices[0][i]
     for index in indices[0]:
@@ -194,33 +183,33 @@ for i in range(3):
 
 ## Hepsini bir araya getirmek
 
-Son adım, yanıtların verilerimize dayalı olmasını sağlamak için LLM’imizi sürece dahil etmektir. Bunu şu şekilde uygulayabiliriz:
+Son adım, verilerimize dayalı yanıtlar alabilmek için LLM'imizi karışıma eklemektir. Bunu şöyle uygulayabiliriz:
 
 ```python
 user_input = "what is a perceptron?"
 
 def chatbot(user_input):
-    # Convert the question to a query vector
+    # Soruyu bir sorgu vektörüne dönüştür
     query_vector = create_embeddings(user_input)
 
-    # Find the most similar documents
+    # En benzer belgeleri bul
     distances, indices = nbrs.kneighbors([query_vector])
 
-    # add documents to query  to provide context
+    # Bağlam sağlamak için belgelere sorgu ekle
     history = []
     for index in indices[0]:
         history.append(flattened_df['chunks'].iloc[index])
 
-    # combine the history and the user input
+    # Geçmişi ve kullanıcı girdisini birleştir
     history.append(user_input)
 
-    # create a message object
+    # Bir mesaj nesnesi oluştur
     messages=[
         {"role": "system", "content": "You are an AI assistant that helps with AI questions."},
-        {"role": "user", "content": history[-1]}
+        {"role": "user", "content": "\n\n".join(history) }
     ]
 
-    # use chat completion to generate a response
+    # Yanıt oluşturmak için sohbet tamamlamasını kullan
     response = openai.chat.completions.create(
         model="gpt-4",
         temperature=0.7,
@@ -233,47 +222,51 @@ def chatbot(user_input):
 chatbot(user_input)
 ```
 
-## Uygulamamızı değerlendirme
+## Uygulamamızı değerlendirmek
 
 ### Değerlendirme Ölçütleri
 
 - Sağlanan yanıtların kalitesi: doğal, akıcı ve insan benzeri olması
 
-- Verinin temelliliği: yanıtın sağlanan belgelerden gelip gelmediğinin değerlendirilmesi
+- Verilerin dayandırılmışlığı: yanıtın sağlanan belgelerden gelip gelmediğinin değerlendirilmesi
 
-- Alaka düzeyi: yanıtın soruyla uyumlu ve ilgili olması
+- Uygunluk: yanıtın soruyla eşleşip ilişkili olması
 
-- Akıcılık: yanıtın dilbilgisel olarak anlamlı olması
+- Akıcılık: yanıtın dilbilgisel olarak mantıklı olup olmadığı
 
-## RAG (Retrieval Augmented Generation) ve vektör veritabanları kullanım alanları
+## RAG (Retrieval Augmented Generation) ve vektör veritabanları kullanım durumları
 
-Fonksiyon çağrılarının uygulamanızı geliştirebileceği birçok farklı kullanım alanı vardır, örneğin:
+Fonksiyon çağrıları uygulamanızı iyileştirebileceği birçok farklı kullanım durumu vardır, örneğin:
 
-- Soru-Cevap: şirket verilerinizi temel alan ve çalışanların soru sorabileceği bir sohbet oluşturmak.
+- Soru ve Cevaplama: şirket verilerinizi çalışanların soru sormak için kullanabileceği bir sohbete dayandırmak.
 
-- Tavsiye Sistemleri: en benzer değerleri eşleştiren sistemler oluşturmak, örneğin filmler, restoranlar ve daha fazlası.
+- Öneri Sistemleri: en benzer değerleri eşleştiren sistemler oluşturmak, örneğin film, restoran ve daha fazlası.
 
-- Sohbet botu hizmetleri: sohbet geçmişini saklayabilir ve kullanıcı verilerine göre kişiselleştirilmiş konuşmalar yapabilirsiniz.
+- Sohbet botu hizmetleri: sohbet geçmişini depolayabilir ve kullanıcı verilerine göre kişiselleştirilmiş konuşma sağlayabilirsiniz.
 
-- Vektör gömmelerine dayalı görsel arama, görüntü tanıma ve anomali tespiti için faydalıdır.
+- Vektör gömmelerine dayalı görsel arama, görsel tanıma ve anomali tespitinde faydalıdır.
 
 ## Özet
 
-RAG’ın temel alanlarını, verilerimizi uygulamaya eklemekten kullanıcı sorgusu ve çıktısına kadar ele aldık. RAG oluşturmayı kolaylaştırmak için Semanti Kernel, Langchain veya Autogen gibi çerçeveleri kullanabilirsiniz.
+RAG'ın temel alanlarını, verilerimizin uygulamaya eklenmesinden kullanıcı sorgularına ve çıktıya kadar ele aldık. RAG oluşturmayı kolaylaştırmak için Semanti Kernel, Langchain veya Autogen gibi çerçeveleri kullanabilirsiniz.
 
 ## Ödev
 
 Retrieval Augmented Generation (RAG) öğreniminize devam etmek için şunları yapabilirsiniz:
 
-- Seçtiğiniz bir çerçeveyi kullanarak uygulama için bir ön yüz oluşturun
+- Tercih ettiğiniz çerçeveyi kullanarak uygulama için bir ön yüz oluşturun
 
-- LangChain veya Semantic Kernel gibi bir çerçeve kullanarak uygulamanızı yeniden oluşturun.
+- LangChain veya Semantic Kernel gibi bir çerçeveyi kullanarak uygulamanızı yeniden oluşturun.
 
 Dersi tamamladığınız için tebrikler 👏.
 
 ## Öğrenme burada bitmiyor, yolculuğa devam edin
 
-Bu dersi tamamladıktan sonra, Generative AI bilginizi geliştirmeye devam etmek için [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) koleksiyonumuza göz atın!
+Bu dersi tamamladıktan sonra, [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) koleksiyonumuzu inceleyerek Üretken Yapay Zeka bilginizi geliştirmeye devam edin!
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Feragatname**:  
-Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hatalar veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+Bu belge, AI çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba gösterilse de, otomatik çevirilerin hata veya yanlışlıklar içerebileceğini lütfen unutmayınız. Orijinal belge, ana dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımı sonucunda ortaya çıkabilecek yanlış anlamalar veya yorum hatalarından sorumlu değiliz.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

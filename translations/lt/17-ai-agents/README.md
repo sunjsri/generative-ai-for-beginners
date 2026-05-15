@@ -1,71 +1,62 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "11f03c81f190d9cbafd0f977dcbede6c",
-  "translation_date": "2025-08-25T12:42:32+00:00",
-  "source_file": "17-ai-agents/README.md",
-  "language_code": "lt"
-}
--->
-[![Open Source Models](../../../translated_images/17-lesson-banner.a5b918fb0920e4e6d8d391a100f5cb1d5929f4c2752c937d40392905dec82592.lt.png)](https://aka.ms/gen-ai-lesson17-gh?WT.mc_id=academic-105485-koreyst)
+[![Atviro kodo modeliai](../../../translated_images/lt/17-lesson-banner.a5b918fb0920e4e6.webp)](https://youtu.be/yAXVW-lUINc?si=bOtW9nL6jc3XJgOM)
 
 ## Įvadas
 
-Dirbtinio intelekto agentai yra įdomi generatyvaus DI sritis, leidžianti dideliems kalbos modeliams (LLM) pereiti nuo asistentų prie agentų, galinčių atlikti veiksmus. DI agentų karkasai leidžia kūrėjams kurti programas, kurios suteikia LLM prieigą prie įrankių ir būsenos valdymo. Šie karkasai taip pat pagerina matomumą, leidžiant vartotojams ir kūrėjams stebėti LLM planuojamus veiksmus, taip gerinant patirties valdymą.
+DI agentai yra įdomi generatyvinio DI pažanga, leidžianti dideliems kalbos modeliams (LLM) evoliucionuoti iš asistentų į agentus, galinčius imtis veiksmų. DI agentų karkasai leidžia kūrėjams kurti programas, suteikdami LLM prieigą prie įrankių ir būsenos valdymo. Šie karkasai taip pat pagerina matomumą, leidžiant vartotojams ir kūrėjams stebėti LLM suplanuotus veiksmus, taip gerinant patirties valdymą.
 
-Šioje pamokoje aptarsime šias temas:
+Pamokoje bus aptariamos šios sritys:
 
-- Kas yra DI agentas – ką tiksliai reiškia DI agentas?
-- Keturi skirtingi DI agentų karkasai – kuo jie išsiskiria?
-- DI agentų taikymas įvairiose situacijose – kada verta juos naudoti?
+- Kas yra DI agentas - Kas iš tiesų yra DI agentas?
+- Keturi skirtingi DI agentų karkasai - Kuo jie unikalūs?
+- DI agentų taikymas skirtinguose scenarijuose - Kada turėtume naudoti DI agentus?
 
 ## Mokymosi tikslai
 
-Po šios pamokos galėsite:
+Baigę šią pamoką galėsite:
 
 - Paaiškinti, kas yra DI agentai ir kaip juos galima naudoti.
-- Suprasti kai kurių populiarių DI agentų karkasų skirtumus ir ypatybes.
-- Suprasti, kaip veikia DI agentai, kad galėtumėte kurti programas su jais.
+- Suprasti populiarių DI agentų karkasų skirtumus ir kuo jie skiriasi.
+- Suprasti, kaip veikia DI agentai, kad galėtumėte kurti su jais programas.
 
 ## Kas yra DI agentai?
 
-DI agentai – tai labai įdomi generatyvaus DI sritis. Dėl šio susidomėjimo kartais kyla painiava dėl terminų ir jų taikymo. Kad būtų paprasčiau ir apimtume daugumą įrankių, vadinamų DI agentais, naudosime šį apibrėžimą:
+DI agentai yra labai įdomi generatyvinio DI sritis. Su šiuo susižavėjimu kartais atsiranda painiava dėl terminų ir jų taikymo. Kad būtų paprasčiau ir apimtume daugumą įrankių, kurie vadinami DI agentais, naudosime šią apibrėžtį:
 
-DI agentai leidžia dideliems kalbos modeliams (LLM) atlikti užduotis, suteikiant jiems prieigą prie **būsenos** ir **įrankių**.
+DI agentai leidžia dideliems kalbos modeliams (LLM) atlikti užduotis suteikiant jiems prieigą prie **būsenos** ir **įrankių**.
 
-![Agent Model](../../../translated_images/what-agent.21f2893bdfd01e6a7fd09b0416c2b15594d97f44bbb2ab5a1ff8bf643d2fcb3d.lt.png)
+![Agentų modelis](../../../translated_images/lt/what-agent.21f2893bdfd01e6a.webp)
 
-Paaiškinkime šiuos terminus:
+Apibrėžkime šiuos terminus:
 
-**Dideli kalbos modeliai** – tai modeliai, apie kuriuos kalbame viso kurso metu, tokie kaip GPT-3.5, GPT-4, Llama-2 ir kt.
+**Dideli kalbos modeliai** – tai šio kurso metu minimi modeliai, tokie kaip GPT-3.5, GPT-4, Llama-2 ir kt.
 
-**Būsena** – tai kontekstas, kuriame LLM veikia. LLM naudoja ankstesnių veiksmų ir dabartinį kontekstą, kad priimtų sprendimus dėl kitų veiksmų. DI agentų karkasai leidžia kūrėjams lengviau išlaikyti šį kontekstą.
+**Būsena** – tai kontekstas, kuriame veikia LLM. LLM naudoja savo ankstesnių veiksmų ir esamą kontekstą, kuris nukreipia jo sprendimų priėmimą tolimesniems veiksmams. DI agentų karkasai leidžia kūrėjams lengviau palaikyti šį kontekstą.
 
-**Įrankiai** – norint įvykdyti vartotojo prašomą užduotį, kurią LLM suplanavo, jam reikia prieigos prie įrankių. Įrankiai gali būti duomenų bazė, API, išorinė programa ar net kitas LLM!
+**Įrankiai** – kad užduotis, kurią vartotojas paprašė ir kuri buvo suplanuota LLM, būtų įvykdyta, LLM reikalinga prieiga prie įrankių. Pavyzdžiui, tai gali būti duomenų bazė, API, išorinė programa ar net kitas LLM!
 
-Šie apibrėžimai padės geriau suprasti, kaip agentai veikia. Pažvelkime į keletą skirtingų DI agentų karkasų:
+Šie apibrėžimai tikimės suteiks jums tvirtą pagrindą, kai eisime gilintis, kaip jie įgyvendinami. Pažvelkime į keletą skirtingų DI agentų karkasų:
 
 ## LangChain agentai
 
-[LangChain Agents](https://python.langchain.com/docs/how_to/#agents?WT.mc_id=academic-105485-koreyst) – tai mūsų apibrėžimų įgyvendinimas.
+[LangChain agentai](https://python.langchain.com/docs/how_to/#agents?WT.mc_id=academic-105485-koreyst) įgyvendina aukščiau pateiktus apibrėžimus.
 
-Norint valdyti **būseną**, naudojama integruota funkcija `AgentExecutor`. Ji priima apibrėžtą `agent` ir jam prieinamus `tools`.
+Būsenai valdyti naudojama integruota funkcija `AgentExecutor`. Ji gauna apibrėžtą `agent` ir prieinamus `tools`.
 
-`Agent Executor` taip pat saugo pokalbio istoriją, kad būtų išlaikytas pokalbio kontekstas.
+`AgentExecutor` taip pat saugo pokalbio istoriją, kad būtų užtikrintas pokalbio kontekstas.
 
-![Langchain Agents](../../../translated_images/langchain-agents.edcc55b5d5c437169a2037211284154561183c58bcec6d4ac2f8a79046fac9af.lt.png)
+![LangChain agentai](../../../translated_images/lt/langchain-agents.edcc55b5d5c43716.webp)
 
-LangChain siūlo [įrankių katalogą](https://integrations.langchain.com/tools?WT.mc_id=academic-105485-koreyst), kurį galima importuoti į savo programą ir prie kurio LLM gali gauti prieigą. Įrankius kuria bendruomenė ir LangChain komanda.
+LangChain siūlo [įrankių katalogą](https://integrations.langchain.com/tools?WT.mc_id=academic-105485-koreyst), kurį galite importuoti į savo programą, kad LLM gautų prieigą prie jų. Šiuos įrankius kuria bendruomenė ir LangChain komanda.
 
-Galite apibrėžti šiuos įrankius ir perduoti juos `Agent Executor`.
+Tada galite apibrėžti šiuos įrankius ir perduoti juos `AgentExecutor` funkcijai.
 
-Matomumas yra dar vienas svarbus aspektas kalbant apie DI agentus. Programų kūrėjams svarbu suprasti, kokį įrankį LLM naudoja ir kodėl. Tam LangChain komanda sukūrė LangSmith.
+Matomumas yra dar vienas svarbus aspektas kalbant apie DI agentus. Programų kūrėjams svarbu suprasti, kurį įrankį LLM naudoja ir kodėl. Tam LangChain komanda sukūrė LangSmith.
 
 ## AutoGen
 
-Kitas DI agentų karkasas, kurį aptarsime, yra [AutoGen](https://microsoft.github.io/autogen/?WT.mc_id=academic-105485-koreyst). AutoGen pagrindinis dėmesys – pokalbiai. Agentai yra ir **bendraujantys**, ir **pritaikomi**.
+Kitas DI agentų karkasas, apie kurį kalbėsime, yra [AutoGen](https://microsoft.github.io/autogen/?WT.mc_id=academic-105485-koreyst). AutoGen pagrindinis dėmesys skiriamas pokalbiams. Agentai yra tiek **pokalbių palaikantys**, tiek **pritaikomi**.
 
-**Bendraujantys –** LLM gali pradėti ir tęsti pokalbį su kitu LLM, kad įvykdytų užduotį. Tam kuriami `AssistantAgents` ir jiems suteikiama konkreti sistemos žinutė.
+**Pokalbių palaikymas** – LLM gali pradėti ir tęsti pokalbį su kitu LLM, kad atliktų užduotį. Tai atliekama kuriant `AssistantAgents` ir suteikiant jiems konkretų sistemos pranešimą.
 
 ```python
 
@@ -73,7 +64,7 @@ autogen.AssistantAgent( name="Coder", llm_config=llm_config, ) pm = autogen.Assi
 
 ```
 
-**Pritaikomi** – agentai gali būti ne tik LLM, bet ir vartotojas ar įrankis. Kūrėjas gali apibrėžti `UserProxyAgent`, kuris atsakingas už sąveiką su vartotoju, siekiant gauti grįžtamąjį ryšį užduočiai atlikti. Šis grįžtamasis ryšys gali tęsti užduoties vykdymą arba jį sustabdyti.
+**Pritaikomumas** – Agentai gali būti apibrėžti ne tik kaip LLM, bet ir kaip vartotojas ar įrankis. Kaip kūrėjas galite apibrėžti `UserProxyAgent`, kuris atsako už vartotojo sąveiką siekiant surinkti atsiliepimų užduoties vykdymui. Šie atsiliepimai gali tęsti užduoties vykdymą arba jį sustabdyti.
 
 ```python
 user_proxy = UserProxyAgent(name="user_proxy")
@@ -81,30 +72,30 @@ user_proxy = UserProxyAgent(name="user_proxy")
 
 ### Būsena ir įrankiai
 
-Norint keisti ir valdyti būseną, asistentas agentas generuoja Python kodą užduočiai atlikti.
+Būsenos keitimui ir valdymui pagalbos agentas generuoja Python kodą, kad užbaigtų užduotį.
 
-Štai pavyzdys, kaip tai vyksta:
+Štai pavyzdys, kaip vyksta procesas:
 
-![AutoGen](../../../translated_images/autogen.dee9a25a45fde584fedd84b812a6e31de5a6464687cdb66bb4f2cb7521391856.lt.png)
+![AutoGen](../../../translated_images/lt/autogen.dee9a25a45fde584.webp)
 
-#### LLM apibrėžtas su sistemos žinute
+#### LLM apibrėžtas sistemos pranešimu
 
 ```python
 system_message="For weather related tasks, only use the functions you have been provided with. Reply TERMINATE when the task is done."
 ```
 
-Ši sistemos žinutė nurodo konkrečiam LLM, kokios funkcijos yra svarbios jo užduočiai. Atminkite, kad su AutoGen galite turėti kelis AssistantAgents su skirtingomis sistemos žinutėmis.
+Šis sistemos pranešimas nukreipia konkretų LLM, kokios funkcijos yra svarbios jo užduočiai. Atminkite, kad AutoGen leidžia turėti kelis apibrėžtus AssistantAgents su skirtingais sistemos pranešimais.
 
-#### Pokalbį inicijuoja vartotojas
+#### Pokalbis pradedamas vartotojo
 
 ```python
 user_proxy.initiate_chat( chatbot, message="I am planning a trip to NYC next week, can you help me pick out what to wear? ", )
 
 ```
 
-Ši žinutė iš user_proxy (žmogaus) pradeda agento procesą, kad jis ieškotų, kokias funkcijas turėtų vykdyti.
+Šis žinutė iš user_proxy (žmogaus) pradės agento procesą tyrinėti galimas funkcijas, kurias jis turėtų vykdyti.
 
-#### Funkcija vykdoma
+#### Funkcija įvykdoma
 
 ```bash
 chatbot (to user_proxy):
@@ -115,61 +106,63 @@ chatbot (to user_proxy):
 
 ```
 
-Kai pradinė žinutė apdorojama, agentas pasiūlo, kokį įrankį kviesti. Šiuo atveju – funkciją `get_weather`. Priklausomai nuo jūsų konfigūracijos, ši funkcija gali būti automatiškai vykdoma ir perskaitoma agento arba vykdoma pagal vartotojo įvestį.
+Kai pradinė pokalbio žinutė apdorojama, agentas pasiūlo įrankį, kurį reikia iškviesti. Šiuo atveju tai funkcija `get_weather`. Priklausomai nuo konfigūracijos, ši funkcija gali būti automatiškai įvykdyta ir perskaityta agento arba vykdoma pagal vartotojo įvestį.
 
-Daugiau [AutoGen kodų pavyzdžių](https://microsoft.github.io/autogen/docs/Examples/?WT.mc_id=academic-105485-koreyst) rasite, jei norite giliau susipažinti su kūrimu.
+Galite rasti [AutoGen kodo pavyzdžių](https://microsoft.github.io/autogen/docs/Examples/?WT.mc_id=academic-105485-koreyst) tolesniam susipažinimui ir pradžiai kurti.
 
 ## Taskweaver
 
-Kitas agentų karkasas, kurį aptarsime, yra [Taskweaver](https://microsoft.github.io/TaskWeaver/?WT.mc_id=academic-105485-koreyst). Jis vadinamas „code-first“ agentu, nes vietoj darbo tik su `strings` gali dirbti su Python DataFrame. Tai labai naudinga duomenų analizei ir generavimui, pavyzdžiui, kuriant grafikus, diagramas ar generuojant atsitiktinius skaičius.
+Kitas agentų karkasas, kurį nagrinėsime, yra [Taskweaver](https://microsoft.github.io/TaskWeaver/?WT.mc_id=academic-105485-koreyst). Jis žinomas kaip „kodo pirmas“ agentas, nes vietoj griežto darbo su `strings` gali dirbti su Python DataFrame objektais. Tai labai naudinga duomenų analizės ir generavimo užduotyse, pavyzdžiui, kuriant grafikus, diagramas arba generuojant atsitiktinius skaičius.
 
 ### Būsena ir įrankiai
 
-Norint valdyti pokalbio būseną, Taskweaver naudoja `Planner` koncepciją. `Planner` – tai LLM, kuris priima vartotojo užklausą ir suplanuoja užduotis, kurias reikia atlikti, kad užklausa būtų įvykdyta.
+Būsenai valdyti TaskWeaver naudoja `Planner` sąvoką. `Planner` yra LLM, kuris gauna vartotojų užklausą ir suplanuoja užduotis, kurias reikia atlikti, kad būtų įvykdyta užklausa.
 
-Užduotims atlikti `Planner` turi prieigą prie įrankių kolekcijos, vadinamos `Plugins`. Tai gali būti Python klasės arba bendras kodo interpretatorius. Šie papildiniai saugomi kaip embedding'ai, kad LLM galėtų lengviau rasti tinkamą pluginą.
+Užduotims atlikti `Planner` turi prieigą prie įrankių rinkinio, vadinamo `Plugins`. Tai gali būti Python klasės arba bendras kodo interpretatorius. Šie papildiniai saugomi kaip embeddingai, kad LLM galėtų efektyviau ieškoti tinkamo papildinio.
 
-![Taskweaver](../../../translated_images/taskweaver.da8559999267715a95b7677cf9b7d7dd8420aee6f3c484ced1833f081988dcd5.lt.png)
+![Taskweaver](../../../translated_images/lt/taskweaver.da8559999267715a.webp)
 
-Štai pavyzdys pluginui, skirtam anomalijų aptikimui:
+Štai pavyzdys, kaip atrodo papildinys anomalijų aptikimui:
 
 ```python
 class AnomalyDetectionPlugin(Plugin): def __call__(self, df: pd.DataFrame, time_col_name: str, value_col_name: str):
 ```
 
-Kodas patikrinamas prieš vykdymą. Dar viena funkcija, padedanti valdyti kontekstą Taskweaver, yra `experience`. Experience leidžia pokalbio kontekstą išsaugoti ilgam laikui YAML faile. Tai galima konfigūruoti, kad LLM laikui bėgant tobulėtų tam tikrose užduotyse, remdamasis ankstesniais pokalbiais.
+Kodas yra patvirtinamas prieš vykdymą. Kita Taskweaver konteksto valdymo funkcija yra `experience`. Ji leidžia ilgalaikėje YAML bylų saugoti pokalbio kontekstą. Tai gali būti sukonfigūruota taip, kad LLM laikui bėgant tobulėtų tam tikrose užduotyse, jei jis turėjo prieigą prie ankstesnių pokalbių.
 
 ## JARVIS
 
-Paskutinis agentų karkasas, kurį aptarsime, yra [JARVIS](https://github.com/microsoft/JARVIS?tab=readme-ov-file?WT.mc_id=academic-105485-koreyst). JARVIS išskirtinumas – jis naudoja LLM pokalbio būsenai valdyti, o `tools` yra kiti DI modeliai. Kiekvienas DI modelis yra specializuotas tam tikrai užduočiai, pavyzdžiui, objektų atpažinimui, transkripcijai ar paveikslėlių aprašymui.
+Paskutinis agentų karkasas, kurį apžvelgsime, yra [JARVIS](https://github.com/microsoft/JARVIS?tab=readme-ov-file&WT.mc_id=academic-105485-koreyst). JARVIS unikalus tuo, kad naudoja LLM pokalbio `būsenai` valdyti, o `įrankiai` yra kiti dirbtinio intelekto modeliai. Kiekvienas DI modelis yra specializuotas tam tikroms užduotims atlikti, pvz., objektų atpažinimas, transkribavimas ar paveikslėlių aprašymas.
 
-![JARVIS](../../../translated_images/jarvis.762ddbadbd1a3a3364d4ca3db1a7a9c0d2180060c0f8da6f7bd5b5ea2a115aa7.lt.png)
+![JARVIS](../../../translated_images/lt/jarvis.762ddbadbd1a3a33.webp)
 
-LLM, būdamas universaliu modeliu, gauna vartotojo užklausą ir nustato konkrečią užduotį bei reikalingus argumentus/duomenis jai atlikti.
+LLM, kaip bendros paskirties modelis, gauna vartotojo užklausą ir identifikuoja konkrečią užduotį bei bet kokius argumentus/duomenis, reikalingus užduočiai įvykdyti.
 
 ```python
 [{"task": "object-detection", "id": 0, "dep": [-1], "args": {"image": "e1.jpg" }}]
 ```
 
-LLM tada suformuoja užklausą taip, kad specializuotas DI modelis ją suprastų, pavyzdžiui, JSON formatu. Kai DI modelis grąžina prognozę pagal užduotį, LLM gauna atsakymą.
+LLM tada suformuoja užklausą tokiu formatu, kad specializuotas DI modelis galėtų ją interpretuoti, pavyzdžiui, JSON formatu. Kai DI modelis pateikia prognozę pagal užduotį, LLM gauna atsakymą.
 
-Jei užduočiai atlikti reikia kelių modelių, LLM taip pat interpretuos jų atsakymus, prieš sujungdamas juos ir pateikdamas vartotojui galutinį atsakymą.
+Jei užduočiai įvykdyti reikalingi keli modeliai, LLM taip pat interpretuoja jų atsakymus, kol sujungia rezultatus ir sugeneruoja atsakymą vartotojui.
 
-Žemiau pateiktas pavyzdys rodo, kaip tai veiktų, kai vartotojas prašo aprašymo ir objektų skaičiaus paveikslėlyje:
+Žemiau pateiktas pavyzdys, kaip tai veiktų, kai vartotojas prašo aprašymo ir objektų skaičiaus nuotraukoje:
 
 ## Užduotis
 
-Norėdami toliau mokytis apie DI agentus, galite kurti su AutoGen:
+Toliau gilinkitės į DI agentų mokymąsi su AutoGen:
 
-- Programą, kuri simuliuoja verslo susitikimą tarp skirtingų švietimo startuolio skyrių.
-- Sukurkite sistemos žinutes, kurios padeda LLM suprasti skirtingas personas ir prioritetus, ir leidžia vartotojui pristatyti naują produkto idėją.
-- LLM turėtų sugeneruoti papildomus klausimus iš kiekvieno skyriaus, kad patikslintų ir pagerintų pristatymą bei produkto idėją.
+- Sukurkite programą, kuri simuliuoja verslo susitikimą su skirtingais edukacinio startuolio skyriais.
+- Sukurkite sistemos pranešimus, kurie nukreiptų LLM suprasti skirtingas asmenybes ir prioritetus bei leistų vartotojui pristatyti naują produkto idėją.
+- LLM turi generuoti kiekvieno skyriaus papildomus klausimus, kad patobulintų pristatymą ir produkto idėją.
 
-## Mokymasis nesibaigia čia – tęskite kelionę
+## Mokymasis čia nesibaigia, tęskite kelionę
 
-Baigę šią pamoką, peržiūrėkite mūsų [Generatyvaus DI mokymosi kolekciją](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), kad toliau gilintumėte žinias apie generatyvų DI!
+Baigę šią pamoką, peržiūrėkite mūsų [Generatyvinio DI mokymosi kolekciją](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), kad toliau keltumėte savo generatyvinio DI žinias!
 
 ---
 
-**Atsakomybės atsisakymas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojame profesionalų žmogaus vertimą. Mes neatsakome už nesusipratimus ar neteisingą interpretaciją, kylančią dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:  
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, atkreipkite dėmesį, kad automatizuoti vertimai gali turėti klaidų arba netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojame naudoti profesionalų žmogaus atliktą vertimą. Mes neatsakome už bet kokius nesusipratimus ar klaidingus interpretavimus, kylančius dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

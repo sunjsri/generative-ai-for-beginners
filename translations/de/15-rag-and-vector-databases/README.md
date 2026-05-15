@@ -1,99 +1,90 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e2861bbca91c0567ef32bc77fe054f9e",
-  "translation_date": "2025-07-09T16:02:08+00:00",
-  "source_file": "15-rag-and-vector-databases/README.md",
-  "language_code": "de"
-}
--->
-# Retrieval Augmented Generation (RAG) und Vektordatenbanken
+# Retrieval Augmented Generation (RAG) und Vektor-Datenbanken
 
-[![Retrieval Augmented Generation (RAG) und Vektordatenbanken](../../../translated_images/15-lesson-banner.ac49e59506175d4fc6ce521561dab2f9ccc6187410236376cfaed13cde371b90.de.png)](https://aka.ms/gen-ai-lesson15-gh?WT.mc_id=academic-105485-koreyst)
+[![Retrieval Augmented Generation (RAG) und Vektor-Datenbanken](../../../translated_images/de/15-lesson-banner.ac49e59506175d4f.webp)](https://youtu.be/4l8zhHUBeyI?si=BmvDmL1fnHtgQYkL)
 
-In der Lektion zu Suchanwendungen haben wir kurz gelernt, wie man eigene Daten in Large Language Models (LLMs) integriert. In dieser Lektion gehen wir tiefer auf die Konzepte ein, wie man seine Daten in einer LLM-Anwendung verankert, wie der Prozess funktioniert und welche Methoden es zur Speicherung von Daten gibt – sowohl Embeddings als auch Text.
+In der Lektion zu Suchanwendungen haben wir kurz gelernt, wie man eigene Daten in Large Language Models (LLMs) integriert. In dieser Lektion werden wir tiefer in die Konzepte des Groundings Ihrer Daten in Ihrer LLM-Anwendung eintauchen, die Mechanik des Prozesses und die Methoden zur Speicherung von Daten, einschließlich sowohl Einbettungen als auch Text.
 
-> **Video folgt in Kürze**
+> **Video demnächst verfügbar**
 
 ## Einführung
 
 In dieser Lektion behandeln wir Folgendes:
 
-- Eine Einführung in RAG, was es ist und warum es in der KI (künstlichen Intelligenz) verwendet wird.
+- Eine Einführung in RAG, was es ist und warum es in der KI (künstliche Intelligenz) verwendet wird.
 
-- Verständnis, was Vektordatenbanken sind und wie man eine für unsere Anwendung erstellt.
+- Verständnis, was Vektor-Datenbanken sind und wie man eine für unsere Anwendung erstellt.
 
 - Ein praktisches Beispiel, wie man RAG in eine Anwendung integriert.
 
 ## Lernziele
 
-Nach Abschluss dieser Lektion wirst du in der Lage sein:
+Nach Abschluss dieser Lektion werden Sie in der Lage sein:
 
 - Die Bedeutung von RAG bei der Datenabfrage und -verarbeitung zu erklären.
 
-- Eine RAG-Anwendung einzurichten und deine Daten in ein LLM einzubinden.
+- Eine RAG-Anwendung einzurichten und Ihre Daten an ein LLM zu binden.
 
-- RAG und Vektordatenbanken effektiv in LLM-Anwendungen zu integrieren.
+- Effektive Integration von RAG und Vektor-Datenbanken in LLM-Anwendungen.
 
-## Unser Szenario: Unsere LLMs mit eigenen Daten erweitern
+## Unser Szenario: Verbesserung unserer LLMs mit unseren eigenen Daten
 
-Für diese Lektion möchten wir eigene Notizen in das Bildungs-Startup einfügen, damit der Chatbot mehr Informationen zu verschiedenen Themen erhält. Mit den vorhandenen Notizen können Lernende besser lernen und die unterschiedlichen Themen besser verstehen, was das Lernen für Prüfungen erleichtert. Für unser Szenario verwenden wir:
+Für diese Lektion möchten wir unsere eigenen Notizen in das Bildungs-Startup einfügen, sodass der Chatbot mehr Informationen zu den verschiedenen Themen erhält. Mit den Notizen, die wir haben, können Lernende besser lernen und die verschiedenen Themen besser verstehen, was das Wiederholen für ihre Prüfungen erleichtert. Um unser Szenario zu erstellen, werden wir verwenden:
 
-- `Azure OpenAI:` das LLM, das wir für unseren Chatbot nutzen
+- `Azure OpenAI:` das LLM, das wir zur Erstellung unseres Chatbots nutzen
 
-- `AI for beginners' lesson on Neural Networks:` die Daten, auf denen wir unser LLM aufbauen
+- `AI for beginners' lesson on Neural Networks`: dies wird die Datenbasis sein, auf der wir unser LLM aufbauen
 
-- `Azure AI Search` und `Azure Cosmos DB:` Vektordatenbank zur Speicherung unserer Daten und zur Erstellung eines Suchindexes
+- `Azure AI Search` und `Azure Cosmos DB:` Vektor-Datenbank zum Speichern unserer Daten und zur Erstellung eines Suchindex
 
-Nutzer können Übungsquizze aus ihren Notizen erstellen, Lernkarten zum Wiederholen anfertigen und Zusammenfassungen in übersichtliche Übersichten umwandeln. Um zu starten, schauen wir uns an, was RAG ist und wie es funktioniert:
+Benutzer können Übungsquiz aus ihren Notizen erstellen, Lernkarten zur Wiederholung anlegen und diese zu prägnanten Übersichten zusammenfassen. Um zu beginnen, betrachten wir, was RAG ist und wie es funktioniert:
 
 ## Retrieval Augmented Generation (RAG)
 
-Ein von einem LLM unterstützter Chatbot verarbeitet Nutzereingaben, um Antworten zu generieren. Er ist interaktiv gestaltet und kann mit Nutzern über eine Vielzahl von Themen kommunizieren. Seine Antworten sind jedoch auf den bereitgestellten Kontext und die zugrundeliegenden Trainingsdaten beschränkt. Zum Beispiel endet das Wissen von GPT-4 im September 2021, das heißt, es kennt keine Ereignisse, die danach passiert sind. Außerdem schließen die Trainingsdaten von LLMs vertrauliche Informationen wie persönliche Notizen oder Handbücher von Unternehmen aus.
+Ein von einem LLM unterstützter Chatbot verarbeitet Benutzeranfragen, um Antworten zu generieren. Er ist so gestaltet, dass er interaktiv ist und sich mit Benutzern über eine Vielzahl von Themen austauscht. Seine Antworten sind jedoch auf den bereitgestellten Kontext und seine grundlegenden Trainingsdaten beschränkt. Beispielsweise endet das Wissensfenster von GPT-4 im September 2021, das heißt, es fehlen Kenntnisse über Ereignisse, die nach diesem Zeitpunkt stattgefunden haben. Außerdem schließen die zum Trainieren von LLMs verwendeten Daten vertrauliche Informationen wie persönliche Notizen oder ein Produkt-Handbuch eines Unternehmens aus.
 
 ### Wie RAGs (Retrieval Augmented Generation) funktionieren
 
-![Abbildung, die zeigt, wie RAGs funktionieren](../../../translated_images/how-rag-works.f5d0ff63942bd3a638e7efee7a6fce7f0787f6d7a1fca4e43f2a7a4d03cde3e0.de.png)
+![Zeichnung, die zeigt, wie RAGs funktionieren](../../../translated_images/de/how-rag-works.f5d0ff63942bd3a6.webp)
 
-Angenommen, du möchtest einen Chatbot bereitstellen, der Quizze aus deinen Notizen erstellt, dann benötigst du eine Verbindung zur Wissensdatenbank. Hier kommt RAG ins Spiel. RAGs funktionieren folgendermaßen:
+Angenommen, Sie möchten einen Chatbot bereitstellen, der Quizfragen aus Ihren Notizen erstellt, benötigen Sie eine Verbindung zur Wissensdatenbank. Hier kommt RAG ins Spiel. RAGs funktionieren wie folgt:
 
-- **Wissensdatenbank:** Vor der Abfrage müssen die Dokumente aufgenommen und vorverarbeitet werden, typischerweise indem große Dokumente in kleinere Abschnitte zerlegt, in Text-Embeddings umgewandelt und in einer Datenbank gespeichert werden.
+- **Wissensdatenbank:** Vor der Abfrage müssen diese Dokumente aufgenommen und vorverarbeitet werden, typischerweise indem große Dokumente in kleinere Abschnitte (Chunks) zerlegt, in Text-Einbettungen umgewandelt und in einer Datenbank gespeichert werden.
 
-- **Nutzeranfrage:** Der Nutzer stellt eine Frage.
+- **Benutzeranfrage:** Der Benutzer stellt eine Frage
 
-- **Abruf:** Wenn der Nutzer eine Frage stellt, holt das Embedding-Modell relevante Informationen aus unserer Wissensdatenbank, um mehr Kontext zu liefern, der in die Eingabeaufforderung einfließt.
+- **Abruf (Retrieval):** Wenn ein Benutzer eine Frage stellt, ruft das Einbettungsmodell relevante Informationen aus unserer Wissensdatenbank ab, um mehr Kontext zu liefern, der in die Eingabeaufforderung integriert wird.
 
-- **Erweiterte Generierung:** Das LLM verbessert seine Antwort basierend auf den abgerufenen Daten. So basiert die Antwort nicht nur auf den vortrainierten Daten, sondern auch auf relevanten Informationen aus dem hinzugefügten Kontext. Die abgerufenen Daten werden genutzt, um die Antworten des LLM zu erweitern. Das LLM gibt dann eine Antwort auf die Nutzerfrage zurück.
+- **Erweiterte Generierung:** Das LLM verbessert seine Antwort basierend auf den abgerufenen Daten. Dadurch basiert die generierte Antwort nicht nur auf vortrainierten Daten, sondern auch auf relevanten Informationen aus dem hinzugefügten Kontext. Die abgerufenen Daten werden verwendet, um die Antworten des LLM zu ergänzen. Das LLM gibt dann eine Antwort auf die Frage des Benutzers zurück.
 
-![Abbildung, die die Architektur von RAGs zeigt](../../../translated_images/encoder-decode.f2658c25d0eadee2377bb28cf3aee8b67aa9249bf64d3d57bb9be077c4bc4e1a.de.png)
+![Zeichnung, die die RAG-Architektur zeigt](../../../translated_images/de/encoder-decode.f2658c25d0eadee2.webp)
 
-Die Architektur von RAGs wird mit Transformern umgesetzt, die aus zwei Teilen bestehen: einem Encoder und einem Decoder. Wenn ein Nutzer beispielsweise eine Frage stellt, wird der Eingabetext in Vektoren „kodiert“, die die Bedeutung der Wörter erfassen. Diese Vektoren werden dann in unserem Dokumentenindex „dekodiert“ und generieren neuen Text basierend auf der Nutzeranfrage. Das LLM verwendet ein Encoder-Decoder-Modell, um die Ausgabe zu erzeugen.
+Die Architektur von RAGs wird mit Transformern implementiert, die aus zwei Teilen bestehen: einem Encoder und einem Decoder. Wenn ein Benutzer zum Beispiel eine Frage stellt, wird der Eingabetext in Vektoren „kodiert“, die die Bedeutung der Wörter erfassen, und die Vektoren werden „dekodiert“ in unseren Dokumentenindex und generieren neuen Text basierend auf der Benutzeranfrage. Das LLM verwendet ein Encoder-Decoder-Modell, um die Ausgabe zu erzeugen.
 
-Laut dem vorgeschlagenen Paper [Retrieval-Augmented Generation for Knowledge intensive NLP (natural language processing software) Tasks](https://arxiv.org/pdf/2005.11401.pdf?WT.mc_id=academic-105485-koreyst) gibt es zwei Ansätze zur Implementierung von RAG:
+Laut dem vorgeschlagenen Paper: [Retrieval-Augmented Generation for Knowledge intensive NLP (natural language processing software) Tasks](https://arxiv.org/pdf/2005.11401.pdf?WT.mc_id=academic-105485-koreyst) gibt es zwei Ansätze für die Implementierung von RAG:
 
-- **_RAG-Sequence_** verwendet abgerufene Dokumente, um die bestmögliche Antwort auf eine Nutzeranfrage vorherzusagen
+- **_RAG-Sequence_** nutzt abgerufene Dokumente, um die bestmögliche Antwort auf eine Benutzeranfrage vorherzusagen
 
-- **RAG-Token** nutzt Dokumente, um das nächste Token zu generieren und ruft sie dann ab, um die Nutzeranfrage zu beantworten
+- **RAG-Token** verwendet Dokumente, um das nächste Token zu generieren und ruft dann weitere ab, um die Benutzeranfrage zu beantworten
 
-### Warum sollte man RAGs verwenden?
+### Warum sollten Sie RAGs verwenden? 
 
-- **Informationsvielfalt:** sorgt dafür, dass Textantworten aktuell und auf dem neuesten Stand sind. Dadurch wird die Leistung bei domänenspezifischen Aufgaben verbessert, indem auf die interne Wissensdatenbank zugegriffen wird.
+- **Informationsfülle:** stellt sicher, dass Textantworten aktuell und auf dem neuesten Stand sind. Es verbessert daher die Leistung bei domänenspezifischen Aufgaben durch Zugriff auf die interne Wissensdatenbank.
 
-- Reduziert Falschinformationen, indem **überprüfbare Daten** aus der Wissensdatenbank genutzt werden, um Kontext für Nutzeranfragen zu liefern.
+- Reduziert Falschinformationen, indem es **überprüfbare Daten** in der Wissensdatenbank nutzt, um Kontext zu den Benutzeranfragen bereitzustellen.
 
-- Es ist **kosteneffizient**, da es günstiger ist als das Feintuning eines LLM.
+- Es ist **kosteneffektiv**, da es günstiger ist als ein Feintuning eines LLM.
 
 ## Erstellen einer Wissensdatenbank
 
-Unsere Anwendung basiert auf unseren persönlichen Daten, z.B. der Lektion zu Neural Networks aus dem AI For Beginners Curriculum.
+Unsere Anwendung basiert auf unseren persönlichen Daten, d.h. der Neural Network Lektion im AI For Beginners Curriculum.
 
-### Vektordatenbanken
+### Vektor-Datenbanken
 
-Eine Vektordatenbank ist im Gegensatz zu traditionellen Datenbanken eine spezialisierte Datenbank, die darauf ausgelegt ist, eingebettete Vektoren zu speichern, zu verwalten und zu durchsuchen. Sie speichert numerische Repräsentationen von Dokumenten. Die Umwandlung von Daten in numerische Embeddings erleichtert es unserem KI-System, die Daten zu verstehen und zu verarbeiten.
+Eine Vektor-Datenbank ist, im Gegensatz zu traditionellen Datenbanken, eine spezialisierte Datenbank, die darauf ausgelegt ist, eingebettete Vektoren zu speichern, zu verwalten und zu durchsuchen. Sie speichert numerische Repräsentationen von Dokumenten. Die Aufschlüsselung von Daten in numerische Einbettungen macht es unserem KI-System leichter, die Daten zu verstehen und zu verarbeiten.
 
-Wir speichern unsere Embeddings in Vektordatenbanken, da LLMs eine Begrenzung der Anzahl von Tokens haben, die sie als Eingabe akzeptieren. Da man nicht alle Embeddings auf einmal an ein LLM übergeben kann, müssen wir sie in Abschnitte aufteilen. Wenn ein Nutzer eine Frage stellt, werden die Embeddings, die der Frage am ähnlichsten sind, zusammen mit der Eingabeaufforderung zurückgegeben. Das Aufteilen in Abschnitte reduziert auch die Kosten für die Anzahl der Tokens, die durch ein LLM laufen.
+Wir speichern unsere Einbettungen in Vektor-Datenbanken, da LLMs eine Begrenzung der Anzahl an Token haben, die sie als Eingabe akzeptieren. Da Sie nicht die gesamten Einbettungen an ein LLM weitergeben können, müssen wir sie in Abschnitte (Chunks) aufteilen, und wenn ein Benutzer eine Frage stellt, werden die Einbettungen zurückgegeben, die der Frage am ähnlichsten sind. Das Chunking senkt auch die Kosten für die Anzahl der Token, die durch ein LLM laufen.
 
-Beliebte Vektordatenbanken sind Azure Cosmos DB, Clarifyai, Pinecone, Chromadb, ScaNN, Qdrant und DeepLake. Du kannst ein Azure Cosmos DB-Modell mit Azure CLI mit folgendem Befehl erstellen:
+Einige beliebte Vektor-Datenbanken sind Azure Cosmos DB, Clarifyai, Pinecone, Chromadb, ScaNN, Qdrant und DeepLake. Sie können ein Azure Cosmos DB-Modell mit Azure CLI mit folgendem Befehl erstellen:
 
 ```bash
 az login
@@ -102,9 +93,9 @@ az cosmosdb create -n <cosmos-db-name> -r <resource-group-name>
 az cosmosdb list-keys -n <cosmos-db-name> -g <resource-group-name>
 ```
 
-### Von Text zu Embeddings
+### Vom Text zu den Einbettungen
 
-Bevor wir unsere Daten speichern, müssen wir sie in Vektor-Embeddings umwandeln. Wenn du mit großen Dokumenten oder langen Texten arbeitest, kannst du sie basierend auf den erwarteten Anfragen in Abschnitte unterteilen. Das Chunking kann auf Satz- oder Absatzebene erfolgen. Da die Bedeutung eines Abschnitts aus den umliegenden Wörtern abgeleitet wird, kannst du dem Abschnitt zusätzlichen Kontext hinzufügen, z.B. den Dokumenttitel oder etwas Text vor oder nach dem Abschnitt. Du kannst die Daten wie folgt aufteilen:
+Bevor wir unsere Daten speichern, müssen wir sie in Vektor-Einbettungen umwandeln, bevor sie in der Datenbank abgelegt werden. Wenn Sie mit großen Dokumenten oder langen Texten arbeiten, können Sie diese entsprechend der erwarteten Anfragen in Abschnitte aufteilen. Das Chunking kann auf Satz- oder Absatzebene erfolgen. Da beim Chunking die Bedeutung auch aus den umliegenden Wörtern abgeleitet wird, können Sie einem Chunk weiteren Kontext hinzufügen, z.B. durch Hinzufügen des Dokumenttitels oder Einbeziehen von Text vor oder nach dem Chunk. Sie können die Daten folgendermaßen chunkieren:
 
 ```python
 def split_text(text, max_length, min_length):
@@ -118,70 +109,68 @@ def split_text(text, max_length, min_length):
             chunks.append(' '.join(current_chunk))
             current_chunk = []
 
-    # If the last chunk didn't reach the minimum length, add it anyway
+    # Wenn das letzte Stück nicht die Mindestlänge erreicht hat, füge es trotzdem hinzu
     if current_chunk:
         chunks.append(' '.join(current_chunk))
 
     return chunks
 ```
 
-Nach dem Chunking können wir unseren Text mit verschiedenen Embedding-Modellen einbetten. Einige Modelle, die du verwenden kannst, sind: word2vec, ada-002 von OpenAI, Azure Computer Vision und viele mehr. Die Wahl des Modells hängt von den verwendeten Sprachen, dem Inhaltstyp (Text/Bilder/Audio), der Eingabegröße und der Länge des Embedding-Ausgangs ab.
+Nach dem Chunking können wir dann unseren Text mit verschiedenen Einbettungsmodellen einbetten. Einige Modelle, die Sie verwenden können, sind: word2vec, ada-002 von OpenAI, Azure Computer Vision und viele mehr. Die Auswahl eines Modells hängt von den verwendeten Sprachen, dem codierten Inhaltstyp (Text/Bilder/Audio), der Eingabegröße, die es kodieren kann, und der Länge der Einbettungsausgabe ab.
 
-Ein Beispiel für eingebetteten Text mit OpenAIs `text-embedding-ada-002` Modell ist:
-![eine Einbettung des Wortes Katze](../../../translated_images/cat.74cbd7946bc9ca380a8894c4de0c706a4f85b16296ffabbf52d6175df6bf841e.de.png)
+Ein Beispiel für eingbetteten Text mit OpenAIs `text-embedding-ada-002` Modell ist:
+![eine Einbettung des Wortes Katze](../../../translated_images/de/cat.74cbd7946bc9ca38.webp)
 
-## Abruf und Vektorsuche
+## Retrieval und Vektorsuche
 
-Wenn ein Nutzer eine Frage stellt, wandelt der Retriever diese mit dem Query-Encoder in einen Vektor um und durchsucht dann unseren Dokumentensuchindex nach relevanten Vektoren, die mit der Eingabe zusammenhängen. Anschließend werden sowohl der Eingabevektor als auch die Dokumentvektoren in Text umgewandelt und an das LLM übergeben.
+Wenn ein Benutzer eine Frage stellt, wandelt der Retriever sie mithilfe des Query-Encoders in einen Vektor um, durchsucht dann unseren Dokumentensuchindex nach relevanten Vektoren, die im Dokument mit der Eingabe zusammenhängen. Nach Abschluss konvertiert er sowohl den Eingabevektor als auch die Dokumentenvektoren zurück in Text und gibt sie an das LLM weiter.
 
 ### Abruf
 
-Der Abruf findet statt, wenn das System versucht, schnell die Dokumente aus dem Index zu finden, die den Suchkriterien entsprechen. Das Ziel des Retrievers ist es, Dokumente zu erhalten, die genutzt werden, um Kontext zu liefern und das LLM auf deine Daten zu verankern.
+Retrieval findet statt, wenn das System versucht, schnell die Dokumente aus dem Index zu finden, die die Suchkriterien erfüllen. Das Ziel des Retrievers ist es, Dokumente zu holen, die verwendet werden, um Kontext bereitzustellen und das LLM auf Ihre Daten zu gründen.
 
 Es gibt verschiedene Möglichkeiten, innerhalb unserer Datenbank zu suchen, z.B.:
 
-- **Schlüsselwortsuche** – für Textsuchen
+- **Schlüsselwortsuche** – wird für Textsuchen verwendet
 
-- **Semantische Suche** – nutzt die semantische Bedeutung von Wörtern
-
-- **Vektorsuche** – wandelt Dokumente von Text in Vektor-Repräsentationen mit Embedding-Modellen um. Die Suche erfolgt durch Abfragen der Dokumente, deren Vektor-Repräsentationen der Nutzerfrage am nächsten sind.
+- **Vektorsuche** – wandelt Dokumente von Text in Vektorrepräsentationen mit Einbettungsmodellen um, was eine **semantische Suche** auf Basis der Bedeutung der Wörter ermöglicht. Der Abruf erfolgt durch Abfragen der Dokumente, deren Vektorrepräsentationen dem Benutzerfragevektor am nächsten sind.
 
 - **Hybrid** – eine Kombination aus Schlüsselwort- und Vektorsuche.
 
-Eine Herausforderung beim Abruf entsteht, wenn keine ähnliche Antwort auf die Anfrage in der Datenbank vorhanden ist. Das System gibt dann die bestmöglichen Informationen zurück. Du kannst jedoch Taktiken verwenden, wie z.B. die maximale Distanz für Relevanz festzulegen oder eine Hybridsuche zu nutzen, die sowohl Schlüsselwörter als auch Vektorsuche kombiniert. In dieser Lektion verwenden wir die Hybridsuche, eine Kombination aus Vektor- und Schlüsselwortsuche. Wir speichern unsere Daten in einem Dataframe mit Spalten, die sowohl die Abschnitte als auch die Embeddings enthalten.
+Eine Herausforderung beim Abruf besteht darin, dass es keine ähnliche Antwort auf die Anfrage in der Datenbank gibt. Das System gibt dann die bestmöglichen Informationen zurück. Sie können jedoch Taktiken verwenden, wie das Einrichten einer maximalen Relevanzdistanz oder Nutzung der hybriden Suche, die Schlüsselwort- und Vektorsuche kombiniert. In dieser Lektion verwenden wir hybride Suche, eine Kombination aus Vektor- und Schlüsselwortsuche. Wir speichern unsere Daten in einem DataFrame mit Spalten, die die Chunks sowie die Einbettungen enthalten.
 
 ### Vektorähnlichkeit
 
-Der Retriever sucht in der Wissensdatenbank nach Embeddings, die nah beieinander liegen, also die nächsten Nachbarn, da es sich um ähnliche Texte handelt. Wenn ein Nutzer eine Anfrage stellt, wird diese zuerst eingebettet und dann mit ähnlichen Embeddings abgeglichen. Die gängige Messgröße, um die Ähnlichkeit verschiedener Vektoren zu bestimmen, ist die Kosinusähnlichkeit, die auf dem Winkel zwischen zwei Vektoren basiert.
+Der Retriever durchsucht die Wissensdatenbank nach Einbettungen, die nahe beieinanderliegen, also den nächsten Nachbarn, da es sich um ähnliche Texte handelt. Wenn ein Benutzer eine Anfrage stellt, wird diese zuerst eingebettet und dann mit ähnlichen Einbettungen abgeglichen. Das gebräuchlichste Maß zur Bestimmung der Ähnlichkeit zwischen Vektoren ist die Kosinus-Ähnlichkeit, die auf dem Winkel zwischen zwei Vektoren basiert.
 
-Alternativ können wir auch andere Maße verwenden, wie die euklidische Distanz, die die direkte Linie zwischen den Endpunkten der Vektoren misst, oder das Skalarprodukt, das die Summe der Produkte der entsprechenden Elemente zweier Vektoren berechnet.
+Wir können die Ähnlichkeit auch mit anderen Alternativen messen, die wir verwenden können, wie dem euklidischen Abstand, der die Gerade zwischen den Endpunkten zweier Vektoren misst, oder dem Skalarprodukt, welches die Summe der Produkte der korrespondierenden Elemente zweier Vektoren angibt.
 
 ### Suchindex
 
-Für den Abruf müssen wir vor der Suche einen Suchindex für unsere Wissensdatenbank erstellen. Ein Index speichert unsere Embeddings und kann auch in großen Datenbanken schnell die ähnlichsten Abschnitte abrufen. Wir können unseren Index lokal mit folgendem Befehl erstellen:
+Beim Abruf müssen wir vor der Suche einen Suchindex für unsere Wissensdatenbank erstellen. Ein Index speichert unsere Einbettungen und kann selbst in einer großen Datenbank die ähnlichsten Chunks schnell abrufen. Wir können unseren Index lokal erstellen mit:
 
 ```python
 from sklearn.neighbors import NearestNeighbors
 
 embeddings = flattened_df['embeddings'].to_list()
 
-# Create the search index
+# Erstellen Sie den Suchindex
 nbrs = NearestNeighbors(n_neighbors=5, algorithm='ball_tree').fit(embeddings)
 
-# To query the index, you can use the kneighbors method
+# Um den Index abzufragen, können Sie die Methode kneighbors verwenden
 distances, indices = nbrs.kneighbors(embeddings)
 ```
 
 ### Neu-Rangierung
 
-Nachdem du die Datenbank abgefragt hast, musst du die Ergebnisse möglicherweise nach Relevanz sortieren. Ein Neu-Rangierungs-LLM nutzt maschinelles Lernen, um die Relevanz der Suchergebnisse zu verbessern, indem es sie vom relevantesten zum weniger relevanten ordnet. Mit Azure AI Search erfolgt die Neu-Rangierung automatisch durch einen semantischen Neu-Ranker. Ein Beispiel, wie Neu-Rangierung mit den nächsten Nachbarn funktioniert:
+Nachdem Sie die Datenbank abgefragt haben, müssen Sie möglicherweise die Ergebnisse nach Relevanz sortieren. Ein neu-rangierendes LLM nutzt maschinelles Lernen, um die Relevanz der Suchergebnisse zu verbessern, indem es die Ergebnisse nach der Wichtigkeit sortiert. Mit Azure AI Search wird die Neu-Rangierung automatisch für Sie durch einen semantischen Neu-Ranger erledigt. Ein Beispiel, wie Neu-Rangierung mit nächsten Nachbarn funktioniert:
 
 ```python
-# Find the most similar documents
+# Finde die ähnlichsten Dokumente
 distances, indices = nbrs.kneighbors([query_vector])
 
 index = []
-# Print the most similar documents
+# Drucke die ähnlichsten Dokumente
 for i in range(3):
     index = indices[0][i]
     for index in indices[0]:
@@ -192,7 +181,7 @@ for i in range(3):
         print(f"Index {index} not found in DataFrame")
 ```
 
-## Alles zusammenführen
+## Alles zusammenfügen
 
 Der letzte Schritt ist, unser LLM einzubinden, um Antworten zu erhalten, die auf unseren Daten basieren. Wir können es wie folgt implementieren:
 
@@ -200,27 +189,27 @@ Der letzte Schritt ist, unser LLM einzubinden, um Antworten zu erhalten, die auf
 user_input = "what is a perceptron?"
 
 def chatbot(user_input):
-    # Convert the question to a query vector
+    # Konvertiere die Frage in einen Abfragevektor
     query_vector = create_embeddings(user_input)
 
-    # Find the most similar documents
+    # Finde die ähnlichsten Dokumente
     distances, indices = nbrs.kneighbors([query_vector])
 
-    # add documents to query  to provide context
+    # Füge Dokumente zur Abfrage hinzu, um Kontext bereitzustellen
     history = []
     for index in indices[0]:
         history.append(flattened_df['chunks'].iloc[index])
 
-    # combine the history and the user input
+    # Kombiniere die Historie und die Benutzereingabe
     history.append(user_input)
 
-    # create a message object
+    # Erstelle ein Nachrichtenobjekt
     messages=[
         {"role": "system", "content": "You are an AI assistant that helps with AI questions."},
-        {"role": "user", "content": history[-1]}
+        {"role": "user", "content": "\n\n".join(history) }
     ]
 
-    # use chat completion to generate a response
+    # Nutze Chat Completion, um eine Antwort zu generieren
     response = openai.chat.completions.create(
         model="gpt-4",
         temperature=0.7,
@@ -233,47 +222,51 @@ def chatbot(user_input):
 chatbot(user_input)
 ```
 
-## Bewertung unserer Anwendung
+## Evaluation unserer Anwendung
 
-### Bewertungsmetriken
+### Evaluationsmetriken
 
-- Qualität der gelieferten Antworten, die natürlich, flüssig und menschenähnlich klingen sollen
+- Qualität der gelieferten Antworten: Sie sollen natürlich, flüssig und menschenähnlich klingen
 
-- Verankerung der Daten: Bewertung, ob die Antwort aus den bereitgestellten Dokumenten stammt
+- Groundedness der Daten: Bewertung, ob die Antwort aus den bereitgestellten Dokumenten stammt
 
-- Relevanz: Bewertung, ob die Antwort zur gestellten Frage passt und inhaltlich zusammenhängt
+- Relevanz: Bewertung, ob die Antwort zur gestellten Frage passt und in Beziehung steht
 
 - Flüssigkeit – ob die Antwort grammatikalisch sinnvoll ist
 
-## Anwendungsfälle für RAG (Retrieval Augmented Generation) und Vektordatenbanken
+## Anwendungsfälle für RAG (Retrieval Augmented Generation) und Vektor-Datenbanken
 
-Es gibt viele verschiedene Anwendungsfälle, bei denen Funktionsaufrufe deine App verbessern können, z.B.:
+Es gibt viele verschiedene Anwendungsfälle, bei denen Funktionsaufrufe Ihre App verbessern können, wie zum Beispiel:
 
-- Frage-Antwort-Systeme: Verankerung deiner Firmendaten in einem Chat, der von Mitarbeitenden für Fragen genutzt werden kann.
+- Frage-Antwort-Systeme: Ihr Unternehmenswissen an einen Chat binden, der von Mitarbeitern zur Beantwortung von Fragen verwendet wird.
 
-- Empfehlungssysteme: Erstellung eines Systems, das die ähnlichsten Werte abgleicht, z.B. Filme, Restaurants und vieles mehr.
+- Empfehlungssysteme: Sie können ein System erstellen, das die ähnlichsten Werte z.B. Filme, Restaurants und viele weitere abgleicht.
 
-- Chatbot-Dienste: Speicherung des Chatverlaufs und Personalisierung der Unterhaltung basierend auf Nutzerdaten.
+- Chatbot-Dienste: Sie können den Chatverlauf speichern und das Gespräch basierend auf Benutzerdaten personalisieren.
 
-- Bildsuche basierend auf Vektor-Embeddings, nützlich bei Bilderkennung und Anomalieerkennung.
+- Bildsuche basierend auf Vektoreinbettungen, nützlich bei der Bilderkennung und Anomalieerkennung.
 
 ## Zusammenfassung
 
-Wir haben die grundlegenden Bereiche von RAG behandelt – vom Hinzufügen unserer Daten zur Anwendung, über die Nutzeranfrage bis hin zur Ausgabe. Zur Vereinfachung der Erstellung von RAG kannst du Frameworks wie Semantic Kernel, Langchain oder Autogen verwenden.
+Wir haben die grundlegenden Bereiche von RAG abgedeckt, von der Hinzufügung unserer Daten zur Anwendung über die Benutzeranfrage bis hin zur Ausgabe. Zur Vereinfachung der Erstellung von RAG können Sie Frameworks wie Semanti Kernel, Langchain oder Autogen verwenden.
 
 ## Aufgabe
 
-Um dein Wissen zu Retrieval Augmented Generation (RAG) weiter zu vertiefen, kannst du:
+Um Ihr Wissen zu Retrieval Augmented Generation (RAG) weiter zu vertiefen, können Sie:
 
-- Ein Frontend für die Anwendung mit dem Framework deiner Wahl erstellen
+- Ein Frontend für die Anwendung unter Verwendung eines Frameworks Ihrer Wahl erstellen
 
-- Ein Framework wie LangChain oder Semantic Kernel nutzen und deine Anwendung neu aufbauen.
+- Ein Framework wie LangChain oder Semantic Kernel verwenden und Ihre Anwendung nachbauen.
 
 Herzlichen Glückwunsch zum Abschluss der Lektion 👏.
 
-## Lernen hört hier nicht auf – setze deine Reise fort
+## Lernen endet hier nicht, setzen Sie die Reise fort
 
-Nach Abschluss dieser Lektion schau dir unsere [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) an, um dein Wissen im Bereich Generative AI weiter auszubauen!
+Nach Abschluss dieser Lektion schauen Sie sich unsere [Generative AI Lernsammlung](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) an, um Ihre Kenntnisse in Generativer KI weiter auszubauen!
 
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Haftungsausschluss**:  
-Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Obwohl wir uns um Genauigkeit bemühen, beachten Sie bitte, dass automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten können. Das Originaldokument in seiner Ursprungssprache gilt als maßgebliche Quelle. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die aus der Nutzung dieser Übersetzung entstehen.
+Dieses Dokument wurde mit dem KI-Übersetzungsdienst [Co-op Translator](https://github.com/Azure/co-op-translator) übersetzt. Zwar bemühen wir uns um Genauigkeit, dennoch können automatisierte Übersetzungen Fehler oder Ungenauigkeiten enthalten. Das Originaldokument in seiner Ursprungssprache ist als maßgebliche Quelle zu betrachten. Für wichtige Informationen wird eine professionelle menschliche Übersetzung empfohlen. Wir übernehmen keine Haftung für Missverständnisse oder Fehlinterpretationen, die durch die Nutzung dieser Übersetzung entstehen.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

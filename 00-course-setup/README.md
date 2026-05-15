@@ -31,7 +31,7 @@ In your fork: **Code -> Codespaces -> New on main**
 |---------------------|-------------------------------------------------------------------------|
 | Start Lesson 1      | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
 | Work offline        | [`setup-local.md`](02-setup-local.md)                                   |
-| Setup an LLM Provider | [`providers.md`](providers.md)                                        |
+| Setup an LLM Provider | [`providers.md`](03-providers.md)                                        |
 | Meet other learners | [Join our Discord](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)   |
 
 ## Troubleshooting
@@ -130,7 +130,7 @@ dependencies:
       - azure-ai-ml
 ```
 
-If you find you getting errors using conda you can manually install the Microsoft AI Libraries using the following command in a terminal.
+If you find you are getting errors using conda you can manually install the Microsoft AI Libraries using the following command in a terminal.
 
 ```
 conda install -c microsoft azure-ai-ml

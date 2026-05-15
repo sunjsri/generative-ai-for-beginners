@@ -1,140 +1,189 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ca2afa136ed9aca0634f39f51239746e",
-  "translation_date": "2025-08-27T09:01:46+00:00",
-  "source_file": "README.md",
-  "language_code": "my"
-}
--->
-![Generative AI For Beginners](../../translated_images/repo-thumbnailv4-fixed.11f1ce6a85d01461c33c11943bb61f2b6d6dcce3a3b25cd27e627031f41f8e00.my.png)
+![Generative AI For Beginners](../../translated_images/my/repo-thumbnailv4-fixed.11f1ce6a85d01461.webp)
 
-### ၂၁ မျိုးဆက်သစ် AI အက်ပလီကေးရှင်းများ တည်ဆောက်ရန် လိုအပ်သော အရာများကို သင်ကြားပေးမည့် သင်ခန်းစာများ
+### Generative AI အက်ပလီကေးရှင်းများတည်ဆောက်ရန် အခြေခံလိုအပ်သည့် အရာအားလုံးကို သင်ကြားပေးမည့် ၂၁ ခန်းစာများ
 
-[![GitHub license](https://img.shields.io/github/license/microsoft/Generative-AI-For-Beginners.svg)](https://github.com/microsoft/Generative-AI-For-Beginners/blob/master/LICENSE?WT.mc_id=academic-105485-koreyst)  
-[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/Generative-AI-For-Beginners.svg)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/graphs/contributors/?WT.mc_id=academic-105485-koreyst)  
-[![GitHub issues](https://img.shields.io/github/issues/microsoft/Generative-AI-For-Beginners.svg)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/issues/?WT.mc_id=academic-105485-koreyst)  
-[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/Generative-AI-For-Beginners.svg)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/pulls/?WT.mc_id=academic-105485-koreyst)  
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com?WT.mc_id=academic-105485-koreyst)  
+[![GitHub license](https://img.shields.io/github/license/microsoft/Generative-AI-For-Beginners.svg)](https://github.com/microsoft/Generative-AI-For-Beginners/blob/master/LICENSE?WT.mc_id=academic-105485-koreyst)
+[![GitHub contributors](https://img.shields.io/github/contributors/microsoft/Generative-AI-For-Beginners.svg)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/graphs/contributors/?WT.mc_id=academic-105485-koreyst)
+[![GitHub issues](https://img.shields.io/github/issues/microsoft/Generative-AI-For-Beginners.svg)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/issues/?WT.mc_id=academic-105485-koreyst)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/microsoft/Generative-AI-For-Beginners.svg)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/pulls/?WT.mc_id=academic-105485-koreyst)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com?WT.mc_id=academic-105485-koreyst)
 
-[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/Generative-AI-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/watchers/?WT.mc_id=academic-105485-koreyst)  
-[![GitHub forks](https://img.shields.io/github/forks/microsoft/Generative-AI-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/network/?WT.mc_id=academic-105485-koreyst)  
-[![GitHub stars](https://img.shields.io/github/stars/microsoft/Generative-AI-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/stargazers/?WT.mc_id=academic-105485-koreyst)  
+[![GitHub watchers](https://img.shields.io/github/watchers/microsoft/Generative-AI-For-Beginners.svg?style=social&label=Watch)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/watchers/?WT.mc_id=academic-105485-koreyst)
+[![GitHub forks](https://img.shields.io/github/forks/microsoft/Generative-AI-For-Beginners.svg?style=social&label=Fork)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/network/?WT.mc_id=academic-105485-koreyst)
+[![GitHub stars](https://img.shields.io/github/stars/microsoft/Generative-AI-For-Beginners.svg?style=social&label=Star)](https://GitHub.com/microsoft/Generative-AI-For-Beginners/stargazers/?WT.mc_id=academic-105485-koreyst)
 
-[![](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)  
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
 
-### 🌐 ဘာသာစကားများ အထောက်အပံ့
+### 🌐 ဘာသာစကားစုံကို ထောက်ပံ့ပါသည်
 
-#### GitHub Action မှတဆင့် အလိုအလျောက် (အမြဲနောက်ဆုံးပေါ်)
+#### GitHub Action မှတဆင့် ထောက်ပံ့ပြီး (အလိုအလျောက်လုပ်ဆောင်နှင့် အမြဲအသစ်ဆုံး)
 
-[French](../fr/README.md) | [Spanish](../es/README.md) | [German](../de/README.md) | [Russian](../ru/README.md) | [Arabic](../ar/README.md) | [Persian (Farsi)](../fa/README.md) | [Urdu](../ur/README.md) | [Chinese (Simplified)](../zh/README.md) | [Chinese (Traditional, Macau)](../mo/README.md) | [Chinese (Traditional, Hong Kong)](../hk/README.md) | [Chinese (Traditional, Taiwan)](../tw/README.md) | [Japanese](../ja/README.md) | [Korean](../ko/README.md) | [Hindi](../hi/README.md) | [Bengali](../bn/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Portuguese (Portugal)](../pt/README.md) | [Portuguese (Brazil)](../br/README.md) | [Italian](../it/README.md) | [Lithuanian](../lt/README.md) | [Polish](../pl/README.md) | [Turkish](../tr/README.md) | [Greek](../el/README.md) | [Thai](../th/README.md) | [Swedish](../sv/README.md) | [Danish](../da/README.md) | [Norwegian](../no/README.md) | [Finnish](../fi/README.md) | [Dutch](../nl/README.md) | [Hebrew](../he/README.md) | [Vietnamese](../vi/README.md) | [Indonesian](../id/README.md) | [Malay](../ms/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Swahili](../sw/README.md) | [Hungarian](../hu/README.md) | [Czech](../cs/README.md) | [Slovak](../sk/README.md) | [Romanian](../ro/README.md) | [Bulgarian](../bg/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Croatian](../hr/README.md) | [Slovenian](../sl/README.md) | [Ukrainian](../uk/README.md) | [Burmese (Myanmar)](./README.md)  
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](./README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Khmer](../km/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 
-# မျိုးဆက်သစ် AI အတွက် စတင်သူများ (Version 3) - သင်တန်း
+> **တစ်ကိုယ်တော် ကလုံလုပ်ချင်ပါသလား?**
+>
+> ဒီ repository မှာ ဘာသာစကား ၅၀ ကျော် အပြောင်းအလဲများပါဝင်တဲ့ကြောင့် ဒေါင်းလုတ်အရွယ်အစားလည်း စုစုပေါင်း ကြီးမားပါတယ်။ ဘာသာပြန်ချက် မပါဘဲ clone လုပ်ချင်ရင် sparse checkout ကို သုံးပါ။
+>
+> **Bash / macOS / Linux:**
+> ```bash
+> git clone --filter=blob:none --sparse https://github.com/microsoft/generative-ai-for-beginners.git
+> cd generative-ai-for-beginners
+> git sparse-checkout set --no-cone '/*' '!translations' '!translated_images'
+> ```
+>
+> **CMD (Windows):**
+> ```cmd
+> git clone --filter=blob:none --sparse https://github.com/microsoft/generative-ai-for-beginners.git
+> cd generative-ai-for-beginners
+> git sparse-checkout set --no-cone "/*" "!translations" "!translated_images"
+> ```
+>
+> ဒီနည်းလမ်းနဲ့ သင်ဟာ အတန်းလေ့လာရန် လိုအပ်သော အရာများအားလုံးကို ပိုမြန်ဆန်စွာ ရယူနိုင်မှာ ဖြစ်ပါတယ်။
+<!-- CO-OP TRANSLATOR LANGUAGES TABLE END -->
 
-Microsoft Cloud Advocates မှ တင်ဆက်သည့် ၂၁ သင်ခန်းစာများဖြင့် မျိုးဆက်သစ် AI အက်ပလီကေးရှင်းများ တည်ဆောက်ခြင်း၏ အခြေခံအချက်များကို သင်ယူပါ။
+# Generative AI for Beginners (ဗားရှင်း ၃) - သင်တန်း
 
-## 🌱 စတင်ရန်
+Microsoft Cloud Advocates က မိတ်ဆက်ပေးသည့် Generative AI အက်ပလီကေးရှင်းများ တည်ဆောက်ခြင်း အခြေခံများကို များစွာနှင့် သင်ကြားပေးသည့် ၂၁ ခန်းစာ သင်တန်း။
 
-ဒီသင်တန်းတွင် ၂၁ သင်ခန်းစာများ ပါဝင်သည်။ သင်ခန်းစာတိုင်းသည် မိမိ၏ အကြောင်းအရာကို ဖော်ပြထားသောကြောင့် သင်စိတ်ဝင်စားရာမှ စတင်နိုင်ပါသည်။
+## 🌱 စတင် လေ့လာခြင်း
 
-သင်ခန်းစာများကို "Learn" သင်ခန်းစာများ (မျိုးဆက်သစ် AI အကြောင်းအရာများကို ရှင်းပြခြင်း) သို့မဟုတ် "Build" သင်ခန်းစာများ (အကြောင်းအရာနှင့် Python နှင့် TypeScript ကို အသုံးပြုထားသော ကုဒ်နမူနာများကို ရှင်းပြခြင်း) အဖြစ် သတ်မှတ်ထားသည်။
+ဒီသင်တန်းမှာ ၂၁ ခန်းစာပါဝင်သည်။ ခန်းစာတိုင်းမှာ သူ့ကိုယ်ပိုင်ခေါင်းစဉ်ရှိတဲ့အတွက် စိတ်ဝင်စားရာနေရာမွ စတင်ကြပါ။
 
-.NET Developer များအတွက် [Generative AI for Beginners (.NET Edition)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst) ကို ကြည့်ပါ။
+ခန်းစာတွေကို "Learn" ဆိုပြီး Generative AI နက်နဲတယ် ဆိုတဲ့ အကြောင်းအရာများကို ရှင်းပြပေးတာ၊ "Build" ဆိုပြီး အကြောင်းအရာ နဲ့အတူ Python နှင့် TypeScript နှစ်မျိုးလုံးဖြင့် ဥပမာကုဒ်လည်း ဖော်ပြပေးခြင်း ဖြစ်ပါတယ် (ဖြစ်နိုင်လျှင်)။
 
-သင်ခန်းစာတိုင်းတွင် "Keep Learning" အပိုင်းပါဝင်ပြီး ထပ်မံသင်ယူရန် အထောက်အကူပြုသော အရင်းအမြစ်များကို ထည့်သွင်းထားသည်။
+.NET Developer များအတွက် [Generative AI for Beginners (.NET Edition)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst) ကိုလည်း ကြည့်ရန်ဖိတ်ခေါ်ပါတယ်။
 
-## လိုအပ်သောအရာများ
-### ဒီသင်တန်း၏ ကုဒ်များကို အလုပ်လုပ်စေလိုပါက သင်အောက်ပါအရာများကို အသုံးပြုနိုင်သည် -  
- - [Azure OpenAI Service](https://aka.ms/genai-beginners/azure-open-ai?WT.mc_id=academic-105485-koreyst) - **သင်ခန်းစာများ:** "aoai-assignment"  
- - [GitHub Marketplace Model Catalog](https://aka.ms/genai-beginners/gh-models?WT.mc_id=academic-105485-koreyst) - **သင်ခန်းစာများ:** "githubmodels"  
- - [OpenAI API](https://aka.ms/genai-beginners/open-ai?WT.mc_id=academic-105485-koreyst) - **သင်ခန်းစာများ:** "oai-assignment"  
+ခန်းစာတိုင်းမှာ "Keep Learning" ဆိုပြီး အပိုသင်ယူစရာများ ပါဝင်ပါတယ်။
 
-- Python သို့မဟုတ် TypeScript အခြေခံအသိရှိခြင်း အထောက်အကူဖြစ်သည် - \*အခြေခံစတင်သူများအတွက် [Python](https://aka.ms/genai-beginners/python?WT.mc_id=academic-105485-koreyst) နှင့် [TypeScript](https://aka.ms/genai-beginners/typescript?WT.mc_id=academic-105485-koreyst) သင်တန်းများကို ကြည့်ပါ  
-- GitHub အကောင့်တစ်ခုရှိရန် လိုအပ်သည် [ဒီ repo အား fork လုပ်ရန်](https://aka.ms/genai-beginners/github?WT.mc_id=academic-105485-koreyst)  
+## သင့်အတွက် လိုအပ်သော အရာများ
+### သင်တန်းကို ကုဒ်များ ညွှန်ကြားရန် အရပ်ရပ်မှ အသုံးပြုနိုင်သည်-
+ - [Azure OpenAI Service](https://aka.ms/genai-beginners/azure-open-ai?WT.mc_id=academic-105485-koreyst) - **ခန်းစာများ:** "aoai-assignment"
+ - [GitHub Marketplace Model Catalog](https://aka.ms/genai-beginners/gh-models?WT.mc_id=academic-105485-koreyst) - **ခန်းစာများ:** "githubmodels"
+ - [OpenAI API](https://aka.ms/genai-beginners/open-ai?WT.mc_id=academic-105485-koreyst) - **ခန်းစာများ:** "oai-assignment" 
+   
+- Python သို့မဟုတ် TypeScript အခြေခံ အသိပညာရှိခြင်းကူညီပါတယ် - *အလွန်အစပြုသူများအတွက် [Python](https://aka.ms/genai-beginners/python?WT.mc_id=academic-105485-koreyst) နဲ့ [TypeScript](https://aka.ms/genai-beginners/typescript?WT.mc_id=academic-105485-koreyst) သင်တန်းများကိုစတင်ကြည့်ပါ*
+- GitHub အကောင့်တစ်ခုရှိပြီး [ဒီ repo ကို သင့်အကောင့်သို့ fork လုပ်ရန်](https://aka.ms/genai-beginners/github?WT.mc_id=academic-105485-koreyst)
 
-သင်၏ ဖွံ့ဖြိုးရေးပတ်ဝန်းကျင်ကို စတင်ဖွဲ့စည်းရန် အကူအညီပေးမည့် **[Course Setup](./00-course-setup/README.md?WT.mc_id=academic-105485-koreyst)** သင်ခန်းစာကို ဖန်တီးထားပါသည်။
+ဖွံ့ဖြိုးရေးပတ်ဝန်းကျင်ရဲ့ စတင်လိုက်ဖို့ အတွက် ကျွန်ုပ်တို့ကြီးထွားပေးထားသော **[Course Setup](./00-course-setup/README.md?WT.mc_id=academic-105485-koreyst)** ခန်းစာရှိပါတယ်။
 
-နောက်ပိုင်းတွင် လွယ်ကူစွာ ရှာဖွေရန် [ဒီ repo ကို star (🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst) လုပ်ရန် မမေ့ပါနှင့်။
+နောက်မှာ ရှာဖွေရန် လွယ်ကူစေရန် ဒီ repo ကို [ကြယ်ပေးခြင်း (🌟) မမေ့ပါရန်](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst)။
 
-## 🧠 Deploy ပြင်ဆင်ပြီးပြီလား?
+## 🧠 အသင့်ဖြစ်ပြီး Deploy လုပ်နိုင်ပြီလား?
 
-ပိုမိုအဆင့်မြင့်သော ကုဒ်နမူနာများကို ရှာဖွေနေပါက [Generative AI Code Samples](https://aka.ms/genai-beg-code?WT.mc_id=academic-105485-koreyst) ကို ကြည့်ပါ။ Python နှင့် TypeScript နှစ်မျိုးလုံးတွင် ရရှိနိုင်ပါသည်။
+နောက်ထပ်အဆင့်မြင့်ကုဒ်နမူနာများလိုအပ်ပါက ကျွန်ုပ်တို့၏ [Generative AI Code Samples စုစည်းမှု](https://aka.ms/genai-beg-code?WT.mc_id=academic-105485-koreyst) ကို Python နဲ့ TypeScript နှစ်မျိုးလုံးတွင်ကြည့်ရှုနိုင်ပါတယ်။
 
-## 🗣️ အခြားသင်ယူသူများနှင့် တွေ့ဆုံရန်၊ အထောက်အပံ့ရရန်
+## 🗣️ အခြားအသင်းအဖွဲ့ဝင်များနှင့် တွေ့ဆုံပြီး ကူညီမှုရယူပါ
 
-ဒီသင်တန်းကို လက်ခံနေသော အခြားသင်ယူသူများနှင့် တွေ့ဆုံရန်နှင့် အထောက်အပံ့ရရန် [Azure AI Foundry Discord server](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) ကို ဝင်ပါ။
+ဒီသင်တန်းကိုလေ့လာနေသူများနဲ့တွေ့ပြီး ကူညီပံ့ပိုးမှုရရန် ကျွန်ုပ်တို့၏ [တရားဝင် Azure AI Foundry Discord ဆာဗာ](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) ကိုပါဝင်ဆက်သွယ်ပါ။
 
-GitHub တွင် [Azure AI Foundry Developer Forum](https://aka.ms/azureaifoundry/forum) တွင် မေးခွန်းများမေးရန် သို့မဟုတ် ထုတ်ကုန်အကြံပြုချက်များကို မျှဝေရန်။
+Github ပေါ်မိန့်ကြားသည့် အကြောင်းအရာများ သို့မဟုတ် ထုတ်ကုန်တုံ့ပြန်ချက်များကို ကျွန်ုပ်တို့၏ [Azure AI Foundry Developer Forum](https://aka.ms/azureaifoundry/forum) တွင် မေးမြန်းနိုင်ပါသည်။
 
-## 🚀 စတင်တည်ထောင်လိုပါသလား?
+## 🚀 စတင်ရေးလုပ်ငန်းတည်ထောင်နေပါသလား?
 
-[Microsoft for Startups](https://www.microsoft.com/startups) သို့ သွားပါက Azure credits ဖြင့် စတင်တည်ဆောက်ရန် အကြံပြုချက်များကို ရရှိနိုင်ပါသည်။
+Azure ခရက်ဒစ်များဖြင့် စတင်ရန် စိတ်ဝင်စားပါက [Microsoft for Startups](https://www.microsoft.com/startups) ကို သွားရောက်ကြည့်ရှုပါ။
 
-## 🙏 အကူအညီပေးလိုပါသလား?
+## 🙏 ကူညီချင်ပါသလား?
 
-အကြံပြုချက်များရှိပါသလား၊ သို့မဟုတ် စာလုံးပေါင်းအမှားများ သို့မဟုတ် ကုဒ်အမှားများ ရှာဖွေတွေ့ရှိပါသလား? [Issue တစ်ခုတင်ပါ](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst) သို့မဟုတ် [Pull request တစ်ခုဖန်တီးပါ](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst)  
+အကြံပြုချက်များ၊ အမှားများ ရှာဖွေတွေ့ရှိခဲ့ပါသလား? [ပြဿနာတင်ရန်](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst) သို့မဟုတ် [pull request တင်ရန်](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst)။
 
-## 📂 သင်ခန်းစာတစ်ခုစီတွင် ပါဝင်သည် -
+## 📂 ခန်းစာတိုင်းတွင် ပါဝင်သည့် အကြောင်းအရာများ
 
-- အကြောင်းအရာအတွက် အတိုချုံးဗီဒီယိုတစ်ခု  
-- README တွင် ရေးသားထားသော သင်ခန်းစာ  
-- Azure OpenAI နှင့် OpenAI API ကို ထောက်ပံ့သည့် Python နှင့် TypeScript ကုဒ်နမူနာများ  
-- သင်ယူမှုကို ဆက်လက်လုပ်ဆောင်ရန် အရင်းအမြစ်များကို ချိတ်ဆက်ထားသည်  
+- ခေါင်းစဉ်အရ ဗီဒီယိုမိတ်ဆက်တို
+- README အတွင်း ရေးသားထားသော ခန်းစာ
+- Azure OpenAI နှင့် OpenAI API အတွက် Python နဲ့ TypeScript ကုဒ်နမူနာများ
+- သင်ယူမှုဆက်လက်တိုးတက်စေရန် အပိုရင်းမြစ်များသို့ ချိတ်ဆက်ထားခြင်း
 
-## 🗃️ သင်ခန်းစာများ
+## 🗃️ ခန်းစာများ
 
-| #   | **သင်ခန်းစာလင့်ခ်**                                                                                                                              | **ဖော်ပြချက်**                                                                                 | **ဗီဒီယို**                                                                   | **အပိုသင်ယူမှု**                                                             |
+| #   | **ခန်းစာလင့်ခ်**                                                                                                                              | **ဖော်ပြချက်**                                                                                 | **ဗီဒီယို**                                                                   | **အပိုသင်ယူမှု**                                                             |
 | --- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| 00  | [Course Setup](./00-course-setup/README.md?WT.mc_id=academic-105485-koreyst)                                                                 | **သင်ယူပါ:** ဖွံ့ဖြိုးရေးပတ်ဝန်းကျင်ကို စတင်ဖွဲ့စည်းရန်                                            | Video Coming Soon                                                                 | [Learn More](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 01  | [Introduction to Generative AI and LLMs](./01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst)                              | **သင်ယူပါ:** မျိုးဆက်သစ် AI သည် အဘယ်နည်း၊ LLM များသည် မည်သို့အလုပ်လုပ်သည်ကို နားလည်ခြင်း။       | [Video](https://aka.ms/gen-ai-lesson-1-gh?WT.mc_id=academic-105485-koreyst) | [Learn More](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 02  | [Exploring and comparing different LLMs](./02-exploring-and-comparing-different-llms/README.md?WT.mc_id=academic-105485-koreyst)             | **သင်ယူပါ:** သင့်အသုံးပြုမှုအတွက် မှန်ကန်သော မော်ဒယ်ကို ရွေးချယ်နည်း                                      | [Video](https://aka.ms/gen-ai-lesson2-gh?WT.mc_id=academic-105485-koreyst)  | [Learn More](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 03  | [Using Generative AI Responsibly](./03-using-generative-ai-responsibly/README.md?WT.mc_id=academic-105485-koreyst)                           | **သင်ယူပါ:** မျိုးဆက်သစ် AI အက်ပလီကေးရှင်းများကို တာဝန်ရှိစွာ တည်ဆောက်နည်း                                  | [Video](https://aka.ms/gen-ai-lesson3-gh?WT.mc_id=academic-105485-koreyst)  | [Learn More](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 04  | [Understanding Prompt Engineering Fundamentals](./04-prompt-engineering-fundamentals/README.md?WT.mc_id=academic-105485-koreyst)             | **သင်ယူပါ:** Prompt Engineering အကောင်းဆုံးလေ့ကျင့်မှုများကို လက်တွေ့ကျကျ သင်ယူခြင်း                                           | [Video](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)  | [Learn More](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 05  | [Creating Advanced Prompts](./05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)                                                | **သင်ယူပါ:** သင့် Prompt များ၏ ရလဒ်ကို တိုးတက်စေမည့် Prompt Engineering နည်းလမ်းများကို အသုံးချခြင်း | [Video](https://aka.ms/gen-ai-lesson5-gh?WT.mc_id=academic-105485-koreyst)  | [Learn More](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |  
-| 06  | [စာသားထုတ်လုပ်မှု အက်ပ်များ တည်ဆောက်ခြင်း](./06-text-generation-apps/README.md?WT.mc_id=academic-105485-koreyst)                                | **တည်ဆောက်ရန်:** Azure OpenAI / OpenAI API ကို အသုံးပြု၍ စာသားထုတ်လုပ်မှု အက်ပ်တစ်ခု တည်ဆောက်ပါ                                | [ဗီဒီယို](https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst)  | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 07  | [Chat အက်ပ်များ တည်ဆောက်ခြင်း](./07-building-chat-applications/README.md?WT.mc_id=academic-105485-koreyst)                                     | **တည်ဆောက်ရန်:** Chat အက်ပ်များကို ထိရောက်စွာ တည်ဆောက်ခြင်းနှင့် ပေါင်းစည်းခြင်းနည်းလမ်းများ               | [ဗီဒီယို](https://aka.ms/gen-ai-lessons7-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 08  | [Search အက်ပ်များနှင့် Vector Databases တည်ဆောက်ခြင်း](./08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)                        | **တည်ဆောက်ရန်:** Embeddings ကို အသုံးပြု၍ ဒေတာရှာဖွေမှု အက်ပ်တစ်ခု တည်ဆောက်ပါ                        | [ဗီဒီယို](https://aka.ms/gen-ai-lesson8-gh?WT.mc_id=academic-105485-koreyst)  | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 09  | [ပုံထုတ်လုပ်မှု အက်ပ်များ တည်ဆောက်ခြင်း](./09-building-image-applications/README.md?WT.mc_id=academic-105485-koreyst)                        | **တည်ဆောက်ရန်:** ပုံထုတ်လုပ်မှု အက်ပ်တစ်ခု                                                       | [ဗီဒီယို](https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst)  | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 10  | [Low Code AI အက်ပ်များ တည်ဆောက်ခြင်း](./10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)                       | **တည်ဆောက်ရန်:** Low Code tools များကို အသုံးပြု၍ Generative AI အက်ပ်တစ်ခု တည်ဆောက်ပါ                                     | [ဗီဒီယို](https://aka.ms/gen-ai-lesson10-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 11  | [Function Calling ဖြင့် ပြင်ပ အက်ပ်များ ပေါင်းစည်းခြင်း](./11-integrating-with-function-calling/README.md?WT.mc_id=academic-105485-koreyst) | **တည်ဆောက်ရန်:** Function calling ဆိုတာဘာလဲ၊ အက်ပ်များအတွက် ၎င်း၏ အသုံးချနိုင်မှုများ                          | [ဗီဒီယို](https://aka.ms/gen-ai-lesson11-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 12  | [AI အက်ပ်များအတွက် UX ဒီဇိုင်းရေးဆွဲခြင်း](./12-designing-ux-for-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)                         | **လေ့လာရန်:** Generative AI အက်ပ်များ တည်ဆောက်ရာတွင် UX ဒီဇိုင်း မူဘောင်များကို အသုံးချနည်း         | [ဗီဒီယို](https://aka.ms/gen-ai-lesson12-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 13  | [Generative AI အက်ပ်များကို လုံခြုံစေရန်](./13-securing-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)                         | **လေ့လာရန်:** AI စနစ်များအတွက် အန္တရာယ်များနှင့် လုံခြုံရေးနည်းလမ်းများ             | [ဗီဒီယို](https://aka.ms/gen-ai-lesson13-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 14  | [Generative AI အက်ပ်များ၏ အသက်ရှည်မှု စနစ်](./14-the-generative-ai-application-lifecycle/README.md?WT.mc_id=academic-105485-koreyst)           | **လေ့လာရန်:** LLM Lifecycle နှင့် LLMOps ကို စီမံခန့်ခွဲရန် ကိရိယာများနှင့် အတိုင်းအတာများ                         | [ဗီဒီယို](https://aka.ms/gen-ai-lesson14-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 15  | [Retrieval Augmented Generation (RAG) နှင့် Vector Databases](./15-rag-and-vector-databases/README.md?WT.mc_id=academic-105485-koreyst)        | **တည်ဆောက်ရန်:** RAG Framework ကို အသုံးပြု၍ Vector Databases မှ Embeddings ရယူရန် အက်ပ်တစ်ခု တည်ဆောက်ပါ  | [ဗီဒီယို](https://aka.ms/gen-ai-lesson15-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 16  | [Open Source Models နှင့် Hugging Face](./16-open-source-models/README.md?WT.mc_id=academic-105485-koreyst)                                    | **တည်ဆောက်ရန်:** Hugging Face တွင် ရရှိနိုင်သော Open Source Models များကို အသုံးပြု၍ အက်ပ်တစ်ခု တည်ဆောက်ပါ                    | [ဗီဒီယို](https://aka.ms/gen-ai-lesson16-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 17  | [AI Agents](./17-ai-agents/README.md?WT.mc_id=academic-105485-koreyst)                                                                       | **တည်ဆောက်ရန်:** AI Agent Framework ကို အသုံးပြု၍ အက်ပ်တစ်ခု တည်ဆောက်ပါ                                           | [ဗီဒီယို](https://aka.ms/gen-ai-lesson17-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 18  | [LLMs များကို Fine-Tuning ပြုလုပ်ခြင်း](./18-fine-tuning/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **လေ့လာရန်:** LLMs များကို Fine-Tuning ပြုလုပ်ခြင်း၏ အဓိပ္ပါယ်၊ အကြောင်းရင်းနှင့် နည်းလမ်းများ                                            | [ဗီဒီယို](https://aka.ms/gen-ai-lesson18-gh?WT.mc_id=academic-105485-koreyst) | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 19  | [SLMs ဖြင့် တည်ဆောက်ခြင်း](./19-slm/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **လေ့လာရန်:** Small Language Models (SLMs) ဖြင့် တည်ဆောက်ခြင်း၏ အကျိုးကျေးဇူးများ                                            | Video Coming Soon | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 20  | [Mistral Models ဖြင့် တည်ဆောက်ခြင်း](./20-mistral/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **လေ့လာရန်:** Mistral မိသားစု Models များ၏ အင်္ဂါရပ်များနှင့် ကွဲပြားချက်များ                                           | Video Coming Soon | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
-| 21  | [Meta Models ဖြင့် တည်ဆောက်ခြင်း](./21-meta/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **လေ့လာရန်:** Meta မိသားစု Models များ၏ အင်္ဂါရပ်များနှင့် ကွဲပြားချက်များ                                           | Video Coming Soon | [ပိုမိုလေ့လာရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 00  | [Course Setup](./00-course-setup/README.md?WT.mc_id=academic-105485-koreyst)                                                                 | **သင်ယူရန်:** သင့်ဖွံ့ဖြိုးရေးပတ်ဝန်းကျင်ကို မည်သို့ စတင်တည်ဆောက်ရမည်ကို ရှင်းပြပေးခြင်း                                            | ဗီဒီယို မကြာမီ ရရှိမည်                                                                  | [ပိုသိရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 01  | [Generative AI နှင့် LLM များနှင့် စိတ်ဖြတ်မှု](./01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst)                              | **သင်ယူရန်:** Generative AI ဆိုတာ ဘာလဲ၊ Large Language Models (LLMs) များ အလုပ်လုပ်ပုံကို နားလည်ခြင်း       | [ဗီဒီယို](https://aka.ms/gen-ai-lesson-1-gh?WT.mc_id=academic-105485-koreyst) | [ပိုသိရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 02  | [အမျိုးမျိုးသော LLM များကို စူးစမ်းခြင်းနှင့် နှိုင်းယှဉ်ခြင်း](./02-exploring-and-comparing-different-llms/README.md?WT.mc_id=academic-105485-koreyst)             | **သင်ယူရန်:** သင်တစ်ဆင့် သုံးမည့် မော်ဒယ်ကို မည်သို့ ရွေးချယ်ရမည်ကို ရှင်းလင်းခြင်း                                      | [ဗီဒီယို](https://aka.ms/gen-ai-lesson2-gh?WT.mc_id=academic-105485-koreyst)  | [ပိုသိရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 03  | [Generative AI ကို တာဝန်ပေးမှု ယုံကြည်စိတ်ချစွာ အသုံးပြုခြင်း](./03-using-generative-ai-responsibly/README.md?WT.mc_id=academic-105485-koreyst)                           | **သင်ယူရန်:** Generative AI အက်ပလီကေးရှင်းများကို တာဝန်ရှိစွာ တည်ဆောက်ခြင်း                                  | [ဗီဒီယို](https://aka.ms/gen-ai-lesson3-gh?WT.mc_id=academic-105485-koreyst)  | [ပိုသိရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 04  | [Prompt Engineering အခြေခံများနားလည်ခြင်း](./04-prompt-engineering-fundamentals/README.md?WT.mc_id=academic-105485-koreyst)             | **သင်ယူပါ:** လက်တွေ့ Prompt Engineering အကောင်းဆုံး လေ့လာမှုများ                                           | [ဗီဒီယို](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)  | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 05  | [အဆင့်မြင့် Prompts ဖန်တီးခြင်း](./05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)                                                | **သင်ယူပါ:** မိမိရဲ့ prompts ရလဒ်တိုးတက်စေရန် prompt engineering နည်းပညာများ အသုံးပြုနည်း။ | [ဗီဒီယို](https://aka.ms/gen-ai-lesson5-gh?WT.mc_id=academic-105485-koreyst)  | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 06  | [စာသားထုတ်လုပ်မှု အက်ပလီကေးရှင်းများ တည်ဆောက်ခြင်း](./06-text-generation-apps/README.md?WT.mc_id=academic-105485-koreyst)                                | **တည်ဆောက်ပါ:** Azure OpenAI / OpenAI API သုံးပြီး စာသားထုတ်လုပ်မှု အက်ပလီကေးရှင်းတစ်ခု                              | [ဗီဒီယို](https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst)  | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 07  | [စကားပြောဆိုမှု အက်ပလီကေးရှင်းများ တည်ဆောက်ခြင်း](./07-building-chat-applications/README.md?WT.mc_id=academic-105485-koreyst)                                     | **တည်ဆောက်ပါ:** စကားပြောဆိုမှု အက်ပလီကေးရှင်းများကို ထိရောက်စွာ တည်ဆောက်ခြင်းနှင့် ပေါင်းစပ်ခြင်းနည်းပညာများ               | [ဗီဒီယို](https://aka.ms/gen-ai-lessons7-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 08  | [ရှာဖွေရေး အက်ပလီကေးရှင်းများ Vector Databases နဲ႔ တည်ဆောက်ခြင်း](./08-building-search-applications/README.md?WT.mc_id=academic-105485-koreyst)                        | **တည်ဆောက်ပါ:** မှတ်စုများကို အသုံးပြုပြီး ဒေတာရှာဖွေရေးအက်ပလီကေးရှင်းတစ်ခု                                | [ဗီဒီယို](https://aka.ms/gen-ai-lesson8-gh?WT.mc_id=academic-105485-koreyst)  | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 09  | [ပုံထုတ်လုပ်မှု အက်ပလီကေးရှင်းများ တည်ဆောက်ခြင်း](./09-building-image-applications/README.md?WT.mc_id=academic-105485-koreyst)                        | **တည်ဆောက်ပါ:** ပုံထုတ်လုပ်မှု အက်ပလီကေးရှင်းတစ်ခု                                                       | [ဗီဒီယို](https://aka.ms/gen-ai-lesson9-gh?WT.mc_id=academic-105485-koreyst)  | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 10  | [နည်းသော အခုနစ်ကုဒ် AI အက်ပလီကေးရှင်းများ တည်ဆောက်ခြင်း](./10-building-low-code-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)                       | **တည်ဆောက်ပါ:** Low Code ကိရိယာများ အသုံးပြု၍ Generative AI အက်ပလီကေးရှင်းတစ်ခု                                     | [ဗီဒီယို](https://aka.ms/gen-ai-lesson10-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 11  | [Function Calling ဖြင့် ပြင်ပ အက်ပလီကေးရှင်းများ ပေါင်းစပ်ခြင်း](./11-integrating-with-function-calling/README.md?WT.mc_id=academic-105485-koreyst) | **တည်ဆောက်ပါ:** Function calling ဆိုတာဘာလဲ၊ အက်ပလီကေးရှင်းအတွက် အသုံးပြုမှုများ                          | [ဗီဒီယို](https://aka.ms/gen-ai-lesson11-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 12  | [AI အက်ပလီကေးရှင်းများအတွက် UX ဒီဇိုင်းဖန်တီးခြင်း](./12-designing-ux-for-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)                         | **သင်ယူပါ:** Generative AI အက်ပလီကေးရှင်းများ ဖန်တီး့ရာတွင် UX ဒီဇိုင်း အိုင်ဒီယာများကို ထည့်သွင်းအသုံးပြုနည်း         | [ဗီဒီယို](https://aka.ms/gen-ai-lesson12-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 13  | [သင့် Generative AI အက်ပလီကေးရှင်းများကို လုံခြုံစေရန်](./13-securing-ai-applications/README.md?WT.mc_id=academic-105485-koreyst)                         | **သင်ယူပါ:** AI စနစ်များကို ရင်ဆိုင်ရသော အန္တရာယ်များနှင့် ထိန်းသိမ်းလုံခြုံစေဖို့နည်းလမ်းများ            | [ဗီဒီယို](https://aka.ms/gen-ai-lesson13-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 14  | [Generative AI အက်ပလီကေးရှင်း၏ အသက်တာစက်ဝန်း](./14-the-generative-ai-application-lifecycle/README.md?WT.mc_id=academic-105485-koreyst)           | **သင်ယူပါ:** LLM အသက်တာစက်ဝန်းနှင့် LLMOps ကို စီမံရန် ကိရိယာများနှင့် တိုင်းတာချက်များ                 | [ဗီဒီယို](https://aka.ms/gen-ai-lesson14-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 15  | [Retrieval Augmented Generation (RAG) နှင့် Vector Databases](./15-rag-and-vector-databases/README.md?WT.mc_id=academic-105485-koreyst)        | **တည်ဆောက်ပါ:** RAG Framework သုံးပြီး Vector Database မှ မှတ်စုများ ရယူသည့် အက်ပလီကေးရှင်းတစ်ခု  | [ဗီဒီယို](https://aka.ms/gen-ai-lesson15-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 16  | [Open Source Models နဲ့ Hugging Face](./16-open-source-models/README.md?WT.mc_id=academic-105485-koreyst)                                    | **တည်ဆောက်ပါ:** Hugging Face မှ open source မော်ဒယ်များ အသုံးပြု၍ အက်ပလီကေးရှင်းတစ်ခု                    | [ဗီဒီယို](https://aka.ms/gen-ai-lesson16-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 17  | [AI Agents](./17-ai-agents/README.md?WT.mc_id=academic-105485-koreyst)                                                                       | **တည်ဆောက်ပါ:** AI Agent Framework သုံး၍ အက်ပလီကေးရှင်းတစ်ခု                                           | [ဗီဒီယို](https://aka.ms/gen-ai-lesson17-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 18  | [LLMs ကို Fine-Tuning ပြုလုပ်ခြင်း](./18-fine-tuning/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **သင်ယူပါ:** LLMs ကို Fine-Tuning ပြုလုပ်ရာတွင် ဘာတွေလုပ်ရမလဲ၊ အကြောင်းရင်းနှင့် နည်းလမ်းများ                      | [ဗီဒီယို](https://aka.ms/gen-ai-lesson18-gh?WT.mc_id=academic-105485-koreyst) | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 19  | [SLMs ဖြင့် တည်ဆောက်ခြင်း](./19-slm/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **သင်ယူပါ:** Small Language Models ဖြင့် တည်ဆောက်ခြင်း၏ အကျိုးကျေးဇူးများ                                            | အကြောင်းအရာ မကြာခင် တင်ပြမည် | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 20  | [Mistral မော်ဒယ်များဖြင့် တည်ဆောက်ခြင်း](./20-mistral/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **သင်ယူပါ:** Mistral မော်လီအားစုံတွင် ပါဝင်တဲ့ အင်္ဂါရပ်များနှင့် ကွာခြားချက်များ                                           | အကြောင်းအရာ မကြာခင် တင်ပြမည် | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
+| 21  | [Meta မော်ဒယ်များဖြင့် တည်ဆောက်ခြင်း](./21-meta/README.md?WT.mc_id=academic-105485-koreyst)                                                              | **သင်ယူပါ:** Meta မော်ဒယ်တန်းတူ မော်လီအားစုံတွင် ပါဝင်တဲ့ အင်္ဂါရပ်များနှင့် ကွာခြားချက်များ                                           | အကြောင်းအရာ မကြာခင် တင်ပြမည် | [နောက်ထပ် သင်ယူရန်](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) |
 
-### 🌟 အထူးကျေးဇူးတင်ပါသည်
+### 🌟 အထူးကျေးဇူးများ
 
-GitHub Actions နှင့် workflows များအားလုံးကို ဖန်တီးပေးသည့် [**John Aziz**](https://www.linkedin.com/in/john0isaac/) ကို အထူးကျေးဇူးတင်ပါသည်။
+GitHub Actions နှင့် workflows အားလုံး ဖန်တီးပေးမှုအတွက် [**John Aziz**](https://www.linkedin.com/in/john0isaac/) သို့ အထူးကျေးဇူးတင်ရှိပါသည်။
 
-သင်ခန်းစာတစ်ခုချင်းစီအတွက် သင်ယူသူနှင့် ကုဒ်အတွေ့အကြုံကို တိုးတက်စေရန် အဓိကအထောက်အကူပြုခဲ့သည့် [**Bernhard Merkle**](https://www.linkedin.com/in/bernhard-merkle-738b73/) ကိုလည်း ကျေးဇူးတင်ပါသည်။
+သင်ယူသူနှင့် ကုဒ်အတွေ့အကြုံ တိုးတက်မြင့်မားလာစေရန် အတိုင်းအတာဖြစ်စေသော မဟာဗျူဟာအတန်းစာများတွင် လုပ်ဆောင်မှုပေးခဲ့သော [**Bernhard Merkle**](https://www.linkedin.com/in/bernhard-merkle-738b73/) ကိုလည်း ကျေးဇူးတင်ရှိပါသည်။  
 
 ## 🎒 အခြားသင်တန်းများ
 
-ကျွန်ုပ်တို့၏အဖွဲ့သည် အခြားသင်တန်းများကိုလည်း ထုတ်လုပ်ပါသည်! စစ်ဆေးကြည့်ပါ-
+ကျွန်ုပ်တို့အဖွဲ့သည် အခြားသင်တန်းများကိုလည်း ထုတ်လုပ်သည်! ကြည့်ရှုပြီးစစ်ဆေးပါ:
 
-- [**အသစ်** Model Context Protocol for Beginners](https://github.com/microsoft/mcp-for-beginners)
-- [AI Agents for Beginners](https://github.com/microsoft/ai-agents-for-beginners)
-- [Generative AI for Beginners using .NET](https://github.com/microsoft/Generative-AI-for-beginners-dotnet)
-- [Generative AI for Beginners using JavaScript](https://aka.ms/genai-js-course)
-- [Generative AI for Beginners using Java](https://aka.ms/genaijava)
-- [ML for Beginners](https://aka.ms/ml-beginners)
-- [Data Science for Beginners](https://aka.ms/datascience-beginners)
-- [AI for Beginners](https://aka.ms/ai-beginners)
-- [Cybersecurity for Beginners](https://github.com/microsoft/Security-101)
-- [Web Dev for Beginners](https://aka.ms/webdev-beginners)
-- [IoT for Beginners](https://aka.ms/iot-beginners)
-- [XR Development for Beginners](https://github.com/microsoft/xr-development-for-beginners)
-- [Mastering GitHub Copilot for AI Paired Programming](https://aka.ms/GitHubCopilotAI)
-- [Mastering GitHub Copilot for C#/.NET Developers](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers)
-- [Choose Your Own Copilot Adventure](https://github.com/microsoft/CopilotAdventures)
+<!-- CO-OP TRANSLATOR OTHER COURSES START -->
+### LangChain
+[![LangChain4j for Beginners](https://img.shields.io/badge/LangChain4j%20for%20Beginners-22C55E?style=for-the-badge&&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchain4j-for-beginners)
+[![LangChain.js for Beginners](https://img.shields.io/badge/LangChain.js%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://aka.ms/langchainjs-for-beginners?WT.mc_id=m365-94501-dwahlin)
+[![LangChain for Beginners](https://img.shields.io/badge/LangChain%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=0553D6)](https://github.com/microsoft/langchain-for-beginners?WT.mc_id=m365-94501-dwahlin)
+---
+
+### Azure / Edge / MCP / Agents
+[![AZD for Beginners](https://img.shields.io/badge/AZD%20for%20Beginners-0078D4?style=for-the-badge&labelColor=E5E7EB&color=0078D4)](https://github.com/microsoft/AZD-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Edge AI for Beginners](https://img.shields.io/badge/Edge%20AI%20for%20Beginners-00B8E4?style=for-the-badge&labelColor=E5E7EB&color=00B8E4)](https://github.com/microsoft/edgeai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![MCP for Beginners](https://img.shields.io/badge/MCP%20for%20Beginners-009688?style=for-the-badge&labelColor=E5E7EB&color=009688)](https://github.com/microsoft/mcp-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI Agents for Beginners](https://img.shields.io/badge/AI%20Agents%20for%20Beginners-00C49A?style=for-the-badge&labelColor=E5E7EB&color=00C49A)](https://github.com/microsoft/ai-agents-for-beginners?WT.mc_id=academic-105485-koreyst)
+
+---
+ 
+### Generative AI Series
+[![Generative AI for Beginners](https://img.shields.io/badge/Generative%20AI%20for%20Beginners-8B5CF6?style=for-the-badge&labelColor=E5E7EB&color=8B5CF6)](https://github.com/microsoft/generative-ai-for-beginners?WT.mc_id=academic-105485-koreyst)
+[![Generative AI (.NET)](https://img.shields.io/badge/Generative%20AI%20(.NET)-9333EA?style=for-the-badge&labelColor=E5E7EB&color=9333EA)](https://github.com/microsoft/Generative-AI-for-beginners-dotnet?WT.mc_id=academic-105485-koreyst)
+[![Generative AI (Java)](https://img.shields.io/badge/Generative%20AI%20(Java)-C084FC?style=for-the-badge&labelColor=E5E7EB&color=C084FC)](https://github.com/microsoft/generative-ai-for-beginners-java?WT.mc_id=academic-105485-koreyst)
+[![Generative AI (JavaScript)](https://img.shields.io/badge/Generative%20AI%20(JavaScript)-E879F9?style=for-the-badge&labelColor=E5E7EB&color=E879F9)](https://github.com/microsoft/generative-ai-with-javascript?WT.mc_id=academic-105485-koreyst)
+
+---
+ 
+### အဓိက သင်ယူမှုများ
+[![ML for Beginners](https://img.shields.io/badge/ML%20for%20Beginners-22C55E?style=for-the-badge&labelColor=E5E7EB&color=22C55E)](https://aka.ms/ml-beginners?WT.mc_id=academic-105485-koreyst)
+[![Data Science for Beginners](https://img.shields.io/badge/Data%20Science%20for%20Beginners-84CC16?style=for-the-badge&labelColor=E5E7EB&color=84CC16)](https://aka.ms/datascience-beginners?WT.mc_id=academic-105485-koreyst)
+[![AI for Beginners](https://img.shields.io/badge/AI%20for%20Beginners-A3E635?style=for-the-badge&labelColor=E5E7EB&color=A3E635)](https://aka.ms/ai-beginners?WT.mc_id=academic-105485-koreyst)
+[![Cybersecurity for Beginners](https://img.shields.io/badge/Cybersecurity%20for%20Beginners-F97316?style=for-the-badge&labelColor=E5E7EB&color=F97316)](https://github.com/microsoft/Security-101?WT.mc_id=academic-96948-sayoung)
+[![Web Dev for Beginners](https://img.shields.io/badge/Web%20Dev%20for%20Beginners-EC4899?style=for-the-badge&labelColor=E5E7EB&color=EC4899)](https://aka.ms/webdev-beginners?WT.mc_id=academic-105485-koreyst)
+[![IoT for Beginners](https://img.shields.io/badge/IoT%20for%20Beginners-14B8A6?style=for-the-badge&labelColor=E5E7EB&color=14B8A6)](https://aka.ms/iot-beginners?WT.mc_id=academic-105485-koreyst)
+[![XR Development for Beginners](https://img.shields.io/badge/XR%20Development%20for%20Beginners-38BDF8?style=for-the-badge&labelColor=E5E7EB&color=38BDF8)](https://github.com/microsoft/xr-development-for-beginners?WT.mc_id=academic-105485-koreyst)
+
+---
+ 
+### Copilot စီးရီး
+[![Copilot for AI Paired Programming](https://img.shields.io/badge/Copilot%20for%20AI%20Paired%20Programming-FACC15?style=for-the-badge&labelColor=E5E7EB&color=FACC15)](https://aka.ms/GitHubCopilotAI?WT.mc_id=academic-105485-koreyst)
+[![Copilot for C#/.NET](https://img.shields.io/badge/Copilot%20for%20C%23/.NET-FBBF24?style=for-the-badge&labelColor=E5E7EB&color=FBBF24)](https://github.com/microsoft/mastering-github-copilot-for-dotnet-csharp-developers?WT.mc_id=academic-105485-koreyst)
+[![Copilot Adventure](https://img.shields.io/badge/Copilot%20Adventure-FDE68A?style=for-the-badge&labelColor=E5E7EB&color=FDE68A)](https://github.com/microsoft/CopilotAdventures?WT.mc_id=academic-105485-koreyst)
+<!-- CO-OP TRANSLATOR OTHER COURSES END -->
+
+## အကူအညီရရန်
+
+AI အက်ပ်များ တည်ဆောက်ရာတွင် အခက်အခဲရှိပါက သို့မဟုတ် မေးခွန်းများရှိပါက MCP များနှင့် အတူ သင်ယူသူများနှင့် အတွေ့အကြုံရှိ ဖန်တီးသူများ၏ ဆွေးနွေးပွဲများတွင် ပါဝင်ဆွေးနွေးနိုင်ပါသည်။ ၎င်းသည် မေးခွန်းများကို ကြိုဆိုပြီး အသိပညာအား လွတ်လပ်စွာမျှဝေသော အထောက်အပံ့ပေးသည့်အသိုင်းအဝိုင်း ဖြစ်ပါသည်။
+
+[![Microsoft Foundry Discord](https://dcbadge.limes.pink/api/server/nTYy5BXMWG)](https://discord.gg/nTYy5BXMWG)
+
+ထုတ်ကုန် အကြံပြုချက်များ သို့မဟုတ် တည်ဆောက်ရာတွင် အမှားများရှိပါက မိမိအောက်ပါနေရာတွင် သွားရောက် ကြည့်ရှုနိုင်ပါသည်-
+
+[![Microsoft Foundry Developer Forum](https://img.shields.io/badge/GitHub-Microsoft_Foundry_Developer_Forum-blue?style=for-the-badge&logo=github&color=000000&logoColor=fff)](https://aka.ms/foundry/forum)
 
 ---
 
-**ဝက်ဘ်ဆိုက်မှတ်ချက်**:  
-ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှန်ကန်မှုအတွက် ကြိုးစားနေပါသော်လည်း၊ အလိုအလျောက်ဘာသာပြန်မှုများတွင် အမှားများ သို့မဟုတ် မမှန်ကန်မှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူရင်းစာရွက်စာတမ်းကို ၎င်း၏ မူလဘာသာစကားဖြင့် အာဏာတည်သောရင်းမြစ်အဖြစ် သတ်မှတ်သင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များမှ ပြန်ဆိုမှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်မှုကို အသုံးပြုခြင်းမှ ဖြစ်ပေါ်လာသည့် နားလည်မှုမှားများ သို့မဟုတ် အဓိပ္ပာယ်မှားများအတွက် ကျွန်ုပ်တို့သည် တာဝန်မယူပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**တာဝန်ပေးချက်**:  
+ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်မှု ဝန်ဆောင်မှုဖြစ်သည့် [Co-op Translator](https://github.com/Azure/co-op-translator) ဖြင့်ဘာသာပြန်ခဲ့ပါသည်။ ကျွန်ုပ်တို့သည်မှန်ကန်မှုအတွက်ကြိုးစားပေမယ့် အလိုအလျောက်ဘာသာပြန်ခြင်းများတွင် အမှားများ သို့မဟုတ် မှန်မှားချက်များ ရှိနိုင်ကြောင်း သတိပြုပါရန် လိုအပ်ပါသည်။ မူရင်းစာရွက်စာတမ်းကို မိမိဘာသာစကားဖြင့် အတည်ပြုရမည့် စံချိန်စံညွှန်းအဖြစ်ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် ကိုယ်စားပြုလူသား ဘာသာပြန်ခြင်းကို အကြံပြုပါသည်။ ဤဘာသာပြန်မှုကို အသုံးပြုခြင်းကြောင့် ဖြစ်ပေါ်လာသော နားလည်မှားခြင်းများ သို့မဟုတ် မှားကိုးคิดเห็นများအတွက် ကျွန်ုပ်တို့တာဝန်မခံပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

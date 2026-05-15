@@ -1,18 +1,9 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dcbaaae026cb50fee071e690685b5843",
-  "translation_date": "2025-08-26T13:21:04+00:00",
-  "source_file": "04-prompt-engineering-fundamentals/README.md",
-  "language_code": "en"
-}
--->
 # Prompt Engineering Fundamentals
 
-[![Prompt Engineering Fundamentals](../../../translated_images/04-lesson-banner.a2c90deba7fedacda69f35b41636a8951ec91c2e33f5420b1254534ac85bc18e.en.png)](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)
+[![Prompt Engineering Fundamentals](../../../translated_images/en/04-lesson-banner.a2c90deba7fedacd.webp)](https://youtu.be/GElCu2kUlRs?si=qrXsBvXnCW12epb8)
 
 ## Introduction
-This module covers essential concepts and techniques for creating effective prompts in generative AI models. The way you write your prompt to an LLM also matters. A carefully-crafted prompt can achieve a better quality of response. But what exactly do terms like _prompt_ and _prompt engineering_ mean? And how do I improve the prompt _input_ that I send to the LLM? These are the questions we'll try to answer in this chapter and the next.
+This module covers essential concepts and techniques for creating effective prompts in generative AI models. The way you write your prompt to an LLM also matters. A carefully-crafted prompt can achieve a better quality of response. But what exactly do terms like _prompt_ and _prompt engineering_ mean? And how do I improve the prompt _input_ that I send to the LLM? These are the questions we'll try to answer within this chapter and the next.
 
 _Generative AI_ is capable of creating new content (e.g., text, images, audio, code etc.) in response to user requests. It achieves this using _Large Language Models_ like OpenAI's GPT ("Generative Pre-trained Transformer") series that are trained for using natural language and code.
 
@@ -53,7 +44,7 @@ The notebook comes with _starter_ exercises - but you are encouraged to add your
 
 Want to get the big picture of what this lesson covers before you dive in? Check out this illustrated guide, which gives you a sense of the main topics covered and the key takeaways for you to think about in each one. The lesson roadmap takes you from understanding the core concepts and challenges to addressing them with relevant prompt engineering techniques and best practices. Note that the "Advanced Techniques" section in this guide refers to content covered in the _next_ chapter of this curriculum.
 
-![Illustrated Guide to Prompt Engineering](../../../translated_images/04-prompt-engineering-sketchnote.d5f33336957a1e4f623b826195c2146ef4cc49974b72fa373de6929b474e8b70.en.png)
+![Illustrated Guide to Prompt Engineering](../../../translated_images/en/04-prompt-engineering-sketchnote.d5f33336957a1e4f.webp)
 
 ## Our Startup
 
@@ -94,7 +85,7 @@ An LLM sees prompts as a _sequence of tokens_ where different models (or version
 
 To get an intuition for how tokenization works, try tools like the [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst) shown below. Copy in your prompt - and see how that gets converted into tokens, paying attention to how whitespace characters and punctuation marks are handled. Note that this example shows an older LLM (GPT-3) - so trying this with a newer model may produce a different result.
 
-![Tokenization](../../../translated_images/04-tokenizer-example.e71f0a0f70356c5c7d80b21e8753a28c18a7f6d4aaa1c4b08e65d17625e85642.en.png)
+![Tokenization](../../../translated_images/en/04-tokenizer-example.e71f0a0f70356c5c.webp)
 
 ### Concept: Foundation Models
 
@@ -104,7 +95,7 @@ Want to see how prompt-based completion works? Enter the above prompt into the A
 
 But what if the user wanted to see something specific that met some criteria or task objective? This is where _instruction-tuned_ LLMs come into the picture.
 
-![Base LLM Chat Completion](../../../translated_images/04-playground-chat-base.65b76fcfde0caa6738e41d20f1a6123f9078219e6f91a88ee5ea8014f0469bdf.en.png)
+![Base LLM Chat Completion](../../../translated_images/en/04-playground-chat-base.65b76fcfde0caa67.webp)
 
 ### Concept: Instruction Tuned LLMs
 
@@ -118,7 +109,7 @@ Let's try it out - revisit the prompt above, but now change the _system message_
 
 See how the result is now tuned to reflect the desired goal and format? An educator can now directly use this response in their slides for that class.
 
-![Instruction Tuned LLM Chat Completion](../../../translated_images/04-playground-chat-instructions.b30bbfbdf92f2d051639c9bc23f74a0e2482f8dc7f0dafc6cc6fda81b2b00534.en.png)
+![Instruction Tuned LLM Chat Completion](../../../translated_images/en/04-playground-chat-instructions.b30bbfbdf92f2d05.webp)
 
 ## Why do we need Prompt Engineering?
 
@@ -140,67 +131,25 @@ Let's see this in action in the OpenAI or Azure OpenAI Playground:
 In this course, we use the term **"fabrication"** to reference the phenomenon where LLMs sometimes generate factually incorrect information due to limitations in their training or other constraints. You may also have heard this referred to as _"hallucinations"_ in popular articles or research papers. However, we strongly recommend using _"fabrication"_ as the term so we don't accidentally anthropomorphize the behavior by attributing a human-like trait to a machine-driven outcome. This also reinforces [Responsible AI guidelines](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst) from a terminology perspective, removing terms that may also be considered offensive or non-inclusive in some contexts.
 
 Want to get a sense of how fabrications work? Think of a prompt that instructs the AI to generate content for a non-existent topic (to ensure it is not found in the training dataset). For example - I tried this prompt:
-# Lesson Plan: The Martian War of 2076
 
-## Objective
-Students will explore the causes, major events, and consequences of the Martian War of 2076, analyzing its impact on interplanetary relations and technological advancements.
-
-## Materials Needed
-- Timeline of the Martian War of 2076
-- Map of Mars and Earth colonies
-- Excerpts from primary sources (letters, news reports, official documents)
-- Multimedia presentation (images, videos, interviews)
-
-## Introduction (10 minutes)
-Begin with a brief overview of Mars colonization and the tensions that led up to the war. Ask students what they know about interplanetary conflicts and how they might differ from wars on Earth.
-
-## Direct Instruction (20 minutes)
-- Discuss the main causes of the Martian War, including resource disputes, political disagreements, and technological competition.
-- Highlight key events: the Battle of Olympus Mons, the Siege of New Terra, and the signing of the Tranquility Accord.
-- Examine the roles of major factions: Earth Federation, Martian Independence Movement, and neutral colonies.
-
-## Guided Practice (15 minutes)
-- Divide students into groups and assign each a faction involved in the war.
-- Have each group analyze their faction’s motivations, strategies, and outcomes.
-- Groups present their findings to the class.
-
-## Independent Practice (20 minutes)
-- Students write a short essay or create a presentation on how the Martian War changed life on Mars and Earth.
-- Encourage them to consider technological innovations, changes in governance, and cultural shifts.
-
-## Conclusion (10 minutes)
-- Review the main points discussed.
-- Facilitate a class discussion on the long-term effects of the war and lessons learned for future interplanetary relations.
-
-## Assessment
-- Participation in group activities
-- Quality of essays or presentations
-- Engagement in class discussion
-
-## Extension Activities
-- Research current events related to Mars colonization and compare them to the events of 2076.
-- Create a fictional diary entry from the perspective of a civilian during the war.
-
-## Comments
-- Adjust timing as needed based on class size and interest.
-- Encourage critical thinking and creativity in all activities.
+> **Prompt:** generate a lesson plan on the Martian War of 2076.
 A web search showed me that there were fictional accounts (e.g., television series or books) on Martian wars - but none in 2076. Commonsense also tells us that 2076 is _in the future_ and thus, cannot be associated with a real event.
 
 So what happens when we run this prompt with different LLM providers?
 
 > **Response 1**: OpenAI Playground (GPT-35)
 
-![Response 1](../../../translated_images/04-fabrication-oai.5818c4e0b2a2678c40e0793bf873ef4a425350dd0063a183fb8ae02cae63aa0c.en.png)
+![Response 1](../../../translated_images/en/04-fabrication-oai.5818c4e0b2a2678c.webp)
 
 > **Response 2**: Azure OpenAI Playground (GPT-35)
 
-![Response 2](../../../translated_images/04-fabrication-aoai.b14268e9ecf25caf613b7d424c16e2a0dc5b578f8f960c0c04d4fb3a68e6cf61.en.png)
+![Response 2](../../../translated_images/en/04-fabrication-aoai.b14268e9ecf25caf.webp)
 
 > **Response 3**: : Hugging Face Chat Playground (LLama-2)
 
-![Response 3](../../../translated_images/04-fabrication-huggingchat.faf82a0a512789565e410568bce1ac911075b943dec59b1ef4080b61723b5bf4.en.png)
+![Response 3](../../../translated_images/en/04-fabrication-huggingchat.faf82a0a51278956.webp)
 
-As expected, each model (or model version) produces slightly different responses thanks to stochastic behavior and model capability variations. For instance, one model targets an 8th grade audience while the other assumes a high-school student. But all three models did generate responses that could convince an uninformed user that the event was real
+As expected, each model (or model version) produces slightly different responses thanks to stochastic behavior and model capability variations. For instance, one model targets an 8th grade audience while the other assumes a high-school student. But all three models did generate responses that could convince an uninformed user that the event was real.
 
 Prompt engineering techniques like _metaprompting_ and _temperature configuration_ may reduce model fabrications to some extent. New prompt engineering _architectures_ also incorporate new tools and techniques seamlessly into the prompt flow, to mitigate or reduce some of these effects.
 
@@ -222,6 +171,16 @@ Read the posts in order, to follow their learning journey.
 You can also browse their [Engineering blog](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) for more posts like [this one](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst) that shows how these models and techniques are _applied_ for driving real-world applications.
 
 ---
+
+<!--
+LESSON TEMPLATE:
+This unit should cover core concept #2.
+Reinforce the concept with examples and references.
+
+CONCEPT #2:
+Prompt Design.
+Illustrated with examples.
+-->
 
 ## Prompt Construction
 
@@ -312,9 +271,7 @@ Another technique for using primary content is to provide _cues_ rather than exa
 
 | Number of Cues | Prompt (Input)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Completion (Output)                                                                                                                                                                                                                                                                                       |
 | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0              | Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history.
-
-**Summarize This**                                       | Jupiter is the largest planet in our Solar System and the fifth one from the Sun. It is a gas giant with a mass 1/1000th of the Sun's, but it is heavier than all the other planets combined. Ancient civilizations have known about Jupiter for a long time, and it is easily visible in the night sky. |
+| 0              | Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/>**Summarize This**                                       | Jupiter is the largest planet in our Solar System and the fifth one from the Sun. It is a gas giant with a mass 1/1000th of the Sun's, but it is heavier than all the other planets combined. Ancient civilizations have known about Jupiter for a long time, and it is easily visible in the night sky.. |
 | 1              | Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/>**Summarize This** <br/> What we learned is that Jupiter | is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets combined. It is easily visible to the naked eye and has been known since ancient times.                        |
 | 2              | Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. <br/>**Summarize This** <br/> Top 3 Facts We Learned:         | 1. Jupiter is the fifth planet from the Sun and the largest in the Solar System. <br/> 2. It is a gas giant with a mass one-thousandth that of the Sun...<br/> 3. Jupiter has been visible to the naked eye since ancient times ...                                                                       |
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |
@@ -329,7 +286,7 @@ Finally, the real value of templates lies in the ability to create and publish _
 
 ## Supporting Content
 
-If we think about prompt construction as having an instruction (task) and a target (primary content), then _secondary content_ is like additional context we provide to **influence the output in some way**. It could be tuning parameters, formatting instructions, topic taxonomies etc. that can help the model _tailor_ its response to suit the desired user objectives or expectations.
+If we think about prompt construction as having an instruction (task) and a target (primary content), then _secondary content_ is like additional context we provide to **influence the output in some way**. It could be tuning parameters, formatting instructions, topic taxonomies etc. that can help the model _tailor_ its response to be suit the desired user objectives or expectations.
 
 For example: Given a course catalog with extensive metadata (name, description, level, metadata tags, instructor etc.) on all the available courses in the curriculum:
 
@@ -409,7 +366,7 @@ For our assignment, we'll be using a Jupyter Notebook with exercises you can com
 
 ### Next, configure your environment variables
 
-- Copy the `.env.copy` file in repo root to `.env` and fill in the `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_DEPLOYMENT` values. Come back to [Learning Sandbox section](../../../04-prompt-engineering-fundamentals/04-prompt-engineering-fundamentals) to learn how.
+- Copy the `.env.copy` file in repo root to `.env` and fill in the `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` and `AZURE_OPENAI_DEPLOYMENT` values. Come back to [Learning Sandbox section](../../../04-prompt-engineering-fundamentals) to learn how.
 
 ### Next, open the Jupyter Notebook
 
@@ -446,5 +403,7 @@ Head over to Lesson 5 where we will look at [advanced prompting techniques](../0
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
 This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

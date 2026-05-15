@@ -1,17 +1,8 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e2861bbca91c0567ef32bc77fe054f9e",
-  "translation_date": "2025-08-25T12:41:28+00:00",
-  "source_file": "15-rag-and-vector-databases/README.md",
-  "language_code": "lt"
-}
--->
-# Duomenų paieška su generavimu (RAG) ir vektorinės duomenų bazės
+# Paieškos plėtinio generavimas (RAG) ir vektorinės duomenų bazės
 
-[![Duomenų paieška su generavimu (RAG) ir vektorinės duomenų bazės](../../../translated_images/15-lesson-banner.ac49e59506175d4fc6ce521561dab2f9ccc6187410236376cfaed13cde371b90.lt.png)](https://aka.ms/gen-ai-lesson15-gh?WT.mc_id=academic-105485-koreyst)
+[![Paieškos plėtinio generavimas (RAG) ir vektorinės duomenų bazės](../../../translated_images/lt/15-lesson-banner.ac49e59506175d4f.webp)](https://youtu.be/4l8zhHUBeyI?si=BmvDmL1fnHtgQYkL)
 
-Pamokoje apie paieškos programas trumpai susipažinome, kaip integruoti savo duomenis į didelius kalbos modelius (LLM). Šioje pamokoje gilinsimės į duomenų pagrindimą LLM programoje, proceso mechaniką ir duomenų saugojimo būdus, įskaitant tiek embeddingus, tiek tekstą.
+Paieškos taikomųjų programų pamokoje trumpai sužinojome, kaip integruoti savo duomenis į didelius kalbos modelius (LLM). Šioje pamokoje gilinsimės į jūsų duomenų pagrindimą jūsų LLM programoje, proceso mechaniką ir duomenų saugojimo metodus, įskaitant tiek vektorius, tiek tekstą.
 
 > **Vaizdo įrašas netrukus**
 
@@ -19,81 +10,81 @@ Pamokoje apie paieškos programas trumpai susipažinome, kaip integruoti savo du
 
 Šioje pamokoje aptarsime:
 
-- Įvadas į RAG: kas tai yra ir kodėl naudojama dirbtiniame intelekte.
+- Įvadą į RAG, kas tai yra ir kodėl jis naudojamas dirbtiniame intelekte (AI).
 
-- Supratimas, kas yra vektorinės duomenų bazės ir kaip sukurti vieną savo programai.
+- Supratimą, kas yra vektorinės duomenų bazės, ir vienos jų sukūrimą mūsų programai.
 
-- Praktinis pavyzdys, kaip integruoti RAG į programą.
+- Praktinį pavyzdį, kaip integruoti RAG į programą.
 
 ## Mokymosi tikslai
 
-Baigę šią pamoką, galėsite:
+Baigus šią pamoką, galėsite:
 
-- Paaiškinti, kodėl RAG svarbus duomenų paieškai ir apdorojimui.
+- Paaiškinti RAG reikšmę duomenų gavimui ir apdorojimui.
 
-- Paruošti RAG programą ir pagrįsti savo duomenis LLM modeliui
+- Nustatyti RAG programą ir pagrįsti savo duomenis LLM.
 
-- Efektyviai integruoti RAG ir vektorines duomenų bazes į LLM programas.
+- Efektyviai integruoti RAG ir vektorines duomenų bazes LLM programose.
 
-## Mūsų scenarijus: kaip praturtinti LLM savo duomenimis
+## Mūsų scenarijus: LLM patobulinimas su mūsų pačių duomenimis
 
-Šioje pamokoje norime pridėti savo užrašus į edukacinį startuolį, kad pokalbių robotas galėtų gauti daugiau informacijos apie įvairias temas. Naudodami turimus užrašus, mokiniai galės geriau mokytis ir suprasti skirtingas temas, o pasiruošimas egzaminams taps lengvesnis. Scenarijui naudosime:
+Šiai pamokai norime pridėti savo užrašus į švietimo startuolį, kuris leidžia pokalbių robotui gauti daugiau informacijos apie įvairias temas. Naudodamiesi turimais užrašais, mokiniai galės geriau mokytis ir suprasti skirtingas temas, palengvindami pasiruošimą egzaminams. Scenarijui kurti naudosime:
 
-- `Azure OpenAI:` LLM, kurį naudosime pokalbių robotui sukurti
+- `Azure OpenAI:` LLM, kurį naudosime pokalbių robotui kurti
 
-- `AI for beginners' pamoka apie neuroninius tinklus`: duomenys, kuriais pagrįsime LLM
+- `AI pradedantiesiems: neuroninių tinklų pamoka`: tai bus duomenys, ant kurių pagrįsime mūsų LLM
 
-- `Azure AI Search` ir `Azure Cosmos DB:` vektorinė duomenų bazė, kurioje saugosime duomenis ir kursime paieškos indeksą
+- `Azure AI Search` ir `Azure Cosmos DB:` vektorinių duomenų bazė mūsų duomenims saugoti ir paieškos indeksui kurti
 
-Vartotojai galės kurti praktinius testus iš savo užrašų, kartojimo korteles ir gauti trumpas santraukas. Pradėkime nuo to, kas yra RAG ir kaip jis veikia:
+Vartotojai galės kurti praktinius klausimynus iš savo užrašų, pakartojimo korteles ir apibendrinti juos glaustais aprašymais. Pradėkime nuo to, kas yra RAG ir kaip jis veikia:
 
-## Duomenų paieška su generavimu (RAG)
+## Paieškos plėtinio generavimas (RAG)
 
-LLM pagrįstas pokalbių robotas apdoroja vartotojo užklausas ir generuoja atsakymus. Jis sukurtas interaktyviai bendrauti įvairiomis temomis. Tačiau jo atsakymai apsiriboja turima konteksto informacija ir pradiniu mokymo duomenų rinkiniu. Pavyzdžiui, GPT-4 žinių riba yra 2021 m. rugsėjis, todėl jis nežino apie vėliau įvykusius įvykius. Be to, LLM mokymo duomenyse nėra konfidencialios informacijos, pvz., asmeninių užrašų ar įmonės produktų vadovo.
+LLM pagrįstas pokalbių robotas apdoroja vartotojo užklausas, kad sukurtų atsakymus. Jis sukurtas būti interaktyvus ir bendrauti su vartotojais įvairiomis temomis. Tačiau jo atsakymai yra ribojami pateiktos konteksto ir pagrindinių mokymo duomenų. Pavyzdžiui, GPT-4 žinių ribojimas yra 2021 m. rugsėjis, reiškiantis, kad jis neturi žinių apie įvykius po šio laikotarpio. Be to, LLM mokymams naudojami duomenys neapima konfidencialios informacijos, kaip asmeniniai užrašai ar įmonės produktų vadovai.
 
-### Kaip veikia RAG (Duomenų paieška su generavimu)
+### Kaip veikia RAG (paieškos plėtinio generavimas)
 
-![piešinys, rodantis, kaip veikia RAG](../../../translated_images/how-rag-works.f5d0ff63942bd3a638e7efee7a6fce7f0787f6d7a1fca4e43f2a7a4d03cde3e0.lt.png)
+![braižinys, rodantis kaip veikia RAG](../../../translated_images/lt/how-rag-works.f5d0ff63942bd3a6.webp)
 
-Tarkime, norite sukurti pokalbių robotą, kuris sudaro testus iš jūsų užrašų – tam reikės ryšio su žinių baze. Čia ir praverčia RAG. RAG veikia taip:
+Tarkime, norite įdiegti pokalbių robotą, kuris kuria klausimynus iš jūsų užrašų, jums reikės jungties prie žinių bazės. Štai kur RAG padeda. RAG veikia taip:
 
-- **Žinių bazė:** Prieš paiešką dokumentai turi būti įkelti ir apdoroti – paprastai dideli dokumentai suskaidomi į mažesnes dalis, paverčiami tekstiniais embeddingais ir saugomi duomenų bazėje.
+- **Žinių bazė:** Prieš ieškant, šie dokumentai turi būti įkelti ir išankstinai apdoroti, dažniausiai suskaidant didelius dokumentus į mažesnius segmentus, transformuojant juos į tekstinius įterpimus ir saugant duomenų bazėje.
 
 - **Vartotojo užklausa:** vartotojas užduoda klausimą
 
-- **Paieška:** Kai vartotojas užduoda klausimą, embeddingų modelis suranda aktualią informaciją žinių bazėje, kad pateiktų daugiau konteksto, kuris bus įtrauktas į užklausą.
+- **Paieška:** Kai vartotojas užduoda klausimą, įterpimo modelis suranda susijusią informaciją mūsų žinių bazėje, kad pateiktų daugiau konteksto, kuris bus įtrauktas į užklausą.
 
-- **Papildytas generavimas:** LLM pagerina atsakymą remdamasis surinktais duomenimis. Tai leidžia generuoti atsakymus ne tik pagal iš anksto išmoktas žinias, bet ir pagal aktualią informaciją iš papildyto konteksto. Surinkti duomenys naudojami LLM atsakymams papildyti. LLM grąžina atsakymą į vartotojo klausimą.
+- **Plėstinis generavimas:** LLM pagerina savo atsakymą remdamasis gautais duomenimis. Tai leidžia atsakymui būti pagrįstam ne tik iš anksto apmokytais duomenimis, bet ir papildoma informacija iš pridėto konteksto. Gauti duomenys naudojami LLM atsakymams papildyti. LLM tada pateikia atsakymą vartotojo klausimui.
 
-![piešinys, rodantis RAG architektūrą](../../../translated_images/encoder-decode.f2658c25d0eadee2377bb28cf3aee8b67aa9249bf64d3d57bb9be077c4bc4e1a.lt.png)
+![braižinys, rodantis kaip veikia RAG architektūra](../../../translated_images/lt/encoder-decode.f2658c25d0eadee2.webp)
 
-RAG architektūra įgyvendinama naudojant transformerius, sudarytus iš dviejų dalių: enkoderio ir dekoderio. Pavyzdžiui, kai vartotojas užduoda klausimą, įvestas tekstas „užkoduojamas“ į vektorius, kurie atspindi žodžių prasmę, o vektoriai „atkoduojami“ į dokumentų indeksą ir generuoja naują tekstą pagal užklausą. LLM naudoja tiek enkoderį, tiek dekoderį rezultatui generuoti.
+RAG architektūra įgyvendinama naudojant transformerius, sudarytus iš dviejų dalių: kodavimo ir dekodavimo. Pavyzdžiui, kai vartotojas užduoda klausimą, įvestas tekstas yra „užkoduojamas“ į vektorius, kurie fiksuoja žodžių reikšmę, o vektoriai yra „iškoduojami“ į mūsų dokumentų indeksą ir generuoja naują tekstą, remiantis vartotojo užklausa. LLM naudoja abu – kodavimo-dekodavimo modelį, kad sugeneruotų rezultatą.
 
-Pagal siūlomą straipsnį: [Retrieval-Augmented Generation for Knowledge intensive NLP Tasks](https://arxiv.org/pdf/2005.11401.pdf?WT.mc_id=academic-105485-koreyst) yra du RAG įgyvendinimo būdai:
+Yra du RAG įgyvendinimo metodai pagal siūlomą straipsnį: [Retrieval-Augmented Generation for Knowledge intensive NLP (natural language processing software) Tasks](https://arxiv.org/pdf/2005.11401.pdf?WT.mc_id=academic-105485-koreyst):
 
-- **_RAG-Sequence_** – naudojami surinkti dokumentai, kad būtų nuspėtas geriausias atsakymas į vartotojo užklausą
+- **_RAG-Sequence_** naudoja surinktus dokumentus, kad prognozuotų geriausią atsakymą vartotojo užklausai
 
-- **RAG-Token** – naudojami dokumentai generuoti kitam tokenui, tada jie surenkami atsakymui į vartotojo klausimą
+- **RAG-Token** generuoja kitą žodžio vienetą, naudodama dokumentus, tada juos surenka, kad atsakytų į vartotojo klausimą
 
-### Kodėl verta naudoti RAG?
+### Kodėl verta naudoti RAG? 
 
-- **Informacijos gausa:** užtikrina, kad tekstiniai atsakymai būtų aktualūs ir nauji. Tai pagerina našumą specifinėse srityse, nes pasiekiama vidinė žinių bazė.
+- **Informacijos turtingumas:** užtikrina, kad tekstiniai atsakymai būtų atnaujinti ir aktualūs. Todėl pagerina našumą srityse, reikalaujančiose specifinių žinių, pasiekiant vidinę žinių bazę.
 
-- Sumažina išgalvotų atsakymų skaičių, nes naudoja **patikimus duomenis** žinių bazėje, kad pateiktų kontekstą vartotojo užklausoms.
+- Mažina klaidingą informaciją naudodamas **patikimus duomenis** žinių bazėje, kad pateiktų kontekstą vartotojų užklausoms.
 
-- **Ekonomiškas** – pigesnis nei LLM modelio papildomas mokymas
+- Tai **ekonomiška**, nes yra pigesnė alternatyva nei LLM perkvalifikavimas (fine-tuning)
 
 ## Žinių bazės kūrimas
 
-Mūsų programa remiasi asmeniniais duomenimis, t. y. pamoka apie neuroninius tinklus iš AI For Beginners kurso.
+Mūsų programa remiasi mūsų asmeniniais duomenimis, t.y. neuroninių tinklų pamoka AI pradedantiesiems mokyme.
 
 ### Vektorinės duomenų bazės
 
-Vektorinė duomenų bazė, skirtingai nei tradicinės, yra specializuota duomenų bazė, skirta saugoti, valdyti ir ieškoti embeddingų vektorių. Ji saugo dokumentų skaitmeninius atvaizdus. Duomenų pavertimas skaitmeniniais embeddingais leidžia AI sistemai lengviau suprasti ir apdoroti informaciją.
+Vektorinė duomenų bazė, skirtingai nei tradicinės duomenų bazės, yra specializuota duomenų bazė, sukurta saugoti, valdyti ir ieškoti įterptus vektorius. Joje saugomos dokumentų skaitmeninės reprezentacijos. Duomenų skaidymas į skaitmeninius įterpimus leidžia mūsų DI sistemai lengviau suprasti ir apdoroti duomenis.
 
-Embeddingus saugome vektorinėse duomenų bazėse, nes LLM modeliai turi ribotą priimamų tokenų skaičių. Kadangi negalima perduoti visų embeddingų LLM modeliui, reikia juos suskaidyti į dalis, o kai vartotojas užduoda klausimą, embeddingai, labiausiai panašūs į klausimą, grąžinami kartu su užklausa. Suskaidymas taip pat sumažina išlaidas, nes sumažėja perduodamų tokenų kiekis.
+Mes saugome savo įterpimus vektorinėse duomenų bazėse, nes LLM turi apribojimą, kiek žodžių (token’ų) gali priimti kaip įvestį. Kadangi negalite perduoti visų įterpimų vienu metu LLM, turėsime juos suskaidyti į segmentus ir kai vartotojas užduoda klausimą, grąžinami segmentai, kurie geriausiai atitinka užklausą kartu su užklausa. Segmentavimas taip pat mažina sąnaudas dėl perduodamų žodžių skaičiaus LLM.
 
-Populiarios vektorinės duomenų bazės: Azure Cosmos DB, Clarifyai, Pinecone, Chromadb, ScaNN, Qdrant ir DeepLake. Azure Cosmos DB modelį galite sukurti naudodami Azure CLI su šia komanda:
+Populiarios vektorinės duomenų bazės yra Azure Cosmos DB, Clarifyai, Pinecone, Chromadb, ScaNN, Qdrant ir DeepLake. Galite sukurti Azure Cosmos DB modelį naudodami Azure CLI šia komanda:
 
 ```bash
 az login
@@ -102,9 +93,9 @@ az cosmosdb create -n <cosmos-db-name> -r <resource-group-name>
 az cosmosdb list-keys -n <cosmos-db-name> -g <resource-group-name>
 ```
 
-### Nuo teksto iki embeddingų
+### Iš teksto į įterpimus
 
-Prieš saugodami duomenis, turime juos paversti vektoriniais embeddingais. Jei dirbate su dideliais dokumentais ar ilgais tekstais, galite juos suskaidyti pagal numatomas užklausas. Suskaidyti galima pagal sakinius arba pastraipas. Kad suskaidymas būtų prasmingesnis, galite pridėti papildomą kontekstą, pvz., dokumento pavadinimą ar tekstą prieš/po dalies. Duomenis galite suskaidyti taip:
+Prieš saugodami duomenis, turime juos konvertuoti į vektorių įterpimus prieš saugojant duomenų bazėje. Dirbdami su dideliais dokumentais ar ilgu tekstu, galite juos suskaidyti pagal numatomas užklausas. Skirstyti galima pagal sakinius arba pastraipas. Kadangi segmentavimas gilinasi į žodžių aplinką, galite pridėti papildomą kontekstą, pvz., dokumento pavadinimą arba prieš ar po segmento esantį tekstą. Duomenis galite suskaidyti taip:
 
 ```python
 def split_text(text, max_length, min_length):
@@ -118,70 +109,68 @@ def split_text(text, max_length, min_length):
             chunks.append(' '.join(current_chunk))
             current_chunk = []
 
-    # If the last chunk didn't reach the minimum length, add it anyway
+    # Jei paskutinė dalis nepasiekė minimalaus ilgio, vis tiek ją pridėkite
     if current_chunk:
         chunks.append(' '.join(current_chunk))
 
     return chunks
 ```
 
-Suskaidžius, tekstą galima paversti embeddingais naudojant įvairius modelius. Galimi modeliai: word2vec, ada-002 iš OpenAI, Azure Computer Vision ir kt. Modelio pasirinkimas priklauso nuo naudojamų kalbų, užkoduojamo turinio tipo (tekstas/vaizdas/garso įrašas), įvesties dydžio ir embeddingo ilgio.
+Suskaidžius, galime naudoti įvairius įterpimo modelius tekstui įterpti. Kai kurie modeliai yra: word2vec, ada-002 iš OpenAI, Azure Computer Vision ir daugelis kitų. Modelio pasirinkimas priklauso nuo kalbų, kurias naudojate, koduojamo turinio tipo (tekstai/vaizdai/garsas), įvesties dydžio ir įterpimo išvesties ilgio.
 
-Pavyzdys, kaip atrodo embeddingas naudojant OpenAI `text-embedding-ada-002` modelį:
-![embeddingas žodžiui katė](../../../translated_images/cat.74cbd7946bc9ca380a8894c4de0c706a4f85b16296ffabbf52d6175df6bf841e.lt.png)
+Pavyzdys, kaip atrodo tekstas su OpenAI `text-embedding-ada-002` modeliu:
+![žodžio katė įterpimas](../../../translated_images/lt/cat.74cbd7946bc9ca38.webp)
 
 ## Paieška ir vektorinė paieška
 
-Kai vartotojas užduoda klausimą, paieškos sistema paverčia jį vektoriumi naudodama užklausos enkoderį, tada ieško dokumentų paieškos indekse aktualių vektorių, susijusių su įvestimi. Baigus, tiek įvesties, tiek dokumentų vektoriai paverčiami tekstu ir perduodami LLM modeliui.
+Kai vartotojas užduoda klausimą, paieškos modulis paverčia jį vektoriumi naudodamas užklausų kodavimo modelį, tada ieško dokumentų paieškos indekse vektorių, susijusių su įvestimi. Pabaigoje abi įvesties ir dokumentų vektorius konvertuoja į tekstą ir perduoda į LLM.
 
 ### Paieška
 
-Paieška vyksta, kai sistema greitai suranda dokumentus iš indekso, kurie atitinka paieškos kriterijus. Paieškos tikslas – gauti dokumentus, kurie bus naudojami kontekstui suteikti ir pagrįsti LLM jūsų duomenimis.
+Paieška vyksta, kai sistema bando greitai rasti dokumentus indekse, kurie atitinka paieškos kriterijus. Paieškos modulio tikslas yra gauti dokumentus, kurie bus naudojami kontekstui pateikti ir pagrįsti LLM jūsų duomenimis.
 
-Duomenų bazėje paiešką galima atlikti keliais būdais:
+Duomenų bazėje paiešką atlikti galima įvairiais būdais, pavyzdžiui:
 
-- **Raktinių žodžių paieška** – naudojama tekstui ieškoti
+- **Raktinių žodžių paieška** - skirta tekstinėms paieškoms
 
-- **Semantinė paieška** – naudoja žodžių semantinę prasmę
+- **Vektorinė paieška** - konvertuoja dokumentus iš teksto į vektorius naudodama įterpimo modelius, leidžiančius atlikti **semantinę paiešką** pagal žodžių prasmę. Paieška vykdoma ieškant dokumentų, kurių vektorinės reprezentacijos yra arčiausiai vartotojo užklausos.
 
-- **Vektorinė paieška** – dokumentai paverčiami iš teksto į vektorius embeddingų modeliais. Paieška vykdoma ieškant dokumentų, kurių vektoriai yra arčiausiai vartotojo klausimo.
+- **Hibridinis** - derinys tarp raktinių žodžių ir vektorinių paieškų.
 
-- **Hibridinė** – raktinių žodžių ir vektorinės paieškos derinys.
+Problema, kylanti su paieška, yra tada, kai duomenų bazėje nėra panašaus atsakymo į užklausą, sistema grąžins geriausią turimą informaciją, tačiau galite naudoti taktiką, pavyzdžiui, nustatyti maksimalų aktualumo atstumą arba naudoti hibridinę paiešką, kuri jungia raktinius žodžius ir vektorinę paiešką. Šioje pamokoje naudosime hibridinę paiešką, derinį tarp vektorinės ir raktinių žodžių paieškos. Duomenis saugosime duomenų lentelėje su stulpeliais, kuriuose bus segmentai ir įterpimai.
 
-Iššūkis kyla, kai duomenų bazėje nėra panašaus atsakymo į užklausą – sistema grąžins geriausią galimą informaciją. Galite taikyti taktiką, pvz., nustatyti maksimalų atstumą aktualumui arba naudoti hibridinę paiešką, kuri derina raktinius žodžius ir vektorinę paiešką. Šioje pamokoje naudosime hibridinę paiešką – vektorinės ir raktinių žodžių paieškos derinį. Duomenis saugosime duomenų rėmelyje, kur stulpeliai bus chunkai ir embeddingai.
+### Vektorinė panašumas
 
-### Vektorinė panašumo analizė
+Paieškos modulis ieškos žinių bazėje įterpimų, kurie yra arti vienas kito, artimiausių kaimynų principu, nes jie yra panašūs tekstai. Kai vartotojas užduoda užklausą, ji pirmiausia paverčiama įterpimu, tada lyginama su panašiais įterpimais. Dažniausiai naudojamas panašumo matas yra kosinusinė panašumo reikšmė, kuri remiasi kampu tarp dviejų vektorių.
 
-Paieškos sistema ieškos embeddingų, kurie yra arti vienas kito žinių bazėje – artimiausi kaimynai, nes tai panašūs tekstai. Kai vartotojas užduoda užklausą, ji pirmiausia paverčiama embeddingu, tada lyginama su panašiais embeddingais. Dažniausiai panašumui matuoti naudojama kosinusinė panašumo metrika, kuri remiasi kampu tarp dviejų vektorių.
-
-Galima naudoti ir kitus panašumo matavimo būdus: Euklido atstumą (tiesi linija tarp vektorių galų) ir skaliarinį sandaugą (atitinkamų vektorių elementų sandaugų suma).
+Panašumui matuoti galima naudoti kitas alternatyvas, pvz., Euklido atstumą, kuris yra trumpiausia linija tarp vektorių galinių taškų, arba skaliarinę sandaugą, kuri matuoja atitinkamų dviejų vektorių elementų sandaugų sumą.
 
 ### Paieškos indeksas
 
-Atliekant paiešką, reikia sukurti žinių bazės paieškos indeksą prieš pradedant paiešką. Indeksas saugos embeddingus ir leis greitai rasti panašiausius chunkus net didelėje duomenų bazėje. Indeksą galima sukurti lokaliai taip:
+Atlikdami paiešką, turime sukurti paieškos indeksą mūsų žinių bazei prieš pradėdami paiešką. Indeksas saugos mūsų įterpimus ir gali greitai rasti artimiausius segmentus net didelėje duomenų bazėje. Indeksą galime sukurti lokaliai naudojant:
 
 ```python
 from sklearn.neighbors import NearestNeighbors
 
 embeddings = flattened_df['embeddings'].to_list()
 
-# Create the search index
+# Sukurkite paieškos indeksą
 nbrs = NearestNeighbors(n_neighbors=5, algorithm='ball_tree').fit(embeddings)
 
-# To query the index, you can use the kneighbors method
+# Norėdami klausti indekso, galite naudoti metodą kneighbors
 distances, indices = nbrs.kneighbors(embeddings)
 ```
 
-### Rezultatų perrikiavimas
+### Pakartotinis rūšiavimas
 
-Kai užklausiate duomenų bazės, gali tekti surikiuoti rezultatus pagal aktualumą. Perrikiavimo LLM naudoja mašininį mokymąsi, kad pagerintų paieškos rezultatų aktualumą, surikiuodamas juos nuo aktualiausių. Naudojant Azure AI Search, perrikiavimas atliekamas automatiškai naudojant semantinį perrikiavimą. Pavyzdys, kaip veikia perrikiavimas naudojant artimiausius kaimynus:
+Pateikus užklausą į duomenų bazę, galbūt reikės išrūšiuoti rezultatus pagal aktualumą. Pakartotinį rūšiavimą atlieka LLM, kuris naudoja mašininį mokymąsi, kad pagerintų paieškos rezultatų aktualumą, rūšiuodamas juos nuo svarbiausių. Naudojant Azure AI Search, pakartotinis rūšiavimas atliekamas automatiškai naudojant semantinį perrūšiavimą. Pavyzdys, kaip veikia perrūšiavimas, naudojant artimiausius kaimynus:
 
 ```python
-# Find the most similar documents
+# Raskite labiausiai panašius dokumentus
 distances, indices = nbrs.kneighbors([query_vector])
 
 index = []
-# Print the most similar documents
+# Išspausdinkite labiausiai panašius dokumentus
 for i in range(3):
     index = indices[0][i]
     for index in indices[0]:
@@ -192,35 +181,35 @@ for i in range(3):
         print(f"Index {index} not found in DataFrame")
 ```
 
-## Kaip viską sujungti
+## Viskas kartu
 
-Paskutinis žingsnis – pridėti LLM, kad gautume atsakymus, pagrįstus mūsų duomenimis. Galime įgyvendinti taip:
+Paskutinis žingsnis – įtraukti mūsų LLM, kad galėtume gauti atsakymus, pagrįstus mūsų duomenimis. Galime įgyvendinti taip:
 
 ```python
 user_input = "what is a perceptron?"
 
 def chatbot(user_input):
-    # Convert the question to a query vector
+    # Paversti klausimą į užklausos vektorių
     query_vector = create_embeddings(user_input)
 
-    # Find the most similar documents
+    # Rasti labiausiai panašius dokumentus
     distances, indices = nbrs.kneighbors([query_vector])
 
-    # add documents to query  to provide context
+    # pridėti dokumentus prie užklausos, kad suteiktų kontekstą
     history = []
     for index in indices[0]:
         history.append(flattened_df['chunks'].iloc[index])
 
-    # combine the history and the user input
+    # sujungti istoriją ir vartotojo įvestį
     history.append(user_input)
 
-    # create a message object
+    # sukurti žinutės objektą
     messages=[
         {"role": "system", "content": "You are an AI assistant that helps with AI questions."},
-        {"role": "user", "content": history[-1]}
+        {"role": "user", "content": "\n\n".join(history) }
     ]
 
-    # use chat completion to generate a response
+    # naudoti pokalbio užbaigimą atsakymui generuoti
     response = openai.chat.completions.create(
         model="gpt-4",
         temperature=0.7,
@@ -235,47 +224,49 @@ chatbot(user_input)
 
 ## Programos vertinimas
 
-### Vertinimo metrikos
+### Vertinimo metrika
 
-- Atsakymų kokybė: ar jie skamba natūraliai, sklandžiai ir žmogiškai
+- Atsakymų kokybė: užtikrinant, kad jie skambėtų natūraliai, sklandžiai ir žmogiškai
 
-- Duomenų pagrįstumas: ar atsakymas gautas iš pateiktų dokumentų
+- Duomenų pagrindimas: vertinant, ar atsakymas pateiktas remiantis papildytais dokumentais
 
-- Aktualumas: ar atsakymas atitinka ir susijęs su užduotu klausimu
+- Aktualumas: vertinant, ar atsakymas atitinka ir susijęs su užduotu klausimu
 
-- Sklandumas – ar atsakymas gramatiškai taisyklingas
+- Sklandumas – ar atsakymas yra prasmingas gramatiniu požiūriu
 
-## RAG ir vektorinių duomenų bazių naudojimo atvejai
+## RAG (paieškos plėtinio generavimas) ir vektorinių duomenų bazių naudojimo scenarijai
 
-Yra daug skirtingų atvejų, kur funkcijų iškvietimai gali pagerinti jūsų programą, pvz.:
+Yra daugybė įvairių atvejų, kur funkcijų iškvietimai gali pagerinti jūsų programą, pavyzdžiui:
 
-- Klausimų ir atsakymų sistema: pagrįskite įmonės duomenis pokalbių robotui, kurį darbuotojai gali naudoti klausimams užduoti.
+- Klausimų ir atsakymų sistema: pagrindžiant jūsų įmonės duomenis pokalbių robotui, kurį darbuotojai gali naudoti klausimams užduoti.
 
-- Rekomendacijų sistemos: galite sukurti sistemą, kuri suranda panašiausias vertes, pvz., filmus, restoranus ir kt.
+- Rekomendacijų sistemos: kur galima sukurti sistemą, kuri parenka panašiausias reikšmes, pvz., filmus, restoranus ir kt.
 
-- Pokalbių robotų paslaugos: galite saugoti pokalbių istoriją ir personalizuoti pokalbį pagal vartotojo duomenis.
+- Pokalbių robotų paslaugos: galite saugoti pokalbių istoriją ir pritaikyti pokalbį pagal vartotojo duomenis.
 
-- Vaizdų paieška pagal vektorinius embeddingus, naudinga vaizdų atpažinimui ir anomalijų aptikimui.
+- Vaizdų paieška, pagrįsta vektoriniais įterpimais, naudinga atliekant vaizdų atpažinimą ir anomalijų aptikimą.
 
 ## Santrauka
 
-Aptarėme pagrindinius RAG aspektus: nuo duomenų pridėjimo į programą, vartotojo užklausos iki rezultato. Norėdami supaprastinti RAG kūrimą, galite naudoti tokias sistemas kaip Semantic Kernel, Langchain ar Autogen.
+Mes apžvelgėme pagrindines RAG sritis nuo mūsų duomenų pridėjimo į programą, vartotojo užklausos iki atsakymo. Norėdami palengvinti RAG kūrimą, galite naudoti tokias sistemas kaip Semantic Kernel, Langchain ar Autogen.
 
 ## Užduotis
 
-Norėdami toliau mokytis apie duomenų paiešką su generavimu (RAG), galite:
+Norėdami toliau gilinti žinias apie paieškos plėtinio generavimą (RAG), sukurkite:
 
-- Sukurti programos sąsają naudodami pasirinktą sistemą
+- Programos sąsajos priekinę dalį naudodami jums patinkančią sistemą
 
-- Naudoti LangChain arba Semantic Kernel sistemą ir atkurti savo programą.
+- Naudokite sistemą, pvz., LangChain arba Semantic Kernel, ir atkurkite savo programą
 
 Sveikiname baigus pamoką 👏.
 
-## Mokymasis nesibaigia čia – tęskite kelionę
+## Mokymasis čia nesibaigia, tęskite kelionę
 
-Baigę šią pamoką, apsilankykite mūsų [Generatyvaus DI mokymosi kolekcijoje](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), kad toliau gilintumėte žinias apie generatyvų DI!
+Baigę šią pamoką, peržiūrėkite mūsų [Generatyviojo DI mokymosi kolekciją](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), kad toliau keltumėte savo generatyviojo DI žinias!
 
 ---
 
-**Atsakomybės atsisakymas**:  
-Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors siekiame tikslumo, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Kritinei informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už nesusipratimus ar neteisingą interpretavimą, kilusį dėl šio vertimo naudojimo.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Atsakomybės apribojimas**:
+Šis dokumentas buvo išverstas naudojant dirbtinio intelekto vertimo paslaugą [Co-op Translator](https://github.com/Azure/co-op-translator). Nors stengiamės užtikrinti tikslumą, prašome atkreipti dėmesį, kad automatiniai vertimai gali turėti klaidų ar netikslumų. Originalus dokumentas jo gimtąja kalba turėtų būti laikomas autoritetingu šaltiniu. Svarbiai informacijai rekomenduojamas profesionalus žmogaus vertimas. Mes neatsakome už bet kokius nesusipratimus ar klaidingus vertimus, kilusius naudojant šį vertimą.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

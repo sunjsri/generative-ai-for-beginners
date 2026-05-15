@@ -1,126 +1,117 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "ce8224073b86b728ed52b19bed7932fd",
-  "translation_date": "2025-07-09T12:00:48+00:00",
-  "source_file": "06-text-generation-apps/README.md",
-  "language_code": "no"
-}
--->
 # Bygge applikasjoner for tekstgenerering
 
-[![Building Text Generation Applications](../../../translated_images/06-lesson-banner.a5c629f990a636c852353c5533f1a6a218ece579005e91f96339d508d9cf8f47.no.png)](https://aka.ms/gen-ai-lesson6-gh?WT.mc_id=academic-105485-koreyst)
+[![Bygge applikasjoner for tekstgenerering](../../../translated_images/no/06-lesson-banner.a5c629f990a636c8.webp)](https://youtu.be/0Y5Luf5sRQA?si=t_xVg0clnAI4oUFZ)
 
-> _(Klikk på bildet over for å se video av denne leksjonen)_
+> _(Klikk på bildet ovenfor for å se videoen til denne leksjonen)_
 
-Så langt i dette læreplanen har du sett at det finnes kjernebegreper som prompts og til og med en hel disiplin kalt "prompt engineering". Mange verktøy du kan bruke, som ChatGPT, Office 365, Microsoft Power Platform og flere, støtter deg ved å bruke prompts for å oppnå noe.
+Så langt i dette kurset har du sett at det finnes kjernebegreper som "prompts" og til og med en hel disiplin kalt "prompt engineering". Mange verktøy du kan bruke, som ChatGPT, Office 365, Microsoft Power Platform og flere, støtter bruk av prompts for å oppnå noe.
 
-For at du skal kunne legge til en slik opplevelse i en app, må du forstå konsepter som prompts, completions og velge et bibliotek å jobbe med. Det er nettopp dette du vil lære i dette kapitlet.
+For å legge til en slik opplevelse i en app, må du forstå begreper som prompts, fullføringer og velge et bibliotek å jobbe med. Det er akkurat det du vil lære i dette kapittelet.
 
 ## Introduksjon
 
-I dette kapitlet vil du:
+I dette kapittelet vil du:
 
 - Lære om openai-biblioteket og dets kjernebegreper.
-- Bygge en app for tekstgenerering ved hjelp av openai.
-- Forstå hvordan du bruker konsepter som prompt, temperature og tokens for å bygge en tekstgenereringsapp.
+- Bygge en tekstgenereringsapp ved hjelp av openai.
+- Forstå hvordan du bruker begreper som prompt, temperatur og tokens for å bygge en tekstgenereringsapp.
 
 ## Læringsmål
 
-På slutten av denne leksjonen vil du kunne:
+Ved slutten av denne leksjonen vil du kunne:
 
 - Forklare hva en tekstgenereringsapp er.
 - Bygge en tekstgenereringsapp ved hjelp av openai.
-- Konfigurere appen din til å bruke flere eller færre tokens, og også endre temperaturen for variert output.
+- Konfigurere appen din til å bruke flere eller færre tokens og også endre temperaturen for et variert resultat.
 
 ## Hva er en tekstgenereringsapp?
 
-Normalt når du bygger en app, har den en slags grensesnitt som følgende:
+Vanligvis når du bygger en app, har den en slags grensesnitt som følgende:
 
-- Kommando-basert. Konsollapper er typiske apper hvor du skriver en kommando og den utfører en oppgave. For eksempel er `git` en kommando-basert app.
-- Brukergrensesnitt (UI). Noen apper har grafiske brukergrensesnitt (GUI) hvor du klikker på knapper, skriver inn tekst, velger alternativer og mer.
+- Kommando-basert. Konsollapper er typiske apper der du skriver inn en kommando, og den utfører en oppgave. For eksempel er `git` en kommando-basert app.
+- Brukergrensesnitt (UI). Noen apper har grafiske brukergrensesnitt (GUIs) der du klikker på knapper, skriver inn tekst, velger alternativer og mer.
 
-### Konsoll- og UI-apper har begrensninger
+### Begrensninger med konsoll- og UI-apper
 
-Sammenlign det med en kommando-basert app hvor du skriver en kommando:
+Sammenlign dette med en kommando-basert app der du skriver inn en kommando:
 
-- **Den er begrenset**. Du kan ikke bare skrive hvilken som helst kommando, bare de som appen støtter.
-- **Språkspesifikk**. Noen apper støtter mange språk, men som standard er appen bygget for et spesifikt språk, selv om du kan legge til støtte for flere språk.
+- **Det er begrenset**. Du kan ikke bare skrive inn hvilken som helst kommando, kun de som appen støtter.
+- **Språkspecifikt**. Noen apper støtter mange språk, men som standard er appen bygget for et spesifikt språk, selv om du kan legge til mer språksupport.
 
 ### Fordeler med tekstgenereringsapper
 
-Hvordan skiller en tekstgenereringsapp seg?
+Så hvordan er en tekstgenereringsapp annerledes?
 
-I en tekstgenereringsapp har du mer fleksibilitet, du er ikke begrenset til et sett med kommandoer eller et spesifikt inndataspråk. I stedet kan du bruke naturlig språk for å samhandle med appen. En annen fordel er at fordi du allerede samhandler med en datakilde som er trent på et enormt korpus av informasjon, mens en tradisjonell app kan være begrenset til det som finnes i en database.
+I en tekstgenereringsapp har du mer fleksibilitet, du er ikke begrenset til et sett med kommandoer eller et spesifikt innføringsspråk. I stedet kan du bruke naturlig språk for å interagere med appen. En annen fordel er at du allerede interagerer med en datakilde som er trent på et stort korpus av informasjon, mens en tradisjonell app kan være begrenset til det som finnes i en database.
 
 ### Hva kan jeg bygge med en tekstgenereringsapp?
 
 Det er mange ting du kan bygge. For eksempel:
 
-- **En chatbot**. En chatbot som svarer på spørsmål om temaer, som firmaet ditt og produktene deres, kan være en god match.
-- **Hjelper**. LLM-er er flinke til ting som å oppsummere tekst, hente innsikt fra tekst, produsere tekst som CV-er og mer.
-- **Kodeassistent**. Avhengig av språkmodellen du bruker, kan du bygge en kodeassistent som hjelper deg å skrive kode. For eksempel kan du bruke produkter som GitHub Copilot samt ChatGPT for å hjelpe deg med koding.
+- **En chatbot**. En chatbot som svarer på spørsmål om emner, som din bedrift og dens produkter, kan være en god match.
+- **Hjelper**. LLMs er gode på ting som å oppsummere tekst, få innsikt fra tekst, produsere tekst som CV-er og mer.
+- **Kodeassistent**. Avhengig av språkmodellen du bruker, kan du bygge en kodeassistent som hjelper deg med å skrive kode. For eksempel kan du bruke et produkt som GitHub Copilot samt ChatGPT for å hjelpe deg med å skrive kode.
 
-## Hvordan komme i gang?
+## Hvordan kan jeg komme i gang?
 
-Du må finne en måte å integrere med en LLM på, som vanligvis innebærer følgende to tilnærminger:
+Vel, du må finne en måte å integrere med en LLM, som vanligvis innebærer følgende to tilnærminger:
 
-- Bruke en API. Her konstruerer du web-forespørsler med prompten din og får generert tekst tilbake.
-- Bruke et bibliotek. Biblioteker hjelper med å kapsle inn API-kallene og gjør dem enklere å bruke.
+- Bruke en API. Her konstruerer du webforespørsler med din prompt og får generert tekst tilbake.
+- Bruke et bibliotek. Biblioteker hjelper med å kapsle inn API-kallene og gjøre dem enklere å bruke.
 
 ## Biblioteker/SDK-er
 
-Det finnes noen kjente biblioteker for å jobbe med LLM-er som:
+Det finnes noen velkjente biblioteker for å jobbe med LLMs som:
 
 - **openai**, dette biblioteket gjør det enkelt å koble til modellen din og sende inn prompts.
 
 Deretter finnes det biblioteker som opererer på et høyere nivå som:
 
-- **Langchain**. Langchain er godt kjent og støtter Python.
+- **Langchain**. Langchain er velkjent og støtter Python.
 - **Semantic Kernel**. Semantic Kernel er et bibliotek fra Microsoft som støtter språkene C#, Python og Java.
 
-## Første app med openai
+## Første app ved bruk av openai
 
 La oss se hvordan vi kan bygge vår første app, hvilke biblioteker vi trenger, hvor mye som kreves og så videre.
 
-### Installer openai
+### Installere openai
 
-Det finnes mange biblioteker for å samhandle med OpenAI eller Azure OpenAI. Det er mulig å bruke flere programmeringsspråk som C#, Python, JavaScript, Java og mer. Vi har valgt å bruke `openai` Python-biblioteket, så vi bruker `pip` for å installere det.
+Det finnes mange biblioteker der ute for å interagere med OpenAI eller Azure OpenAI. Det er mulig å bruke mange programmeringsspråk som C#, Python, JavaScript, Java og mer. Vi har valgt å bruke Python-biblioteket `openai`, så vi bruker `pip` for å installere det.
 
 ```bash
 pip install openai
 ```
 
-### Opprett en ressurs
+### Opprette en ressurs
 
-Du må utføre følgende steg:
+Du må utføre følgende trinn:
 
 - Opprett en konto på Azure [https://azure.microsoft.com/free/](https://azure.microsoft.com/free/?WT.mc_id=academic-105485-koreyst).
-- Få tilgang til Azure OpenAI. Gå til [https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai](https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-koreyst) og søk om tilgang.
+- Få tilgang til Azure OpenAI. Gå til [https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai](https://learn.microsoft.com/azure/ai-services/openai/overview#how-do-i-get-access-to-azure-openai?WT.mc_id=academic-105485-koreyst) og be om tilgang.
 
   > [!NOTE]
-  > På tidspunktet for skriving må du søke om tilgang til Azure OpenAI.
+  > På tidspunktet for skriving, må du søke om tilgang til Azure OpenAI.
 
 - Installer Python <https://www.python.org/>
-- Ha opprettet en Azure OpenAI Service-ressurs. Se denne guiden for hvordan du [oppretter en ressurs](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-koreyst).
+- Ha opprettet en Azure OpenAI Service-ressurs. Se denne veiledningen for hvordan du [oppretter en ressurs](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal?WT.mc_id=academic-105485-koreyst).
 
 ### Finn API-nøkkel og endepunkt
 
-Nå må du fortelle `openai`-biblioteket hvilken API-nøkkel det skal bruke. For å finne API-nøkkelen din, gå til "Keys and Endpoint"-seksjonen i Azure OpenAI-ressursen din og kopier verdien for "Key 1".
+På dette tidspunktet må du fortelle `openai`-biblioteket hvilken API-nøkkel som skal brukes. For å finne API-nøkkelen din, gå til "Keys and Endpoint"-seksjonen i din Azure OpenAI-ressurs og kopier verdien "Key 1".
 
 ![Keys and Endpoint resource blade in Azure Portal](https://learn.microsoft.com/azure/ai-services/openai/media/quickstarts/endpoint.png?WT.mc_id=academic-105485-koreyst)
 
-Nå som du har kopiert denne informasjonen, la oss instruere bibliotekene til å bruke den.
+Nå som du har denne informasjonen kopiert, la oss instruere bibliotekene til å bruke den.
 
 > [!NOTE]
-> Det er lurt å skille API-nøkkelen din fra koden. Det kan du gjøre ved å bruke miljøvariabler.
+> Det er verdt å skille API-nøkkelen din fra koden din. Du kan gjøre det ved å bruke miljøvariabler.
 >
 > - Sett miljøvariabelen `OPENAI_API_KEY` til API-nøkkelen din.
 >   `export OPENAI_API_KEY='sk-...'`
 
-### Konfigurer Azure
+### Konfigurasjonsoppsett for Azure
 
-Hvis du bruker Azure OpenAI, slik setter du opp konfigurasjonen:
+Hvis du bruker Azure OpenAI, her er hvordan du setter opp konfigurasjonen:
 
 ```python
 openai.api_type = 'azure'
@@ -131,16 +122,16 @@ openai.api_base = os.getenv("API_BASE")
 
 Ovenfor setter vi følgende:
 
-- `api_type` til `azure`. Dette forteller biblioteket at det skal bruke Azure OpenAI og ikke OpenAI.
-- `api_key`, dette er API-nøkkelen din funnet i Azure-portalen.
-- `api_version`, dette er versjonen av API-et du ønsker å bruke. På tidspunktet for skriving er siste versjon `2023-05-15`.
-- `api_base`, dette er endepunktet for API-et. Du finner det i Azure-portalen ved siden av API-nøkkelen din.
+- `api_type` til `azure`. Dette forteller biblioteket å bruke Azure OpenAI og ikke OpenAI.
+- `api_key`, dette er din API-nøkkel funnet i Azure Portal.
+- `api_version`, dette er versjonen av API-en du vil bruke. På tidspunktet for skriving er den nyeste versjonen `2023-05-15`.
+- `api_base`, dette er endepunktet til API-en. Du finner det i Azure Portal ved siden av API-nøkkelen din.
 
 > [!NOTE] > `os.getenv` er en funksjon som leser miljøvariabler. Du kan bruke den til å lese miljøvariabler som `OPENAI_API_KEY` og `API_BASE`. Sett disse miljøvariablene i terminalen din eller ved å bruke et bibliotek som `dotenv`.
 
 ## Generere tekst
 
-Måten å generere tekst på er å bruke `Completion`-klassen. Her er et eksempel:
+Måten å generere tekst på er å bruke klassen `Completion`. Her er et eksempel:
 
 ```python
 prompt = "Complete the following: Once upon a time there was a"
@@ -149,11 +140,11 @@ completion = openai.Completion.create(model="davinci-002", prompt=prompt)
 print(completion.choices[0].text)
 ```
 
-I koden over oppretter vi et completion-objekt og sender inn modellen vi vil bruke og prompten. Deretter skriver vi ut den genererte teksten.
+I koden ovenfor oppretter vi et fullføringsobjekt og sender inn modellen vi vil bruke og prompten. Deretter skriver vi ut den genererte teksten.
 
-### Chat completions
+### Chat-fullføringer
 
-Så langt har du sett hvordan vi har brukt `Completion` for å generere tekst. Men det finnes en annen klasse kalt `ChatCompletion` som er mer egnet for chatboter. Her er et eksempel på hvordan den brukes:
+Så langt har du sett hvordan vi har brukt `Completion` til å generere tekst. Men det finnes en annen klasse kalt `ChatCompletion` som er mer egnet for chatbots. Her er et eksempel på hvordan du bruker den:
 
 ```python
 import openai
@@ -168,7 +159,7 @@ Mer om denne funksjonaliteten i et kommende kapittel.
 
 ## Øvelse - din første tekstgenereringsapp
 
-Nå som vi har lært hvordan vi setter opp og konfigurerer openai, er det på tide å bygge din første tekstgenereringsapp. Følg disse stegene for å bygge appen:
+Nå som vi har lært hvordan vi setter opp og konfigurerer openai, er det på tide å bygge din første tekstgenereringsapp. For å bygge appen din, følg disse trinnene:
 
 1. Opprett et virtuelt miljø og installer openai:
 
@@ -182,9 +173,9 @@ Nå som vi har lært hvordan vi setter opp og konfigurerer openai, er det på ti
    > Hvis du bruker Windows, skriv `venv\Scripts\activate` i stedet for `source venv/bin/activate`.
 
    > [!NOTE]
-   > Finn din Azure OpenAI-nøkkel ved å gå til [https://portal.azure.com/](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst), søk etter `Open AI`, velg `Open AI resource`, deretter `Keys and Endpoint` og kopier verdien for `Key 1`.
+   > Finn din Azure OpenAI-nøkkel ved å gå til [https://portal.azure.com/](https://portal.azure.com/?WT.mc_id=academic-105485-koreyst) og søk etter `Open AI` og velg `Open AI resource` og deretter `Keys and Endpoint` og kopier verdien `Key 1`.
 
-1. Opprett en fil kalt _app.py_ og legg inn følgende kode:
+1. Opprett en _app.py_-fil og gi den følgende kode:
 
    ```python
    import openai
@@ -208,9 +199,9 @@ Nå som vi har lært hvordan vi setter opp og konfigurerer openai, er det på ti
    ```
 
    > [!NOTE]
-   > Hvis du bruker Azure OpenAI, må du sette `api_type` til `azure` og `api_key` til din Azure OpenAI-nøkkel.
+   > Hvis du bruker Azure OpenAI, må du sette `api_type` til `azure` og sette `api_key` til din Azure OpenAI-nøkkel.
 
-   Du bør se en output som denne:
+   Du bør se et output som følgende:
 
    ```output
     very unhappy _____.
@@ -218,25 +209,25 @@ Nå som vi har lært hvordan vi setter opp og konfigurerer openai, er det på ti
    Once upon a time there was a very unhappy mermaid.
    ```
 
-## Ulike typer prompts, for ulike formål
+## Ulike typer prompts for ulike ting
 
-Nå har du sett hvordan du genererer tekst ved hjelp av en prompt. Du har til og med et program som kjører, som du kan endre for å generere ulike typer tekst.
+Nå har du sett hvordan du genererer tekst ved hjelp av en prompt. Du har til og med et program oppe og kjører som du kan modifisere og endre for å generere ulike typer tekst.
 
-Prompts kan brukes til mange oppgaver. For eksempel:
+Prompts kan brukes til alle slags oppgaver. For eksempel:
 
 - **Generere en type tekst**. For eksempel kan du generere et dikt, spørsmål til en quiz osv.
-- **Søke etter informasjon**. Du kan bruke prompts for å finne informasjon, som i eksempelet 'Hva betyr CORS i webutvikling?'.
-- **Generere kode**. Du kan bruke prompts for å generere kode, for eksempel lage et regulært uttrykk for å validere e-postadresser, eller hvorfor ikke generere et helt program, som en webapp?
+- **Søke opp informasjon**. Du kan bruke prompts til å søke etter informasjon som følgende eksempel 'Hva betyr CORS i webutvikling?'.
+- **Generere kode**. Du kan bruke prompts til å generere kode, for eksempel utvikle et regulært uttrykk som brukes til å validere e-post eller hvorfor ikke generere et helt program, som en webapp?
 
-## Et mer praktisk eksempel: en oppskriftsgenerator
+## Et mer praktisk bruksområde: en oppskriftsgenerator
 
-Tenk deg at du har ingredienser hjemme og vil lage noe mat. Da trenger du en oppskrift. En måte å finne oppskrifter på er å bruke en søkemotor, eller du kan bruke en LLM til det.
+Tenk deg at du har ingredienser hjemme og vil lage noe mat. For det trenger du en oppskrift. En måte å finne oppskrifter på er å bruke en søkemotor, eller du kan bruke en LLM til å gjøre det.
 
-Du kan skrive en prompt som denne:
+Du kan skrive en prompt som dette:
 
-> "Vis meg 5 oppskrifter på en rett med følgende ingredienser: kylling, poteter og gulrøtter. For hver oppskrift, list opp alle ingrediensene som brukes."
+> "Vis meg 5 oppskrifter for en rett med følgende ingredienser: kylling, poteter og gulrøtter. Per oppskrift, list opp alle ingrediensene som brukes."
 
-Med denne prompten kan du få et svar som ligner på:
+Gitt prompten ovenfor, kan du få et svar som ligner på:
 
 ```output
 1. Roasted Chicken and Vegetables:
@@ -300,16 +291,16 @@ Ingredients:
 - 1 teaspoon dried oregano
 ```
 
-Dette resultatet er flott, jeg vet hva jeg skal lage. På dette punktet kan nyttige forbedringer være:
+Dette resultatet er flott, jeg vet hva jeg skal lage. På dette tidspunktet kan nyttige forbedringer være:
 
 - Filtrere ut ingredienser jeg ikke liker eller er allergisk mot.
 - Lage en handleliste, i tilfelle jeg ikke har alle ingrediensene hjemme.
 
 For de ovennevnte tilfellene, la oss legge til en ekstra prompt:
 
-> "Vennligst fjern oppskrifter med hvitløk da jeg er allergisk, og erstatt det med noe annet. Lag også en handleliste for oppskriftene, med tanke på at jeg allerede har kylling, poteter og gulrøtter hjemme."
+> "Vennligst fjern oppskrifter med hvitløk da jeg er allergisk og erstatt det med noe annet. Lag også en handleliste for oppskriftene, med tanke på at jeg allerede har kylling, poteter og gulrøtter hjemme."
 
-Nå får du et nytt resultat, nemlig:
+Nå har du et nytt resultat, nemlig:
 
 ```output
 1. Roasted Chicken and Vegetables:
@@ -376,20 +367,20 @@ Shopping List:
 - Pepper
 ```
 
-Det er dine fem oppskrifter, uten hvitløk, og du har også en handleliste basert på hva du allerede har hjemme.
+Det er dine fem oppskrifter, uten hvitløk nevnt, og du har også en handleliste med tanke på hva du allerede har hjemme.
 
 ## Øvelse - bygg en oppskriftsgenerator
 
-Nå som vi har gått gjennom et scenario, la oss skrive kode som matcher det viste eksempelet. Følg disse stegene:
+Nå som vi har spilt ut et scenario, la oss skrive kode som matcher det demonstrerte scenariet. For å gjøre det, følg disse trinnene:
 
-1. Bruk eksisterende _app.py_-fil som utgangspunkt
+1. Bruk den eksisterende _app.py_-filen som et utgangspunkt.
 1. Finn variabelen `prompt` og endre koden til følgende:
 
    ```python
    prompt = "Show me 5 recipes for a dish with the following ingredients: chicken, potatoes, and carrots. Per recipe, list all the ingredients used"
    ```
 
-   Hvis du nå kjører koden, bør du se en output som ligner på:
+   Hvis du nå kjører koden, bør du se et output som ligner på:
 
    ```output
    -Chicken Stew with Potatoes and Carrots: 3 tablespoons oil, 1 onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 bay leaf, 1 thyme sprig, 1/2 teaspoon salt, 1/4 teaspoon black pepper, 1 1/2 cups chicken broth, 1/2 cup dry white wine, 2 tablespoons chopped fresh parsley, 2 tablespoons unsalted butter, 1 1/2 pounds boneless, skinless chicken thighs, cut into 1-inch pieces
@@ -401,9 +392,9 @@ Nå som vi har gått gjennom et scenario, la oss skrive kode som matcher det vis
    -Chicken, Potato, and Carrot Curry: 1 tablespoon vegetable oil, 1 large onion, chopped, 2 cloves garlic, minced, 1 carrot, peeled and chopped, 1 potato, peeled and chopped, 1 teaspoon ground coriander, 1 teaspoon ground cumin, 1/2 teaspoon ground turmeric, 1/2 teaspoon ground ginger, 1/4 teaspoon cayenne pepper, 2 cups chicken broth, 1/2 cup dry white wine, 1 (15-ounce) can chickpeas, drained and rinsed, 1/2 cup raisins, 1/2 cup chopped fresh cilantro
    ```
 
-   > NOTE, LLM-en din er ikke deterministisk, så du kan få forskjellige resultater hver gang du kjører programmet.
+   > MERK, din LLM er ikke-deterministisk, så du kan få forskjellige resultater hver gang du kjører programmet.
 
-   Flott, la oss se hvordan vi kan forbedre ting. For å gjøre det, ønsker vi at koden skal være fleksibel, slik at ingredienser og antall oppskrifter kan endres og forbedres.
+   Flott, la oss se hvordan vi kan forbedre ting. For å forbedre ting, vil vi sørge for at koden er fleksibel, slik at ingredienser og antall oppskrifter kan forbedres og endres.
 
 1. La oss endre koden på følgende måte:
 
@@ -416,7 +407,7 @@ Nå som vi har gått gjennom et scenario, la oss skrive kode som matcher det vis
    prompt = f"Show me {no_recipes} recipes for a dish with the following ingredients: {ingredients}. Per recipe, list all the ingredients used"
    ```
 
-   En testkjøring av koden kan se slik ut:
+   Å teste koden kan se slik ut:
 
    ```output
    No of recipes (for example, 5): 3
@@ -429,11 +420,11 @@ Nå som vi har gått gjennom et scenario, la oss skrive kode som matcher det vis
 
 ### Forbedre ved å legge til filter og handleliste
 
-Vi har nå en fungerende app som kan lage oppskrifter, og den er fleksibel siden den baserer seg på brukerinput, både antall oppskrifter og ingrediensene som brukes.
+Vi har nå en fungerende app som kan produsere oppskrifter, og den er fleksibel da den baserer seg på input fra brukeren, både når det gjelder antall oppskrifter og ingredienser som brukes.
 
 For å forbedre den ytterligere, ønsker vi å legge til følgende:
 
-- **Filtrere ut ingredienser**. Vi vil kunne filtrere ut ingredienser vi ikke liker eller er allergiske mot. For å få til dette kan vi redigere den eksisterende prompten og legge til en filterbetingelse på slutten, slik:
+- **Filtrere ut ingredienser**. Vi ønsker å kunne filtrere ut ingredienser vi ikke liker eller er allergiske mot. For å oppnå denne endringen kan vi redigere vår eksisterende prompt og legge til en filterbetingelse på slutten av den, som dette:
 
   ```python
   filter = input("Filter (for example, vegetarian, vegan, or gluten-free): ")
@@ -510,14 +501,13 @@ For å forbedre den ytterligere, ønsker vi å legge til følgende:
   5. Add to soup and simmer for an additional 5 minutes, or until soup has thickened.
   ```
 
-  Som du ser, er alle oppskrifter med melk filtrert ut. Men hvis du er laktoseintolerant, vil du kanskje også filtrere ut oppskrifter med ost, så det er viktig å være tydelig.
+  Som du kan se, er alle oppskrifter med melk filtrert ut. Men hvis du er laktoseintolerant, vil du kanskje også filtrere ut oppskrifter med ost, så det er behov for å være tydelig.
 
 - **Lage en handleliste**. Vi ønsker å lage en handleliste, med tanke på hva vi allerede har hjemme.
 
-  For denne funksjonaliteten kan vi enten prøve å løse alt i én prompt, eller vi kan dele det opp i to prompts. La oss prøve den siste tilnærmingen. Her foreslår vi å legge til en ekstra prompt, men for at det skal fungere, må vi legge resultatet fra den første prompten som kontekst til den andre prompten.
+  For denne funksjonaliteten kan vi enten prøve å løse alt i én prompt, eller vi kan dele det opp i to prompts. La oss prøve den siste tilnærmingen. Her foreslår vi å legge til en ekstra prompt, men for at det skal fungere, må vi legge til resultatet fra den første prompten som kontekst til den andre prompten.
 
-  Finn delen i koden som skriver ut resultatet fra den første prompten, og legg til følgende kode under:
-
+  Finn delen i koden som skriver ut resultatet fra den første prompten, og legg til følgende kode nedenfor:
   ```python
   old_prompt_result = completion.choices[0].message.content
   prompt = "Produce a shopping list for the generated recipes and please don't include ingredients that I already have."
@@ -533,18 +523,19 @@ For å forbedre den ytterligere, ønsker vi å legge til følgende:
 
   Merk følgende:
 
-  1. Vi bygger en ny prompt ved å legge til resultatet fra den første prompten til den nye prompten:
+  1. Vi konstruerer en ny prompt ved å legge til resultatet fra den første prompten til den nye prompten:
 
      ```python
      new_prompt = f"{old_prompt_result} {prompt}"
      ```
-  1. Vi lager en ny forespørsel, men tar også hensyn til antall tokens vi ba om i den første prompten, så denne gangen setter vi `max_tokens` til 1200.
+
+  1. Vi gjør en ny forespørsel, men tar også hensyn til antall tokens vi ba om i den første prompten, så denne gangen sier vi `max_tokens` er 1200.
 
      ```python
      completion = openai.Completion.create(engine=deployment_name, prompt=new_prompt, max_tokens=1200)
      ```
 
-     Når vi kjører denne koden, får vi følgende output:
+     Når vi tester denne koden, kommer vi nå fram til følgende output:
 
      ```output
      No of recipes (for example, 5): 2
@@ -560,9 +551,9 @@ For å forbedre den ytterligere, ønsker vi å legge til følgende:
 
 ## Forbedre oppsettet ditt
 
-Det vi har så langt er kode som fungerer, men det er noen justeringer vi bør gjøre for å forbedre ting ytterligere. Noe av det vi bør gjøre er:
+Det vi har så langt er kode som fungerer, men det er noen justeringer vi bør gjøre for å forbedre ting ytterligere. Noen ting vi bør gjøre er:
 
-- **Skill hemmeligheter fra koden**, som API-nøkkelen. Hemmeligheter hører ikke hjemme i koden og bør lagres på et sikkert sted. For å skille hemmeligheter fra koden kan vi bruke miljøvariabler og biblioteker som `python-dotenv` for å laste dem fra en fil. Slik kan det se ut i koden:
+- **Separere hemmeligheter fra kode**, som API-nøkkelen. Hemmeligheter hører ikke hjemme i kode og bør lagres på et sikkert sted. For å separere hemmeligheter fra kode, kan vi bruke miljøvariabler og biblioteker som `python-dotenv` for å laste dem fra en fil. Slik kan det se ut i kode:
 
   1. Lag en `.env`-fil med følgende innhold:
 
@@ -570,8 +561,7 @@ Det vi har så langt er kode som fungerer, men det er noen justeringer vi bør g
      OPENAI_API_KEY=sk-...
      ```
 
-     
-> Merk, for Azure må du sette følgende miljøvariabler:
+     > Merk, for Azure må du sette følgende miljøvariabler:
 
      ```bash
      OPENAI_API_TYPE=azure
@@ -579,7 +569,7 @@ Det vi har så langt er kode som fungerer, men det er noen justeringer vi bør g
      OPENAI_API_BASE=<replace>
      ```
 
-     I koden laster du miljøvariablene slik:
+     I kode ville du laste miljøvariablene slik:
 
      ```python
      from dotenv import load_dotenv
@@ -589,23 +579,23 @@ Det vi har så langt er kode som fungerer, men det er noen justeringer vi bør g
      openai.api_key = os.environ["OPENAI_API_KEY"]
      ```
 
-- **Noe om token-lengde**. Vi bør tenke på hvor mange tokens vi trenger for å generere teksten vi ønsker. Tokens koster penger, så der det er mulig bør vi prøve å være økonomiske med antall tokens vi bruker. Kan vi for eksempel formulere prompten slik at vi bruker færre tokens?
+- **Et ord om token-lengde**. Vi bør vurdere hvor mange tokens vi trenger for å generere teksten vi ønsker. Tokens koster penger, så der det er mulig, bør vi prøve å være økonomiske med antall tokens vi bruker. For eksempel, kan vi formulere prompten slik at vi kan bruke færre tokens?
 
-  For å endre antall tokens som brukes, kan du bruke parameteren `max_tokens`. For eksempel, hvis du vil bruke 100 tokens, gjør du slik:
+  For å endre tokens som brukes, kan du bruke parameteren `max_tokens`. For eksempel, hvis du vil bruke 100 tokens, kan du gjøre:
 
   ```python
   completion = client.chat.completions.create(model=deployment, messages=messages, max_tokens=100)
   ```
 
-- **Eksperimentere med temperature**. Temperature er noe vi ikke har nevnt tidligere, men det er en viktig faktor for hvordan programmet vårt oppfører seg. Jo høyere temperature-verdi, desto mer tilfeldig blir outputen. Omvendt, jo lavere temperature-verdi, desto mer forutsigbar blir outputen. Tenk over om du ønsker variasjon i outputen eller ikke.
+- **Eksperimentere med temperatur**. Temperatur er noe vi ikke har nevnt så langt, men det er en viktig kontekst for hvordan programmet vårt presterer. Jo høyere temperaturverdi, desto mer tilfeldig blir output. Omvendt, jo lavere temperaturverdi, desto mer forutsigbar blir output. Vurder om du ønsker variasjon i output eller ikke.
 
-  For å endre temperature, kan du bruke parameteren `temperature`. For eksempel, hvis du vil bruke en temperature på 0.5, gjør du slik:
+  For å endre temperaturen, kan du bruke parameteren `temperature`. For eksempel, hvis du vil bruke en temperatur på 0.5, kan du gjøre:
 
   ```python
   completion = client.chat.completions.create(model=deployment, messages=messages, temperature=0.5)
   ```
 
-  > Merk, jo nærmere 1.0, desto mer variert blir outputen.
+  > Merk, jo nærmere 1.0, desto mer variert blir output.
 
 ## Oppgave
 
@@ -613,15 +603,15 @@ For denne oppgaven kan du velge hva du vil lage.
 
 Her er noen forslag:
 
-- Juster oppskriftgenerator-appen for å forbedre den ytterligere. Lek med temperature-verdier og promptene for å se hva du kan få til.
-- Lag en "studiekompis". Denne appen skal kunne svare på spørsmål om et tema, for eksempel Python. Du kan ha prompts som "Hva er et bestemt tema i Python?", eller en prompt som sier, vis meg kode for et bestemt tema osv.
-- Historiebot, få historien til å leve, instruer boten til å spille en bestemt historisk person og still spørsmål om livet og tiden deres.
+- Juster oppskriftsgenerator-appen for å forbedre den ytterligere. Eksperimenter med temperaturverdier og promptene for å se hva du kan komme opp med.
+- Lag en "studiekompis". Denne appen bør kunne svare på spørsmål om et emne, for eksempel Python. Du kan ha prompts som "Hva er et bestemt emne i Python?", eller du kan ha en prompt som sier, vis meg kode for et bestemt emne osv.
+- Historiebot, få historien til å komme til live, instruer boten til å spille en bestemt historisk karakter og still den spørsmål om livet og tiden dens.
 
 ## Løsning
 
 ### Studiekompis
 
-Nedenfor er en startprompt, se hvordan du kan bruke den og tilpasse den etter eget ønske.
+Nedenfor er en startprompt, se hvordan du kan bruke den og justere den etter eget ønske.
 
 ```text
 - "You're an expert on the Python language
@@ -647,21 +637,23 @@ Her er noen prompts du kan bruke:
 
 ## Kunnskapssjekk
 
-Hva gjør konseptet temperature?
+Hva gjør konseptet temperatur?
 
-1. Det styrer hvor tilfeldig outputen er.
+1. Det styrer hvor tilfeldig output er.
 1. Det styrer hvor stor responsen er.
 1. Det styrer hvor mange tokens som brukes.
 
 ## 🚀 Utfordring
 
-Når du jobber med oppgaven, prøv å variere temperature, sett den til 0, 0.5 og 1. Husk at 0 gir minst variasjon og 1 gir mest. Hvilken verdi fungerer best for appen din?
+Når du jobber med oppgaven, prøv å variere temperaturen, prøv å sette den til 0, 0.5 og 1. Husk at 0 er minst variert og 1 er mest. Hvilken verdi fungerer best for appen din?
 
-## Flott jobba! Fortsett læringen din
+## Flott arbeid! Fortsett læringen din
 
-Etter å ha fullført denne leksjonen, sjekk ut vår [Generative AI Learning collection](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) for å fortsette å utvikle kunnskapen din om Generativ AI!
+Etter å ha fullført denne leksjonen, sjekk ut vår [Generative AI Learning-samling](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) for å fortsette å utvikle kunnskapen din om Generative AI!
 
-Gå videre til Lekse 7 hvor vi ser på hvordan man [bygger chatteapplikasjoner](../07-building-chat-applications/README.md?WT.mc_id=academic-105485-koreyst)!
+Gå videre til Leksjon 7 hvor vi skal se på hvordan man [bygger chatteapplikasjoner](../07-building-chat-applications/README.md?WT.mc_id=academic-105485-koreyst)!
+
+---
 
 **Ansvarsfraskrivelse**:  
-Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vennligst vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det opprinnelige dokumentet på originalspråket skal anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.
+Dette dokumentet er oversatt ved hjelp av AI-oversettelsestjenesten [Co-op Translator](https://github.com/Azure/co-op-translator). Selv om vi streber etter nøyaktighet, vær oppmerksom på at automatiske oversettelser kan inneholde feil eller unøyaktigheter. Det originale dokumentet på dets opprinnelige språk bør anses som den autoritative kilden. For kritisk informasjon anbefales profesjonell menneskelig oversettelse. Vi er ikke ansvarlige for eventuelle misforståelser eller feiltolkninger som oppstår ved bruk av denne oversettelsen.

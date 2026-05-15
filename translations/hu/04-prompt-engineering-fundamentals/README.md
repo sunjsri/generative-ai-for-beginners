@@ -1,252 +1,207 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dcbaaae026cb50fee071e690685b5843",
-  "translation_date": "2025-08-26T18:52:07+00:00",
-  "source_file": "04-prompt-engineering-fundamentals/README.md",
-  "language_code": "hu"
-}
--->
-# Prompt Engineering Alapjai
+# Prompt mérnökség alapjai
 
-[![Prompt Engineering Fundamentals](../../../translated_images/04-lesson-banner.a2c90deba7fedacda69f35b41636a8951ec91c2e33f5420b1254534ac85bc18e.hu.png)](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)
+[![Prompt mérnökség alapjai](../../../translated_images/hu/04-lesson-banner.a2c90deba7fedacd.webp)](https://youtu.be/GElCu2kUlRs?si=qrXsBvXnCW12epb8)
 
 ## Bevezetés
-Ez a modul bemutatja azokat a kulcsfontosságú fogalmakat és technikákat, amelyekkel hatékonyabb promptokat készíthetünk generatív AI modellek számára. Nem mindegy, hogyan írjuk meg a promptot egy LLM-nek. Egy gondosan megfogalmazott prompt jobb minőségű választ eredményezhet. De mit is jelentenek pontosan az olyan kifejezések, mint _prompt_ és _prompt engineering_? És hogyan javíthatom a prompt _inputot_, amit az LLM-nek küldök? Ezekre a kérdésekre keressük a választ ebben és a következő fejezetben.
+Ez a modul azokat az alapvető fogalmakat és technikákat tárgyalja, amelyek szükségesek hatékony promptok létrehozásához generatív AI modellekben. Az, hogy hogyan írjuk meg a promptunkat egy LLM-nek, szintén számít. Egy gondosan megtervezett prompt jobb minőségű választ eredményezhet. De pontosan mit jelentenek az olyan kifejezések, mint a _prompt_ és a _prompt mérnökség_? És hogyan fejleszthetem a prompt _bemenetet_, amit az LLM-nek küldök? Ezekre a kérdésekre próbálunk választ találni ebben a fejezetben és a következőben.
 
-A _generatív AI_ képes új tartalmakat létrehozni (pl. szöveg, kép, hang, kód stb.) a felhasználói kérésekre válaszul. Ezt olyan _nagy nyelvi modellek_ (Large Language Models) segítségével éri el, mint például az OpenAI GPT ("Generative Pre-trained Transformer") sorozata, amelyeket természetes nyelv és kód kezelésére tanítottak.
+A _generatív AI_ képes új tartalmakat létrehozni (pl. szöveget, képeket, hangot, kódot stb.) a felhasználói kérésre reagálva. Ezt olyan _nagy nyelvi modelleken_ (Large Language Models) keresztül valósítja meg, mint az OpenAI GPT ("Generative Pre-trained Transformer") sorozata, amelyek természetes nyelvet és kódot is használnak a tanulás során.
 
-A felhasználók most már ismerős felületeken, például csevegésen keresztül kommunikálhatnak ezekkel a modellekkel, anélkül, hogy technikai tudásra vagy képzésre lenne szükségük. A modellek _prompt-alapúak_ – a felhasználó szöveges inputot (promptot) küld, és az AI válaszol (completion). Ezután többször is "beszélgethetnek" az AI-val, több körben finomítva a promptot, amíg a válasz megfelel az elvárásaiknak.
+A felhasználók most már ismerős párbeszédes formátumban léphetnek kapcsolatba ezekkel a modellekkel, bármiféle technikai tudás vagy tréning nélkül. A modellek _prompt alapúak_ – a felhasználók egy szöveges bemenetet (promptot) küldenek, és visszakapják az AI válaszát (completion). Ezután iteratív módon "beszélgethetnek az AI-val" többszörös fordulókban, finomítva a promptot, amíg a válasz nem felel meg az elvárásaiknak.
 
-A "promptok" így a generatív AI alkalmazások elsődleges _programozási felületévé_ válnak, meghatározva, mit csináljon a modell, és befolyásolva a válaszok minőségét. A "Prompt Engineering" egy gyorsan fejlődő terület, amely a promptok _tervezésére és optimalizálására_ fókuszál, hogy megbízható és minőségi válaszokat kapjunk nagy mennyiségben.
+A „promptok” most a generatív AI alkalmazások elsődleges _programozási felületévé_ válnak, megmondva a modelleknek, hogy mit tegyenek, és befolyásolva a visszakapott válaszok minőségét. A „prompt mérnökség” egy gyorsan növekvő tudományterület, amely a promptok _tervezésére és optimalizálására_ fókuszál, hogy következetes és minőségi válaszokat nyújtson nagy léptékben.
 
 ## Tanulási célok
 
-Ebben a leckében megtanuljuk, mi az a Prompt Engineering, miért fontos, és hogyan készíthetünk hatékonyabb promptokat egy adott modellhez és alkalmazási célhoz. Megismerjük a prompt engineering alapfogalmait és bevált gyakorlatait – valamint egy interaktív Jupyter Notebook "homokozó" környezetet, ahol ezek a fogalmak valódi példákon keresztül láthatók.
+Ebben az leckében megtanuljuk, mi az a Prompt mérnökség, miért fontos, és hogyan készíthetünk hatékonyabb promptokat adott modell- és alkalmazási célokra. Megértjük az alapvető fogalmakat és legjobb gyakorlatokat a prompt mérnökséghez, és megismerkedünk egy interaktív Jupyter Notebook "sandbox" környezettel, ahol láthatjuk ezeknek a fogalmaknak a megvalósítását valós példákon.
 
 A lecke végére képesek leszünk:
 
-1. Elmagyarázni, mi az a prompt engineering és miért fontos.
-2. Leírni, milyen részekből áll egy prompt, és hogyan használjuk őket.
-3. Megtanulni a prompt engineering legjobb gyakorlatait és technikáit.
-4. Alkalmazni a tanultakat valódi példákon, egy OpenAI végponton keresztül.
+1. Elmagyarázni, mi a prompt mérnökség és miért fontos.
+2. Leírni egy prompt elemeit és azok használatát.
+3. Megtanulni a legjobb gyakorlatokat és technikákat a prompt mérnökségben.
+4. Alkalmazni a megtanult technikákat valós példákon, OpenAI végponton keresztül.
 
-## Kulcsfogalmak
+## Főbb kifejezések
 
-Prompt Engineering: Az a gyakorlat, amikor úgy tervezünk és finomítunk inputokat, hogy az AI modellek a kívánt eredményeket adják.
-Tokenizáció: Az a folyamat, amikor a szöveget kisebb egységekre, ún. tokenekre bontjuk, amelyeket a modell képes értelmezni és feldolgozni.
-Instruction-Tuned LLMs: Olyan nagy nyelvi modellek (LLM-ek), amelyeket speciális utasításokkal finomhangoltak, hogy pontosabb és relevánsabb válaszokat adjanak.
+Prompt mérnökség: Az a gyakorlat, amely a bemenetek megtervezésére és finomhangolására fókuszál az AI modellek irányításához, hogy kívánt kimeneteket generáljanak.
+Tokenizáció: A szöveg kisebb egységekre, úgynevezett tokenekre bontásának folyamata, amelyeket a modell képes értelmezni és feldolgozni.
+Utasításokra hangolt LLM-ek: Olyan nagy nyelvi modellek, amelyeket speciális utasításokkal finomhangoltak, javítva a válaszok pontosságát és relevanciáját.
 
-## Tanulási Homokozó
+## Tanulási környezet
 
-A prompt engineering jelenleg inkább művészet, mint tudomány. A legjobb módja, hogy fejlesszük az intuíciót, ha _sokat gyakorlunk_, és próbálgatással, hibázással, az alkalmazási terület ismeretével, ajánlott technikákkal és modell-specifikus optimalizálással kombináljuk.
+A prompt mérnökség jelenleg inkább művészet, mint tudomány. A legjobb módja annak, hogy javítsuk az intuíciót, ha _többet gyakorolunk_, és alkalmazunk egy próba-szerencse megközelítést, amely ötvözi az adott alkalmazási terület szakértelmét a javasolt technikákkal és a modell-specifikus optimalizálásokkal.
 
-A leckéhez tartozó Jupyter Notebook egy _homokozó_ környezetet biztosít, ahol kipróbálhatod, amit tanulsz – akár menet közben, akár a kódos kihívás részeként a végén. A feladatok futtatásához szükséged lesz:
+A tananyaghoz tartozó Jupyter Notebook biztosít egy _sandbox_ környezetet, ahol kipróbálhatod, amit tanultál – menet közben vagy a leckevégi kód kihívás részeként. A gyakorlatok futtatásához szükséges:
 
-1. **Egy Azure OpenAI API kulcsra** – a szolgáltatás végpontjára, ahol egy LLM fut.
-2. **Egy Python futtatókörnyezetre** – amiben a Notebook futtatható.
-3. **Helyi környezeti változókra** – _végezd el most a [BEÁLLÍTÁS](./../00-course-setup/02-setup-local.md?WT.mc_id=academic-105485-koreyst) lépéseit, hogy készen állj_.
+1. **Egy Azure OpenAI API kulcs** – a telepített LLM szolgáltatásvégpontja.
+2. **Python futtatókörnyezet** – amelyben a Notebook futtatható.
+3. **Helyi környezeti változók** – _most végezd el a [BEÁLLÍTÁS](./../00-course-setup/02-setup-local.md?WT.mc_id=academic-105485-koreyst) lépéseit, hogy készen állj_.
 
-A notebookban _kezdő_ feladatok vannak – de bátran egészítsd ki saját _Markdown_ (leírás) és _Kód_ (prompt kérések) részekkel, hogy még több példát vagy ötletet kipróbálhass – és fejleszd a prompt tervezési érzékedet.
+A notebook alap _gyakorlatokat_ tartalmaz – de bátorítunk, hogy adj hozzá saját _Markdown_ (leírás) és _Code_ (prompt kérések) szekciókat, hogy több példát vagy ötletet próbálj ki, és fejleszd a prompt tervezési intuíciódat.
 
 ## Illusztrált útmutató
 
-Szeretnéd először átlátni, miről szól ez a lecke? Nézd meg ezt az illusztrált útmutatót, amely bemutatja a fő témákat és a legfontosabb tanulságokat, amiket érdemes átgondolni. A lecke útvonala végigvezet a kulcsfogalmak és kihívások megértésétől azok kezeléséig, releváns prompt engineering technikákkal és bevált gyakorlatokkal. Figyelj rá, hogy az "Advanced Techniques" rész ebben az útmutatóban a tananyag _következő_ fejezetében lesz részletesen tárgyalva.
+Szeretnéd látni a leckében tárgyalt témák nagy képét, mielőtt belevágsz? Nézd meg ezt az illusztrált útmutatót, amely bemutatja a lefedett fő témákat és a kulcsfontosságú tanulságokat, amelyeket érdemes megfontolnod. Az útiterv végigvezet a főbb fogalmak és kihívások megértésétől azok kezelése felé, az érintett prompt mérnökségi technikákkal és legjobb gyakorlattal. Megjegyzendő, hogy a „Haladó technikák” szakasz az anyag ebben a tantervben a _következő_ fejezetében tárgyalt tartalomra utal.
 
-![Illustrated Guide to Prompt Engineering](../../../translated_images/04-prompt-engineering-sketchnote.d5f33336957a1e4f623b826195c2146ef4cc49974b72fa373de6929b474e8b70.hu.png)
+![Illusztrált útmutató a Prompt mérnökséghez](../../../translated_images/hu/04-prompt-engineering-sketchnote.d5f33336957a1e4f.webp)
 
-## A mi startupunk
+## Startupunk
 
-Most nézzük meg, hogyan kapcsolódik _ez a téma_ a startup küldetésünkhöz, hogy [AI innovációt hozzunk az oktatásba](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). AI-alapú, _személyre szabott tanulást_ támogató alkalmazásokat szeretnénk építeni – gondoljuk át, hogyan "tervezhetnek" promptokat az alkalmazásunk különböző felhasználói:
+Most beszéljünk arról, hogy _ez a téma_ miként kapcsolódik startupunk küldetéséhez, hogy [AI innovációt hozzunk az oktatásba](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). Személyre szabott tanulást támogató AI-alapú alkalmazásokat szeretnénk fejleszteni – nézzük meg, hogy az alkalmazásunk különböző felhasználói miként "tervezhetnek" promptokat:
 
-- **Adminisztrátorok** kérhetik az AI-t, hogy _elemezze a tantervi adatokat, és azonosítsa a lefedettségi hiányosságokat_. Az AI összefoglalhatja az eredményeket vagy kóddal vizualizálhatja őket.
-- **Oktatók** kérhetik az AI-t, hogy _készítsen óravázlatot egy adott célcsoportnak és témára_. Az AI a megadott formátumban elkészítheti a személyre szabott tervet.
-- **Diákok** kérhetik az AI-t, hogy _segítsen nekik egy nehéz tantárgyban_. Az AI most már személyre szabott órákkal, tippekkel és példákkal segítheti őket.
+- **Rendszergazdák** kérhetik az AI-t, hogy _elemezze a tanterv adatait, és azonosítsa a lefedetlenségeket_. Az AI összegezheti az eredményeket vagy kód segítségével vizualizálhatja azokat.
+- **Oktatók** kérhetik az AI-t, hogy _készítsen tanmenetet egy célközönség és téma számára_. Az AI személyre szabott tervet készít előírt formátumban.
+- **Diákok** kérhetik az AI-t, hogy _segítse őket nehéz tantárgyakban_. Az AI most oktatási anyagot, tippeket és példákat nyújt a szintjükre szabva.
 
-Ez csak a jéghegy csúcsa. Nézd meg a [Prompts For Education](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) oldalt – egy nyílt forráskódú prompt könyvtárat, amelyet oktatási szakértők válogattak össze – hogy átfogóbb képet kapj a lehetőségekről! _Próbálj ki néhány promptot a homokozóban vagy az OpenAI Playgroundban, és nézd meg, mi történik!_
+Ez csak a jéghegy csúcsa. Nézd meg a [Prompts For Education](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) nevű nyílt forráskódú prompt könyvtárat, melyet oktatási szakértők válogattak össze – hogy szélesebb képet kapj a lehetőségekről! _Próbáld ki ezeket a promptokat a sandboxban vagy az OpenAI Playgroundban, hogy lásd, mi történik!_
 
 <!--
 LESSON TEMPLATE:
-Ez az egység az alapfogalom #1-et mutatja be.
-Példákkal és hivatkozásokkal erősítsd meg a fogalmat.
+Ez az egység az alapvető koncepció #1-et tárgyalja.
+Erősítse meg a koncepciót példákkal és hivatkozásokkal.
 
-FOGALOM #1:
-Prompt Engineering.
-Határozd meg és magyarázd el, miért van rá szükség.
+KONCEPCIÓ #1:
+Prompt mérnökség.
+Határozd meg és magyarázd meg, miért szükséges.
 -->
 
-## Mi az a Prompt Engineering?
+## Mi az a Prompt mérnökség?
 
-A lecke elején úgy határoztuk meg a **Prompt Engineering**-et, mint azt a folyamatot, amikor _megtervezzük és optimalizáljuk_ a szöveges inputokat (promptokat), hogy egy adott alkalmazási célhoz és modellhez következetes és minőségi válaszokat (completions) kapjunk. Ez egy kétlépéses folyamatként is elképzelhető:
+Ezt a leckét azzal kezdtük, hogy a **Prompt mérnökséget** úgy határoztuk meg, mint a szöveges bemenetek (promptok) _tervezésének és optimalizálásának_ folyamatát, amellyel következetes és minőségi válaszokat (completionöket) adhatunk adott alkalmazási célnak és modellnek. Ezt kétlépéses folyamatként képzelhetjük el:
 
-- _megtervezzük_ az első promptot az adott modellhez és célhoz
-- _finomítjuk_ a promptot többször, hogy javítsuk a válasz minőségét
+- az adott modellre és célra vonatkozó kezdeti prompt _megtervezése_
+- a prompt _finomítása_ iteratív módon a válasz minőségének javítása érdekében
 
-Ez szükségszerűen próbálgatásból és felhasználói intuícióból áll, hogy a lehető legjobb eredményt érjük el. De miért fontos ez? Ehhez először három fogalmat kell megértenünk:
+Ez szükségszerűen egy próba-szerencse folyamat, amely felhasználói intuíciót és erőfeszítést igényel az optimális eredmény elérése érdekében. Miért fontos hát? Ehhez először három fogalmat kell megértenünk:
 
-- _Tokenizáció_ = hogyan "látja" a modell a promptot
-- _Alap LLM-ek_ = hogyan "dolgozza fel" a promptot az alapmodell
-- _Instruction-Tuned LLM-ek_ = hogyan látja a modell a "feladatokat"
+- _Tokenizáció_ = hogyan "látja" a promptot a modell
+- _Alap LLM-ek_ = hogyan "dolgozza fel" egy alapmodell a promptot
+- _Utasításokra hangolt LLM-ek_ = hogyan képes a modell most már "feladatokat" látni
 
 ### Tokenizáció
 
-Egy LLM a promptokat _tokenek sorozataként_ látja, ahol különböző modellek (vagy ugyanazon modell különböző verziói) eltérően tokenizálhatják ugyanazt a promptot. Mivel az LLM-eket tokenekre tanítják (nem nyers szövegre), a prompt tokenizálásának módja közvetlenül befolyásolja a generált válasz minőségét.
+Az LLM a promptokat egy _tokenek sorozataként_ kezeli, ahol különböző modellek (vagy egy modell változatai) eltérő módon tokenizálhatják ugyanazt a promptot. Mivel az LLM-ek tokeneken (nem nyers szövegen) tanulnak, a promptok tokenizálásának módja közvetlen hatással van a generált válasz minőségére.
 
-Ha szeretnéd megérteni, hogyan működik a tokenizáció, próbáld ki például az [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst) eszközt. Másold be a promptodat – és nézd meg, hogyan alakulnak tokenekké, figyelve arra, hogyan kezeli a szóközöket és írásjeleket. Ez a példa egy régebbi LLM-et (GPT-3) mutat – egy újabb modellel más eredményt kaphatsz.
+Ahhoz, hogy intuíciót szerezz a tokenizálásról, próbáld ki az alábbi [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst) eszközt. Másold be a promptodat – és nézd meg, hogyan alakul tokenekké, figyelve a szóköz karakterek és írásjelek kezelésére. Megjegyzendő, hogy ez a példa egy régebbi LLM-et (GPT-3) mutat – így egy újabb modellel eltérő eredményt kaphatsz.
 
-![Tokenization](../../../translated_images/04-tokenizer-example.e71f0a0f70356c5c7d80b21e8753a28c18a7f6d4aaa1c4b08e65d17625e85642.hu.png)
+![Tokenizáció](../../../translated_images/hu/04-tokenizer-example.e71f0a0f70356c5c.webp)
 
 ### Fogalom: Alapmodellek
 
-Miután a prompt tokenizálva lett, az ["Alap LLM"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (vagy alapmodell) fő feladata, hogy megjósolja a következő tokeneket a sorozatban. Mivel az LLM-ek hatalmas szöveg-adathalmazokon tanultak, jól ismerik a tokenek közötti statisztikai összefüggéseket, és magabiztosan tudnak jósolni. Fontos, hogy nem értik a promptban vagy tokenben lévő szavak _jelentését_; csak egy mintát látnak, amit "kiegészíthetnek" a következő jóslattal. A sorozatot addig folytatják, amíg a felhasználó le nem állítja, vagy el nem érnek egy előre beállított feltételt.
+Ha a prompt tokenizálva lett, az ["Alap LLM"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (vagy Alapmodell) elsődleges feladata előrejelezni a sorozat következő tokenjét. Mivel az LLM-ek hatalmas szövegkorpuszokon lettek tanítva, jól ismerik a tokenek közötti statisztikai összefüggéseket és képesek meglehetősen biztosan előre jelezni a sort. Fontos megérteni, hogy nem értik a szavak _jelentését_ a promptban vagy tokenben; csak egy mintát látnak, amit a következő előrejelzésükkel befejezhetnek. Addig folytatják az előrejelzést, amíg a felhasználó le nem állítja vagy valamilyen előre meghatározott feltétel nem teljesül.
 
-Szeretnéd látni, hogyan működik a prompt-alapú completion? Írd be a fenti promptot az Azure OpenAI Studio [_Chat Playground_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) felületére az alapértelmezett beállításokkal. A rendszer úgy van beállítva, hogy a promptokat információkérésként kezelje – így olyan completion-t kapsz, ami megfelel ennek a kontextusnak.
+Szeretnéd látni, hogyan működik egy prompt alapú befejezés? Írd be a fent említett promptot az Azure OpenAI Studio [_Chat Playground_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) alapesetben lévő beállításaival. A rendszer úgy van konfigurálva, hogy a promptokat információkérésként értelmezze – így olyan befejezést kapsz, amely kielégíti ezt a kontextust.
 
-De mi van, ha a felhasználó valami konkrétat szeretne, ami megfelel bizonyos feltételeknek vagy feladati célnak? Itt jönnek képbe az _instruction-tuned_ LLM-ek.
+De mi van akkor, ha a felhasználó valami specifikust akar látni, ami megfelel egy adott kritériumnak vagy feladatnak? Ekkor lépnek a képbe az _utasításokra hangolt_ LLM-ek.
 
-![Base LLM Chat Completion](../../../translated_images/04-playground-chat-base.65b76fcfde0caa6738e41d20f1a6123f9078219e6f91a88ee5ea8014f0469bdf.hu.png)
+![Alap LLM chat befejezés](../../../translated_images/hu/04-playground-chat-base.65b76fcfde0caa67.webp)
 
-### Fogalom: Instruction Tuned LLM-ek
+### Fogalom: Utasításokra hangolt LLM-ek
 
-Egy [Instruction Tuned LLM](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) az alapmodellből indul ki, és példákkal vagy input/output párokkal (pl. többszörös "üzenetekkel") finomhangolják, amelyekben világos utasítások szerepelnek – és az AI válasza igyekszik követni ezeket az utasításokat.
+Egy [utasításokra hangolt LLM](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) az alapmodellre épül, de további finomhangolást kap példák vagy bemenet/kimenet párok (pl. többszörös fordulós „üzenetek”) alapján, amelyek egyértelmű utasításokat tartalmazhatnak – és az AI válasza megpróbál ezeknek az utasításoknak megfelelni.
 
-Ehhez olyan technikákat használnak, mint a Reinforcement Learning with Human Feedback (RLHF), amely megtanítja a modellt _utasítások követésére_ és _visszajelzésekből tanulásra_, így a válaszok jobban megfelelnek a gyakorlati alkalmazásoknak és relevánsabbak a felhasználói célokhoz.
+Ez olyan technikákat használ, mint az Emberi Visszacsatolásos Megerősítéses Tanulás (Reinforcement Learning with Human Feedback, RLHF), ami megtaníthatja a modellt arra, hogy _kövesse az utasításokat_ és _tanuljon a visszacsatolásból_, így olyan válaszokat adjon, amelyek jobban megfelelnek a gyakorlati alkalmazásoknak és relevánsabbak a felhasználó céljaihoz.
 
-Próbáljuk ki – nézzük meg újra a fenti promptot, de most módosítsuk a _rendszerüzenetet_, hogy az alábbi utasítást adjuk meg kontextusként:
+Próbáljuk ki – térj vissza a fent említett prompthoz, de most változtasd meg a _rendszer üzenetet_, hogy az alábbi utasítást adja meg kontextusként:
 
-> _Foglalja össze a kapott tartalmat egy második osztályos diák számára. Az eredmény legyen egy bekezdés, 3-5 felsorolással._
+> _Foglald össze a megadott tartalmat egy második osztályos diáknak. Tartsd egy bekezdésben 3-5 pontban._
 
-Látható, hogy az eredmény most már igazodik a kívánt célhoz és formátumhoz? Egy oktató ezt a választ közvetlenül felhasználhatja az óráján.
+Látod, hogyan hangolódtak a válaszok, hogy megfeleljenek a kívánt célnak és formátumnak? Egy oktató közvetlenül felhasználhatja ezt a választ az adott óra diáiban.
 
-![Instruction Tuned LLM Chat Completion](../../../translated_images/04-playground-chat-instructions.b30bbfbdf92f2d051639c9bc23f74a0e2482f8dc7f0dafc6cc6fda81b2b00534.hu.png)
+![Utasításra hangolt LLM chat befejezés](../../../translated_images/hu/04-playground-chat-instructions.b30bbfbdf92f2d05.webp)
 
-## Miért van szükség Prompt Engineeringre?
+## Miért van szükség prompt mérnökségre?
 
-Most, hogy tudjuk, hogyan dolgozzák fel a promptokat az LLM-ek, beszéljünk arról, _miért_ van szükség prompt engineeringre. A válasz abban rejlik, hogy a jelenlegi LLM-ek számos kihívást jelentenek, amelyek miatt _megbízható és következetes completions_ elérése nehezebb, ha nem fektetünk energiát a promptok megalkotásába és optimalizálásába. Például:
+Most, hogy tudjuk, hogyan dolgozzák fel a promptokat az LLM-ek, beszéljünk arról, _miért_ szükséges a prompt mérnökség. A válasz abban rejlik, hogy a jelenlegi LLM-eknek számos kihívása van, amelyek megnehezítik a _megbízható és következetes befejezéseket_ anélkül, hogy erőfeszítést fektetnénk a prompt felépítésébe és optimalizálásába. Például:
 
-1. **A modell válaszai sztochasztikusak.** Ugyanaz a _prompt_ valószínűleg eltérő válaszokat ad különböző modellekkel vagy modellverziókkal. Sőt, akár _ugyanazzal_ a modellel is különböző eredményeket kaphatunk különböző időpontokban. _A prompt engineering technikák segítenek minimalizálni ezeket a változásokat, jobb korlátokat adva._
+1. **A modellválaszok sztochasztikusak.** Ugyanaz a _prompt_ eltérő válaszokat eredményezhet különböző modelleknél vagy modellekkel. Sőt, ugyanazzal a _modellel_ is más eredmény jöhet ki különböző időpontokban. _A prompt mérnökség technikái segítenek minimalizálni ezeket a változásokat, jobb kereteket adva._
 
-1. **A modellek kitalált válaszokat adhatnak.** A modellek _nagy, de véges_ adathalmazokon tanultak, így nem ismerik azokat a fogalmakat, amelyek kívül esnek ezen a körön. Emiatt előfordulhat, hogy pontatlan, képzelt vagy akár ellentmondásos completions-t adnak. _A prompt engineering technikák segítenek felismerni és csökkenteni az ilyen kitalációkat, például ha hivatkozásokat vagy indoklást kérünk az AI-tól._
+1. **A modellek hamis válaszokat generálhatnak.** A modelleket _nagy, de véges_ adatkészleteken tanították, tehát hiányzik a tudásuk a tanítási környezeten kívüli fogalmakról. Emiatt előfordulhat, hogy pontatlan, kitalált vagy közvetlenül ismert tényekkel ellentétes befejezéseket adnak. _A prompt mérnökség technikái segítenek a felhasználóknak ezek azonosításában és mérséklésében, például kérve az AI-t idézetekre vagy érvelésre._
 
-1. **A modellek képességei eltérőek lesznek.** Az újabb modellek vagy generációk gazdagabb képességekkel rendelkeznek, de egyedi sajátosságokat és kompromisszumokat is hoznak költségben és összetettségben. _A prompt engineering segít olyan bevált gyakorlatokat és munkafolyamatokat kialakítani, amelyek elrejtik a különbségeket, és rugalmasan alkalmazkodnak a modell-specifikus igényekhez, skálázható és zökkenőmentes módon._
+1. **A modellek képességei eltérőek lehetnek.** Az újabb modellek vagy generációk gazdagabb képességeket hoznak, de egyedi furcsaságokat és költség- és bonyolultság-változásokat is. _A prompt mérnökség segít kialakítani legjobb gyakorlatokat és munkafolyamatokat, amelyek elvonatkoztatják a különbségeket és alkalmazkodnak a modell-specifikus követelményekhez skálázható és zökkenőmentes módon._
 
-Nézzük meg ezt a gyakorlatban az OpenAI vagy Azure OpenAI Playgroundban:
+Nézzük meg, hogyan működik ez az OpenAI vagy Azure OpenAI Playgroundban:
 
-- Használd ugyanazt a promptot különböző LLM-ekkel (pl. OpenAI, Azure OpenAI, Hugging Face) – láttad a különbségeket?
-- Használd ugyanazt a promptot többször _ugyanazzal_ az LLM-mel (pl. Azure OpenAI playground) – hogyan tértek el az eredmények?
+- Használd ugyanazt a promptot különböző LLM telepítésekkel (pl. OpenAI, Azure OpenAI, Hugging Face) – láttad a különbségeket?
+- Használd ugyanazt a promptot többször ugyanazzal az LLM telepítéssel (pl. Azure OpenAI playground) – hogyan változtak az eredmények?
 
-### Fabrications példa
+### Hamis válaszok példája
 
-Ebben a kurzusban a **"fabrication"** kifejezést használjuk arra a jelenségre, amikor az LLM-ek néha tényszerűen hibás információkat generálnak a tanítási korlátok vagy egyéb okok miatt. Ezt a jelenséget néha _"hallucinációnak"_ is nevezik cikkekben vagy kutatásokban. Mi azonban javasoljuk, hogy inkább a _"fabrication"_ szót használd, hogy ne ruházzuk fel a gépi viselkedést emberi tulajdonsággal. Ez összhangban van a [Responsible AI ir
-> **Feladat:** Készíts óravázlatot a 2076-os marsi háborúról.
+Ebben a tanfolyamban a **„hamis válasz”** kifejezést használjuk arra a jelenségre, amikor az LLM-ek néha téves információkat generálnak a tanítási korlátaik vagy egyéb megszorításaik miatt. Ezt a jelenséget sokan _„hallucinációként”_ is említik populáris cikkekben vagy kutatási anyagokban. Azonban erősen ajánljuk a _„hamis válasz”_ kifejezés használatát, hogy elkerüljük az emberi vonások tulajdonítását egy gép által generált eredményre. Ez a megközelítés összhangban van a [Felelős AI irányelvekkel](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst), fenntartva egy olyan terminológiát, amely nem sértő, és nem kizáró.
 
-# Óravázlat: A 2076-os marsi háború
+Szeretnéd megérteni, hogyan működnek a hamis válaszok? Gondolj egy promptjára, amely arra utasítja az AI-t, hogy generáljon tartalmat egy nem létező témában (így biztosan nincs benne a tanító adatok között). Például – én ezt a promptot próbáltam:
 
-## Célkitűzések
-- Megérteni a 2076-os marsi háború főbb eseményeit és okait
-- Elemzni a háború hatását a Földre és a Marsra
-- Fejleszteni a kritikus gondolkodást a történelmi események értékelésében
+> **Prompt:** készíts tanmenetet a Marsi Háborúról 2076-ban.
+A webes keresés azt mutatta, hogy voltak fiktív beszámolók (pl. televíziós sorozatok vagy könyvek) Marsi háborúkról – de egyik sem 2076-ban. Az észérvek is azt mondják, hogy 2076 _a jövőben van_, így tehát nem kapcsolható valós eseményhez.
 
-## Bevezetés (10 perc)
-- Rövid áttekintés a Mars kolonizációjáról a 21. században
-- A feszültségek kialakulása a földi és marsi kolóniák között
+Szóval mi történik, ha ezt a promptot különböző LLM szolgáltatókkal futtatjuk?
 
-## Fő események (20 perc)
-- A háború kitörésének közvetlen okai
-- Fontos csaták és fordulópontok
-- A technológia szerepe a konfliktusban
+> **1. válasz**: OpenAI Playground (GPT-35)
 
-## Hatások és következmények (15 perc)
-- Politikai változások a Mars és a Föld között
-- Társadalmi és gazdasági hatások
-- Hosszú távú következmények a bolygóközi kapcsolatokra
+![1. válasz](../../../translated_images/hu/04-fabrication-oai.5818c4e0b2a2678c.webp)
 
-## Vita és elemzés (15 perc)
-- Mi vezetett a háborúhoz?
-- Hogyan lehetett volna elkerülni a konfliktust?
-- Milyen tanulságokat vonhatunk le a jövőre nézve?
+> **2. válasz**: Azure OpenAI Playground (GPT-35)
 
-## Feladatok
-- Készíts egy idővonalat a háború főbb eseményeiről
-- Írj egy rövid esszét arról, hogy szerinted mi volt a legfontosabb tanulság
+![2. válasz](../../../translated_images/hu/04-fabrication-aoai.b14268e9ecf25caf.webp)
 
-## Összefoglalás (5 perc)
-- A főbb pontok áttekintése
-- Kérdések és válaszok
+> **3. válasz**: : Hugging Face Chat Playground (LLama-2)
 
-## Ajánlott források
-- "Mars: A háború krónikája, 2076" (könyv)
-- Interaktív térképek a marsi csatákról
-- Dokumentumfilmek a marsi kolóniákról
-Egy webes keresés alapján kiderült, hogy léteznek fiktív beszámolók (például tévésorozatok vagy könyvek) marsi háborúkról – de egyik sem 2076-ban játszódik. A józan ész is azt mondja, hogy 2076 _a jövőben van_, tehát nem köthető valós eseményhez.
+![3. válasz](../../../translated_images/hu/04-fabrication-huggingchat.faf82a0a51278956.webp)
 
-Mi történik, ha ezt a promptot különböző LLM szolgáltatókkal futtatjuk le?
+Ahogy várható volt, minden modell (vagy modellváltozat) kissé eltérő válaszokat generál a sztochasztikus viselkedés és a modell-képességek változásai miatt. Például az egyik modell egy 8. osztályos közönséget céloz meg, míg a másik egy középiskolást feltételez. De mindhárom modell olyan válaszokat adott, amelyek képesek voltak meggyőzni egy tájékozatlan felhasználót, hogy az esemény valós volt.
 
-> **Válasz 1**: OpenAI Playground (GPT-35)
-
-![Válasz 1](../../../translated_images/04-fabrication-oai.5818c4e0b2a2678c40e0793bf873ef4a425350dd0063a183fb8ae02cae63aa0c.hu.png)
-
-> **Válasz 2**: Azure OpenAI Playground (GPT-35)
-
-![Válasz 2](../../../translated_images/04-fabrication-aoai.b14268e9ecf25caf613b7d424c16e2a0dc5b578f8f960c0c04d4fb3a68e6cf61.hu.png)
-
-> **Válasz 3**: : Hugging Face Chat Playground (LLama-2)
-
-![Válasz 3](../../../translated_images/04-fabrication-huggingchat.faf82a0a512789565e410568bce1ac911075b943dec59b1ef4080b61723b5bf4.hu.png)
-
-Ahogy várható volt, minden modell (vagy modellverzió) kicsit eltérő választ ad, mivel a működésük véletlenszerű és a képességeik is különböznek. Például az egyik modell 8. osztályos közönségnek szól, míg a másik középiskolásnak. De mindhárom válasz olyan, hogy egy tájékozatlan felhasználót könnyen meggyőzhetne arról, hogy az esemény valódi.
-
-A prompt engineering technikák, mint például a _metaprompting_ vagy a _hőmérséklet beállítása_, bizonyos mértékig csökkenthetik a modellek téves válaszait. Az új prompt engineering _architektúrák_ pedig zökkenőmentesen építenek be új eszközöket és technikákat a prompt folyamatba, hogy mérsékeljék vagy csökkentsék ezeket a hatásokat.
+A prompt tervezési technikák, mint például a _metaprompting_ és a _temperature konfiguráció_ bizonyos mértékben csökkenthetik a modell által generált hamis információkat. Új prompt tervezési _architektúrák_ is zökkenőmentesen beépítik az új eszközöket és technikákat a prompt folyamatába, hogy mérsékeljék vagy csökkentsék ezen hatásokat.
 
 ## Esettanulmány: GitHub Copilot
 
-Zárjuk le ezt a részt azzal, hogy megnézzük, hogyan használják a prompt engineeringet a való életben egy esettanulmányon keresztül: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
+Zárjuk le ezt a részt azzal, hogy megismerjük, hogyan használják a prompt tervezést valós megoldásokban egy Esettanulmány segítségével: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
 
-A GitHub Copilot az „AI páros programozód” – szöveges promptokat alakít át kódkiegészítésekké, és be van építve a fejlesztői környezetedbe (például Visual Studio Code), hogy gördülékeny legyen a felhasználói élmény. Az alábbi blogbejegyzésekből kiderül, hogy a legelső verzió az OpenAI Codex modellen alapult – a mérnökök pedig hamar rájöttek, hogy finomhangolni kell a modellt és jobb prompt engineering technikákat kell kidolgozni a kódminőség javítása érdekében. Júliusban [bemutattak egy továbbfejlesztett AI modellt, ami túlmutat a Codexen](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst), még gyorsabb javaslatokkal.
+A GitHub Copilot az „AI Páros Programozód” – amely szöveges promptokat kód-kiegészítésekké alakít át, és integrált fejlesztői környezetedben (pl. Visual Studio Code) biztosít zökkenőmentes felhasználói élményt. Az alábbi blog-sorozat dokumentálja, hogy a korai verzió az OpenAI Codex modellen alapult – a fejlesztők gyorsan felismerték a modell finomhangolásának és jobb prompt mérnöki technikák kidolgozásának szükségességét, hogy javítsák a kód minőségét. Júliusban [bemutatták az Codex-en túlmutató továbbfejlesztett AI modellt](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst) az még gyorsabb javaslatok érdekében.
 
-Olvasd el a bejegyzéseket sorrendben, hogy nyomon követhesd a tanulási folyamatukat.
+Olvasd el a bejegyzéseket sorrendben, hogy kövesd tanulási útjukat.
 
-- **2023. május** | [A GitHub Copilot egyre jobban érti a kódodat](https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst)
-- **2023. május** | [A GitHub belülről: Munka a Copilot mögötti LLM-ekkel](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **2023. június** | [Hogyan írj jobb promptokat a GitHub Copilothoz](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **2023. július** | [.. A GitHub Copilot túlmutat a Codexen, továbbfejlesztett AI modellel](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
-- **2023. július** | [Fejlesztői útmutató a prompt engineeringhez és LLM-ekhez](https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst)
-- **2023. szeptember** | [Hogyan építs vállalati LLM alkalmazást: Tanulságok a GitHub Copilottól](https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst)
+- **2023. május** | [A GitHub Copilot egyre jobb a kódod megértésében](https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst)
+- **2023. május** | [A GitHub belülről: a GitHub Copilot mögötti LLM-ek működése](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst)
+- **2023. június** | [Hogyan írj jobb promptokat a GitHub Copilot számára](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst)
+- **2023. július** | [GitHub Copilot a Codex-en túl továbbfejlesztett AI modellel](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
+- **2023. július** | [Fejlesztők útmutatója a prompt mérnökséghez és az LLM-ekhez](https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst)
+- **2023. szeptember** | [Hogyan építsünk vállalati LLM alkalmazást: tanulságok a GitHub Copilotból](https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst)
 
-Böngészheted az [Engineering blogjukat](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) is, ahol további bejegyzéseket találsz, például [ezt](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst), ami bemutatja, hogyan alkalmazzák ezeket a modelleket és technikákat a való életben.
+Nézhetsz még bele a [Mérnöki blogjukba](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst), ahol további bejegyzéseket találsz, mint például [ez itt](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst), amely bemutatja, hogyan _alkalmazzák_ ezeket a modelleket és technikákat valós alkalmazások fejlesztéséhez.
 
 ---
 
 <!--
-LECKE SABLON:
-Ez az egység a 2. alapfogalmat kell, hogy lefedje.
-Erősítsd meg a fogalmat példákkal és hivatkozásokkal.
+LESSON TEMPLATE:
+This unit should cover core concept #2.
+Reinforce the concept with examples and references.
 
-FOGALOM #2:
-Prompt tervezés.
-Példákkal illusztrálva.
+CONCEPT #2:
+Prompt Design.
+Illustrated with examples.
 -->
 
-## Prompt felépítése
+## Prompt építés
 
-Láttuk, miért fontos a prompt engineering – most nézzük meg, hogyan _épülnek fel_ a promptok, hogy értékelni tudjuk a különböző technikákat a hatékonyabb prompt tervezéshez.
+Már láttuk, miért fontos a prompt mérnökség – most értsük meg, hogyan _épülnek fel_ a promptok, hogy értékelni tudjuk a különböző technikákat a hatékonyabb prompt tervezés érdekében.
 
-### Alapvető Prompt
+### Alap prompt
 
-Kezdjük az alapvető prompttal: egy szöveges bemenet, amit minden további kontextus nélkül küldünk a modellnek. Például, ha az USA himnuszának első néhány szavát küldjük az OpenAI [Completion API](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst) felé, azonnal _kiegészíti_ a választ a következő sorokkal, bemutatva az alapvető predikciós működést.
+Kezdjük az alap prompttal: egy szöveges bemenet, ami más kontextus nélkül kerül a modellhez. Íme egy példa - amikor az Egyesült Államok nemzeti himnuszának első néhány szavát küldjük az OpenAI [Completion API](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst)-nek, az azonnal _kiegészíti_ a választ a következő néhány sorral, bemutatva az alapvető előrejelző viselkedést.
 
-| Prompt (Bemenet)     | Kiegészítés (Kimenet)                                                                                                                        |
-| :------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| Oh say can you see   | Úgy tűnik, az „The Star-Spangled Banner”, az Amerikai Egyesült Államok himnuszának szövegét kezdted el. A teljes szöveg a következő...        |
+| Prompt (Bemenet)     | Válasz (Kimenet)                                                                                                                        |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| Oh say can you see | Úgy hangzik, mintha az „A csillagos lobogó” című dal szövegét kezdenéd el, amely az Egyesült Államok nemzeti himnusza. A teljes dalszöveg ... |
 
-### Összetett Prompt
+### Összetett prompt
 
-Most adjunk kontextust és utasításokat az alap prompthoz. A [Chat Completion API](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) lehetővé teszi, hogy összetett promptot alkossunk _üzenetek_ gyűjteményeként:
+Most adjunk hozzá kontextust és utasításokat az alap prompthoz. A [Chat Completion API](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) lehetővé teszi összetett prompt összeállítását _üzenetek_ gyűjteményeként:
 
-- Bemenet/kimenet párok, amelyek a _felhasználó_ kérdését és az _asszisztens_ válaszát tükrözik.
+- Bemenet/kimenet párok, amelyek a _felhasználói_ inputot és _asszisztens_ választ tükrözik.
 - Rendszerüzenet, amely beállítja az asszisztens viselkedésének vagy személyiségének kontextusát.
 
-A kérés most az alábbi formában van, ahol a _tokenizáció_ hatékonyan rögzíti a releváns információkat a kontextusból és a beszélgetésből. A rendszer kontextusának megváltoztatása ugyanolyan nagy hatással lehet a kiegészítések minőségére, mint a felhasználói bemenetek.
+A kérés így az alábbi formában érkezik, ahol a _tokenizáció_ hatékonyan megragadja a releváns információkat a kontextusból és a beszélgetésből. A rendszerkontextus megváltoztatása egyaránt befolyásolhatja a válaszok minőségét, mint a felhasználói bemenetek.
 
 ```python
 response = openai.chat.completions.create(
@@ -260,195 +215,195 @@ response = openai.chat.completions.create(
 )
 ```
 
-### Utasítás Prompt
+### Instrukciós prompt
 
-A fenti példákban a felhasználói prompt egy egyszerű szöveges lekérdezés volt, amit információkérésként lehet értelmezni. Az _utasítás_ promptokkal részletesebben megadhatjuk a feladatot, így az AI pontosabb útmutatást kap. Íme egy példa:
+A fenti példákban a felhasználói prompt egyszerű, lekérdező jellegű volt, amely információkérésként értelmezhető. Az _utasítás_ promptokkal az adott szöveget arra használhatjuk, hogy egy feladatot részletesebben adjunk meg, és jobb iránymutatást nyújtsunk az AI-nak. Íme egy példa:
 
-| Prompt (Bemenet)                                                                                                                                                                                                                         | Kiegészítés (Kimenet)                                                                                                        | Utasítás típusa     |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------- | :------------------ |
-| Írj leírást a polgárháborúról                                                                                                                                                                      | _egyszerű bekezdést adott vissza_                                                                                            | Egyszerű            |
-| Írj leírást a polgárháborúról. Adj meg kulcsdátumokat és eseményeket, és írd le a jelentőségüket.                                                                                                 | _bekezdést adott vissza, majd egy listát a kulcsdátumokról és leírásokról_                                                   | Összetett           |
-| Írj leírást a polgárháborúról 1 bekezdésben. Adj 3 felsorolást kulcsdátumokkal és jelentőségükkel. Adj további 3 felsorolást kulcs történelmi szereplőkkel és hozzájárulásukkal. Az eredményt JSON fájlban add vissza. | _részletesebb információkat ad vissza egy szövegdobozban, JSON formátumban, amit kimásolhatsz és ellenőrizhetsz, ha szükséges_ | Összetett. Formázott.|
+| Prompt (Bemenet)                                                                                                                                                                                                                         | Válasz (Kimenet)                                                                                                        | Instrukció típusa   |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :------------------ |
+| Írj leírást az amerikai polgárháborúról                                                                                                                                                                                                   | _egyszerű bekezdést adott vissza_                                                                                              | Egyszerű            |
+| Írj leírást az amerikai polgárháborúról. Adj meg kulcsfontosságú dátumokat és eseményeket, valamint írd le azok jelentőségét                                                                                                                                     | _bekezdést adott, majd kulcsfontosságú események dátumait és leírásait listaként_                                             | Összetett           |
+| Írj leírást az amerikai polgárháborúról 1 bekezdésben. Adj meg 3 felsorolást kulcsfontosságú dátumokról és jelentőségükről. Adj még 3 felsorolást fontos történelmi alakokról és hozzájárulásaikról. Add vissza az eredményt JSON fájlként | _részletesebb szöveges kimenetet ad vissza, JSON formátumban, amit másolni lehet fájlba és szükség szerint validálni_ | Összetett. Formázott. |
 
 ## Elsődleges tartalom
 
-A fenti példákban a prompt még elég nyitott volt, így az LLM maga dönthette el, hogy a betanított adathalmaz mely része releváns. Az _elsődleges tartalom_ mintában a bemeneti szöveg két részre oszlik:
+A fenti példákban a prompt még eléggé nyitott volt, engedve, hogy az LLM maga válassza meg, mely részek relevánsak a tanított adathalmazából. Az _elsődleges tartalom_ tervezési minta esetén a bemeneti szöveget két részre osztjuk:
 
-- egy utasítás (cselekvés)
-- releváns tartalom (ami befolyásolja a cselekvést)
+- egy utasítás (művelet)
+- releváns tartalom (ami befolyásolja a műveletet)
 
-Íme egy példa, ahol az utasítás: „foglalja össze ezt 2 mondatban”.
+Íme egy példa, ahol az utasítás: „fogalmazd meg 2 mondatban”.
 
-| Prompt (Bemenet)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Kiegészítés (Kimenet)                                                                                                                                                                                                                                                                             |
+| Prompt (Bemenet)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Válasz (Kimenet)                                                                                                                                                                                                                                                                             |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A Jupiter az ötödik bolygó a Naptól, és a legnagyobb a Naprendszerben. Gázóriás, tömege az ezredrésze a Napénak, de két és félszerese a Naprendszer többi bolygójának együttvéve. A Jupiter az egyik legfényesebb szabad szemmel látható objektum az éjszakai égbolton, és már az ókori civilizációk is ismerték. A római Jupiter istenről kapta a nevét.[19] A Földről nézve a Jupiter elég fényes lehet ahhoz, hogy visszavert fénye látható árnyékokat vessen,[20] és átlagosan a harmadik legfényesebb természetes objektum az éjszakai égbolton a Hold és a Vénusz után. <br/> **Foglalja össze ezt 2 rövid mondatban** | A Jupiter az ötödik bolygó a Naptól, a Naprendszer legnagyobb bolygója, és az egyik legfényesebb objektum az éjszakai égbolton. A római Jupiter istenről kapta a nevét, gázóriás, amelynek tömege két és félszerese a többi bolygóénak együttvéve. |
+| A Jupiter az ötödik bolygó a Naptól, és a Naprendszer legnagyobb bolygója. Gáznagybolygó, amelynek tömege a Nap tömegének ezredrésze, de majdnem két és félszerese az összes többi bolygó tömegének együttvéve a Naprendszerben. A Jupiter az egyik legfényesebb tárgy, amit szabad szemmel lehet látni az éjszakai égbolton, és már az ókor óta ismert az emberiség előtt. Nevét a római Jupiter istenről kapta.[19] Amikor a Földről nézzük, a Jupiter fényes lehet annyira, hogy visszavert fénye látható árnyékokat vet,[20] és átlagosan a Hold és a Vénusz után a harmadik legfényesebb égi tárgy az éjszakai égbolton. <br/> **Fogalmazd meg ezt 2 rövid mondatban**             | A Jupiter, a Naprendszer ötödik bolygója, a legnagyobb a bolygók között, és az éjszakai égbolt egyik legfényesebb objektuma. Nevét a római Jupiter istenről kapta; gáznagybolygó, amelynek tömege több mint kétszerese az összes többi bolygó együttes tömegének. |
 
-Az elsődleges tartalom szegmens különböző módokon használható a hatékonyabb utasításokhoz:
+Az elsődleges tartalom szegmentezés különféleképpen használható a hatékonyabb utasítások megvalósítására:
 
-- **Példák** – ahelyett, hogy explicit utasítást adnánk a modellnek, példákat mutatunk, és hagyjuk, hogy maga következtesse ki a mintát.
-- **Cues** – az utasítás után egy „jelzést” adunk, ami előkészíti a kiegészítést, és a modellt relevánsabb válaszok felé tereli.
-- **Sablonok** – ismétlődő „recept” promptok, amelyekben helykitöltők (változók) vannak, és konkrét adatokkal testre szabhatók.
+- **Példák** – ahelyett, hogy expliciten mondanánk meg a modellnek, mit csináljon, példákat adunk, hogy mit várunk el, és hagyjuk, hogy felismerje a mintát.
+- **Jelek** – az utasítás után olyan „jelzést” adunk, ami előkészíti a választ, és a modellt relevánsabb válaszok felé tereli.
+- **Sablonok** – ismételhető „receptek” promptokhoz, változóhelyekkel, amelyeket adott adatokkal lehet személyre szabni specifikus esetekhez.
 
-Nézzük meg ezeket a gyakorlatban.
+Nézzük meg ezeket a gyakorlatban!
 
 ### Példák használata
 
-Ez egy olyan megközelítés, ahol az elsődleges tartalommal „megtanítjuk a modellnek” néhány példát a kívánt kimenetre, és hagyjuk, hogy maga következtesse ki a mintát. A példák számától függően beszélhetünk zero-shot, one-shot, few-shot promptingról stb.
+Ez az az eljárás, amely során az elsődleges tartalmat használjuk, hogy „etetjük a modellt” néhány példával a kívánt kimenetből egy adott utasításhoz, és hagyjuk, hogy felismerje a kimeneti mintát. Az alapján, hogy hány példát adunk, lehet nullalövéssel, egyetlen lövéssel, vagy több lövéssel promptolni.
 
 A prompt most három részből áll:
 
-- Feladatleírás
+- Egy feladatleírás
 - Néhány példa a kívánt kimenetre
-- Egy új példa kezdete (ami implicit feladatleírásként működik)
+- Egy új példa kezdete (ami implikált feladatleírásként funkcionál)
 
-| Tanulási típus | Prompt (Bemenet)                                                                                                                                        | Kiegészítés (Kimenet)         |
-| :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------- |
-| Zero-shot      | "The Sun is Shining". Translate to Spanish                                                                                                              | "El Sol está brillando".      |
-| One-shot       | "The Sun is Shining" => ""El Sol está brillando". <br> "It's a Cold and Windy Day" =>                                                                   | "Es un día frío y ventoso".   |
-| Few-shot       | The player ran the bases => Baseball <br/> The player hit an ace => Tennis <br/> The player hit a six => Cricket <br/> The player made a slam-dunk =>   | Basketball                    |
-|                |                                                                                                                                                         |                               |
+| Tanulási típus | Prompt (Bemenet)                                                                                                                                               | Válasz (Kimenet)         |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------ |
+| Nullalövés    | „The Sun is Shining”. Fordítsd le spanyolra                                                                                                                  | „El Sol está brillando”.  |
+| Egy lövés     | „The Sun is Shining” => „El Sol está brillando”. <br> „It's a Cold and Windy Day” =>                                                                          | „Es un día frío y ventoso”. |
+| Több lövés   | A játékos végigfutotta az alapokat => Baseball <br/> A játékos ásszal ütött => Tenisz <br/> A játékos hatost ütött => Krikett <br/> A játékos zsákolt =>          | Kosárlabda                |
+|               |                                                                                                                                                              |                           |
 
-Látható, hogy zero-shot promptingnál explicit utasítást kellett adni („Translate to Spanish”), de one-shot promptingnál már a példából következtet a modell. A few-shot példában több példa segíti a modellt, hogy pontosabb következtetéseket vonjon le, utasítás nélkül.
+Vegyük észre, hogy nullalövéses promptolásnál expliciten kellett megadni az utasítást („Fordítsd le spanyolra”), de egy lövéses példánál ez már belátható. A több lövéses példánál pedig látható, hogy több példa megadása pontosabb következtetések levonását segíti elő anélkül, hogy további utasítást adnánk.
 
-### Prompt Cues
+### Prompt jelek
 
-Egy másik technika az elsődleges tartalom használatára, ha _cues_-t, azaz jelzéseket adunk példák helyett. Ilyenkor egy kis részletet adunk, ami a kívánt válasz formátumát tükrözi, és a modell „veszi a jelzést”, hogy abban a stílusban folytassa.
+Az elsődleges tartalom egy másik technikája a _jelek_ használata példák helyett. Ebben az esetben a modellt óvatosan irányítjuk úgy, hogy egy olyan töredékkel _indítjuk el_ a választ, ami visszatükrözi a várt válasz formátumát. A modell ezt a „jelet” követve folytatja a választ az adott stílusban vagy struktúrában.
 
-| Cues száma      | Prompt (Bemenet)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Kiegészítés (Kimenet)                                                                                                                                                                                                                                                                                       |
-| :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0               | A Jupiter az ötödik bolygó a Naptól, és a legnagyobb a Naprendszerben. Gázóriás, tömege az ezredrésze a Napénak, de két és félszerese a Naprendszer többi bolygójának együttvéve. A Jupiter az egyik legfényesebb szabad szemmel látható objektum az éjszakai égbolton, és már az ókori civilizációk is ismerték.
-
-**Foglaljuk össze**                                       | A Jupiter a Naprendszer legnagyobb bolygója, az ötödik a Naptól számítva. Gázóriás, tömege az ezredrésze a Napénak, de nehezebb, mint az összes többi bolygó együttvéve. Az ókori civilizációk már régóta ismerték a Jupitert, és könnyen látható az éjszakai égbolton. |
-| 1              | A Jupiter az ötödik bolygó a Naptól, és a legnagyobb a Naprendszerben. Gázóriás, tömege az ezredrésze a Napénak, de két és félszerese az összes többi bolygó tömegének együttvéve. A Jupiter az egyik legfényesebb objektum, amit szabad szemmel is láthatunk az éjszakai égbolton, és már az írott történelem előtti időkben is ismerték. <br/>**Foglaljuk össze** <br/> Amit megtanultunk: a Jupiter | az ötödik bolygó a Naptól, és a legnagyobb a Naprendszerben. Gázóriás, tömege az ezredrésze a Napénak, de két és félszerese az összes többi bolygó tömegének együttvéve. Könnyen látható szabad szemmel, és már az ókorban is ismerték.                        |
-| 2              | A Jupiter az ötödik bolygó a Naptól, és a legnagyobb a Naprendszerben. Gázóriás, tömege az ezredrésze a Napénak, de két és félszerese az összes többi bolygó tömegének együttvéve. A Jupiter az egyik legfényesebb objektum, amit szabad szemmel is láthatunk az éjszakai égbolton, és már az írott történelem előtti időkben is ismerték. <br/>**Foglaljuk össze** <br/> Top 3 tény, amit megtanultunk:         | 1. A Jupiter az ötödik bolygó a Naptól, és a legnagyobb a Naprendszerben. <br/> 2. Gázóriás, tömege az ezredrésze a Napénak...<br/> 3. A Jupitert már az ókor óta szabad szemmel is láthatjuk ...                                                                       |
+| Jelek száma | Prompt (Bemenet)                                                                                                                                                                                                                                                                                                                                                                                                                                         | Válasz (Kimenet)                                                                                                                                                                                                                                                                                                   |
+| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0           | A Jupiter az ötödik bolygó a Naptól, és a Naprendszer legnagyobb bolygója. Gáznagybolygó, amelynek tömege a Nap tömegének ezredrésze, de majdnem két és félszerese az összes többi bolygó tömegének együttvéve a Naprendszerben. A Jupiter az egyik legfényesebb tárgy, amit szabad szemmel lehet látni az éjszakai égbolton, és már az ókor óta ismert az emberiség előtt. <br/>**Fogalmazd meg**                                                                                             | A Jupiter a Naprendszer legnagyobb bolygója és ötödik a Naptól. Gáznagybolygó, amelynek tömege a Nap tömegének ezredrésze, de nehezebb, mint az összes többi bolygó együttvéve. Az ókori civilizációk régóta ismerik, és jól látható az éjszakai égbolton.                                                                                                         |
+| 1              | A Jupiter a Naprendszer ötödik bolygója és a legnagyobb a Naprendszerben. Egy gázóriás, amelynek tömege a Nap tömegének ezredrésze, de a többi bolygó együttes tömegének két és félszerese. A Jupiter az egyik legfényesebb égitest, amely szabad szemmel látható az éjszakai égbolton, és az ősi civilizációk óta ismert az írott történelem előtt is. <br/>**Összefoglaló** <br/> Amit megtudtunk, hogy a Jupiter | a Naprendszer ötödik bolygója és a legnagyobb a Naprendszerben. Egy gázóriás, amelynek tömege a Nap tömegének ezredrésze, de a többi bolygó együttes tömegének két és félszerese. Szabad szemmel könnyen látható, és az ókor óta ismert.                        |
+| 2              | A Jupiter a Naprendszer ötödik bolygója és a legnagyobb a Naprendszerben. Egy gázóriás, amelynek tömege a Nap tömegének ezredrésze, de a többi bolygó együttes tömegének két és félszerese. A Jupiter az egyik legfényesebb égitest, amely szabad szemmel látható az éjszakai égbolton, és az ősi civilizációk óta ismert az írott történelem előtt is. <br/>**Összefoglaló** <br/> A 3 legfontosabb tény, amit megtanultunk:         | 1. A Jupiter a Naprendszer ötödik bolygója és a legnagyobb a Naprendszerben. <br/> 2. Egy gázóriás, amelynek tömege a Nap tömegének ezredrésze...<br/> 3. A Jupiter szabad szemmel látható az ókor óta ...                                                                       |
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |
 
-### Prompt sablonok
+### Prompt Sablonok
 
-A prompt sablon egy _előre meghatározott prompt recept_, amelyet el lehet menteni és újra felhasználni, hogy nagyobb léptékben is következetes felhasználói élményt biztosítsunk. A legegyszerűbb formájában ez egy prompt példákból álló gyűjtemény, mint [ez az OpenAI-tól](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst), amely tartalmazza az interaktív prompt elemeket (felhasználói és rendszerüzenetek) és az API-alapú kérésformátumot is – így támogatva az újrahasznosítást.
+Egy prompt sablon egy _előre definiált recept egy prompthoz_, amely tárolható és újra felhasználható szükség szerint, hogy nagyobb következetességgel biztosítson felhasználói élményt. Egyszerű formájában ez egyszerűen egy gyűjtemény prompt példákból, mint például [ez az OpenAI-tól](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst), amely tartalmazza az interaktív prompt komponenseket (felhasználói és rendszerüzenetek) és az API-alapú kérésformátumot - a könnyű újrafelhasználás érdekében.
 
-Komplexebb formában, mint [ez a LangChain példája](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst), _helyettesítő mezőket_ tartalmaz, amelyeket különböző forrásokból (felhasználói input, rendszerkörnyezet, külső adatforrások stb.) származó adatokkal lehet kitölteni, hogy dinamikusan generáljunk promptokat. Így létrehozhatunk egy újrahasznosítható prompt könyvtárat, amely programozottan is következetes felhasználói élményt biztosít nagy léptékben.
+Bonyolultabb formájában, mint például [ez a LangChain példája](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst), tartalmaz _helyőrzőket_, amelyeket különböző forrásokból (felhasználói bemenet, rendszerkontextus, külső adatforrások stb.) származó adatokkal lehet helyettesíteni, így dinamikusan létrehozva egy promptot. Ez lehetővé teszi számunkra, hogy egy újrahasznosítható prompt könyvtárat hozzunk létre, amely **programozottan** támogatja a következetes felhasználói élményeket nagy léptékben.
 
-A sablonok igazi értéke abban rejlik, hogy _prompt könyvtárakat_ hozhatunk létre és publikálhatunk speciális alkalmazási területekre – ahol a prompt sablon már _optimalizált_ az adott alkalmazási kontextusra vagy példákra, így a válaszok relevánsabbak és pontosabbak lesznek a célközönség számára. A [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) repó remek példa erre, ahol az oktatási területhez gyűjtenek promptokat, kiemelve a fő célokat, mint az óratervezés, tantervfejlesztés, diákok segítése stb.
+Végül a sablonok valódi értéke az, hogy képesek vagyunk függőleges alkalmazási területekre _prompt könyvtárakat_ létrehozni és publikálni - ahol a prompt sablon _optimalizált_ az adott alkalmazás-specifikus kontextus vagy példák tükrözésére, így relevánsabbá és pontosabbá téve a válaszokat a célzott felhasználói közönség számára. A [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) tárhely jó példa erre a megközelítésre, oktatási célú prompt könyvtárakat gyűjt össze, különös tekintettel a fontos célokra, mint az óra tervezés, tanterv kialakítás, diákok oktatása stb.
 
-## Kiegészítő tartalom
+## Támogató Tartalom
 
-Ha a prompt összeállítását úgy képzeljük el, hogy van egy utasítás (feladat) és egy cél (elsődleges tartalom), akkor a _másodlagos tartalom_ olyan további kontextus, amit azért adunk meg, hogy **valamilyen módon befolyásolja a kimenetet**. Lehetnek ezek finomhangolási paraméterek, formázási utasítások, témakategóriák stb., amelyek segítenek a modellnek _testreszabni_ a válaszát a kívánt felhasználói célokhoz vagy elvárásokhoz.
+Ha úgy tekintünk a prompt létrehozására, hogy van egy utasítás (feladat) és egy cél (elsődleges tartalom), akkor a _másodlagos tartalom_ olyan, mint egy további kontextus, amit adunk, hogy **befolyásolja valamilyen módon a kimenetet**. Ez lehet hangolási paraméterek, formázási utasítások, témakörösztönzők stb., amelyek segítenek a modellnek _testreszabni_ a válaszát, hogy megfeleljen a kívánt felhasználói céloknak vagy elvárásoknak.
 
-Például: Ha van egy tantárgykatalógusunk részletes metaadatokkal (név, leírás, szint, metaadat címkék, oktató stb.) az összes elérhető kurzusról:
+Például: Van egy kurzuskatalógus kiterjedt metaadatokkal (név, leírás, szint, metaadat címkék, oktató stb.) az összes tantermi kurzusról:
 
-- megadhatjuk utasításként, hogy "foglalja össze a 2023 őszi tantárgykatalógust"
-- az elsődleges tartalommal példákat adhatunk a kívánt kimenetre
-- a másodlagos tartalommal kiválaszthatjuk az 5 legfontosabb "címkét", ami érdekel minket.
+- Megadhatunk egy utasítást, hogy "foglalja össze a 2023 ősz kurzuskatalógusát"
+- Az elsődleges tartalomban megadhatunk néhány példát a kívánt kimenetre
+- A másodlagos tartalomban megjelölhetjük az 5 legfontosabb "címkét".
 
-Így a modell a példákban megadott formátumban tud összefoglalást adni – de ha egy eredményhez több címke tartozik, akkor előnyben részesítheti az 5 kiemelt címkét a másodlagos tartalom alapján.
+Most a modell összefoglalót tud adni a néhány példa alapján – de ha több címke van egy eredményben, előnyben részesítheti a másodlagos tartalomban megadott 5 címkét.
 
 ---
 
 <!--
-LECKE SABLON:
-Ez az egység az 1. alapfogalmat kell, hogy lefedje.
-Erősítsd meg a fogalmat példákkal és hivatkozásokkal.
+ÓRATERV SABLON:
+Ez az egység a #1 alapfogalmat kell, hogy lefedje.
+Erősítse a fogalmat példák és hivatkozások segítségével.
 
-3. FOGALOM:
-Prompt engineering technikák.
-Mik az alapvető prompt engineering technikák?
-Mutasd be néhány gyakorlattal.
+FELFOGALOM #3:
+Prompttervezési technikák.
+Melyek az alapvető prompttervezési módszerek?
+Mutassa be néhány gyakorlat segítségével.
 -->
 
-## Promptolási legjobb gyakorlatok
+## Promptolási Legjobb Gyakorlatok
 
-Most, hogy tudjuk, hogyan lehet promptokat _összeállítani_, elkezdhetünk azon gondolkodni, hogyan _tervezzük_ meg őket a legjobb gyakorlatok szerint. Ezt két részre bonthatjuk – a megfelelő _hozzáállásra_ és a megfelelő _technikák_ alkalmazására.
+Most, hogy tudjuk, hogyan lehet promptokat _felépíteni_, elkezdhetjük gondolkodni arról, hogyan _tervezzük_ meg ezeket, hogy tükrözzék a legjobb gyakorlatokat. Ezt két részre bonthatjuk - a megfelelő _gondolkodásmód_ kialakítására és a helyes _technikák_ alkalmazására.
 
-### Prompt engineering szemlélet
+### Prompttervezési Gondolkodásmód
 
-A prompt engineering próbálgatásos folyamat, ezért három fő irányelvet érdemes szem előtt tartani:
+A promptternyezés egy próbálkozás-alapú folyamat, ezért tarts három tág irányelvet szem előtt:
 
-1. **A szakterület ismerete számít.** A válaszok pontossága és relevanciája attól függ, hogy _milyen területen_ működik az alkalmazás vagy a felhasználó. Használd az intuíciódat és szaktudásodat, hogy **tovább testreszabhasd a technikákat**. Például határozz meg _szakterületi személyiségeket_ a rendszer promptjaiban, vagy használj _szakterületi sablonokat_ a felhasználói promptokban. Adj meg másodlagos tartalmat, ami tükrözi a szakterületi kontextust, vagy használj _szakterületi jeleket és példákat_, hogy a modellt a megszokott használati minták felé tereld.
+1. **A domain megértése számít.** A válasz pontossága és relevanciája olyan _területtől_ függ, ahol az alkalmazás vagy a felhasználó működik. Használd az intuíciódat és a domén szakértelmedet a **technikák testreszabására**. Például definiálj _domén-specifikus személyiségeket_ a rendszer promptjaidban, vagy használj _domén-specifikus sablonokat_ a felhasználói promptokban. Adj másodlagos tartalmat, amely tükrözi a domén-specifikus kontextust, vagy használj _domén-specifikus jelzéseket és példákat_, hogy a modellt irányítsd ismerős használati minták felé.
 
-2. **A modell ismerete számít.** Tudjuk, hogy a modellek alapvetően sztochasztikusak. De a modell implementációk is eltérhetnek abban, hogy milyen tanító adathalmazt használnak (előtanult tudás), milyen képességeket kínálnak (pl. API vagy SDK), és milyen tartalomra vannak optimalizálva (pl. kód, képek vagy szöveg). Ismerd meg az általad használt modell erősségeit és korlátait, és ezt a tudást használd fel _feladatok priorizálására_ vagy _testreszabott sablonok_ készítésére, amelyek a modell képességeihez igazodnak.
+2. **A modell megértése számít.** Tudjuk, hogy a modellek természetükből adódóan sztocasztikusak. De a modellek implementációi is változhatnak az alapján, hogy milyen tanító adatállományt használnak (előre betanult tudás), milyen képességeket nyújtanak (pl. API vagy SDK), és milyen tartalomtípusra optimalizáltak (pl. kód vs. képek vs. szöveg). Ismerd meg az általad használt modell erősségeit és korlátait, és használd ezt az ismeretet, hogy _priorizáld a feladatokat_ vagy hozz létre _testreszabott sablonokat_, amelyek optimalizáltak a modell képességeire.
 
-3. **Az iteráció és validáció számít.** A modellek gyorsan fejlődnek, ahogy a prompt engineering technikák is. Szakértőként lehet, hogy van olyan kontextusod vagy kritériumod _a saját_ alkalmazásodhoz, ami nem feltétlenül érvényes a szélesebb közösségre. Használd a prompt engineering eszközöket és technikákat, hogy "beindítsd" a prompt összeállítást, majd iterálj és validáld az eredményeket a saját intuícióddal és szaktudásoddal. Jegyezd fel a tapasztalataidat, és hozz létre egy **tudásbázist** (pl. prompt könyvtárakat), amit mások is használhatnak kiindulási alapként, hogy a jövőben gyorsabban tudjanak iterálni.
+3. **Iteráció és validáció számít.** A modellek gyorsan fejlődnek, akárcsak a prompttervezési technikák. Domén szakértőként lehet, hogy van további kontextusod vagy kritériumod _a saját_ alkalmazásodra, ami nem feltétlenül érvényes a szélesebb közösségre. Használj prompttervezési eszközöket és technikákat a prompt készítés „gyors elindításához”, majd ismételj és validálj a saját intuíciód és szakértelmed alapján. Rögzítsd a tanulságaidat, és hozz létre egy **tudásbázist** (pl. prompt könyvtárakat), amely mások számára új alapként szolgálhat a későbbi gyorsabb iterációkhoz.
 
-## Legjobb gyakorlatok
+## Legjobb Gyakorlatok
 
-Nézzük meg, melyek a leggyakoribb ajánlott legjobb gyakorlatok az [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) és [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst) szakértői szerint.
+Most nézzük meg a leggyakoribb, a [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) és az [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst) szakértői által ajánlott legjobb gyakorlatokat.
 
 | Mi                              | Miért                                                                                                                                                                                                                                               |
-| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Értékeld a legújabb modelleket.       | Az új modellgenerációk valószínűleg jobb funkciókat és minőséget kínálnak – de lehet, hogy drágábbak is. Értékeld a hatásukat, majd dönts a váltásról.                                                                                |
-| Válaszd szét az utasítást és a kontextust   | Nézd meg, hogy a modell/szolgáltató definiál-e _elválasztókat_, amelyekkel az utasításokat, elsődleges és másodlagos tartalmat egyértelműbben el lehet különíteni. Ez segíthet a modelleknek pontosabban súlyozni a tokeneket.                                                         |
-| Légy konkrét és egyértelmű             | Adj meg minél több részletet a kívánt kontextusról, eredményről, hosszúságról, formátumról, stílusról stb. Ez javítja a válaszok minőségét és következetességét. Rögzítsd a recepteket újrahasznosítható sablonokban.                                                          |
-| Légy leíró, használj példákat      | A modellek jobban reagálhatnak a "mutasd és magyarázd" megközelítésre. Kezdd egy `zero-shot` módszerrel, amikor csak utasítást adsz (példák nélkül), majd finomítsd `few-shot` példákkal, ahol néhány kívánt kimenetet is megadsz. Használj analógiákat. |
-| Használj jeleket a válasz beindításához | Tereld a kívánt eredmény felé úgy, hogy megadsz néhány kezdő szót vagy kifejezést, amit a modell kiindulási pontként használhat a válaszhoz.                                                                                                               |
-| Ismételd meg                       | Előfordulhat, hogy többször is el kell mondanod a modellnek az utasítást. Adj utasítást az elsődleges tartalom előtt és után, használj utasítást és jelet stb. Iterálj és validáld, hogy mi működik.                                                         |
-| Számít a sorrend                     | Az információk sorrendje, ahogy a modellnek bemutatod, befolyásolhatja a kimenetet, akár a tanulási példákban is, a frissességi torzítás miatt. Próbálj ki több lehetőséget, hogy lásd, mi működik a legjobban.                                                               |
-| Adj a modellnek "menekülő utat"           | Adj a modellnek egy _alternatív_ válaszlehetőséget, amit akkor adhat, ha valamiért nem tudja teljesíteni a feladatot. Ez csökkentheti a hamis vagy kitalált válaszok esélyét.                                                         |
-|                                   |                                                                                                                                                                                                                                                   |
+| :------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Értékeld a legújabb modelleket. | Az új modellgenerációk valószínűleg jobb funkciókat és minőséget kínálnak – de nagyobb költséget is jelenthetnek. Értékeld hatásukat, és dönts a migrációról.                                                                                        |
+| Válaszd szét az utasításokat és a kontextust. | Ellenőrizd, hogy a modell vagy a szolgáltató megad-e _elválasztókat_, hogy jobban elkülönítse az utasítást, az elsődleges és a másodlagos tartalmat. Ez segíthet a modelleknek pontosabban súlyozni a tokeneket.                                   |
+| Légy pontos és világos.          | Adj több részletet a kívánt kontextusról, eredményről, hosszúságról, formátumról, stílusról stb. Ez javítja a válaszok minőségét és következetességét. Készíts eljárásokat újrahasználható sablonokban.                                              |
+| Légy leíró, használj példákat    | A modellek jobban reagálhatnak a "mutasd és mondd el" megközelítésre. Kezdd egy „nulla-lövéses” (zero-shot) utasítással (példák nélkül), majd próbáld ki a „néhány-lövésest” (few-shot), több példa megadásával a kívánt kimenetre. Használj analógiákat.|
+| Használj jelzéseket a kimenet felgyorsításához | Lökést adj egy kívánt eredmény felé, néhány vezető szó vagy kifejezés megadásával, amit a modell kiindulópontként használhat a válaszhoz.                                                                                                       |
+| Ismételj meg többször            | Néha meg kell ismételned magad a modell számára. Adj utasítást az elsődleges tartalom előtt és után, használj utasítást és jelzést stb. Ismételj és ellenőrizz, mi működik.                                                                       |
+| A sorrend számít                 | Az információ sorrendje, ahogy a modellhez kerül, befolyásolhatja a választ, még a tanulási példákban is, a friss emlékhatás (recency bias) miatt. Próbálj ki különböző lehetőségeket, hogy megtaláld a legjobbat.                                       |
+| Adj kiút a modellnek             | Adj meg egy _visszaesési_ választási lehetőséget a modellnek, ha valamiért nem tudja teljesíteni a feladatot. Ez csökkentheti hamis vagy kitalált válaszok esélyét.                                                                                |
+|                                 |                                                                                                                                                                                                                                                    |
 
-Mint minden legjobb gyakorlatnál, itt is igaz, hogy _az eredmény változhat_ a modelltől, a feladattól és a szakterülettől függően. Használd ezeket kiindulási alapként, és iterálj, hogy megtaláld, mi működik neked a legjobban. Folyamatosan értékeld újra a prompt engineering folyamatodat, ahogy új modellek és eszközök jelennek meg, a folyamat skálázhatóságára és a válaszok minőségére koncentrálva.
+Mint minden legjobb gyakorlat esetén, ne feledd, hogy _az eredmény változó_ a modell, a feladat és a domén függvényében. Használd ezeket kiindulópontként, majd ismételj, hogy megtaláld, mi működik a legjobban neked. Folyamatosan értékeld újra a prompttervezési folyamatot, ahogy új modellek és eszközök válnak elérhetővé, különös tekintettel a folyamat skálázhatóságára és a válaszok minőségére.
 
 <!--
-LECKE SABLON:
-Ez az egység adjon kódos kihívást, ha releváns
+ÓRATERV SABLON:
+Ez az egység rendelkezik kód kihívással, ha alkalmazható
 
 KIHÍVÁS:
-Link egy Jupyter Notebookhoz, ahol csak a kód kommentek vannak az utasításokban (a kód részek üresek).
+Hivatkozás egy Jupyter Notebookra, amelyben csak kód kommentek vannak az utasításokban (kódrészek üresek).
 
 MEGOLDÁS:
-Link egy példányhoz, ahol a Notebookban a promptok ki vannak töltve és futtatva, bemutatva egy példát.
+Hivatkozás egy ilyen notebook másolatára, amelyben a promptok kitöltöttek és lefuttatottak, megmutatva egy példakimenetet.
 -->
 
 ## Feladat
 
-Gratulálunk! Eljutottál a lecke végére! Itt az idő, hogy néhány fogalmat és technikát valódi példákon is kipróbálj!
+Gratulálunk! Eljutottál az óra végére! Itt az idő, hogy néhány fogalmat és technikát valós példákon tesztelj!
 
-A feladathoz egy Jupyter Notebookot fogunk használni, amelyben interaktívan végezhetsz gyakorlatokat. A Notebookot saját Markdown és kód cellákkal is bővítheted, hogy saját ötleteket és technikákat is kipróbálj.
+A feladatnál egy Jupyter notebookot fogunk használni, ahol interaktívan oldhatod meg a feladatokat. A notebookot saját Markdown és Kód cellákkal is bővítheted, hogy önállóan fedezd fel az ötleteket és technikákat.
 
-### Kezdéshez forkold a repót, majd
+### Kezdéshez készíts egy forkot a repóból, majd
 
-- (Ajánlott) Indítsd el a GitHub Codespaces-t
-- (Alternatív) Klónozd a repót a saját gépedre, és használd Docker Desktop-pal
-- (Alternatív) Nyisd meg a Notebookot a kedvenc Notebook futtatókörnyezeteddel.
+- (Ajánlott) Indítsd el a GitHub Codespace-t
+- (Alternatív) Klónozd a repót a helyi gépedre és használd Docker Desktop-tal
+- (Alternatív) Nyisd meg a Notebookot kedvenc környezetedben.
 
 ### Ezután állítsd be a környezeti változókat
 
-- Másold a `.env.copy` fájlt a repó gyökeréből `.env`-be, és töltsd ki az `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` és `AZURE_OPENAI_DEPLOYMENT` értékeket. Térj vissza a [Learning Sandbox szekcióhoz](../../../04-prompt-engineering-fundamentals/04-prompt-engineering-fundamentals), hogy megtudd, hogyan.
+- Másold a .env.copy fájlt a repó gyökérkönyvtárába .env néven, és töltsd ki az `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` és `AZURE_OPENAI_DEPLOYMENT` értékeket. Térj vissza a [Learning Sandbox részhez](../../../04-prompt-engineering-fundamentals), hogy megtudd, hogyan.
 
 ### Ezután nyisd meg a Jupyter Notebookot
 
-- Válaszd ki a futtató kernelt. Ha az 1. vagy 2. opciót használod, egyszerűen válaszd a dev konténer által biztosított alapértelmezett Python 3.10.x kernelt.
+- Válaszd ki a futtató kernelt. Ha az 1. vagy 2. opciót használod, egyszerűen válaszd az alapértelmezett Python 3.10.x kernelt, amely a fejlesztői konténerben érhető el.
 
-Már készen állsz a gyakorlatok futtatására. Fontos, hogy itt nincsenek _helyes vagy helytelen_ válaszok – csak próbálkozol, hogy megtaláld, mi működik az adott modellnél és alkalmazási területen.
+Készen állsz a feladatok futtatására. Ne feledd, itt nincs _helyes vagy helytelen_ válasz - inkább próbálgatásról és tapasztalatszerzésről szól az adott modell és alkalmazási domén esetén.
 
-_Ezért ebben a leckében nincsenek kódos megoldás szegmensek. Ehelyett a Notebookban lesznek "Saját megoldásom:" című Markdown cellák, amelyek egy példát mutatnak referenciaként._
+_Ezért nincs Kód Megoldás szakasz ebben az órában. Ehelyett a Notebook tartalmaz majd „Az én megoldásom:” című Markdown cellákat, amelyek az egyik példakimenetet mutatják be referencia gyanánt._
 
  <!--
-LECKE SABLON:
-Zárd le az egységet összefoglalással és önálló tanulási forrásokkal.
+ÓRATERV SABLON:
+Összefoglalóval és önálló tanulási forrásokkal zárd a szakaszt.
 -->
 
 ## Tudásellenőrzés
 
-Melyik a jó prompt, amely megfelel néhány ésszerű legjobb gyakorlatnak?
+Melyik az alábbiak közül egy jó prompt, amely követ néhány ésszerű legjobb gyakorlatot?
 
-1. Mutass egy piros autó képét
-2. Mutass egy piros autó képét, Volvo márkájú, XC90 modell, egy szikla mellett parkol, naplementében
-3. Mutass egy piros autó képét, Volvo márkájú, XC90 modell
+1. Mutass egy képet egy piros autóról  
+2. Mutass egy képet egy piros Volvó XC90-es autóról, amely egy sziklaperemen parkol, miközben a Nap lemegy  
+3. Mutass egy képet egy piros Volvó XC90-es autóról
 
-A: A 2-es, mert részletezi, hogy "mit" szeretnénk, konkrét márkát és modellt ad meg, és leírja a környezetet is. A 3-as a következő legjobb, mert szintén sok leírást tartalmaz.
+Válasz: 2, ez a legjobb prompt, mert részletezi, „mit”, és konkrét (nem csak bármilyen autó, hanem konkrét márka és modell), valamint leírja az egész környezetet is. A 3 következik, mert az is sok leírást tartalmaz.
 
 ## 🚀 Kihívás
 
-Próbáld ki, hogy tudod-e használni a "jel" technikát ezzel a prompttal: Fejezd be a mondatot: "Mutass egy piros autó képét, Volvo márkájú és ". Mit válaszol rá, és hogyan javítanád?
+Próbáld ki a „jelzés” technikát ezzel a promptra: Fejezd be a mondatot: „Mutass egy képet egy piros Volvó típusú autóról és...”. Mit válaszol rá a modell, és hogyan javítanád?
 
 ## Szép munka! Folytasd a tanulást
 
-Szeretnél többet megtudni a Prompt Engineering különböző fogalmairól? Látogass el a [folytatólagos tanulás oldalra](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), ahol további remek forrásokat találsz a témában.
+Szeretnél többet megtudni a különböző Prompttervezési fogalmakról? Látogass el a [folytató tanulási oldalra](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), ahol további nagyszerű forrásokat találsz ebben a témában.
 
-Menj tovább az 5. leck
+Most pedig irány az 5. lecke, ahol a [fejlett promptolási technikákat](../05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst) veszünk szemügyre!
 
 ---
 
-**Jogi nyilatkozat**:
-Ez a dokumentum AI fordítási szolgáltatás, a [Co-op Translator](https://github.com/Azure/co-op-translator) segítségével készült. Bár törekszünk a pontosságra, kérjük, vegye figyelembe, hogy az automatikus fordítások hibákat vagy pontatlanságokat tartalmazhatnak. Az eredeti dokumentum eredeti nyelvű változata tekintendő hiteles forrásnak. Kritikus információk esetén javasoljuk a professzionális, emberi fordítást. Nem vállalunk felelősséget a fordítás használatából eredő félreértésekért vagy félreértelmezésekért.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Nyilatkozat**:
+Ezt a dokumentumot a [Co-op Translator](https://github.com/Azure/co-op-translator) AI fordítási szolgáltatás segítségével fordítottuk. Bár igyekszünk pontosak lenni, kérjük, vegye figyelembe, hogy az automatikus fordítás hibákat vagy pontatlanságokat tartalmazhat. Az eredeti, anyanyelvi dokumentum tekintendő hiteles forrásnak. Kritikus információk esetén professzionális, emberi fordítást javaslunk. Nem vállalunk felelősséget az ebből eredő félreértésekért vagy téves értelmezésekért.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

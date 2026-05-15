@@ -1,57 +1,48 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f1413b349a65b4e9eda3f48807656a6d",
-  "translation_date": "2025-08-26T15:05:07+00:00",
-  "source_file": "00-course-setup/README.md",
-  "language_code": "ja"
-}
--->
 # このコースの始め方
 
-このコースを始めて、生成AIでどんなものを作りたくなるのか、とても楽しみにしています！
+このコースを始めて、ジェネレーティブAIで何を作りたいかに触発されるのを私たちはとても楽しみにしています！
 
-あなたの成功のために、このページではセットアップ手順、技術要件、困ったときのサポート先についてまとめています。
+成功を確実にするために、このページではセットアップ手順、技術的要件、および必要に応じてサポートを受ける方法を説明します。
 
 ## セットアップ手順
 
-コースを始めるには、以下の手順を完了してください。
+このコースを開始するには、次の手順を完了する必要があります。
 
 ### 1. このリポジトリをフォークする
 
-[このリポジトリ全体をフォーク](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)して、自分のGitHubアカウントでコードを変更したり、チャレンジを完了できるようにしましょう。また、[スター (🌟) を付ける](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst)ことで、関連リポジトリを簡単に見つけられます。
+[このリポジトリ全体をフォーク](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)して、ご自身のGitHubアカウントにコピーしてください。コードを変更したりチャレンジを完了したりするために必要です。また、[このリポジトリにスター（🌟）を付ける](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst)と、関連リポジトリを見つけやすくなります。
 
-### 2. Codespaceを作成する
+### 2. codespaceを作成する
 
-コードの依存関係の問題を避けるために、このコースは[GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst)で実行することをおすすめします。
+コードの依存関係の問題を避けるため、このコースは[GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst)で実行することを推奨します。
 
-自分のフォークで：**Code -> Codespaces -> New on main**
+フォークしたリポジトリで：**Code -> Codespaces -> New on main**
 
-![Codespace作成ボタンのダイアログ](../../../00-course-setup/images/who-will-pay.webp)
+![コードスペース作成ボタンを示すダイアログ](../../../translated_images/ja/who-will-pay.4c0609b1c7780f44.webp)
 
 #### 2.1 シークレットを追加する
 
-1. ⚙️ ギアアイコン -> Command Pallete-> Codespaces : Manage user secret -> Add a new secret.
-2. 名前をOPENAI_API_KEYにして、キーを貼り付け、保存します。
+1. ⚙️ 歯車アイコン -> コマンドパレット -> Codespaces : Manage user secret -> 新しいシークレットを追加。
+2. 名前にOPENAI_API_KEYを入力し、キーを貼り付けて保存。
 
-### 3. 次は何をする？
+### 3. 次は？
 
-| やりたいこと         | 移動先                                                                  |
-|---------------------|-------------------------------------------------------------------------|
-| レッスン1を始める      | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
-| オフラインで作業する   | [`setup-local.md`](02-setup-local.md)                                   |
-| LLMプロバイダーを設定する | [`providers.md`](providers.md)                                        |
-| 他の学習者と交流する | [Discordに参加](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)   |
+| やりたいこと               | 移動先                                                                    |
+|----------------------------|---------------------------------------------------------------------------|
+| レッスン1を始める          | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)        |
+| オフラインで作業する       | [`setup-local.md`](02-setup-local.md)                                     |
+| LLMプロバイダーを設定する  | [`providers.md`](03-providers.md)                                         |
+| 他の学習者に会う           | [Discordに参加](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)   |
 
 ## トラブルシューティング
 
-| 症状                                   | 対処法                                                             |
-|----------------------------------------|--------------------------------------------------------------------|
-| コンテナのビルドが10分以上止まる        | **Codespaces ➜ “Rebuild Container”**                               |
-| `python: command not found`            | ターミナルが接続されていません。**+** ➜ *bash* をクリック           |
-| OpenAIから`401 Unauthorized`           | `OPENAI_API_KEY`が間違っている/期限切れ                            |
-| VS Codeが“Dev container mounting…”と表示 | ブラウザタブをリフレッシュ—Codespacesが接続を失うことがあります    |
-| Notebookカーネルが見つからない         | Notebookメニュー ➜ **Kernel ▸ Select Kernel ▸ Python 3**           |
+| 症状                                       | 対処法                                                      |
+|--------------------------------------------|------------------------------------------------------------|
+| コンテナのビルドが10分以上停止している      | **Codespaces ➜ 「Rebuild Container」** を選択               |
+| `python: command not found` が表示される    | ターミナルが接続されていないため、**+** をクリックし *bash* を選択 |
+| OpenAIから `401 Unauthorized` が返される   | `OPENAI_API_KEY` が間違っているか、期限切れ                 |
+| VS Codeで「Dev container mounting…」と表示 | ブラウザのタブを更新。Codespacesが接続を失うことがある      |
+| ノートブックのカーネルが存在しない           | ノートブック メニュー ➜ **Kernel ▸ Select Kernel ▸ Python 3** を選択  |
 
    Unix系システム:
 
@@ -65,64 +56,64 @@ CO_OP_TRANSLATOR_METADATA:
    echo . > .env
    ```
 
-3. **`.env`ファイルを編集する**: テキストエディタ（例：VS Code, Notepad++など）で`.env`ファイルを開き、以下の行を追加します。`your_github_token_here`は自分のGitHubトークンに置き換えてください。
+3. **`.env` ファイルを編集**: テキストエディタ（例：VS Code、Notepad++、その他）で `.env` ファイルを開きます。`your_github_token_here` を実際のGitHubトークンに置き換えて、次の行を追加します:
 
    ```env
    GITHUB_TOKEN=your_github_token_here
    ```
 
-4. **ファイルを保存する**: 変更を保存して、エディタを閉じます。
+4. **ファイルを保存**: 変更を保存し、テキストエディタを閉じます。
 
-5. **`python-dotenv`をインストールする**: まだインストールしていない場合は、`python-dotenv`パッケージをインストールして、Pythonアプリケーションで`.env`ファイルの環境変数を読み込めるようにします。`pip`でインストールできます。
+5. **`python-dotenv` をインストール**: まだの場合は、`python-dotenv` パッケージをインストールしてください。これは `.env` ファイルから環境変数をPythonアプリケーションに読み込むために必要です。`pip` でインストールできます:
 
    ```bash
    pip install python-dotenv
    ```
 
-6. **Pythonスクリプトで環境変数を読み込む**: Pythonスクリプト内で`python-dotenv`パッケージを使い、`.env`ファイルから環境変数を読み込みます。
+6. **Pythonスクリプトで環境変数を読み込む**: Pythonスクリプト内で `python-dotenv` パッケージを使用し、`.env` ファイルから環境変数を読み込みます:
 
    ```python
    from dotenv import load_dotenv
    import os
 
-   # Load environment variables from .env file
+   # .envファイルから環境変数を読み込む
    load_dotenv()
 
-   # Access the GITHUB_TOKEN variable
+   # GITHUB_TOKEN変数にアクセスする
    github_token = os.getenv("GITHUB_TOKEN")
 
    print(github_token)
    ```
 
-これで、`.env`ファイルの作成、GitHubトークンの追加、Pythonアプリケーションへの読み込みが完了です。
+これで完了です！`.env` ファイルの作成、GitHubトークンの追加、およびPythonアプリでの読み込みが成功しました。
 
-## パソコンでローカル実行する方法
+## コンピューターでローカル実行する方法
 
-コードを自分のパソコンで実行するには、[Pythonをインストール](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst)しておく必要があります。
+コンピューターでコードをローカルに実行するには、[Pythonのいずれかのバージョンがインストールされている必要があります](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst)。
 
-リポジトリを使うには、まずクローンします。
+その後、リポジトリをクローンしてください。
 
 ```shell
 git clone https://github.com/microsoft/generative-ai-for-beginners
 cd generative-ai-for-beginners
 ```
 
-すべてチェックアウトできたら、すぐに始められます！
+すべて準備できたら、さっそく始めましょう！
 
-## オプション手順
+## オプションの手順
 
 ### Minicondaのインストール
 
-[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst)は、[Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst)やPython、いくつかのパッケージをインストールできる軽量インストーラーです。
-Condaはパッケージ管理ツールで、Pythonの[**仮想環境**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst)やパッケージの切り替えが簡単にできます。`pip`で入手できないパッケージのインストールにも便利です。
+[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst)は、[Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst)、Python、およびいくつかのパッケージをインストールするための軽量インストーラーです。  
+Condaはパッケージマネージャーで、複数のPythonの[**仮想環境**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst)やパッケージの設定や切り替えを簡単に行えます。`pip` で入手できないパッケージのインストールにも便利です。
 
-[MiniCondaインストールガイド](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst)に従ってセットアップしてください。
+[Minicondaインストールガイド](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst)に従いセットアップしてください。
 
-Minicondaをインストールしたら、[リポジトリ](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)をクローンします（まだの場合）。
+Minicondaをインストールしたら、まだなら[リポジトリをクローン](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)します。
 
-次に、仮想環境を作成します。Condaで新しい環境ファイル(_environment.yml_)を作成してください。Codespacesを使っている場合は、`.devcontainer`ディレクトリ内に作成します（例：`.devcontainer/environment.yml`）。
+次に仮想環境を作成します。Condaを使う場合は環境ファイル（_environment.yml_）を作成します。Codespacesを使う場合は `.devcontainer` ディレクトリ内に作成し、パスは `.devcontainer/environment.yml` となります。
 
-以下のスニペットで環境ファイルを作成しましょう。
+環境ファイルを以下のスニペットで埋めてください：
 
 ```yml
 name: <environment-name>
@@ -138,38 +129,38 @@ dependencies:
       - azure-ai-ml
 ```
 
-もしcondaでエラーが出る場合は、以下のコマンドでMicrosoft AIライブラリを手動でインストールできます。
+もしcondaでエラーが発生する場合は、以下のコマンドをターミナルで使ってMicrosoft AIライブラリを手動でインストールできます。
 
 ```
 conda install -c microsoft azure-ai-ml
 ```
 
-環境ファイルには必要な依存関係が記載されています。`<environment-name>`はConda環境の名前、`<python-version>`は使いたいPythonのバージョンです。例えば、`3`は最新のメジャーバージョンです。
+環境ファイルは必要な依存関係を指定します。 `<environment-name>` は作成したいConda環境名で、`<python-version>` は使用したいPythonのバージョン（例：最新のメジャーバージョン3）です。
 
-これができたら、以下のコマンドでConda環境を作成します。
+これを終えたら、以下のコマンドでConda環境を作成します。
 
 ```bash
-conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer sub path applies to only Codespace setups
+conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer のサブパスは Codespace の設定にのみ適用されます
 conda activate ai4beg
 ```
 
-問題があれば[Conda環境ガイド](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst)を参照してください。
+問題がある場合は、[Conda環境のガイド](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst)を参照してください。
 
-### Pythonサポート拡張機能付きVisual Studio Codeの利用
+### Visual Studio CodeとPythonサポート拡張機能の使用
 
-このコースでは、[Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst)エディタと[Pythonサポート拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst)の利用をおすすめします。ただし、必須ではありません。
+このコースでは、[Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) エディターと [Pythonサポート拡張](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) の利用を推奨しています。ただし必須ではありません。
 
-> **Note**: コースリポジトリをVS Codeで開くと、プロジェクトをコンテナ内でセットアップするオプションがあります。これは、リポジトリ内の[特別な`.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst)ディレクトリによるものです。詳細は後ほど。
+> **注意**: コースリポジトリをVS Codeで開くと、プロジェクトをコンテナ内にセットアップするオプションがあります。これは、コースリポジトリ内の[特別な `.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) ディレクトリによるものです。詳細は後述します。
 
-> **Note**: ディレクトリをクローンしてVS Codeで開くと、Pythonサポート拡張機能のインストールを自動で提案されます。
+> **注意**: リポジトリをクローンしVS Codeで開くと、自動的にPythonサポート拡張機能のインストールを提案されます。
 
-> **Note**: VS Codeがリポジトリをコンテナで再度開くよう提案した場合は、ローカルのPythonを使うためにこのリクエストを断ってください。
+> **注意**: VS Codeでリポジトリのコンテナでの再オープンを提案された場合は、ローカルのPythonを使うため拒否してください。
 
 ### ブラウザでJupyterを使う
 
-[ブラウザ上のJupyter環境](https://jupyter.org?WT.mc_id=academic-105485-koreyst)でもプロジェクトに取り組めます。クラシックJupyterや[Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst)は、補完やコードハイライトなど快適な開発環境を提供します。
+ブラウザ上で [Jupyter環境](https://jupyter.org?WT.mc_id=academic-105485-koreyst) を利用することも可能です。クラシックJupyterも[ Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst)も、自動補完やコードハイライトなど使いやすい開発環境を提供します。
 
-Jupyterをローカルで起動するには、ターミナル/コマンドラインでコースディレクトリに移動し、以下を実行します。
+ローカルでJupyterを起動するには、ターミナル／コマンドラインでコースディレクトリに移動して次のコマンドを実行：
 
 ```bash
 jupyter notebook
@@ -181,58 +172,61 @@ jupyter notebook
 jupyterhub
 ```
 
-これでJupyterが起動し、アクセス用URLがコマンドラインウィンドウに表示されます。
+このコマンドでJupyterが起動し、アクセスURLが表示されます。
 
-URLにアクセスすると、コースのアウトラインが表示され、任意の`*.ipynb`ファイルに移動できます。例：`08-building-search-applications/python/oai-solution.ipynb`。
+URLにアクセスするとコースのアウトラインが表示され、任意の `*.ipynb` ファイルに移動できます。例：`08-building-search-applications/python/oai-solution.ipynb`。
 
-### コンテナで実行する
+### コンテナでの実行
 
-パソコンやCodespaceでセットアップする代わりに、[コンテナ](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>)を使う方法もあります。コースリポジトリ内の特別な`.devcontainer`フォルダーにより、VS Codeでプロジェクトをコンテナ内にセットアップできます。Codespaces以外ではDockerのインストールが必要で、少し手間がかかるので、コンテナ経験者向けの方法です。
+コンピューターやCodespaceでのセットアップの代わりに[コンテナ](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>)を使うこともできます。  
+コースリポジトリ内の特別な `.devcontainer` フォルダーを使い、VS Codeでプロジェクトをコンテナ内にセットアップ可能です。Codespaces外ではDockerのインストールが必要で多少の作業が発生するため、コンテナ作業経験者にのみ推奨します。
 
-GitHub CodespacesでAPIキーを安全に管理するには、Codespace Secretsの利用がおすすめです。[Codespaces secrets管理ガイド](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst)を参照してください。
+GitHub CodespacesでAPIキーを安全に管理する最善の方法の1つはCodespace Secretsの利用です。詳しくは[Codespaces secret管理ガイド](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst)をご覧ください。
 
-## レッスンと技術要件
+## レッスンと技術的要件
 
-コースは6つの概念レッスンと6つのコーディングレッスンで構成されています。
+コースには6つのコンセプトレッスンと6つのコーディングレッスンがあります。
 
-コーディングレッスンではAzure OpenAI Serviceを使用します。コードを実行するにはAzure OpenAIサービスへのアクセスとAPIキーが必要です。[申請フォーム](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst)から申請できます。
+コーディングレッスンではAzure OpenAI Serviceを使用します。サービスの利用とAPIキーが必要です。アクセスには[この申請](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst)を提出してください。
 
-申請が処理されるまでの間、各コーディングレッスンには`README.md`ファイルがあり、コードや出力を確認できます。
+申請結果を待つ間は、各コーディングレッスンに含まれる `README.md` でコードと出力を確認できます。
 
-## Azure OpenAI Serviceの初回利用
+## 初めてAzure OpenAI Serviceを使う場合
 
-Azure OpenAIサービスを初めて使う場合は、[Azure OpenAI Serviceリソースの作成とデプロイ方法](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst)ガイドに従ってください。
+Azure OpenAI Serviceを初めて使う場合は、以下のガイドに従ってサービスリソースの[作成とデプロイ](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst)を行ってください。
 
-## OpenAI APIの初回利用
+## 初めてOpenAI APIを使う場合
 
-OpenAI APIを初めて使う場合は、[インターフェースの作成と利用方法](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst)ガイドに従ってください。
+OpenAI APIを初めて使う場合は、作成と使用方法についてのガイドを参照してください。[Interfaceの作成と利用](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst)
 
-## 他の学習者と交流する
+## 他の学習者に会う
 
-公式の[AI Community Discordサーバー](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)に、他の学習者と交流できるチャンネルを用意しています。生成AIに興味のある起業家、開発者、学生などとネットワークを広げる絶好の機会です。
+公式の[AIコミュニティDiscordサーバー](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)にて、他の学習者と交流できるチャンネルを作成しました。同じ志を持つ起業家やビルダー、学生、そしてジェネレーティブAIをレベルアップしたい方々とネットワークを築く素晴らしい機会です。
 
 [![Discordチャンネルに参加](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)
 
 プロジェクトチームもこのDiscordサーバーで学習者をサポートします。
 
-## 貢献する
+## 参加する
 
-このコースはオープンソースプロジェクトです。改善点や問題があれば、[Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst)を作成するか、[GitHub issue](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst)に記録してください。
+このコースはオープンソースの取り組みです。改善点や問題を見つけたら、[プルリクエストを作成](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst)するか、[GitHubのIssue](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst)を報告してください。
 
-プロジェクトチームはすべての貢献を追跡します。オープンソースへの貢献は、生成AI分野でキャリアを築く素晴らしい方法です。
+プロジェクトチームはすべての貢献を追跡しています。オープンソースに貢献することは、ジェネレーティブAIのキャリアを築く素晴らしい方法です。
 
-ほとんどの貢献には、Contributor License Agreement (CLA)への同意が必要です。これは、あなたが貢献する権利を持ち、実際に権利を譲渡することを宣言するものです。詳細は[CLA, Contributor License Agreementのウェブサイト](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst)をご覧ください。
+ほとんどの貢献は、あなたが寄稿物を使用権として当社に許諾する権利を持ち、実際に許諾していることを宣言するコントリビューターライセンス契約（CLA）への同意が必要です。詳細は[CLA、コントリビューターライセンス契約のウェブサイト](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst)をご覧ください。
 
-重要：このリポジトリの翻訳を行う際は、機械翻訳を使用しないでください。翻訳はコミュニティで確認しますので、得意な言語のみでボランティアしてください。
+重要：このリポジトリのテキストを翻訳するときは、機械翻訳を使わないでください。コミュニティにより翻訳内容を検証するため、母語が堪能な言語の翻訳者のみボランティアしてください。
 
-Pull Requestを送信すると、CLA-botが自動的にCLAの提出が必要かどうかを判断し、PRにラベルやコメントを付けます。指示に従ってください。CLAの提出は、弊社CLAを使うすべてのリポジトリで一度だけ必要です。
+プルリクエストを送ると、CLAボットが自動的にCLAの提供が必要か判断し、ラベルやコメントをつけます。指示に従ってください。この操作はすべてのリポジトリで一度だけ行えば十分です。
 
-このプロジェクトは[Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst)を採用しています。詳細はCode of Conduct FAQを読むか、[Email opencode](opencode@microsoft.com)までご質問・ご意見をお寄せください。
+このプロジェクトは[Microsoftのオープンソース行動規範](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst)を採用しています。詳細は行動規範のFAQを読んでください。追加の質問やコメントは[Email opencode](opencode@microsoft.com)へご連絡ください。
 
-## さあ、始めましょう
-これでこのコースを進めるための必要なステップが完了しました。さっそく、[生成AIとLLMの概要](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst)から始めましょう。
+## さあ始めましょう！
+このコースを完了するために必要なステップを終えたので、まずは[生成AIと大規模言語モデル（LLM）の紹介](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst)から始めましょう。
 
 ---
 
-**免責事項**：
-本書類はAI翻訳サービス [Co-op Translator](https://github.com/Azure/co-op-translator) を使用して翻訳されています。正確性には努めておりますが、自動翻訳には誤りや不正確な表現が含まれる場合があります。原文（元の言語の文書）が正式な情報源として扱われるべきです。重要な情報については、専門の人間による翻訳を推奨します。本翻訳の利用により生じたいかなる誤解や誤認についても、当方は責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**免責事項**：  
+本書類はAI翻訳サービス「[Co-op Translator](https://github.com/Azure/co-op-translator)」を使用して翻訳されています。正確性には努めておりますが、自動翻訳には誤りや不正確な部分が含まれる可能性があります。原文はその言語における正式な版としてご参照ください。重要な情報については、専門の翻訳者による翻訳を推奨いたします。本翻訳の利用により生じたいかなる誤解や誤訳に対しても、一切の責任を負いかねます。
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

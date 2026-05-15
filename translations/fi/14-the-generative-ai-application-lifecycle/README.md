@@ -1,19 +1,10 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "27a5347a5022d5ef0a72ab029b03526a",
-  "translation_date": "2025-07-09T15:55:16+00:00",
-  "source_file": "14-the-generative-ai-application-lifecycle/README.md",
-  "language_code": "fi"
-}
--->
-[![Integrating with function calling](../../../translated_images/14-lesson-banner.066d74a31727ac121eeac06376a068a397d8e335281e63ce94130d11f516e46b.fi.png)](https://aka.ms/gen-ai-lesson14-gh?WT.mc_id=academic-105485-koreyst)
+[![Integrointi funktion kutsumisen kanssa](../../../translated_images/fi/14-lesson-banner.066d74a31727ac12.webp)](https://youtu.be/ewtQY_RJrzs?si=dyJ2bjiljH7UUHCh)
 
-# Generatiivisen tekoälyn sovelluskehityksen elinkaari
+# Generatiivisen tekoälyn sovellus elinkaaren hallinta
 
-Tärkeä kysymys kaikille tekoälysovelluksille on tekoälyominaisuuksien ajankohtaisuus, sillä tekoäly kehittyy nopeasti. Jotta sovelluksesi pysyy relevanttina, luotettavana ja vankkana, sitä täytyy jatkuvasti seurata, arvioida ja parantaa. Tässä astuu kuvaan generatiivisen tekoälyn elinkaari.
+Tärkeä kysymys kaikille tekoälysovelluksille on tekoälyominaisuuksien merkityksellisyys, sillä tekoäly on nopeasti kehittyvä ala. Jotta sovelluksesi pysyy merkityksellisenä, luotettavana ja vankkana, sinun on seurattava, arvioitava ja parannettava sitä jatkuvasti. Tässä kohtaa astuu kuvaan generatiivisen tekoälyn elinkaari.
 
-Generatiivisen tekoälyn elinkaari on kehys, joka ohjaa sinua generatiivisen tekoälysovelluksen kehittämisen, käyttöönoton ja ylläpidon vaiheissa. Se auttaa sinua määrittelemään tavoitteesi, mittaamaan suorituskykyäsi, tunnistamaan haasteesi ja toteuttamaan ratkaisut. Lisäksi se auttaa sovelluksesi sovittamisessa eettisiin ja lainsäädännöllisiin vaatimuksiin alallasi ja sidosryhmiesi kanssa. Noudattamalla generatiivisen tekoälyn elinkaarta voit varmistaa, että sovelluksesi tuottaa aina arvoa ja tyydyttää käyttäjiäsi.
+Generatiivisen tekoälyn elinkaari on kehys, joka ohjaa sinua generatiivisen tekoälysovelluksen kehittämisen, käyttöönoton ja ylläpidon vaiheiden läpi. Se auttaa sinua määrittelemään tavoitteesi, mittaamaan suorituskykysi, tunnistamaan haasteesi ja toteuttamaan ratkaisusi. Lisäksi se auttaa sinua sovittamaan sovelluksesi eettisiin ja laillisiin standardeihin omalla alallasi ja sidosryhmäsi kanssa. Noudattamalla generatiivisen tekoälyn elinkaarta voit varmistaa, että sovelluksesi tarjoaa aina arvoa ja tyydyttää käyttäjäsi.
 
 ## Johdanto
 
@@ -21,78 +12,82 @@ Tässä luvussa opit:
 
 - Ymmärtämään paradigman muutoksen MLOpsista LLMOpsiin
 - LLM-elinkaaren
-- Elinkaaren työkalut
-- Elinkaaren mittaamisen ja arvioinnin
+- Työkalut elinkaareen
+- Elinkaaren mittarointi ja arviointi
 
 ## Ymmärrä paradigman muutos MLOpsista LLMOpsiin
 
-LLM:t ovat uusi työkalu tekoälyn arsenaalissa, ne ovat uskomattoman tehokkaita analyysi- ja generointitehtävissä sovelluksissa, mutta tämä teho tuo mukanaan myös seurauksia tekoälyn ja perinteisen koneoppimisen tehtävien virtaviivaistamiseen.
+LLMit ovat uusi työkalu tekoälyarsenaalissa, ne ovat uskomattoman tehokkaita analyysi- ja generointitehtävissä sovelluksille, mutta tällä voimalla on vaikutuksia siihen, miten virtaviivaistamme tekoälyä ja perinteistä koneoppimista.
 
-Tämän vuoksi tarvitsemme uuden paradigman, jolla voimme sovittaa tämän työkalun dynaamisesti oikeilla kannustimilla. Voimme luokitella vanhemmat tekoälysovellukset "ML-sovelluksiksi" ja uudemmat "GenAI-sovelluksiksi" tai yksinkertaisesti "AI-sovelluksiksi", heijastaen aikakauden yleisiä teknologioita ja menetelmiä. Tämä muuttaa kertomustamme monin tavoin, katso seuraavaa vertailua.
+Tämän myötä tarvitaan uusi paradigma tämän työkalun dynaamiseen sovittamiseen oikeilla kannustimilla. Voimme luokitella vanhemmat tekoälysovellukset "ML-sovelluksiksi" ja uudemmat tekoälysovellukset "GenAI-sovelluksiksi" tai vain "AI-sovelluksiksi", mikä heijastaa tuon ajan valtavirran teknologiaa ja tekniikoita. Tämä muuttaa tarinaamme monella tavalla, katso seuraavaa vertailua.
 
-![LLMOps vs. MLOps comparison](../../../translated_images/01-llmops-shift.29bc933cb3bb0080a562e1655c0c719b71a72c3be6252d5c564b7f598987e602.fi.png)
+![LLMOps vs. MLOps vertailu](../../../translated_images/fi/01-llmops-shift.29bc933cb3bb0080.webp)
 
-Huomaa, että LLMOpsissa keskitymme enemmän sovelluskehittäjiin, käyttäen integraatioita keskeisenä kohtana, hyödyntäen "Models-as-a-Service" -mallia ja ajatellen seuraavia mittareita.
+Huomaa, että LLMOpsissa keskitymme enemmän sovelluskehittäjiin, käyttäen integraatioita keskeisenä kohtana, käyttäen "Models-as-a-Service" -mallia ja ajatellen mittareita seuraavasti.
 
-- Laatu: Vastauksen laatu
-- Haitta: Vastuullinen tekoäly
-- Rehellisyys: Vastauksen perusteltavuus (Onko järkevää? Onko oikein?)
-- Kustannus: Ratkaisun budjetti
-- Viive: Keskimääräinen aika token-vastaukseen
+- Laatu: Vastausten laatu
+- Vahinko: Vastuullinen tekoäly
+- Rehellisyys: Vastausten perusteltavuus (Onko se järkevää? Onko se oikeassa?)
+- Kustannukset: Ratkaisun budjetti
+- Latenssi: Keskimääräinen aika token-vastaukseen
 
 ## LLM-elinkaari
 
-Ensiksi, ymmärtääksemme elinkaaren ja sen muutokset, katsotaan seuraavaa infografiikkaa.
+Ensiksi, ymmärtääksesi elinkaaren ja muutokset, huomioi seuraava infografiikka.
 
-![LLMOps infographic](../../../translated_images/02-llmops.70a942ead05a7645db740f68727d90160cb438ab71f0fb20548bc7fe5cad83ff.fi.png)
+![LLMOps-infografiikka](../../../translated_images/fi/02-llmops.70a942ead05a7645.webp)
 
-Kuten huomaat, tämä eroaa tavallisista MLOpsin elinkaareista. LLM:illä on monia uusia vaatimuksia, kuten prompttien käyttö, erilaiset laadun parantamistekniikat (Fine-Tuning, RAG, Meta-Prompts), erilainen arviointi ja vastuullisuus vastuullisen tekoälyn näkökulmasta, sekä uudet arviointimittarit (Laatu, Haitta, Rehellisyys, Kustannus ja Viive).
+Kuten voi huomata, tämä eroaa tavallisista MLOps-elinkaaresta. LLM:illä on monia uusia vaatimuksia, kuten Prompting, erilaiset tekniikat laadun parantamiseksi (Fine-Tuning, RAG, Meta-Prompts), erilainen arviointi ja vastuu vastuullisen tekoälyn kanssa sekä uudet arviointimittarit (Laatu, Vahinko, Rehellisyys, Kustannukset ja Latenssi).
 
-Esimerkiksi, katso miten ideoimme. Käytämme prompttien suunnittelua kokeillaksemme erilaisia LLM:iä ja tutkiaksemme mahdollisuuksia testata hypoteesimme paikkansapitävyyttä.
+Esimerkiksi katso, miten ideoimme. Käytämme prompt-tekniikkaa kokeillaksemme erilaisia LLM:itä tutkiaksemme mahdollisuuksia testata, voisiko heidän hypoteesinsa olla oikea.
 
-Huomaa, että tämä ei ole lineaarinen prosessi, vaan integroidut silmukat, iteratiivinen ja kokonaisvaltainen sykli.
+Huomaa, että tämä ei ole lineaarista, vaan integroidut silmukat, iteratiivinen ja kattava sykli.
 
-Miten voisimme tutkia näitä vaiheita? Sukelletaan yksityiskohtiin siitä, miten voisimme rakentaa elinkaaren.
+Miten voisimme tutkia näitä vaiheita? Tarkastellaan yksityiskohtaisemmin, miten voisimme rakentaa elinkaaren.
 
-![LLMOps Workflow](../../../translated_images/03-llm-stage-flows.3a1e1c401235a6cfa886ed6ba04aa52a096a545e1bc44fa54d7d5983a7201892.fi.png)
+![LLMOps-työnkulku](../../../translated_images/fi/03-llm-stage-flows.3a1e1c401235a6cf.webp)
 
-Tämä saattaa näyttää hieman monimutkaiselta, keskitytään ensin kolmeen isoon vaiheeseen.
+Tämä saattaa näyttää hieman monimutkaiselta, keskitytään ensin kolmeen suureen vaiheeseen.
 
-1. Ideointi/Tutkiminen: Tutkimusvaihe, tässä voimme tutkia liiketoimintatarpeidemme mukaan. Prototyyppien tekeminen, [PromptFlow](https://microsoft.github.io/promptflow/index.html?WT.mc_id=academic-105485-koreyst) luominen ja testaus, onko se riittävän tehokas hypoteesillemme.
-1. Rakentaminen/Lisäys: Toteutusvaihe, nyt alamme arvioida suuremmilla aineistoilla, toteuttaa tekniikoita kuten Fine-tuning ja RAG, tarkistaaksemme ratkaisumme vankkuuden. Jos ei toimi, uudelleentoteutus, uusien vaiheiden lisääminen työnkulkuun tai datan uudelleenjärjestely voi auttaa. Kun työnkulku ja skaala toimivat ja mittarit ovat kunnossa, se on valmis seuraavaan vaiheeseen.
-1. Käyttöönotto: Integrointi, nyt lisätään valvonta- ja hälytysjärjestelmät, käyttöönotto ja sovelluksen integrointi sovellukseen.
+1. Ideointi/Tutkiminen: Tutkiminen, tässä voimme tutkia liiketoimintatarpeidemme mukaan. Prototyypin luominen, [PromptFlow:n](https://microsoft.github.io/promptflow/index.html?WT.mc_id=academic-105485-koreyst) luominen ja testaus onko se tarpeeksi tehokas hypoteesillemme.
+1. Rakentaminen/Lisäys: Toteutus, nyt alamme arvioida suuremmilla aineistoilla toteuttaen tekniikoita, kuten hienosäätöä ja RAG:ia, tarkistaaksemme ratkaisumme vankkuuden. Jos ei ole, uudelleen toteuttaminen, uusien vaiheiden lisääminen työnkulkuun tai datan uudelleenjärjestäminen voi auttaa. Testattuamme työnkulkuamme ja mittakaavaamme, jos se toimii ja mittarit ovat hyväksyttävät, se on valmis seuraavaan vaiheeseen.
+1. Operatiivistaminen: Integrointi, nyt lisätään valvonta- ja hälytysjärjestelmät järjestelmäämme, käyttöönotto ja sovelluksen integrointi sovellukseemme.
 
-Tämän jälkeen on hallinnan kokonaisvaltainen sykli, joka keskittyy turvallisuuteen, vaatimustenmukaisuuteen ja hallintoon.
+Sitten meillä on hallinnan kattava sykli, joka keskittyy turvallisuuteen, vaatimustenmukaisuuteen ja hallintoon.
 
-Onnittelut, nyt sinulla on tekoälysovellus valmiina käyttöön ja toiminnassa. Käytännön kokemusta varten tutustu [Contoso Chat Demo](https://nitya.github.io/contoso-chat/?WT.mc_id=academic-105485-koreys).
+Onnittelut, nyt tekoälysovelluksesi on valmis käyttöön ja toimimaan. Käytännön kokemusta varten tutustu [Contoso Chat Demo](https://nitya.github.io/contoso-chat/?WT.mc_id=academic-105485-koreyst).
 
-Mitä työkaluja voisimme käyttää?
+Mitä työkaluja voimme käyttää?
 
 ## Elinkaaren työkalut
 
-Työkalujen osalta Microsoft tarjoaa [Azure AI Platformin](https://azure.microsoft.com/solutions/ai/?WT.mc_id=academic-105485-koreys) ja [PromptFlow’n](https://microsoft.github.io/promptflow/index.html?WT.mc_id=academic-105485-koreyst), jotka helpottavat ja tekevät elinkaaren toteuttamisesta vaivatonta ja valmista käyttöön.
+Työkaluissa Microsoft tarjoaa [Azure AI Platformin](https://azure.microsoft.com/solutions/ai/?WT.mc_id=academic-105485-koreyst) ja [PromptFlow’n](https://microsoft.github.io/promptflow/index.html?WT.mc_id=academic-105485-koreyst), jotka helpottavat ja tekevät syklin toteuttamisesta helppoa ja valmista käyttöön.
 
-[Azure AI Platform](https://azure.microsoft.com/solutions/ai/?WT.mc_id=academic-105485-koreys) antaa sinun käyttää [AI Studiota](https://ai.azure.com/?WT.mc_id=academic-105485-koreys). AI Studio on verkkopalvelu, joka mahdollistaa mallien, esimerkkien ja työkalujen tutkimisen. Resurssien hallinnan, käyttöliittymän kehitystyönkulut sekä SDK/CLI-vaihtoehdot koodikeskeiseen kehitykseen.
+[Azure AI Platform](https://azure.microsoft.com/solutions/ai/?WT.mc_id=academic-105485-koreyst) tarjoaa mahdollisuuden käyttää [AI Studioa](https://ai.azure.com/?WT.mc_id=academic-105485-koreyst). AI Studio on verkkopohjainen portaali, joka sallii mallien, mallinäytteiden ja työkalujen tutkimisen. Hallitsee resurssiasi, käyttöliittymän kehitystyönkulkuja sekä SDK/CLI-vaihtoehtoja koodikeskeiseen kehitykseen.
 
-![Azure AI possibilities](../../../translated_images/04-azure-ai-platform.80203baf03a12fa8b166e194928f057074843d1955177baf0f5b53d50d7b6153.fi.png)
+![Azure AI:n mahdollisuudet](../../../translated_images/fi/04-azure-ai-platform.80203baf03a12fa8.webp)
 
-Azure AI mahdollistaa useiden resurssien käytön operaatioiden, palveluiden, projektien, vektorihakujen ja tietokantojen hallintaan.
+Azure AI mahdollistaa monien resurssien käytön operaatioiden, palveluiden, projektien, vektorihaut ja tietokantatarpeiden hallinnassa.
 
-![LLMOps with Azure AI](../../../translated_images/05-llm-azure-ai-prompt.a5ce85cdbb494bdf95420668e3464aae70d8b22275a744254e941dd5e73ae0d2.fi.png)
+![LLMOps Azure AI:n kanssa](../../../translated_images/fi/05-llm-azure-ai-prompt.a5ce85cdbb494bdf.webp)
 
-Rakenna Proof-of-Conceptistä (POC) aina laajamittaisiin sovelluksiin PromptFlow’n avulla:
+Rakenna Proof-of-Conceptistä (POC) suuriin sovelluksiin PromptFlown avulla:
 
 - Suunnittele ja rakenna sovelluksia VS Codesta visuaalisilla ja toiminnallisilla työkaluilla
-- Testaa ja hienosäädä sovelluksiasi laadukkaan tekoälyn saavuttamiseksi helposti
-- Käytä Azure AI Studiota pilvi-integraatioon, iterointiin, push-toimintoihin ja nopeaan käyttöönottoon
+- Testaa ja hienosäädä sovelluksesi laadukasta tekoälyä varten helposti
+- Käytä Azure AI Studioa pilven kanssa integrointiin ja iterointiin, työntöön ja käyttöönottoon nopeaan integraatioon
 
-![LLMOps with PromptFlow](../../../translated_images/06-llm-promptflow.a183eba07a3a7fdf4aa74db92a318b8cbbf4a608671f6b166216358d3203d8d4.fi.png)
+![LLMOps PromptFlown kanssa](../../../translated_images/fi/06-llm-promptflow.a183eba07a3a7fdf.webp)
 
-## Hienoa! Jatka oppimista!
+## Mahtavaa! Jatka oppimista!
 
-Mahtavaa, nyt opi lisää siitä, miten rakennamme sovelluksen käyttämään näitä konsepteja [Contoso Chat Appin](https://nitya.github.io/contoso-chat/?WT.mc_id=academic-105485-koreyst) avulla, ja katso, miten Cloud Advocacy tuo nämä konseptit esiin demoissa. Lisää sisältöä löydät [Ignite breakout -sessiossamme!](https://www.youtube.com/watch?v=DdOylyrTOWg)
+Upeaa, opi nyt lisää siitä, miten rakennamme sovelluksen käyttämään käsitteitä [Contoso Chat App](https://nitya.github.io/contoso-chat/?WT.mc_id=academic-105485-koreyst) -sovelluksessa, tutki miten Cloud Advocacy tuo näitä käsitteitä esityksiin. Lisää sisältöä löydät [Ignite breakout sessionista!](https://www.youtube.com/watch?v=DdOylyrTOWg)
 
-Seuraavaksi tutustu Oppituntiin 15, jossa ymmärrät, miten [Retrieval Augmented Generation ja vektoritietokannat](../15-rag-and-vector-databases/README.md?WT.mc_id=academic-105485-koreyst) vaikuttavat generatiiviseen tekoälyyn ja tekevät sovelluksista entistä kiinnostavampia!
+Seuraavaksi katso Luku 15, ymmärtääksesi miten [Retrieval Augmented Generation ja vektoritietokannat](../15-rag-and-vector-databases/README.md?WT.mc_id=academic-105485-koreyst) vaikuttavat generatiiviseen tekoälyyn ja tekevät sovelluksistasi kiinnostavampia!
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, huomioithan, että automaattikäännöksissä saattaa esiintyä virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, otathan huomioon, että automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäisellä kielellä pidetään lopullisena ja virallisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa mahdollisista väärinymmärryksistä tai virhetulkintojen seurauksista, jotka johtuvat tämän käännöksen käytöstä.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

@@ -1,258 +1,207 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dcbaaae026cb50fee071e690685b5843",
-  "translation_date": "2025-08-26T18:25:28+00:00",
-  "source_file": "04-prompt-engineering-fundamentals/README.md",
-  "language_code": "ms"
-}
--->
 # Asas Kejuruteraan Prompt
 
-[![Prompt Engineering Fundamentals](../../../translated_images/04-lesson-banner.a2c90deba7fedacda69f35b41636a8951ec91c2e33f5420b1254534ac85bc18e.ms.png)](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)
+[![Asas Kejuruteraan Prompt](../../../translated_images/ms/04-lesson-banner.a2c90deba7fedacd.webp)](https://youtu.be/GElCu2kUlRs?si=qrXsBvXnCW12epb8)
 
-## Pengenalan
-Modul ini merangkumi konsep dan teknik penting untuk menghasilkan prompt yang berkesan dalam model AI generatif. Cara anda menulis prompt kepada LLM juga memainkan peranan. Prompt yang dirancang dengan teliti boleh menghasilkan respons yang lebih berkualiti. Tetapi apa sebenarnya maksud istilah seperti _prompt_ dan _kejuruteraan prompt_? Dan bagaimana saya boleh memperbaiki _input_ prompt yang saya hantar kepada LLM? Inilah persoalan yang akan kita cuba jawab dalam bab ini dan seterusnya.
+## Pengenalan  
+Modul ini merangkumi konsep dan teknik penting untuk mencipta prompt yang berkesan dalam model AI generatif. Cara anda menulis prompt kepada LLM juga penting. Prompt yang direka dengan teliti boleh mencapai kualiti respons yang lebih baik. Tetapi apakah sebenarnya maksud istilah seperti _prompt_ dan _kejuruteraan prompt_? Dan bagaimana saya boleh memperbaiki _input_ prompt yang saya hantar ke LLM? Ini adalah soalan yang akan kita cuba jawab dalam bab ini dan seterusnya.
 
-_AI Generatif_ mampu mencipta kandungan baru (contohnya, teks, imej, audio, kod dan sebagainya) sebagai respons kepada permintaan pengguna. Ia menggunakan _Model Bahasa Besar_ seperti siri GPT ("Generative Pre-trained Transformer") dari OpenAI yang dilatih untuk menggunakan bahasa semula jadi dan kod.
+_AI Generatif_ mampu menghasilkan kandungan baru (contohnya, teks, imej, audio, kod dan sebagainya) sebagai tindak balas kepada permintaan pengguna. Ia mencapai ini menggunakan _Model Bahasa Besar_ seperti siri GPT OpenAI ("Generative Pre-trained Transformer") yang dilatih menggunakan bahasa semula jadi dan kod.
 
-Pengguna kini boleh berinteraksi dengan model-model ini menggunakan kaedah yang biasa seperti chat, tanpa memerlukan kepakaran teknikal atau latihan khusus. Model-model ini adalah _berasaskan prompt_ - pengguna menghantar input teks (prompt) dan menerima respons AI (completion). Mereka boleh "berbual dengan AI" secara berulang, dalam perbualan berbilang pusingan, memperhalusi prompt sehingga respons memenuhi jangkaan mereka.
+Pengguna kini boleh berinteraksi dengan model ini menggunakan paradigma yang biasa seperti chat, tanpa memerlukan kepakaran atau latihan teknikal. Model-model ini adalah _berbasis prompt_ - pengguna menghantar input teks (prompt) dan akan menerima respons AI (penyelesaian). Mereka kemudian boleh "berbual dengan AI" secara berulang, dalam perbualan berbilang pusingan, memperhalusi prompt mereka sehingga respons memenuhi jangkaan mereka.
 
-"Prompt" kini menjadi _antara muka pengaturcaraan_ utama untuk aplikasi AI generatif, memberitahu model apa yang perlu dilakukan dan mempengaruhi kualiti respons yang diterima. "Kejuruteraan Prompt" ialah bidang kajian yang berkembang pesat yang memberi tumpuan kepada _reka bentuk dan pengoptimuman_ prompt untuk menghasilkan respons yang konsisten dan berkualiti secara besar-besaran.
+"Prompts" kini menjadi _antara muka pengaturcaraan_ utama untuk aplikasi AI generatif, memberitahu model apa yang perlu dilakukan dan mempengaruhi kualiti respons yang dikembalikan. "Kejuruteraan Prompt" adalah bidang kajian yang berkembang pesat yang menumpukan pada _reka bentuk dan pengoptimuman_ prompt untuk memberikan respons konsisten dan berkualiti pada skala besar.
 
-## Objektif Pembelajaran
+## Matlamat Pembelajaran
 
-Dalam pelajaran ini, kita akan belajar apa itu Kejuruteraan Prompt, mengapa ia penting, dan bagaimana kita boleh menghasilkan prompt yang lebih berkesan untuk model dan objektif aplikasi tertentu. Kita akan memahami konsep asas dan amalan terbaik untuk kejuruteraan prompt - serta mengenali persekitaran "sandbox" Jupyter Notebooks interaktif di mana kita boleh melihat konsep ini digunakan pada contoh sebenar.
+Dalam pelajaran ini, kita akan belajar apa itu Kejuruteraan Prompt, mengapa ia penting, dan bagaimana kita boleh menghasilkan prompt yang lebih berkesan untuk model dan objektif aplikasi tertentu. Kita akan memahami konsep teras dan amalan terbaik dalam kejuruteraan prompt - dan belajar tentang persekitaran Jupyter Notebooks "sandbox" interaktif di mana kita boleh melihat konsep ini diaplikasikan ke contoh sebenar.
 
 Pada akhir pelajaran ini, kita akan dapat:
 
-1. Terangkan apa itu kejuruteraan prompt dan mengapa ia penting.
-2. Huraikan komponen prompt dan bagaimana ia digunakan.
-3. Pelajari amalan terbaik dan teknik untuk kejuruteraan prompt.
-4. Gunakan teknik yang dipelajari pada contoh sebenar, menggunakan endpoint OpenAI.
+1. Menjelaskan apa itu kejuruteraan prompt dan mengapa ia penting.  
+2. Menerangkan komponen prompt dan bagaimana ia digunakan.  
+3. Mempelajari amalan terbaik dan teknik untuk kejuruteraan prompt.  
+4. Menerapkan teknik yang dipelajari kepada contoh sebenar, menggunakan titik akhir OpenAI.
 
 ## Istilah Utama
 
-Kejuruteraan Prompt: Amalan mereka bentuk dan memperhalusi input untuk membimbing model AI menghasilkan output yang diingini.
-Tokenisasi: Proses menukar teks kepada unit yang lebih kecil, dipanggil token, yang boleh difahami dan diproses oleh model.
-LLM Ditala Arahan: Model Bahasa Besar (LLM) yang telah ditala dengan arahan khusus untuk meningkatkan ketepatan dan relevan respons.
+Kejuruteraan Prompt: Amalan mereka bentuk dan memperhalusi input untuk mengarahkan model AI menghasilkan output yang diinginkan.  
+Tokenisasi: Proses menukar teks kepada unit yang lebih kecil, dipanggil token, yang dapat difahami dan diproses oleh model.  
+LLM Tuned Arahan: Model Bahasa Besar (LLM) yang telah diselaraskan dengan arahan khusus untuk meningkatkan ketepatan dan relevansi respons.
 
-## Sandbox Pembelajaran
+## Kawasan Pembelajaran
 
-Kejuruteraan prompt buat masa ini lebih kepada seni berbanding sains. Cara terbaik untuk meningkatkan intuisi kita ialah dengan _banyak berlatih_ dan menggunakan pendekatan cuba-jaya yang menggabungkan kepakaran domain aplikasi dengan teknik yang disyorkan serta pengoptimuman khusus model.
+Kejuruteraan prompt kini lebih kepada seni daripada sains. Cara terbaik untuk memperbaiki intuisi kita adalah dengan _berlatih lebih banyak_ dan mengamalkan pendekatan cuba-jaya yang menggabungkan kepakaran domain aplikasi dengan teknik yang disyorkan dan pengoptimuman khusus model.
 
-Jupyter Notebook yang disertakan dengan pelajaran ini menyediakan persekitaran _sandbox_ di mana anda boleh mencuba apa yang dipelajari - sama ada secara langsung atau sebagai sebahagian daripada cabaran kod di akhir. Untuk melaksanakan latihan, anda perlukan:
+Jupyter Notebook yang menyertai pelajaran ini menyediakan persekitaran _sandbox_ di mana anda boleh mencuba apa yang anda pelajari - sewaktu anda berjalan atau sebagai sebahagian daripada cabaran kod pada akhir pelajaran. Untuk melaksanakan latihan, anda memerlukan:
 
-1. **Kunci API Azure OpenAI** - endpoint perkhidmatan untuk LLM yang telah dideploy.
-2. **Runtime Python** - untuk menjalankan Notebook.
+1. **Kunci API Azure OpenAI** - titik akhir perkhidmatan untuk LLM yang telah dideploy.  
+2. **Runtime Python** - di mana Notebook boleh dijalankan.  
 3. **Pembolehubah Persekitaran Tempatan** - _lengkapkan langkah [SETUP](./../00-course-setup/02-setup-local.md?WT.mc_id=academic-105485-koreyst) sekarang untuk bersedia_.
 
-Notebook ini disertakan dengan latihan _permulaan_ - tetapi anda digalakkan untuk menambah bahagian _Markdown_ (penerangan) dan _Kod_ (permintaan prompt) anda sendiri untuk mencuba lebih banyak contoh atau idea - dan membina intuisi anda untuk reka bentuk prompt.
+Notebook disertakan dengan latihan _permulaan_ - tetapi anda digalakkan untuk menambah bahagian _Markdown_ (penerangan) dan _Kod_ (permintaan prompt) anda sendiri untuk mencuba lebih banyak contoh atau idea - dan membina intuisi anda untuk reka bentuk prompt.
 
-## Panduan Bergambar
+## Panduan Ilustrasi
 
-Mahukan gambaran keseluruhan tentang apa yang dibincangkan dalam pelajaran ini sebelum bermula? Lihat panduan bergambar ini, yang memberi anda gambaran tentang topik utama yang dibincangkan dan perkara penting untuk difikirkan dalam setiap bahagian. Peta pelajaran ini membawa anda daripada memahami konsep dan cabaran utama kepada cara menanganinya dengan teknik kejuruteraan prompt dan amalan terbaik yang relevan. Perhatikan bahawa bahagian "Teknik Lanjutan" dalam panduan ini merujuk kepada kandungan yang akan dibincangkan dalam bab _seterusnya_ dalam kurikulum ini.
+Ingin mendapatkan gambaran besar tentang apa yang diliputi pelajaran ini sebelum anda mula? Lihat panduan ilustrasi ini, yang memberi anda gambaran mengenai topik utama yang diliputi dan inti pati utama untuk anda renungkan dalam setiap satu. Peta jalan pelajaran membawa anda dari memahami konsep asas dan cabaran hingga mengatasinya dengan teknik kejuruteraan prompt yang relevan dan amalan terbaik. Nota bahawa bahagian "Teknik Lanjutan" dalam panduan ini merujuk kepada kandungan dalam bab _berikutnya_ dalam kurikulum ini.
 
-![Illustrated Guide to Prompt Engineering](../../../translated_images/04-prompt-engineering-sketchnote.d5f33336957a1e4f623b826195c2146ef4cc49974b72fa373de6929b474e8b70.ms.png)
+![Panduan Ilustrasi Kejuruteraan Prompt](../../../translated_images/ms/04-prompt-engineering-sketchnote.d5f33336957a1e4f.webp)
 
-## Startup Kita
+## Startup Kami
 
-Sekarang, mari bincangkan bagaimana _topik ini_ berkait dengan misi startup kita untuk [membawa inovasi AI ke bidang pendidikan](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). Kita ingin membina aplikasi pembelajaran _peribadi_ berkuasa AI - jadi mari fikirkan bagaimana pengguna berbeza dalam aplikasi kita mungkin "mereka bentuk" prompt:
+Sekarang, mari kita bincangkan bagaimana _topik ini_ berkaitan dengan misi startup kami untuk [membawa inovasi AI ke pendidikan](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). Kami ingin membina aplikasi berkuasa AI untuk _pembelajaran peribadi_ - jadi mari kita fikirkan bagaimana pengguna berbeza dalam aplikasi kami mungkin "mereka bentuk" prompts:
 
-- **Pentadbir** mungkin meminta AI untuk _menganalisis data kurikulum bagi mengenal pasti jurang liputan_. AI boleh meringkaskan hasil atau memvisualisasikannya dengan kod.
-- **Pendidik** mungkin meminta AI untuk _menjana rancangan pelajaran untuk audiens dan topik tertentu_. AI boleh membina rancangan peribadi dalam format yang ditetapkan.
+- **Pentadbir** mungkin meminta AI untuk _menganalisis data kurikulum untuk mengenal pasti jurang liputan_. AI boleh meringkaskan keputusan atau memvisualisasikannya dengan kod.  
+- **Pendidik** mungkin meminta AI untuk _menghasilkan pelan pengajaran untuk audiens dan topik sasaran_. AI boleh membina pelan peribadi dalam format yang ditetapkan.  
 - **Pelajar** mungkin meminta AI untuk _membimbing mereka dalam subjek yang sukar_. AI kini boleh membimbing pelajar dengan pelajaran, petunjuk & contoh yang disesuaikan dengan tahap mereka.
 
-Itu baru permulaan. Lihat [Prompts For Education](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) - pustaka prompt sumber terbuka yang dikurasi oleh pakar pendidikan - untuk gambaran lebih luas tentang kemungkinan yang ada! _Cuba jalankan beberapa prompt tersebut dalam sandbox atau gunakan OpenAI Playground untuk lihat hasilnya!_
+Itu baru sebahagian kecil sahaja. Semak [Prompts For Education](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) - perpustakaan prompts sumber terbuka yang dikurasi oleh pakar pendidikan - untuk mendapatkan gambaran lebih luas tentang kemungkinan! _Cubalah menjalankan beberapa prompts itu di sandbox atau menggunakan OpenAI Playground untuk melihat hasilnya!_
 
-<!--
-TEMPLAT PELAJARAN:
-Unit ini perlu merangkumi konsep teras #1.
-Perkukuhkan konsep dengan contoh dan rujukan.
+<!--  
+LEMBARAN PELAJARAN:  
+Unit ini harus merangkumi konsep teras #1.  
+Mengukuhkan konsep dengan contoh dan rujukan.  
 
-KONSEP #1:
-Kejuruteraan Prompt.
-Definisikan dan terangkan mengapa ia diperlukan.
+KONSEP #1:  
+Kejuruteraan Prompt.  
+Menakrifkan dan menerangkan mengapa ia diperlukan.  
 -->
 
-## Apa itu Kejuruteraan Prompt?
+## Apakah Kejuruteraan Prompt?
 
-Kita mulakan pelajaran ini dengan mendefinisikan **Kejuruteraan Prompt** sebagai proses _mereka bentuk dan mengoptimumkan_ input teks (prompt) untuk menghasilkan respons yang konsisten dan berkualiti (completion) bagi objektif aplikasi dan model tertentu. Kita boleh anggap ini sebagai proses 2 langkah:
+Kita mula pelajaran ini dengan mendefinisikan **Kejuruteraan Prompt** sebagai proses _mereka bentuk dan mengoptimumkan_ input teks (prompts) untuk memberikan penyelesaian (completions) yang konsisten dan berkualiti untuk objektif aplikasi dan model tertentu. Kita boleh menganggap ini sebagai proses 2 langkah:
 
-- _mereka bentuk_ prompt awal untuk model dan objektif tertentu
-- _memperhalusi_ prompt secara berulang untuk meningkatkan kualiti respons
+- _mereka bentuk_ prompt awal untuk model dan objektif tertentu  
+- _memperhalusi_ prompt secara berulang untuk memperbaiki kualiti respons
 
-Ini sememangnya proses cuba-jaya yang memerlukan intuisi dan usaha pengguna untuk mendapatkan hasil optimum. Jadi, mengapa ia penting? Untuk menjawab soalan itu, kita perlu faham tiga konsep:
+Ini sememangnya proses cuba-jaya yang memerlukan intuisi dan usaha pengguna untuk mendapatkan hasil optimum. Jadi kenapa ia penting? Untuk menjawab soalan itu, kita perlu memahami tiga konsep:
 
-- _Tokenisasi_ = bagaimana model "melihat" prompt
-- _LLM Asas_ = bagaimana model asas "memproses" prompt
-- _LLM Ditala Arahan_ = bagaimana model kini boleh melihat "tugas"
+- _Tokenisasi_ = bagaimana model "melihat" prompt  
+- _LLM Asas_ = bagaimana model asas "memproses" prompt  
+- _LLM Tuned Arahan_ = bagaimana model kini dapat melihat "tugasan"
 
 ### Tokenisasi
 
-LLM melihat prompt sebagai _urutan token_ di mana model berbeza (atau versi model) boleh men-token-kan prompt yang sama dengan cara yang berbeza. Oleh kerana LLM dilatih menggunakan token (bukan teks mentah), cara prompt ditokenkan memberi kesan langsung kepada kualiti respons yang dijana.
+LLM melihat prompt sebagai _urutan token_ di mana model berbeza (atau versi model) boleh menokenkan prompt yang sama dengan cara yang berbeza. Oleh kerana LLM dilatih pada token (bukan pada teks mentah), cara prompt ditokenkan memberi kesan langsung kepada kualiti respons yang dihasilkan.
 
-Untuk mendapatkan intuisi tentang cara tokenisasi berfungsi, cuba alat seperti [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst) yang ditunjukkan di bawah. Salin prompt anda - dan lihat bagaimana ia ditukar kepada token, perhatikan bagaimana aksara ruang kosong dan tanda baca dikendalikan. Perlu diingat contoh ini menunjukkan LLM lama (GPT-3) - jadi mencuba dengan model lebih baru mungkin menghasilkan keputusan berbeza.
+Untuk mendapatkan gambaran intuitif tentang cara tokenisasi berfungsi, cuba alat seperti [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst) yang ditunjukkan di bawah. Salin prompt anda - dan lihat bagaimana ia ditukar menjadi token, perhatikan bagaimana aksara ruang putih dan tanda baca dikendalikan. Nota bahawa contoh ini menunjukkan LLM lama (GPT-3) - jadi mencubanya dengan model baru mungkin menghasilkan keputusan berbeza.
 
-![Tokenization](../../../translated_images/04-tokenizer-example.e71f0a0f70356c5c7d80b21e8753a28c18a7f6d4aaa1c4b08e65d17625e85642.ms.png)
+![Tokenisasi](../../../translated_images/ms/04-tokenizer-example.e71f0a0f70356c5c.webp)
 
 ### Konsep: Model Asas
 
-Selepas prompt ditokenkan, fungsi utama ["LLM Asas"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (atau model asas) ialah meramal token dalam urutan tersebut. Oleh kerana LLM dilatih dengan set data teks yang sangat besar, mereka mempunyai pemahaman statistik yang baik antara token dan boleh membuat ramalan dengan yakin. Perlu diingat mereka tidak memahami _makna_ perkataan dalam prompt atau token; mereka hanya melihat corak yang boleh "dilengkapkan" dengan ramalan seterusnya. Mereka boleh terus meramal urutan sehingga dihentikan oleh pengguna atau syarat yang telah ditetapkan.
+Setelah prompt ditokenkan, fungsi utama ["LLM Asas"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (atau model asas) adalah untuk meramalkan token seterusnya dalam urutan itu. Oleh kerana LLM dilatih pada set data teks yang besar, ia mempunyai pemahaman yang baik tentang hubungan statistik antara token dan boleh membuat ramalan itu dengan keyakinan tertentu. Nota bahawa mereka tidak memahami _makna_ kata dalam prompt atau token; mereka hanya melihat corak yang boleh mereka "lengkapkan" dengan ramalan seterusnya. Mereka boleh terus meramalkan urutan sehingga dihentikan oleh campur tangan pengguna atau memenuhi syarat yang telah ditetapkan.
 
-Mahukan gambaran bagaimana completion berasaskan prompt berfungsi? Masukkan prompt di atas ke dalam [_Chat Playground_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) Azure OpenAI Studio dengan tetapan lalai. Sistem dikonfigurasikan untuk menganggap prompt sebagai permintaan maklumat - jadi anda akan lihat completion yang memenuhi konteks ini.
+Ingin melihat bagaimana penyelesaian berasaskan prompt berfungsi? Masukkan prompt di atas ke Studio Azure OpenAI [_Chat Playground_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) dengan tetapan lalai. Sistem dikonfigurasikan untuk menganggap prompts sebagai permintaan maklumat - jadi anda harus melihat penyelesaian yang memuaskan konteks ini.
 
-Tetapi bagaimana jika pengguna mahu sesuatu yang spesifik yang memenuhi kriteria atau objektif tugas tertentu? Di sinilah LLM _ditala arahan_ memainkan peranan.
+Tetapi bagaimana jika pengguna mahu melihat sesuatu yang spesifik yang memenuhi kriteria atau objektif tugasan tertentu? Di sinilah LLM _tuned arahan_ masuk ke dalam gambaran.
 
-![Base LLM Chat Completion](../../../translated_images/04-playground-chat-base.65b76fcfde0caa6738e41d20f1a6123f9078219e6f91a88ee5ea8014f0469bdf.ms.png)
+![Penyelesaian Chat LLM Asas](../../../translated_images/ms/04-playground-chat-base.65b76fcfde0caa67.webp)
 
-### Konsep: LLM Ditala Arahan
+### Konsep: LLM Tuned Arahan
 
-[LLM Ditala Arahan](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) bermula dengan model asas dan menala dengan contoh atau pasangan input/output (contohnya, "mesej" berbilang pusingan) yang mengandungi arahan jelas - dan respons AI cuba mengikuti arahan tersebut.
+[LLM Tuned Arahan](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) bermula dengan model asas dan melarasnya dengan contoh atau pasangan input/output (contohnya, "mesej" pelbagai pusingan) yang mengandungi arahan jelas - dan respons dari AI berusaha mengikuti arahan tersebut.
 
-Ini menggunakan teknik seperti Reinforcement Learning with Human Feedback (RLHF) yang melatih model untuk _mengikuti arahan_ dan _belajar daripada maklum balas_ supaya ia menghasilkan respons yang lebih sesuai untuk aplikasi praktikal dan lebih relevan dengan objektif pengguna.
+Ini menggunakan teknik seperti Pembelajaran Pengukuhan dengan Maklum Balas Manusia (RLHF) yang boleh melatih model untuk _mengikuti arahan_ dan _belajar dari maklum balas_ supaya ia menghasilkan respons yang lebih sesuai untuk aplikasi praktikal dan lebih relevan dengan objektif pengguna.
 
-Mari cuba - ulang semula prompt di atas, tetapi kali ini tukar _mesej sistem_ untuk memberikan arahan berikut sebagai konteks:
+Mari cuba - kembali ke prompt di atas, tetapi sekarang ubah _mesej sistem_ untuk memberikan arahan berikut sebagai konteks:
 
-> _Ringkaskan kandungan yang diberikan untuk pelajar darjah dua. Kekalkan hasil kepada satu perenggan dengan 3-5 poin utama._
+> _Ringkaskan kandungan yang diberikan untuk seorang pelajar Tahun Dua. Kekalkan hasil kepada satu perenggan dengan 3-5 mata peluru._
 
-Lihat bagaimana hasilnya kini ditala untuk mencerminkan matlamat dan format yang diingini? Seorang pendidik kini boleh terus menggunakan respons ini dalam slaid kelas mereka.
+Lihat bagaimana keputusan kini diselaraskan mengikut matlamat dan format yang diingini? Seorang pendidik kini boleh menggunakan respons ini secara langsung dalam slaid mereka untuk kelas itu.
 
-![Instruction Tuned LLM Chat Completion](../../../translated_images/04-playground-chat-instructions.b30bbfbdf92f2d051639c9bc23f74a0e2482f8dc7f0dafc6cc6fda81b2b00534.ms.png)
+![Penyelesaian Chat LLM Tuned Arahan](../../../translated_images/ms/04-playground-chat-instructions.b30bbfbdf92f2d05.webp)
 
-## Kenapa kita perlukan Kejuruteraan Prompt?
+## Kenapa Kita Memerlukan Kejuruteraan Prompt?
 
-Sekarang kita tahu bagaimana prompt diproses oleh LLM, mari bincangkan _mengapa_ kita perlukan kejuruteraan prompt. Jawapannya terletak pada hakikat bahawa LLM semasa mempunyai beberapa cabaran yang menjadikan _completion yang boleh dipercayai dan konsisten_ sukar dicapai tanpa usaha dalam pembinaan dan pengoptimuman prompt. Contohnya:
+Sekarang kita tahu bagaimana prompts diproses oleh LLM, mari bincangkan _mengapa_ kita memerlukan kejuruteraan prompt. Jawapannya terletak pada hakikat bahawa LLM semasa menghadapi beberapa cabaran yang menjadikan _penyelesaian yang boleh dipercayai dan konsisten_ lebih sukar dicapai tanpa usaha dalam pembinaan dan pengoptimuman prompt. Contohnya:
 
-1. **Respons model adalah stokastik.** _Prompt yang sama_ mungkin menghasilkan respons berbeza dengan model atau versi model yang berlainan. Malah, ia boleh menghasilkan keputusan berbeza dengan _model yang sama_ pada masa berlainan. _Teknik kejuruteraan prompt boleh membantu kita meminimumkan variasi ini dengan menyediakan panduan yang lebih baik_.
+1. **Respons model bersifat stokastik.** _Prompt yang sama_ mungkin menghasilkan respons yang berbeza dengan model berbeza atau versi model berbeza. Malah ia mungkin menghasilkan keputusan berbeza dengan _model yang sama_ pada masa berbeza. _Teknik kejuruteraan prompt boleh membantu kita meminimumkan variasi ini dengan menyediakan panduan yang lebih baik_.
 
-1. **Model boleh mereka-reka respons.** Model dilatih dengan set data yang _besar tetapi terhad_, bermakna mereka tidak tahu tentang konsep di luar skop latihan tersebut. Akibatnya, mereka boleh menghasilkan completion yang tidak tepat, rekaan, atau bercanggah dengan fakta yang diketahui. _Teknik kejuruteraan prompt membantu pengguna mengenal pasti dan mengurangkan rekaan seperti ini, contohnya dengan meminta AI memberikan rujukan atau penjelasan_.
+2. **Model boleh mereka cipta respons.** Model dilatih dengan _data besar tetapi terhad_, bermakna mereka tidak mempunyai pengetahuan tentang konsep di luar skop latihan itu. Akibatnya, mereka boleh menghasilkan penyelesaian yang tidak tepat, imaginer, atau bertentangan secara langsung dengan fakta yang diketahui. _Teknik kejuruteraan prompt membantu pengguna mengenal pasti dan mengurangkan rekaan sebegini contohnya dengan meminta AI memberikan petikan atau hujahan_.
 
-1. **Keupayaan model berbeza-beza.** Model baru atau generasi model akan mempunyai keupayaan lebih luas tetapi juga membawa keunikan dan kompromi dari segi kos & kerumitan. _Kejuruteraan prompt boleh membantu kita membangunkan amalan terbaik dan aliran kerja yang mengabstrak perbezaan dan menyesuaikan keperluan khusus model dengan cara yang berskala dan lancar_.
+3. **Kebolehan model akan berbeza.** Model baru atau generasi model akan mempunyai kebolehan lebih kaya tetapi juga membawa keunikan dan kompromi dari segi kos & kerumitan. _Kejuruteraan prompt boleh membantu kita membangunkan amalan terbaik dan aliran kerja yang mengabstrak perbezaan tersebut dan menyesuaikan dengan keperluan khusus model secara berskala dan lancar_.
 
-Mari lihat ini secara langsung dalam OpenAI atau Azure OpenAI Playground:
+Mari lihat ini dalam tindakan di OpenAI atau Azure OpenAI Playground:
 
-- Gunakan prompt yang sama dengan deployment LLM berbeza (contohnya, OpenAI, Azure OpenAI, Hugging Face) - adakah anda nampak variasi?
-- Gunakan prompt yang sama berulang kali dengan deployment LLM _yang sama_ (contohnya, Azure OpenAI playground) - bagaimana variasi ini berbeza?
+- Gunakan prompt yang sama dengan penyebaran LLM berbeza (contoh, OpenAI, Azure OpenAI, Hugging Face) - adakah anda melihat variasi?  
+- Gunakan prompt yang sama berulang kali dengan penyebaran LLM yang _sama_ (contoh, Azure OpenAI playground) - bagaimana variasi tersebut berbeza?
 
-### Contoh Rekaan
+### Contoh Falsafah
 
-Dalam kursus ini, kita gunakan istilah **"rekaan"** untuk merujuk fenomena di mana LLM kadang-kadang menghasilkan maklumat yang tidak tepat kerana had latihan atau kekangan lain. Anda mungkin pernah dengar istilah _"halusinasi"_ dalam artikel popular atau kertas kajian. Namun, kami sangat menggalakkan penggunaan istilah _"rekaan"_ supaya kita tidak secara tidak sengaja mengaitkan sifat manusia kepada hasil yang dihasilkan mesin. Ini juga selari dengan [garis panduan AI Bertanggungjawab](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst) dari segi istilah, mengelakkan penggunaan istilah yang mungkin dianggap tidak sesuai atau tidak inklusif dalam sesetengah konteks.
+Dalam kursus ini, kita menggunakan istilah **"falsafah"** untuk merujuk fenomena di mana LLM kadangkala menghasilkan maklumat yang tidak tepat dari segi fakta kerana had latihan atau kekangan lain. Anda mungkin juga pernah mendengar istilah ini dirujuk sebagai _"halusinasi"_ dalam artikel popular atau kertas penyelidikan. Namun, kami sangat mengesyorkan menggunakan istilah _"falsafah"_ supaya kita tidak secara tidak sengaja melibatkan tingkah laku manusia dengan menganugerahkan ciri manusia kepada hasil mesin. Ini juga mengukuhkan [garis panduan AI Bertanggungjawab](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst) dari perspektif terminologi, menghapuskan istilah yang mungkin dianggap ofensif atau tidak inklusif dalam beberapa konteks.
 
-Mahukan gambaran bagaimana rekaan berlaku? Fikirkan prompt yang mengarahkan AI untuk menghasilkan kandungan bagi topik yang tidak wujud (supaya ia tidak terdapat dalam set data latihan). Contohnya - saya cuba prompt ini:
-> **Arahan:** hasilkan rancangan pembelajaran tentang Perang Marikh tahun 2076.
+Ingin mendapatkan gambaran bagaimana falsafah berfungsi? Fikirkan prompt yang mengarahkan AI menghasilkan kandungan untuk topik yang tidak wujud (untuk memastikan ia tidak terdapat dalam dataset latihan). Contohnya - saya cuba prompt ini:
 
-# Rancangan Pembelajaran: Perang Marikh 2076
+> **Prompt:** hasilkan pelan pengajaran tentang Perang Marikh tahun 2076.
+Carian web menunjukkan bahawa terdapat akaun fiksyen (contoh, siri televisyen atau buku) mengenai perang Marikh - tetapi tiada dalam tahun 2076. Akal fikiran juga memberitahu kita bahawa 2076 adalah _di masa hadapan_ dan oleh itu, tidak boleh dikaitkan dengan peristiwa sebenar.
 
-## Objektif Pembelajaran
-- Memahami punca dan kesan Perang Marikh 2076.
-- Mengenal pasti pihak-pihak yang terlibat dan strategi utama yang digunakan.
-- Menganalisis impak perang terhadap masyarakat Marikh dan Bumi.
-
-## Pengenalan
-Perang Marikh 2076 merupakan konflik besar antara koloni manusia di Marikh dan beberapa negara di Bumi. Perang ini tercetus akibat persaingan sumber, isu politik, dan keinginan untuk kemerdekaan Marikh.
-
-## Aktiviti 1: Latar Belakang Sejarah
-- Bincangkan perkembangan koloni manusia di Marikh sejak tahun 2050.
-- Terangkan hubungan antara koloni Marikh dan kerajaan di Bumi sebelum perang bermula.
-
-## Aktiviti 2: Punca Perang
-- Kenal pasti faktor utama yang mencetuskan konflik, seperti perebutan air, teknologi, dan hak autonomi.
-- Bincangkan peranan organisasi seperti United Earth Federation dan Martian Council.
-
-## Aktiviti 3: Kronologi Perang
-- Susun peristiwa penting dari permulaan hingga tamat perang.
-- Gunakan garis masa untuk membantu pelajar memahami urutan kejadian.
-
-## Aktiviti 4: Strategi dan Teknologi
-- Terangkan teknologi ketenteraan yang digunakan, seperti robot tempur dan sistem pertahanan laser.
-- Bincangkan strategi peperangan di persekitaran Marikh yang unik.
-
-## Aktiviti 5: Kesan Perang
-- Analisis impak sosial, ekonomi, dan politik terhadap penduduk Marikh dan Bumi.
-- Bincangkan perubahan dalam hubungan antara dua planet selepas perang.
-
-## Penutup
-- Rumuskan pengajaran yang boleh diambil daripada Perang Marikh 2076.
-- Galakkan pelajar berbincang tentang cara mengelakkan konflik serupa pada masa depan.
-
-## Penilaian
-- Kuiz tentang fakta utama Perang Marikh 2076.
-- Tugasan esei: "Bagaimana Perang Marikh 2076 mengubah masa depan manusia?"
-
-## Sumber
-- Buku teks sejarah interplanetari
-- Artikel jurnal mengenai konflik Marikh-Bumi
-- Dokumentari video tentang Perang Marikh 2076
-Carian web menunjukkan bahawa terdapat kisah fiksyen (contohnya, siri televisyen atau buku) tentang peperangan di Marikh - tetapi tiada yang berlaku pada tahun 2076. Logik juga memberitahu kita bahawa tahun 2076 adalah _masa depan_ dan oleh itu, tidak boleh dikaitkan dengan peristiwa sebenar.
-
-Jadi, apa yang berlaku apabila kita jalankan arahan ini dengan penyedia LLM yang berbeza?
+Jadi apa yang berlaku apabila kita menjalankan arahan ini dengan pembekal LLM yang berbeza?
 
 > **Respons 1**: OpenAI Playground (GPT-35)
 
-![Response 1](../../../translated_images/04-fabrication-oai.5818c4e0b2a2678c40e0793bf873ef4a425350dd0063a183fb8ae02cae63aa0c.ms.png)
+![Response 1](../../../translated_images/ms/04-fabrication-oai.5818c4e0b2a2678c.webp)
 
 > **Respons 2**: Azure OpenAI Playground (GPT-35)
 
-![Response 2](../../../translated_images/04-fabrication-aoai.b14268e9ecf25caf613b7d424c16e2a0dc5b578f8f960c0c04d4fb3a68e6cf61.ms.png)
+![Response 2](../../../translated_images/ms/04-fabrication-aoai.b14268e9ecf25caf.webp)
 
 > **Respons 3**: : Hugging Face Chat Playground (LLama-2)
 
-![Response 3](../../../translated_images/04-fabrication-huggingchat.faf82a0a512789565e410568bce1ac911075b943dec59b1ef4080b61723b5bf4.ms.png)
+![Response 3](../../../translated_images/ms/04-fabrication-huggingchat.faf82a0a51278956.webp)
 
-Seperti dijangka, setiap model (atau versi model) menghasilkan respons yang sedikit berbeza disebabkan oleh kelakuan stokastik dan variasi keupayaan model. Sebagai contoh, satu model mensasarkan penonton pelajar darjah 8 manakala satu lagi menganggap pelajar sekolah menengah. Tetapi ketiga-tiga model ini menghasilkan respons yang boleh meyakinkan pengguna yang tidak tahu bahawa peristiwa itu benar-benar berlaku.
+Seperti yang dijangkakan, setiap model (atau versi model) menghasilkan respons yang sedikit berbeza terima kasih kepada kelakuan stokastik dan variasi kemampuan model. Sebagai contoh, satu model mensasarkan audien darjah 8 manakala satu lagi menganggap pelajar sekolah menengah. Tetapi ketiga-tiga model menghasilkan respons yang boleh meyakinkan pengguna yang tidak berpengetahuan bahawa peristiwa itu benar.
 
-Teknik kejuruteraan prompt seperti _metaprompting_ dan _konfigurasi suhu_ boleh mengurangkan fabrikasi model sehingga tahap tertentu. Reka bentuk kejuruteraan prompt yang baru juga menggabungkan alat dan teknik baru secara lancar ke dalam aliran prompt, untuk mengurangkan atau mengawal kesan-kesan ini.
+Teknik kejuruteraan arahan seperti _metaprompting_ dan _konfigurasi suhu_ mungkin mengurangkan fabrikasi model hingga tahap tertentu. _Arkitektur_ kejuruteraan arahan yang baru juga menggabungkan alat dan teknik baru secara lancar ke dalam aliran arahan, untuk mengurangkan atau memihak sebahagian daripada kesan ini.
 
 ## Kajian Kes: GitHub Copilot
 
-Mari kita akhiri bahagian ini dengan melihat bagaimana kejuruteraan prompt digunakan dalam penyelesaian dunia sebenar melalui satu Kajian Kes: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
+Mari kita rumuskan seksyen ini dengan mendapatkan gambaran bagaimana kejuruteraan arahan digunakan dalam penyelesaian dunia sebenar dengan melihat satu Kajian Kes: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
 
-GitHub Copilot ialah "Rakan Pengaturcaraan AI" anda - ia menukar arahan teks kepada pelengkap kod dan diintegrasikan ke dalam persekitaran pembangunan anda (contohnya, Visual Studio Code) untuk pengalaman pengguna yang lancar. Seperti yang didokumentasikan dalam siri blog di bawah, versi terawal adalah berdasarkan model OpenAI Codex - dengan jurutera pantas menyedari keperluan untuk menala model dan membangunkan teknik kejuruteraan prompt yang lebih baik, untuk meningkatkan kualiti kod. Pada bulan Julai, mereka [memperkenalkan model AI yang lebih baik dan melangkaui Codex](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst) untuk cadangan yang lebih pantas.
+GitHub Copilot adalah "Rakan Pemrograman AI" anda - ia menukar arahan teks menjadi pelengkapan kod dan disepadukan ke dalam persekitaran pembangunan anda (contohnya, Visual Studio Code) untuk pengalaman pengguna yang lancar. Seperti yang didokumentasikan dalam siri blog di bawah, versi awal berdasarkan model OpenAI Codex - dengan jurutera segera menyedari keperluan untuk menala model dan membangunkan teknik kejuruteraan arahan yang lebih baik, untuk meningkatkan kualiti kod. Pada bulan Julai, mereka [memperkenalkan model AI yang dipertingkatkan yang melebihi Codex](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst) untuk cadangan lebih pantas.
 
-Baca posting mengikut urutan untuk mengikuti perjalanan pembelajaran mereka.
+Baca pos secara berurutan, untuk mengikuti perjalanan pembelajaran mereka.
 
 - **Mei 2023** | [GitHub Copilot Semakin Baik Memahami Kod Anda](https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst)
-- **Mei 2023** | [Di Sebalik GitHub: Bekerja dengan LLM di sebalik GitHub Copilot](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **Jun 2023** | [Cara Menulis Prompt yang Lebih Baik untuk GitHub Copilot](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **Jul 2023** | [.. GitHub Copilot melangkaui Codex dengan model AI yang dipertingkatkan](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
-- **Jul 2023** | [Panduan Pembangun untuk Kejuruteraan Prompt dan LLM](https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst)
+- **Mei 2023** | [Di Dalam GitHub: Bekerja dengan LLM di sebalik GitHub Copilot](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst).
+- **Jun 2023** | [Cara menulis arahan lebih baik untuk GitHub Copilot](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst).
+- **Jul 2023** | [.. GitHub Copilot melebihi Codex dengan model AI yang dipertingkatkan](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
+- **Jul 2023** | [Panduan Pembangun untuk Kejuruteraan Arahan dan LLM](https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst)
 - **Sep 2023** | [Cara membina aplikasi LLM perusahaan: Pengajaran dari GitHub Copilot](https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst)
 
-Anda juga boleh melayari [blog Kejuruteraan mereka](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) untuk lebih banyak posting seperti [yang ini](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst) yang menunjukkan bagaimana model dan teknik ini _digunakan_ untuk membangunkan aplikasi dunia sebenar.
+Anda juga boleh melayari [blog Kejuruteraan mereka](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) untuk lebih banyak pos seperti [yang ini](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst) yang menunjukkan bagaimana model dan teknik ini _dilaksanakan_ untuk mendorong aplikasi dunia nyata.
 
 ---
 
 <!--
-TEMPLAT PENGAJARAN:
-Unit ini perlu merangkumi konsep teras #2.
-Perkukuhkan konsep dengan contoh dan rujukan.
+LESSON TEMPLATE:
+This unit should cover core concept #2.
+Reinforce the concept with examples and references.
 
-KONSEP #2:
-Reka Bentuk Prompt.
-Diterangkan dengan contoh.
+CONCEPT #2:
+Prompt Design.
+Illustrated with examples.
 -->
 
-## Pembinaan Prompt
+## Pembinaan Arahan
 
-Kita telah lihat mengapa kejuruteraan prompt itu penting - sekarang mari fahami bagaimana prompt _dibina_ supaya kita boleh menilai pelbagai teknik untuk reka bentuk prompt yang lebih berkesan.
+Kita telah melihat mengapa kejuruteraan arahan itu penting - sekarang mari fahami bagaimana arahan _dibina_ supaya kita dapat menilai teknik yang berbeza untuk reka bentuk arahan yang lebih berkesan.
 
-### Prompt Asas
+### Arahan Asas
 
-Mari mulakan dengan prompt asas: input teks yang dihantar kepada model tanpa sebarang konteks lain. Berikut adalah contoh - apabila kita hantar beberapa perkataan pertama lagu kebangsaan Amerika Syarikat kepada OpenAI [Completion API](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst) ia serta-merta _melengkapkan_ respons dengan beberapa baris seterusnya, menunjukkan tingkah laku ramalan asas.
+Mari mulakan dengan arahan asas: input teks yang dihantar kepada model tanpa konteks lain. Berikut adalah contoh - apabila kita menghantar beberapa perkataan pertama lagu kebangsaan AS kepada OpenAI [Completion API](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst) ia serta-merta _melengkapkan_ respons dengan baris berikut, menggambarkan tingkah laku ramalan asas.
 
-| Prompt (Input)     | Completion (Output)                                                                                                                        |
+| Arahan (Input)     | Pelengkapan (Output)                                                                                                                        |
 | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| Oh say can you see | Nampaknya anda sedang memulakan lirik "The Star-Spangled Banner," lagu kebangsaan Amerika Syarikat. Lirik penuh adalah ...                |
+| Oh say can you see | Ia kedengaran seperti anda memulakan lirik "The Star-Spangled Banner," lagu kebangsaan Amerika Syarikat. Lirik penuh adalah ... |
 
-### Prompt Kompleks
+### Arahan Kompleks
 
-Sekarang mari tambah konteks dan arahan kepada prompt asas tadi. [Chat Completion API](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) membolehkan kita membina prompt kompleks sebagai koleksi _mesej_ dengan:
+Sekarang mari tambah konteks dan arahan kepada arahan asas itu. [Chat Completion API](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) membolehkan kita membina arahan kompleks sebagai koleksi _mesej_ dengan:
 
 - Pasangan input/output yang mencerminkan input _pengguna_ dan respons _pembantu_.
 - Mesej sistem yang menetapkan konteks untuk tingkah laku atau personaliti pembantu.
 
-Permintaan kini dalam bentuk di bawah, di mana _tokenization_ secara berkesan menangkap maklumat berkaitan daripada konteks dan perbualan. Kini, menukar konteks sistem boleh memberi impak besar kepada kualiti pelengkap, sama seperti input pengguna yang diberikan.
+Permintaan kini dalam bentuk di bawah, di mana _tokenisasi_ secara efektif menangkap maklumat relevan daripada konteks dan perbualan. Sekarang, mengubah konteks sistem boleh memberi impak yang sama kuat pada kualiti pelengkapan, seperti input pengguna yang diberikan.
 
 ```python
 response = openai.chat.completions.create(
@@ -266,195 +215,195 @@ response = openai.chat.completions.create(
 )
 ```
 
-### Prompt Arahan
+### Arahan Instruksi
 
-Dalam contoh di atas, prompt pengguna adalah pertanyaan teks ringkas yang boleh ditafsirkan sebagai permintaan maklumat. Dengan prompt _arahan_, kita boleh gunakan teks itu untuk menentukan tugas dengan lebih terperinci, memberi panduan yang lebih baik kepada AI. Berikut adalah contoh:
+Dalam contoh di atas, arahan pengguna adalah pertanyaan teks mudah yang boleh ditafsir sebagai permintaan maklumat. Dengan arahan _instruksi_, kita boleh menggunakan teks itu untuk menentukan tugas dengan lebih terperinci, memberikan panduan lebih baik kepada AI. Berikut contoh:
 
-| Prompt (Input)                                                                                                                                                                                                                         | Completion (Output)                                                                                                        | Instruction Type    |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :------------------ |
-| Tulis penerangan tentang Perang Saudara                                                                                                                                                                                                | _mengembalikan satu perenggan ringkas_                                                                                     | Ringkas             |
-| Tulis penerangan tentang Perang Saudara. Sertakan tarikh dan peristiwa penting serta terangkan kepentingannya                                                                                                                          | _mengembalikan perenggan diikuti senarai tarikh peristiwa penting dengan penerangan_                                       | Kompleks             |
-| Tulis penerangan tentang Perang Saudara dalam 1 perenggan. Sertakan 3 butir peluru dengan tarikh penting dan kepentingannya. Sertakan 3 lagi butir peluru dengan tokoh sejarah utama dan sumbangan mereka. Kembalikan output sebagai fail JSON | _mengembalikan maklumat lebih terperinci dalam kotak teks, diformat sebagai JSON yang boleh anda salin dan sahkan seperti diperlukan_ | Kompleks. Berformat. |
+| Arahan (Input)                                                                                                                                                                                                                         | Pelengkapan (Output)                                                                                                        | Jenis Instruksi    |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :----------------- |
+| Tulis deskripsi tentang Perang Saudara                                                                                                                                                                                               | _mengembalikan perenggan ringkas_                                                                                          | Mudah              |
+| Tulis deskripsi tentang Perang Saudara. Berikan tarikh dan peristiwa utama serta terangkan kepentingannya                                                                                                                                 | _mengembalikan perenggan diikuti dengan senarai tarikh peristiwa utama dengan penerangan_                                   | Kompleks           |
+| Tulis deskripsi tentang Perang Saudara dalam 1 perenggan. Berikan 3 poin peluru dengan tarikh utama dan kepentingannya. Berikan 3 lagi poin peluru dengan tokoh sejarah utama dan sumbangan mereka. Kembalikan output sebagai fail JSON            | _mengembalikan butiran lebih luas dalam kotak teks, diformatkan sebagai JSON yang boleh anda salin-tampal ke dalam fail dan sahkan jika perlu_ | Kompleks. Diformat. |
 
 ## Kandungan Utama
 
-Dalam contoh di atas, prompt masih agak terbuka, membenarkan LLM menentukan bahagian mana dalam set data pra-latihannya yang relevan. Dengan corak reka bentuk _kandungan utama_, teks input dibahagikan kepada dua bahagian:
+Dalam contoh di atas, arahan masih agak terbuka, membenarkan LLM memutuskan bahagian dataset latihan awalnya yang relevan. Dengan corak reka bentuk _kandungan utama_, teks input dibahagikan kepada dua bahagian:
 
 - satu arahan (tindakan)
-- kandungan berkaitan (yang mempengaruhi tindakan)
+- kandungan relevan (yang mempengaruhi tindakan)
 
-Berikut adalah contoh di mana arahan ialah "ringkaskan ini dalam 2 ayat".
+Berikut contoh di mana arahan adalah "ringkaskan ini dalam 2 ayat".
 
-| Prompt (Input)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Completion (Output)                                                                                                                                                                                                                                                                             |
+| Arahan (Input)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Pelengkapan (Output)                                                                                                                                                                                                                                                                             |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Jupiter ialah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia ialah gergasi gas dengan jisim satu per seribu daripada Matahari, tetapi dua setengah kali ganda daripada semua planet lain dalam Sistem Suria digabungkan. Jupiter adalah antara objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun purba sejak sebelum sejarah direkodkan. Ia dinamakan sempena dewa Rom, Jupiter.[19] Apabila dilihat dari Bumi, Jupiter boleh cukup terang sehingga cahaya pantulannya boleh menghasilkan bayang yang kelihatan,[20] dan secara purata merupakan objek semula jadi ketiga paling terang di langit malam selepas Bulan dan Zuhrah. <br/> **Ringkaskan ini dalam 2 ayat pendek** | Jupiter, planet kelima dari Matahari, ialah yang terbesar dalam Sistem Suria dan terkenal sebagai salah satu objek paling terang di langit malam. Dinamakan sempena dewa Rom Jupiter, ia ialah gergasi gas dengan jisim dua setengah kali ganda daripada semua planet lain dalam Sistem Suria digabungkan. |
+| Jupiter adalah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia adalah gergasi gas dengan jisim seribu satu daripada Matahari, tetapi dua setengah kali ganda semua planet lain dalam Sistem Suria digabungkan. Jupiter adalah salah satu objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun kuno sejak sebelum sejarah direkodkan. Ia dinamakan sempena dewa Rom, Jupiter.[19] Apabila dilihat dari Bumi, Jupiter boleh menjadi cukup terang untuk cahaya pantulan itu menghasilkan bayang yang kelihatan,[20] dan secara purata adalah objek asli ketiga paling terang di langit malam selepas Bulan dan Zuhrah. <br/> **Ringkaskan ini dalam 2 ayat pendek** | Jupiter, planet kelima dari Matahari, adalah yang terbesar dalam Sistem Suria dan dikenali sebagai salah satu objek paling terang di langit malam. Dinamakan sempena dewa Rom Jupiter, ia adalah gergasi gas dengan jisim dua setengah kali ganda semua planet lain dalam Sistem Suria digabungkan. |
 
-Segmen kandungan utama boleh digunakan dengan pelbagai cara untuk menghasilkan arahan yang lebih berkesan:
+Segmen kandungan utama boleh digunakan dalam pelbagai cara untuk memacu arahan yang lebih berkesan:
 
-- **Contoh** - daripada memberitahu model apa yang perlu dilakukan dengan arahan jelas, berikan contoh apa yang perlu dilakukan dan biarkan model meneka coraknya.
-- **Petunjuk** - ikut arahan dengan "petunjuk" yang memulakan pelengkap, membimbing model ke arah respons yang lebih relevan.
-- **Templat** - ini ialah 'resipi' prompt yang boleh diulang dengan tempat letak (pembolehubah) yang boleh disesuaikan dengan data untuk kes penggunaan tertentu.
+- **Contoh** - daripada memberitahu model apa yang perlu dilakukan dengan arahan eksplisit, berikan ia contoh apa yang perlu dibuat dan biarkan ia mentafsir corak.
+- **Isyarat** - ikut arahan dengan "isyarat" yang memacu pelengkapan, membimbing model ke arah respons yang lebih relevan.
+- **Templat** - ini adalah 'resipi' berulang untuk arahan dengan tempat letak (pembolehubah) yang boleh disesuaikan dengan data untuk kes penggunaan tertentu.
 
-Mari kita lihat bagaimana ia digunakan.
+Mari kita terokai ini dengan aksi.
 
 ### Menggunakan Contoh
 
-Ini ialah pendekatan di mana anda gunakan kandungan utama untuk "memberi makan model" beberapa contoh output yang diingini untuk satu arahan, dan biarkan model meneka corak output yang diingini. Berdasarkan bilangan contoh yang diberikan, kita boleh ada prompt zero-shot, one-shot, few-shot dan sebagainya.
+Ini adalah pendekatan di mana anda menggunakan kandungan utama untuk "memberi makan model" beberapa contoh output yang diinginkan untuk arahan tertentu, dan membiarkan ia mentafsir corak output yang diharapkan. Berdasarkan bilangan contoh yang diberikan, kita boleh mempunyai zero-shot prompting, one-shot prompting, few-shot prompting dan sebagainya.
 
-Prompt kini terdiri daripada tiga komponen:
+Arahan kini terdiri daripada tiga komponen:
 
 - Penerangan tugas
 - Beberapa contoh output yang diingini
-- Permulaan contoh baru (yang menjadi penerangan tugas secara tidak langsung)
+- Permulaan contoh baru (yang menjadi penerangan tugas tersirat)
 
-| Jenis Pembelajaran | Prompt (Input)                                                                                                                                        | Completion (Output)         |
+| Jenis Pembelajaran | Arahan (Input)                                                                                                                                        | Pelengkapan (Output)         |
 | :----------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------- |
-| Zero-shot          | "The Sun is Shining". Translate to Spanish                                                                                                            | "El Sol está brillando".    |
+| Zero-shot          | "The Sun is Shining". Terjemah ke dalam bahasa Sepanyol                                                                                              | "El Sol está brillando".    |
 | One-shot           | "The Sun is Shining" => ""El Sol está brillando". <br> "It's a Cold and Windy Day" =>                                                                 | "Es un día frío y ventoso". |
 | Few-shot           | The player ran the bases => Baseball <br/> The player hit an ace => Tennis <br/> The player hit a six => Cricket <br/> The player made a slam-dunk => | Basketball                  |
 |                    |                                                                                                                                                       |                             |
 
-Perhatikan bagaimana kita perlu beri arahan jelas ("Translate to Spanish") dalam prompt zero-shot, tetapi ia dapat diteka dalam contoh one-shot. Contoh few-shot menunjukkan bagaimana menambah lebih banyak contoh membolehkan model membuat tekaan yang lebih tepat tanpa arahan tambahan.
+Perhatikan bagaimana kita perlu memberikan arahan eksplisit ("Terjemah ke Sepanyol") dalam zero-shot prompting, tetapi ia dapat ditafsir dalam contoh one-shot prompting. Contoh few-shot menunjukkan bagaimana menambah lebih banyak contoh membolehkan model membuat inferens yang lebih tepat tanpa arahan tambahan.
 
-### Petunjuk Prompt
+### Isyarat Arahan
 
-Satu lagi teknik menggunakan kandungan utama ialah memberi _petunjuk_ dan bukannya contoh. Dalam kes ini, kita memberi model dorongan ke arah yang betul dengan _memulakan_ dengan petikan yang mencerminkan format respons yang diingini. Model kemudian "mengambil petunjuk" untuk meneruskan dalam gaya yang sama.
+Satu teknik lagi menggunakan kandungan utama adalah menyediakan _isyarat_ daripada contoh. Dalam kes ini, kita memberi model dorongan ke arah yang betul dengan _memulakan_ ia dengan petikan yang mencerminkan format respons yang diingini. Model kemudian "mengambil isyarat" untuk meneruskan dalam gaya itu.
 
-| Bilangan Petunjuk | Prompt (Input)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Completion (Output)                                                                                                                                                                                                                                                                                       |
+| Bilangan Isyarat | Arahan (Input)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Pelengkapan (Output)                                                                                                                                                                                                                                                                                       |
 | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0                 | Jupiter ialah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia ialah gergasi gas dengan jisim satu per seribu daripada Matahari, tetapi dua setengah kali ganda daripada semua planet lain dalam Sistem Suria digabungkan. Jupiter adalah antara objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun purba sejak sebelum sejarah direkodkan.
-
-**Ringkaskan Ini**                                       | Musytari ialah planet terbesar dalam Sistem Suria kita dan yang kelima dari Matahari. Ia merupakan gergasi gas dengan jisim 1/1000 daripada Matahari, tetapi lebih berat daripada semua planet lain digabungkan. Tamadun purba telah lama mengetahui tentang Musytari, dan ia mudah dilihat di langit malam. |
-| 1              | Musytari ialah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia merupakan gergasi gas dengan jisim satu per seribu daripada Matahari, tetapi dua setengah kali ganda daripada semua planet lain dalam Sistem Suria digabungkan. Musytari adalah salah satu objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun purba sejak sebelum sejarah dicatat. <br/>**Ringkaskan Ini** <br/> Apa yang kita pelajari ialah Musytari | ialah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia merupakan gergasi gas dengan jisim satu per seribu daripada Matahari, tetapi dua setengah kali ganda daripada semua planet lain digabungkan. Ia mudah dilihat dengan mata kasar dan telah diketahui sejak zaman purba.                        |
-| 2              | Musytari ialah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia merupakan gergasi gas dengan jisim satu per seribu daripada Matahari, tetapi dua setengah kali ganda daripada semua planet lain dalam Sistem Suria digabungkan. Musytari adalah salah satu objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun purba sejak sebelum sejarah dicatat. <br/>**Ringkaskan Ini** <br/> 3 Fakta Utama Yang Kita Pelajari:         | 1. Musytari ialah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. <br/> 2. Ia merupakan gergasi gas dengan jisim satu per seribu daripada Matahari...<br/> 3. Musytari telah dapat dilihat dengan mata kasar sejak zaman purba ...                                                                       |
+| 0                 | Jupiter adalah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia adalah gergasi gas dengan jisim seribu satu daripada Matahari, tetapi dua setengah kali ganda semua planet lain dalam Sistem Suria digabungkan. Jupiter adalah salah satu objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun kuno sejak sebelum sejarah direkodkan. <br/>**Ringkaskan Ini**                                       | Jupiter adalah planet terbesar dalam Sistem Suria kita dan yang kelima dari Matahari. Ia adalah gergasi gas dengan jisim 1/1000 Matahari, tetapi lebih berat daripada semua planet lain digabungkan. Tamadun kuno telah lama mengetahui tentang Jupiter, dan ia mudah dilihat di langit malam. |
+| 1              | Jupiter adalah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia adalah gergasi gas dengan jisim satu per seribu dari Matahari, tetapi dua setengah kali ganda jisim semua planet lain dalam Sistem Suria jika digabungkan. Jupiter adalah salah satu objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun purba sejak sebelum sejarah tercatat. <br/>**Ringkaskan Ini** <br/> Apa yang kita pelajari ialah Jupiter | adalah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia adalah gergasi gas dengan jisim satu per seribu dari Matahari, tetapi dua setengah kali ganda jisim semua planet lain jika digabungkan. Ia mudah dilihat dengan mata kasar dan telah diketahui sejak zaman purba.                        |
+| 2              | Jupiter adalah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. Ia adalah gergasi gas dengan jisim satu per seribu dari Matahari, tetapi dua setengah kali ganda jisim semua planet lain dalam Sistem Suria jika digabungkan. Jupiter adalah salah satu objek paling terang yang boleh dilihat dengan mata kasar di langit malam, dan telah diketahui oleh tamadun purba sejak sebelum sejarah tercatat. <br/>**Ringkaskan Ini** <br/> 3 Fakta Teratas Yang Kami Pelajari:         | 1. Jupiter adalah planet kelima dari Matahari dan yang terbesar dalam Sistem Suria. <br/> 2. Ia adalah gergasi gas dengan jisim satu per seribu dari Matahari...<br/> 3. Jupiter telah dapat dilihat dengan mata kasar sejak zaman purba ...                                                                       |
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |
 
-### Templat Prompt
+### Prompt Templates
 
-Templat prompt ialah _resipi pra-tetap untuk prompt_ yang boleh disimpan dan digunakan semula mengikut keperluan, untuk menghasilkan pengalaman pengguna yang lebih konsisten pada skala besar. Dalam bentuk paling ringkas, ia hanyalah koleksi contoh prompt seperti [yang ini dari OpenAI](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst) yang menyediakan kedua-dua komponen prompt interaktif (mesej pengguna dan sistem) serta format permintaan API - untuk menyokong penggunaan semula.
+Templat prompt adalah _resepi yang telah ditetapkan untuk prompt_ yang boleh disimpan dan digunakan semula apabila perlu, untuk menghasilkan pengalaman pengguna yang lebih konsisten dalam skala besar. Dalam bentuk paling ringkas, ia hanyalah koleksi contoh prompt seperti [yang ini dari OpenAI](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst) yang menyediakan kedua-dua komponen prompt interaktif (mesej pengguna dan sistem) dan format permintaan API - untuk menyokong penggunaan semula.
 
-Dalam bentuk yang lebih kompleks seperti [contoh dari LangChain](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst) ia mengandungi _placeholder_ yang boleh digantikan dengan data dari pelbagai sumber (input pengguna, konteks sistem, sumber data luaran dsb.) untuk menjana prompt secara dinamik. Ini membolehkan kita membina pustaka prompt boleh guna semula yang boleh digunakan untuk menghasilkan pengalaman pengguna yang konsisten **secara programatik** pada skala besar.
+Dalam bentuk yang lebih kompleks seperti [contoh ini dari LangChain](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst) ia mengandungi _placeholder_ yang boleh digantikan dengan data dari pelbagai sumber (input pengguna, konteks sistem, sumber data luaran dan lain-lain) untuk menghasilkan prompt secara dinamik. Ini membolehkan kita membuat perpustakaan prompt yang boleh digunakan semula yang boleh digunakan untuk menghasilkan pengalaman pengguna yang konsisten **secara programatik** dalam skala besar.
 
-Akhir sekali, nilai sebenar templat terletak pada keupayaan untuk mencipta dan menerbitkan _pustaka prompt_ untuk domain aplikasi menegak - di mana templat prompt kini _dioptimumkan_ untuk mencerminkan konteks atau contoh khusus aplikasi yang menjadikan respons lebih relevan dan tepat untuk audiens pengguna yang disasarkan. Repositori [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) ialah contoh hebat pendekatan ini, mengumpulkan pustaka prompt untuk bidang pendidikan dengan penekanan pada objektif utama seperti perancangan pelajaran, reka bentuk kurikulum, bimbingan pelajar dan sebagainya.
+Akhirnya, nilai sebenar templat terletak pada keupayaan untuk mencipta dan menerbitkan _perpustakaan prompt_ untuk domain aplikasi vertikal - di mana templat prompt kini _dioptimumkan_ untuk mencerminkan konteks atau contoh khusus aplikasi yang menjadikan respons lebih relevan dan tepat untuk audiens pengguna yang disasarkan. Repositori [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) adalah contoh terbaik pendekatan ini, mengumpul perpustakaan prompt untuk domain pendidikan dengan penekanan pada objektif utama seperti perancangan pelajaran, reka bentuk kurikulum, bimbingan pelajar dan sebagainya.
 
-## Kandungan Sokongan
+## Supporting Content
 
-Jika kita fikirkan pembinaan prompt sebagai mempunyai arahan (tugas) dan sasaran (kandungan utama), maka _kandungan sekunder_ ialah konteks tambahan yang kita berikan untuk **mempengaruhi output dengan cara tertentu**. Ia boleh jadi parameter penalaan, arahan pemformatan, taksonomi topik dan sebagainya yang boleh membantu model _menyesuaikan_ responsnya agar sesuai dengan objektif atau jangkaan pengguna.
+Jika kita menganggap pembinaan prompt sebagai mempunyai arahan (tugas) dan sasaran (kandungan utama), maka _kandungan sekunder_ adalah seperti konteks tambahan yang kita berikan untuk **mempengaruhi keluaran dalam beberapa cara**. Ia boleh berupa parameter penyetelan, arahan format, taksonomi topik dan lain-lain yang boleh membantu model _menyesuaikan_ responsnya agar sesuai dengan objektif atau jangkaan pengguna yang dikehendaki.
 
-Contohnya: Diberikan katalog kursus dengan metadata terperinci (nama, penerangan, tahap, tag metadata, pengajar dsb.) untuk semua kursus yang tersedia dalam kurikulum:
+Sebagai contoh: Diberi katalog kursus dengan metadata yang luas (nama, penerangan, tahap, tag metadata, pengajar dan lain-lain) bagi semua kursus yang ada dalam kurikulum:
 
-- kita boleh tetapkan arahan untuk "meringkaskan katalog kursus untuk Musim Luruh 2023"
-- kita boleh gunakan kandungan utama untuk menyediakan beberapa contoh output yang diingini
-- kita boleh gunakan kandungan sekunder untuk mengenal pasti 5 "tag" utama yang diminati.
+- kita boleh tentukan arahan untuk "meringkaskan katalog kursus untuk Musim Gugur 2023"
+- kita boleh gunakan kandungan utama untuk memberikan beberapa contoh keluaran yang dikehendaki
+- kita boleh gunakan kandungan sekunder untuk mengenal pasti 5 "tag" teratas yang menarik minat.
 
-Kini, model boleh memberikan ringkasan dalam format seperti contoh yang diberikan - tetapi jika satu hasil mempunyai banyak tag, ia boleh mengutamakan 5 tag yang dikenal pasti dalam kandungan sekunder.
+Kini, model boleh memberikan ringkasan dalam format yang ditunjukkan oleh beberapa contoh tersebut - tetapi jika hasilnya mempunyai pelbagai tag, ia boleh memberi keutamaan kepada 5 tag yang dikenal pasti dalam kandungan sekunder.
 
 ---
 
 <!--
-TEMPLAT PELAJARAN:
-Unit ini perlu merangkumi konsep teras #1.
-Kukuhkan konsep dengan contoh dan rujukan.
+LESSON TEMPLATE:
+Bahagian ini harus merangkumi konsep utama #1.
+Perkukuhkan konsep dengan contoh dan rujukan.
 
-KONSEP #3:
+CONCEPT #3:
 Teknik Kejuruteraan Prompt.
 Apakah beberapa teknik asas untuk kejuruteraan prompt?
-Tunjukkan dengan beberapa latihan.
+Ilustrasikan dengan beberapa latihan.
 -->
 
 ## Amalan Terbaik Prompting
 
-Sekarang kita tahu bagaimana prompt boleh _dibina_, kita boleh mula memikirkan bagaimana untuk _mereka_ prompt supaya mencerminkan amalan terbaik. Kita boleh fikirkan ini dalam dua bahagian - mempunyai _mindset_ yang betul dan menggunakan _teknik_ yang sesuai.
+Kini kita tahu bagaimana prompt boleh _dibina_, kita boleh mula memikirkan cara untuk _mereka bentuk_ ia agar mencerminkan amalan terbaik. Kita boleh fikirkan ini dalam dua bahagian - mempunyai _mindset_ yang betul dan menggunakan _teknik_ yang betul.
 
 ### Mindset Kejuruteraan Prompt
 
-Kejuruteraan Prompt ialah proses cuba dan jaya jadi ingat tiga faktor panduan utama:
+Kejuruteraan Prompt adalah proses cuba dan silap jadi ingat tiga faktor panduan utama:
 
-1. **Fahami Domain.** Ketepatan dan kerelevanan respons bergantung pada _domain_ di mana aplikasi atau pengguna itu beroperasi. Gunakan intuisi dan kepakaran domain anda untuk **menyesuaikan teknik** dengan lebih lanjut. Contohnya, tentukan _personaliti khusus domain_ dalam prompt sistem anda, atau gunakan _templat khusus domain_ dalam prompt pengguna anda. Sediakan kandungan sekunder yang mencerminkan konteks khusus domain, atau gunakan _petunjuk dan contoh khusus domain_ untuk membimbing model ke arah corak penggunaan yang biasa.
+1. **Pemahaman Domain Penting.** Ketepatan dan relevansi respons adalah fungsi kepada _domain_ di mana aplikasi atau pengguna beroperasi. Gunakan naluri dan kepakaran domain anda untuk **menyesuaikan teknik** dengan lebih lanjut. Contohnya, tentukan _personaliti spesifik domain_ dalam prompt sistem anda, atau gunakan _templat spesifik domain_ dalam prompt pengguna anda. Berikan kandungan sekunder yang mencerminkan konteks khusus domain, atau gunakan _petunjuk dan contoh khusus domain_ untuk mengarahkan model ke corak penggunaan yang biasa.
 
-2. **Fahami Model.** Kita tahu model bersifat stokastik. Tetapi pelaksanaan model juga boleh berbeza dari segi set data latihan yang digunakan (pengetahuan pra-latihan), keupayaan yang disediakan (cth, melalui API atau SDK) dan jenis kandungan yang dioptimumkan (cth, kod vs. imej vs. teks). Fahami kekuatan dan batasan model yang anda gunakan, dan gunakan pengetahuan itu untuk _memilih tugas_ atau membina _templat khusus_ yang dioptimumkan untuk keupayaan model.
+2. **Pemahaman Model Penting.** Kita tahu model adalah stokastik secara semulajadi. Tetapi pelaksanaan model juga boleh berbeza dari segi dataset latihan digunakan (pengetahuan pra-latihan), keupayaan yang disediakan (contohnya, melalui API atau SDK) dan jenis kandungan yang dioptimumkan (contohnya, kod vs imej vs teks). Fahami kekuatan dan batasan model yang anda gunakan, dan gunakan pengetahuan itu untuk _utamakan tugas_ atau bina _templat khusus_ yang dioptimumkan untuk keupayaan model.
 
-3. **Iterasi & Pengesahan Penting.** Model berkembang dengan pantas, begitu juga teknik kejuruteraan prompt. Sebagai pakar domain, anda mungkin mempunyai konteks atau kriteria lain untuk aplikasi _anda_ yang mungkin tidak terpakai kepada komuniti umum. Gunakan alat & teknik kejuruteraan prompt untuk "memulakan" pembinaan prompt, kemudian ulang dan sahkan hasil menggunakan intuisi dan kepakaran anda sendiri. Catat penemuan anda dan bina **pangkalan pengetahuan** (cth, pustaka prompt) yang boleh digunakan sebagai asas baharu oleh orang lain, untuk iterasi lebih pantas pada masa hadapan.
+3. **Iterasi & Pengesahan Penting.** Model berkembang dengan pesat, begitu juga teknik kejuruteraan prompt. Sebagai pakar domain, anda mungkin mempunyai konteks atau kriteria lain _untuk_ aplikasi khusus anda, yang mungkin tidak terpakai kepada komuniti luas. Gunakan alat & teknik kejuruteraan prompt untuk "memulakan" pembinaan prompt, kemudian ulang dan sahkan keputusan menggunakan naluri dan kepakaran domain anda sendiri. Rekodkan wawasan anda dan cipta **pangkalan pengetahuan** (contohnya, perpustakaan prompt) yang boleh digunakan sebagai garis asas baru oleh orang lain, untuk iterasi yang lebih pantas di masa hadapan.
 
 ## Amalan Terbaik
 
-Sekarang mari lihat amalan terbaik yang biasa disyorkan oleh pengamal [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) dan [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst).
+Sekarang mari kita lihat amalan terbaik biasa yang disyorkan oleh pengamal [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) dan [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst).
 
-| Apa                              | Kenapa                                                                                                                                                                                                                                               |
-| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Nilai model terkini.       | Generasi model baharu mungkin mempunyai ciri dan kualiti yang lebih baik - tetapi juga mungkin lebih mahal. Nilai impaknya, kemudian buat keputusan migrasi.                                                                                |
-| Asingkan arahan & konteks   | Semak sama ada model/pembekal anda menentukan _pemisah_ untuk membezakan arahan, kandungan utama dan kandungan sekunder dengan lebih jelas. Ini boleh membantu model memberikan berat yang lebih tepat kepada token.                                                         |
-| Spesifik dan jelas             | Berikan lebih banyak butiran tentang konteks, hasil, panjang, format, gaya dsb. yang diingini. Ini akan meningkatkan kualiti dan konsistensi respons. Simpan resipi dalam templat boleh guna semula.                                                          |
-| Huraikan, gunakan contoh      | Model mungkin bertindak balas lebih baik dengan pendekatan "tunjuk dan cerita". Mulakan dengan pendekatan `zero-shot` di mana anda hanya beri arahan (tanpa contoh) kemudian cuba `few-shot` sebagai penambahbaikan, dengan memberi beberapa contoh output yang diingini. Gunakan analogi. |
-| Guna petunjuk untuk mulakan jawapan | Dorong model ke arah hasil yang diingini dengan memberi beberapa perkataan atau frasa permulaan yang boleh digunakan sebagai titik mula respons.                                                                                                               |
-| Ulangi arahan                       | Kadang-kadang anda perlu ulang arahan kepada model. Beri arahan sebelum dan selepas kandungan utama, gunakan arahan dan petunjuk, dsb. Ulang & sahkan untuk lihat apa yang berkesan.                                                         |
-| Susunan Penting                     | Susunan maklumat yang anda berikan kepada model boleh mempengaruhi output, termasuk dalam contoh pembelajaran, kerana bias kebaruan. Cuba pelbagai pilihan untuk lihat mana yang terbaik.                                                               |
-| Beri model “jalan keluar”           | Beri model respons _fallback_ yang boleh digunakan jika ia tidak dapat menyiapkan tugas atas apa-apa sebab. Ini boleh mengurangkan kemungkinan model menghasilkan respons palsu atau rekaan.                                                         |
-|                                   |                                                                                                                                                                                                                                                   |
+| Apa                               | Kenapa                                                                                                                                                                                                                                            |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nilai model terkini.              | Generasi model baru mungkin mempunyai ciri dan kualiti yang lebih baik - tetapi mungkin juga menimbulkan kos yang lebih tinggi. Nilai mereka untuk impak, kemudian buat keputusan migrasi.                                                         |
+| Pisahkan arahan & konteks        | Periksa sama ada model/pembekal anda mentakrifkan _pembatas_ untuk membezakan arahan, kandungan utama dan sekunder dengan lebih jelas. Ini boleh membantu model memberikan berat yang lebih tepat kepada token.                                   |
+| Jelaskan dan spesifik             | Berikan lebih banyak butiran tentang konteks yang dikehendaki, hasil, panjang, format, gaya dan lain-lain. Ini akan meningkatkan kedua-dua kualiti dan konsistensi respons. Tangkap resepi dalam templat yang boleh digunakan semula.               |
+| Gunakan penerangan, contoh        | Model mungkin memberi respons lebih baik kepada pendekatan "tunjuk dan ceritakan". Mulakan dengan pendekatan `zero-shot` di mana anda berikan arahan (tanpa contoh) kemudian cuba `few-shot` sebagai penambahbaikan, menyediakan beberapa contoh output. Gunakan analogi. |
+| Gunakan petunjuk untuk memulakan | Dorong ia ke arah hasil yang diingini dengan memberikan beberapa perkataan atau frasa pembayang yang ia boleh gunakan sebagai titik permulaan respons.                                                                                              |
+| Gandakan                         | Kadangkala anda perlu mengulangi arahan kepada model. Berikan arahan sebelum dan selepas kandungan utama anda, guna arahan dan petunjuk, dan sebagainya. Ulang dan sahkan untuk lihat apa yang berkesan.                                              |
+| Susunan Penting                  | Susunan di mana anda mempersembahkan maklumat kepada model boleh mempengaruhi output, termasuk dalam contoh pembelajaran, disebabkan bias terkini. Cuba pilihan berbeza untuk tengok apa yang terbaik.                                               |
+| Berikan model 'jalan keluar'      | Berikan model respons penyempurnaan _fallback_ yang boleh diberi jika ia tidak dapat menyelesaikan tugas atas apa jua sebab. Ini boleh mengurangkan kebarangkalian model menghasilkan respons palsu atau dicipta.                                   |
+|                                  |                                                                                                                                                                                                                                                   |
 
-Seperti mana-mana amalan terbaik, ingat bahawa _hasil anda mungkin berbeza_ bergantung pada model, tugas dan domain. Gunakan ini sebagai permulaan, dan ulang untuk cari apa yang paling sesuai untuk anda. Sentiasa nilai semula proses kejuruteraan prompt anda apabila model dan alat baharu tersedia, dengan fokus pada kebolehskalaan proses dan kualiti respons.
+Seperti mana-mana amalan terbaik, ingatlah bahawa _hasil anda mungkin berbeza_ bergantung pada model, tugas dan domain. Gunakan ini sebagai titik permulaan, dan ulang untuk mencari apa yang terbaik untuk anda. Sentiasa nilai semula proses kejuruteraan prompt anda apabila model dan alat baru tersedia, dengan fokus pada skala proses dan kualiti respons.
 
 <!--
-TEMPLAT PELAJARAN:
-Unit ini perlu menyediakan cabaran kod jika sesuai
+LESSON TEMPLATE:
+Bahagian ini perlu menyediakan cabaran kod jika sesuai.
 
 CABARAN:
-Pautan ke Jupyter Notebook dengan hanya komen kod dalam arahan (bahagian kod kosong).
+Pautkan kepada Jupyter Notebook dengan hanya komen kod dalam arahan (bahagian kod kosong).
 
 PENYELESAIAN:
-Pautan ke salinan Notebook itu dengan prompt diisi dan dijalankan, menunjukkan satu contoh output.
+Pautkan kepada salinan Notebook tersebut dengan prompt diisi dan dijalankan, menunjukkan satu contoh output sebagai rujukan.
 -->
 
 ## Tugasan
 
-Tahniah! Anda telah sampai ke penghujung pelajaran! Kini masa untuk menguji beberapa konsep dan teknik tersebut dengan contoh sebenar!
+Tahniah! Anda telah sampai ke penghujung pelajaran! Kini masa untuk menguji beberapa konsep dan teknik itu dengan contoh sebenar!
 
-Untuk tugasan ini, kita akan menggunakan Jupyter Notebook dengan latihan yang boleh anda lengkapkan secara interaktif. Anda juga boleh menambah sendiri sel Markdown dan Kod dalam Notebook untuk meneroka idea dan teknik anda sendiri.
+Untuk tugasan kita, kami akan menggunakan Jupyter Notebook dengan latihan interaktif yang anda boleh selesaikan. Anda juga boleh mengembangkan Notebook tersebut dengan sel Markdown dan Kod anda sendiri untuk meneroka idea dan teknik secara berdikari.
 
-### Untuk bermula, fork repo ini, kemudian
+### Untuk bermula, fork repo, kemudian
 
 - (Disyorkan) Lancarkan GitHub Codespaces
-- (Alternatif) Klon repo ke peranti anda dan gunakan dengan Docker Desktop
+- (Alternatif) Klon repo ke peranti tempatan anda dan gunakannya dengan Docker Desktop
 - (Alternatif) Buka Notebook dengan persekitaran runtime Notebook pilihan anda.
 
-### Seterusnya, tetapkan pembolehubah persekitaran anda
+### Seterusnya, konfigurasikan pemboleh ubah persekitaran anda
 
-- Salin fail `.env.copy` di root repo ke `.env` dan isikan nilai `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` dan `AZURE_OPENAI_DEPLOYMENT`. Kembali ke [bahagian Learning Sandbox](../../../04-prompt-engineering-fundamentals/04-prompt-engineering-fundamentals) untuk belajar caranya.
+- Salin fail `.env.copy` dalam akar repo ke `.env` dan isikan nilai `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` dan `AZURE_OPENAI_DEPLOYMENT`. Kembali ke [bahagian Learning Sandbox](../../../04-prompt-engineering-fundamentals) untuk belajar cara.
 
 ### Seterusnya, buka Jupyter Notebook
 
-- Pilih kernel runtime. Jika menggunakan pilihan 1 atau 2, hanya pilih kernel Python 3.10.x lalai yang disediakan oleh dev container.
+- Pilih kernel runtime. Jika menggunakan pilihan 1 atau 2, pilih kernel Python 3.10.x lalai yang disediakan oleh container dev.
 
-Anda sudah bersedia untuk menjalankan latihan. Perlu diingat tiada jawapan _betul atau salah_ di sini - hanya meneroka pilihan secara cuba dan jaya dan membina intuisi untuk apa yang berkesan bagi model dan domain aplikasi tertentu.
+Anda sudah bersedia untuk menjalankan latihan. Perlu diingat tiada jawapan _betul dan salah_ di sini - hanya meneroka pilihan dengan cuba dan silap dan membina naluri apa yang berkesan untuk model dan domain aplikasi tertentu.
 
-_Oleh itu tiada segmen Penyelesaian Kod dalam pelajaran ini. Sebaliknya, Notebook akan mempunyai sel Markdown bertajuk "Penyelesaian Saya:" yang menunjukkan satu contoh output untuk rujukan._
+_Untuk sebab ini tiada segmen Penyelesaian Kod dalam pelajaran ini. Sebaliknya, Notebook akan mempunyai sel Markdown bertajuk "My Solution:" yang menunjukkan satu contoh output sebagai rujukan._
 
  <!--
-TEMPLAT PELAJARAN:
-Akhiri bahagian dengan ringkasan dan sumber untuk pembelajaran kendiri.
+LESSON TEMPLATE:
+Tamatkan bahagian dengan ringkasan dan sumber untuk pembelajaran kendiri.
 -->
 
 ## Semakan Pengetahuan
 
-Yang manakah antara berikut merupakan prompt yang baik mengikut beberapa amalan terbaik?
+Yang manakah prompt yang baik mengikut beberapa amalan terbaik yang munasabah?
 
 1. Tunjukkan saya imej kereta merah
-2. Tunjukkan saya imej kereta merah jenama Volvo dan model XC90 yang diletakkan di tepi tebing dengan matahari terbenam
+2. Tunjukkan saya imej kereta merah jenama Volvo dan model XC90 yang diparkir di tebing dengan matahari terbenam
 3. Tunjukkan saya imej kereta merah jenama Volvo dan model XC90
 
-A: 2, ini adalah prompt terbaik kerana ia memberikan butiran tentang "apa" dan sangat spesifik (bukan sekadar kereta tetapi jenama dan model tertentu) dan ia juga menerangkan suasana keseluruhan. 3 adalah yang kedua terbaik kerana ia juga mengandungi banyak perincian.
+J: 2, ia adalah prompt terbaik kerana memberikan butiran "apa" dan pergi ke spesifik (bukan sekadar mana-mana kereta tetapi jenama dan model khusus) dan ia juga menerangkan suasana keseluruhan. 3 adalah seterusnya terbaik kerana ia juga mengandungi banyak penerangan.
 
 ## 🚀 Cabaran
 
-Cuba gunakan teknik "petunjuk" dengan prompt: Lengkapkan ayat "Tunjukkan saya imej kereta merah jenama Volvo dan ". Apa respons yang anda dapat, dan bagaimana anda akan memperbaikinya?
+Lihat jika anda boleh menggunakan teknik "petunjuk" dengan prompt: Lengkapkan ayat "Tunjukkan saya imej kereta merah jenama Volvo dan ". Apakah responsnya, dan bagaimana anda akan memperbaikinya?
 
-## Kerja Bagus! Teruskan Pembelajaran Anda
+## Kerja Hebat! Teruskan Pembelajaran Anda
 
-Ingin tahu lebih lanjut tentang pelbagai konsep Kejuruteraan Prompt? Pergi ke [halaman pembelajaran lanjutan](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) untuk mencari sumber hebat lain tentang topik ini.
+Ingin belajar lebih banyak tentang konsep Kejuruteraan Prompt yang berbeza? Pergi ke [halaman pembelajaran lanjutan](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) untuk mencari sumber hebat lain mengenai topik ini.
 
-Teruskan ke Pelajaran 5 di mana kita akan melihat [teknik prompting lanjutan](../05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)!
+Pergi ke Pelajaran 5 di mana kita akan melihat [teknik prompt lanjutan](../05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)!
 
 ---
 
-**Penafian**:
-Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk memastikan ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang berwibawa. Untuk maklumat kritikal, terjemahan manusia profesional adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Penafian**:  
+Dokumen ini telah diterjemahkan menggunakan perkhidmatan terjemahan AI [Co-op Translator](https://github.com/Azure/co-op-translator). Walaupun kami berusaha untuk ketepatan, sila ambil maklum bahawa terjemahan automatik mungkin mengandungi kesilapan atau ketidaktepatan. Dokumen asal dalam bahasa asalnya harus dianggap sebagai sumber yang sahih. Untuk maklumat penting, terjemahan profesional oleh manusia adalah disyorkan. Kami tidak bertanggungjawab atas sebarang salah faham atau salah tafsir yang timbul daripada penggunaan terjemahan ini.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

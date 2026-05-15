@@ -1,251 +1,207 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "dcbaaae026cb50fee071e690685b5843",
-  "translation_date": "2025-08-26T17:45:22+00:00",
-  "source_file": "04-prompt-engineering-fundamentals/README.md",
-  "language_code": "fi"
-}
--->
-# Prompt Engineeringin perusteet
+# Promptin suunnittelun perusteet
 
-[![Prompt Engineering Fundamentals](../../../translated_images/04-lesson-banner.a2c90deba7fedacda69f35b41636a8951ec91c2e33f5420b1254534ac85bc18e.fi.png)](https://aka.ms/gen-ai-lesson4-gh?WT.mc_id=academic-105485-koreyst)
+[![Promptin suunnittelun perusteet](../../../translated_images/fi/04-lesson-banner.a2c90deba7fedacd.webp)](https://youtu.be/GElCu2kUlRs?si=qrXsBvXnCW12epb8)
 
 ## Johdanto
-Tässä osiossa käydään läpi keskeisiä käsitteitä ja tekniikoita, joiden avulla voidaan luoda tehokkaita kehotteita generatiivisille tekoälymalleille. Myös sillä, miten kirjoitat kehotteesi LLM:lle, on merkitystä. Huolellisesti laadittu kehotus voi tuottaa laadukkaamman vastauksen. Mutta mitä oikeastaan tarkoittavat termit _kehotus_ ja _prompt engineering_? Ja miten voin parantaa kehotteen _syötettä_, jonka lähetän LLM:lle? Näihin kysymyksiin pyrimme vastaamaan tässä ja seuraavassa luvussa.
+Tässä moduulissa käsitellään olennaisia käsitteitä ja tekniikoita tehokkaiden promptien luomiseksi generatiivisissa tekoälymalleissa. Tapa, jolla kirjoitat promptin LLM:lle, on myös tärkeä. Huolellisesti laadittu prompti voi saada aikaan laadukkaamman vastauksen. Mutta mitä tarkalleen termit _prompt_ ja _promptin suunnittelu_ tarkoittavat? Ja miten parannan promptin _syötettä_, jonka lähetän LLM:lle? Näihin kysymyksiin pyrimme vastaamaan tässä ja seuraavassa luvussa.
 
-_Generatiivinen tekoäly_ pystyy tuottamaan uutta sisältöä (esim. tekstiä, kuvia, ääntä, koodia jne.) käyttäjän pyynnöstä. Tämä onnistuu _suurten kielimallien_ avulla, kuten OpenAI:n GPT-sarja ("Generative Pre-trained Transformer"), jotka on koulutettu käyttämään luonnollista kieltä ja koodia.
+_Generatiivinen tekoäly_ pystyy luomaan uutta sisältöä (esim. tekstiä, kuvia, ääntä, koodia jne.) käyttäjän pyyntöjen perusteella. Se saavuttaa tämän käyttämällä _suuria kielimalleja_ kuten OpenAI:n GPT ("Generative Pre-trained Transformer") -sarjaa, jotka on koulutettu käyttämään luonnollista kieltä ja koodia.
 
-Käyttäjät voivat nyt keskustella näiden mallien kanssa tutulla tavalla, kuten chatissa, ilman teknistä osaamista tai koulutusta. Mallit ovat _kehotepohjaisia_ – käyttäjä lähettää tekstisyötteen (kehotteen) ja saa tekoälyn vastauksen (completion). Keskustelua voi jatkaa useilla kierroksilla, tarkentaen kehotetta, kunnes vastaus vastaa odotuksia.
+Käyttäjät voivat nyt olla vuorovaikutuksessa näiden mallien kanssa tutun kaltaisilla paradigmailla kuten chat, ilman teknistä osaamista tai koulutusta. Mallit ovat _prompt-pohjaisia_ – käyttäjät lähettävät tekstisyötteen (promptin) ja saavat takaisin tekoälyn vastauksen (täydennyksen). He voivat sitten "keskustella tekoälyn kanssa" iteratiivisesti, monikertaisissa vuorovaikutuksissa, hiomalla promptiaan, kunnes vastaus vastaa heidän odotuksiaan.
 
-"Kehotteista" on tullut generatiivisten tekoälysovellusten _ohjelmointirajapinta_, joka ohjaa malleja ja vaikuttaa vastausten laatuun. "Prompt Engineering" on nopeasti kasvava tutkimusala, joka keskittyy kehotteiden _suunnitteluun ja optimointiin_ laadukkaiden ja johdonmukaisten vastausten tuottamiseksi laajassa mittakaavassa.
+"Promptit" muodostavat nyt generatiivisten tekoälysovellusten ensisijaisen _ohjelmointirajapinnan_, joka kertoo malleille, mitä tehdä, ja vaikuttaa palautettujen vastausten laatuun. "Promptin suunnittelu" on nopeasti kasvava tutkimusala, joka keskittyy promptien _suunnitteluun ja optimointiin_ tuottaakseen johdonmukaisia ja laadukkaita vastauksia suurissa määrin.
 
 ## Oppimistavoitteet
 
-Tässä luvussa opimme, mitä Prompt Engineering tarkoittaa, miksi se on tärkeää ja miten voimme laatia tehokkaampia kehotteita tietylle mallille ja sovellustavoitteelle. Käymme läpi keskeiset käsitteet ja parhaat käytännöt – sekä tutustumme interaktiiviseen Jupyter Notebook -ympäristöön, jossa näemme nämä asiat käytännössä.
+Tässä oppitunnissa opimme, mitä promptin suunnittelu on, miksi se on tärkeää ja miten voimme luoda tehokkaampia promptteja tietylle mallille ja sovellustavoitteelle. Ymmärrämme promptin suunnittelun keskeiset käsitteet ja parhaat käytännöt – sekä tutustumme interaktiiviseen Jupyter Notebook - "hiekkalaatikko"-ympäristöön, jossa voimme nähdä nämä käsitteet sovellettuna käytännön esimerkkeihin.
 
-Luvun lopussa osaamme:
+Oppitunnin lopussa osaat:
 
-1. Selittää, mitä prompt engineering on ja miksi se on tärkeää.
-2. Kuvata kehotteen osat ja niiden käyttötavat.
-3. Oppia parhaat käytännöt ja tekniikat kehotteiden suunnitteluun.
-4. Soveltaa opittuja tekniikoita oikeisiin esimerkkeihin OpenAI-päätepisteen avulla.
+1. Selittää, mitä promptin suunnittelu on ja miksi se on tärkeää.
+2. Kuvailla promptin osat ja niiden käyttötavat.
+3. Oppia parhaat käytännöt ja tekniikat promptin suunnitteluun.
+4. Soveltaa opittuja tekniikoita käytännön esimerkkeihin käyttäen OpenAI:n päätepistettä.
 
-## Keskeiset käsitteet
+## Keskeiset termit
 
-Prompt Engineering: Käytäntö, jossa suunnitellaan ja hiotaan syötteitä, jotta tekoälymallit tuottaisivat toivottuja tuloksia.
-Tokenisaatio: Prosessi, jossa teksti muutetaan pienemmiksi yksiköiksi eli tokeneiksi, joita malli pystyy käsittelemään.
-Ohjeistuksella hienosäädetyt LLM:t: Suuret kielimallit (LLM), joita on hienosäädetty erityisillä ohjeilla, jotta niiden vastaukset olisivat tarkempia ja osuvampia.
+Promptin suunnittelu: Teksti-inputtien suunnittelu ja hionta, joilla ohjataan tekoälymalleja tuottamaan haluttuja tuloksia.  
+Tokenisointi: Prosessi, jossa teksti muutetaan pienemmiksi yksiköiksi, ns. tokeneiksi, joita malli voi ymmärtää ja käsitellä.  
+Ohjeistettu LLM (Instruction-Tuned LLM): Suuret kielimallit, jotka on hienosäädetty erityisillä ohjeilla parantamaan vastausten tarkkuutta ja merkityksellisyyttä.
 
 ## Oppimisen hiekkalaatikko
 
-Prompt engineering on tällä hetkellä enemmän taidetta kuin tiedettä. Paras tapa kehittää omaa intuitiota on _harjoitella_ ja käyttää kokeilun ja erehdyksen menetelmää, jossa yhdistetään sovellusalueen asiantuntemus suositeltuihin tekniikoihin ja mallikohtaisiin optimointeihin.
+Promptin suunnittelu on tällä hetkellä enemmän taitolaji kuin tiede. Paras tapa parantaa intuitiota on _harjoitella enemmän_ ja käyttää kokeilu- ja erehdysmenetelmää, joka yhdistää sovellusalueen asiantuntemuksen suositeltuihin tekniikoihin ja mallikohtaisiin optimointeihin.
 
-Tämän luvun mukana tuleva Jupyter Notebook tarjoaa _hiekkalaatikko_-ympäristön, jossa voit kokeilla oppimaasi – joko heti tai luvun lopun kooditehtävissä. Harjoitusten suorittamiseen tarvitset:
+Tähän oppituntiin liittyvä Jupyter Notebook tarjoaa _hiekkalaatikko_-ympäristön, jossa voit kokeilla oppimaasi – joko matkan varrella tai lopun kooditehtävissä. Harjoitusten suorittamiseen tarvitset:
 
-1. **Azure OpenAI API -avaimen** – palvelupäätepisteen käyttöön otetulle LLM:lle.
-2. **Python-ympäristön** – jossa Notebook voidaan ajaa.
-3. **Paikalliset ympäristömuuttujat** – _tee [SETUP](./../00-course-setup/02-setup-local.md?WT.mc_id=academic-105485-koreyst) -vaiheet nyt, jotta olet valmis_.
+1. **Azure OpenAI API -avaimen** – palvelun päätepisteen käyttöön otettuun LLM:ään.  
+2. **Python-ympäristön** – jossa Notebook voidaan suorittaa.  
+3. **Paikalliset ympäristömuuttujat** – _viimeistele [ASENNUS](./../00-course-setup/02-setup-local.md?WT.mc_id=academic-105485-koreyst) -vaiheet nyt valmiiksi_.
 
-Notebook sisältää _aloitusharjoituksia_ – mutta sinua kannustetaan lisäämään omia _Markdown_- (kuvaus) ja _Code_- (kehotepyynnöt) osioita, jotta voit kokeilla lisää esimerkkejä ja ideoita – ja kehittää omaa näkemystäsi kehotteiden suunnittelusta.
+Notebook sisältää _aloitus_ harjoituksia – mutta sinun odotetaan lisäävän omia _Markdown_ (kuvaus) ja _Code_ (prompt-pyynnöt) osioita kokeillaksesi lisää esimerkkejä tai ideoita – ja rakennat intuitiota promptin suunnitteluun.
 
 ## Kuvitettu opas
 
-Haluatko saada yleiskuvan luvun sisällöstä ennen kuin sukellat yksityiskohtiin? Tutustu tähän kuvitettuun oppaaseen, joka esittelee pääaiheet ja tärkeimmät asiat, joita kannattaa pohtia. Luvun etenemispolku vie sinut ydinkäsitteiden ja haasteiden ymmärtämisestä niiden ratkaisemiseen kehotteiden suunnittelun tekniikoilla ja parhailla käytännöillä. Huomaa, että oppaan "Edistyneet tekniikat" -osio viittaa seuraavan luvun sisältöön.
+Haluatko saada kokonaiskuvan tästä oppitunnista ennen kuin sukellet syvemmälle? Tutustu tähän kuvitettuun oppaaseen, joka antaa sinistä pääaiheista ja avainkohdista mietittäväksi. Oppitunnin tiekartta johdattaa sinut keskeisten käsitteiden ja haasteiden ymmärtämisestä niiden ratkaisuihin relevanttien promptin suunnittelutekniikoiden ja parhaiden käytäntöjen avulla. Huomaa, että tässä oppaassa "Kehittyneet tekniikat" -osio viittaa tämän oppimateriaalin _seuraavan_ luvun sisältöön.
 
-![Kuvitettu opas Prompt Engineeringiin](../../../translated_images/04-prompt-engineering-sketchnote.d5f33336957a1e4f623b826195c2146ef4cc49974b72fa373de6929b474e8b70.fi.png)
+![Kuvitettu opas promptin suunnitteluun](../../../translated_images/fi/04-prompt-engineering-sketchnote.d5f33336957a1e4f.webp)
 
 ## Meidän startup
 
-Katsotaanpa, miten _tämä aihe_ liittyy startupimme tavoitteeseen [tuoda tekoälyinnovaatioita opetukseen](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). Haluamme rakentaa tekoälypohjaisia _yksilöllisen oppimisen_ sovelluksia – joten pohditaan, miten eri käyttäjät voisivat "suunnitella" kehotteita:
+Käydään nyt läpi, miten _tämä aihe_ liittyy startup-yrityksemme missioon [tuoda tekoälyinnovaatio koulutukseen](https://educationblog.microsoft.com/2023/06/collaborating-to-bring-ai-innovation-to-education?WT.mc_id=academic-105485-koreyst). Haluamme rakentaa tekoälypohjaisia sovelluksia _persoonalliseen oppimiseen_ – joten pohditaan, miten eri sovelluksen käyttäjät voisivat "suunnitella" promptteja:
 
-- **Ylläpitäjät** voivat pyytää tekoälyä _analysoimaan opetussuunnitelman dataa ja tunnistamaan puutteita_. Tekoäly voi tiivistää tulokset tai visualisoida ne koodin avulla.
-- **Opettajat** voivat pyytää tekoälyä _luomaan oppituntisuunnitelman tietylle kohderyhmälle ja aiheelle_. Tekoäly voi rakentaa yksilöllisen suunnitelman halutussa muodossa.
-- **Opiskelijat** voivat pyytää tekoälyä _auttamaan vaikeassa oppiaineessa_. Tekoäly voi ohjata opiskelijaa oppitunneilla, vihjeillä ja esimerkeillä, jotka on räätälöity heidän tasolleen.
+- **Ylläpitäjät** voivat pyytää tekoälyä _analysoimaan opetussuunnitelman tietoja löytääkseen aukkoja kattavuudesta_. Tekoäly voi tiivistää tulokset tai visualisoida niitä koodilla.  
+- **Opettajat** voivat pyytää tekoälyä _luomaan oppituntisuunnitelman kohdeyleisölle ja aiheelle_. Tekoäly rakentaa persoonallisen suunnitelman määritellyssä muodossa.  
+- **Oppilaat** voivat pyytää tekoälyä _ohjaamaan heitä vaikeassa aineessa_. Tekoäly voi nyt opastaa oppilaita oppitunneilla, vihjeillä ja esimerkeillä heidän tasonsa mukaan.
 
-Tämä on vasta alkua. Tutustu [Prompts For Education](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) -kirjastoon, joka on avoimen lähdekoodin kehotekirjasto opetuksen asiantuntijoiden kokoamana – saat laajemman käsityksen mahdollisuuksista! _Kokeile joitakin kehotteita hiekkalaatikossa tai OpenAI Playgroundissa ja katso, mitä tapahtuu!_
+Tässä oli vasta pintaraapaisu. Tutustu [Prompts For Education](https://github.com/microsoft/prompts-for-edu/tree/main?WT.mc_id=academic-105485-koreyst) – avoimen lähdekoodin prompt-kokoelmaan, jota koulutusasiantuntijat ylläpitävät – saadaksesi laajemman kuvan mahdollisuuksista! _Kokeile ajamaan joitakin näistä prompteista hiekkalaatikossa tai OpenAI Playgroundissa nähdäksesi, mitä tapahtuu!_
 
 <!--
-OPPITUNNIN POHJA:
-Tässä yksikössä käsitellään ydinkäsite #1.
-Vahvista käsitettä esimerkeillä ja viitteillä.
+LESSON TEMPLATE:
+This unit should cover core concept #1.
+Reinforce the concept with examples and references.
 
-KÄSITE #1:
+CONCEPT #1:
 Prompt Engineering.
-Määrittele ja selitä, miksi sitä tarvitaan.
+Define it and explain why it is needed.
 -->
 
-## Mitä Prompt Engineering on?
+## Mitä on promptin suunnittelu?
 
-Aloitimme tämän luvun määrittelemällä **Prompt Engineeringin** prosessiksi, jossa _suunnitellaan ja optimoidaan_ tekstisyötteitä (kehotteita), jotta saadaan johdonmukaisia ja laadukkaita vastauksia (completions) tiettyyn sovellustavoitteeseen ja malliin. Voimme ajatella tätä kaksivaiheisena prosessina:
+Aloitimme tämän oppitunnin määrittelemällä **promptin suunnittelun** tekstisyötteiden (promptien) _suunnitteluksi ja optimoinniksi_, jotta voidaan tuottaa johdonmukaisia ja laadukkaita vastauksia (täydennyksiä) tietylle sovellustavoitteelle ja mallille. Voimme ajatella tätä kaksiportaisena prosessina:
 
-- _suunnitellaan_ alkuperäinen kehotus tietylle mallille ja tavoitteelle
-- _hiotaan_ kehotetta vaiheittain, jotta vastauksen laatu paranee
+- _suunnitella_ alkuperäinen prompti tietylle mallille ja tavoitteelle  
+- _hioa_ promptia iteratiivisesti vastauksen laadun parantamiseksi
 
-Tämä on väistämättä kokeiluun perustuva prosessi, joka vaatii käyttäjän intuitiota ja vaivannäköä parhaan tuloksen saavuttamiseksi. Miksi tämä on tärkeää? Vastausta varten täytyy ensin ymmärtää kolme käsitettä:
+Tämä on välttämättä koe- ja virhe -prosessi, joka vaatii käyttäjän intuitiota ja vaivaa optimaalisten tulosten saavuttamiseksi. Miksi se sitten on tärkeää? Vastaus löytyy, kun ymmärrämme kolme käsitettä:
 
-- _Tokenisaatio_ = miten malli "näkee" kehotteen
-- _Perus-LLM:t_ = miten perustamalli "käsittelee" kehotteen
-- _Ohjeistuksella hienosäädetyt LLM:t_ = miten malli näkee "tehtävät"
+- _Tokenisointi_ = miten malli "näkee" promptin  
+- _Perus-LLM:t_ = miten perustamalli "käsittelee" promptin  
+- _Ohjeistettu LLM_ = miten malli voi nyt nähdä "tehtäviä"
 
-### Tokenisaatio
+### Tokenisointi
 
-LLM näkee kehotteet _tokenien jonoina_, ja eri mallit (tai malliversiot) voivat tokenisoida saman kehotteen eri tavoin. Koska LLM:t on koulutettu tokeneilla (eivätkä raakatiedolla), kehotteen tokenisointi vaikuttaa suoraan tuotetun vastauksen laatuun.
+LLM näkee promptit _tokenien sekvenssinä_, ja eri mallit (tai malliversiot) voivat tokenisoida saman promptin eri tavoin. Koska LLM:t on koulutettu tokeneilla (eivät raakattekstillä), promptin tokenisointitavalla on suora vaikutus luodun vastauksen laatuun.
 
-Jos haluat ymmärtää tokenisaatiota, kokeile esimerkiksi [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst) -työkalua. Kopioi kehotteesi ja katso, miten se muuttuu tokeneiksi – kiinnitä huomiota välilyönteihin ja välimerkkeihin. Huomaa, että esimerkki näyttää vanhemman LLM:n (GPT-3) – uudemmalla mallilla tulos voi olla erilainen.
+Saadaksesi intuitiota tokenisoinnista, kokeile työkaluja kuten [OpenAI Tokenizer](https://platform.openai.com/tokenizer?WT.mc_id=academic-105485-koreyst), joka näkyy alla. Kopioi promptisi – ja näet, miten se muunnetaan tokeneiksi, kiinnittäen huomiota välilyöntien ja välimerkkien käsittelyyn. Huomaa, että tämä esimerkki näyttää vanhemman LLM:n (GPT-3) – joten uuden mallin kanssa kokeileminen voi tuottaa erilaisen tuloksen.
 
-![Tokenisaatio](../../../translated_images/04-tokenizer-example.e71f0a0f70356c5c7d80b21e8753a28c18a7f6d4aaa1c4b08e65d17625e85642.fi.png)
+![Tokenisointi](../../../translated_images/fi/04-tokenizer-example.e71f0a0f70356c5c.webp)
 
-### Käsite: Perustamallit
+### Käsite: Perusmallit
 
-Kun kehotus on tokenisoitu, ["Base LLM"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (tai perustamalli) pyrkii ennustamaan seuraavan tokenin jonossa. Koska LLM:t on koulutettu valtavilla tekstiaineistoilla, ne osaavat arvioida tokenien tilastollisia yhteyksiä ja tehdä ennustuksen varsin luotettavasti. Ne eivät kuitenkaan ymmärrä sanojen _merkitystä_ – ne näkevät vain kuvion, jonka voivat "jatkaa" seuraavalla ennustuksella. Malli jatkaa tokenien ennustamista, kunnes käyttäjä keskeyttää tai jokin ennalta määritelty ehto täyttyy.
+Kun prompti on tokenisoitu, ["Perus-LLM:n"](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) (tai perusmallin) päätehtävä on ennustaa seuraava token sekvenssissä. Koska LLM:t on koulutettu valtavilla tekstidatamassoilla, niillä on hyvä käsitys tokenien tilastollisista suhteista, ja ne voivat tehdä ennusteen suhteellisen varmuudella. Huomaa, että ne eivät ymmärrä promptin sanojen _merkitystä_ tai tokenien sisältöä; ne vain näkevät mallin, jonka voivat "täydentää" seuraavalla ennusteellaan. Ne voivat jatkaa sekvenssin ennustamista, kunnes käyttäjä keskeyttää tai jokin ennalta määrätty ehto täyttyy.
 
-Haluatko nähdä, miten kehotepohjainen vastaus toimii? Syötä yllä oleva kehotus Azure OpenAI Studion [_Chat Playgroundiin_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) oletusasetuksilla. Järjestelmä käsittelee kehotteet tietopyyntöinä – saat vastauksen, joka sopii tähän kontekstiin.
+Haluatko nähdä, miten prompt-pohjainen täydennys toimii? Syötä yllä oleva prompt Azure OpenAI Studioon [_Chat Playground_](https://oai.azure.com/playground?WT.mc_id=academic-105485-koreyst) oletusasetuksilla. Järjestelmä on konfiguroitu käsittelemään promptit tiedonpyynnöiksi – joten näet vastauksen, joka täyttää tämän kontekstin.
 
-Mutta entä jos käyttäjä haluaa nähdä jotain tiettyä, joka täyttää tietyt kriteerit tai tehtävätavoitteen? Tässä _ohjeistuksella hienosäädetyt_ LLM:t astuvat kuvaan.
+Mutta entä jos käyttäjä haluaisi nähdä jotain erityistä, joka täyttää jonkin kriteerin tai tehtävän tavoitteen? Tässä tulevat kuvaan _ohjeistetut_ LLM:t.
 
-![Base LLM Chat Completion](../../../translated_images/04-playground-chat-base.65b76fcfde0caa6738e41d20f1a6123f9078219e6f91a88ee5ea8014f0469bdf.fi.png)
+![Perus-LLM:n chat-täydennys](../../../translated_images/fi/04-playground-chat-base.65b76fcfde0caa67.webp)
 
-### Käsite: Ohjeistuksella hienosäädetyt LLM:t
+### Käsite: Ohjeistetut LLM:t
 
-[Ohjeistuksella hienosäädetty LLM](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) lähtee perustamallista ja hienosäädetään esimerkeillä tai syöte/vastaus-pareilla (esim. monikierroksiset "viestit"), jotka sisältävät selkeitä ohjeita – ja tekoäly yrittää noudattaa annettua ohjetta.
+[Ohjeistettu LLM](https://blog.gopenai.com/an-introduction-to-base-and-instruction-tuned-large-language-models-8de102c785a6?WT.mc_id=academic-105485-koreyst) perustuu perusmalliin, jota hienosäädetään esimerkkien tai syöte–vastaus -pareilla (esim. monikertaiset "viestit"), jotka sisältävät selkeitä ohjeita – ja tekoälyn vastaus pyrkii noudattamaan kyseistä ohjetta.
 
-Tässä käytetään esimerkiksi Reinforcement Learning with Human Feedback (RLHF) -tekniikoita, joiden avulla malli _noudattaa ohjeita_ ja _oppii palautteesta_, jolloin se tuottaa käytännön sovelluksiin sopivampia ja käyttäjän tavoitteisiin osuvampia vastauksia.
+Tässä käytetään tekniikoita kuten vahvistusoppimista ihmispalautteen kanssa (RLHF), joka voi opetuttaa mallin _noudattamaan ohjeita_ ja _oppimaan palautteesta_, jotta malli tuottaa vastauksia, jotka soveltuvat paremmin käytännön sovelluksiin ja ovat merkityksellisempiä käyttäjän tavoitteille.
 
-Kokeillaan – käytä yllä olevaa kehotetta, mutta vaihda nyt _järjestelmäviesti_ antamaan seuraava ohje kontekstiksi:
+Kokeillaanpa – palaa yllä olevaan promptiin, mutta muuta nyt _järjestelmäviestiä_ antamaan seuraava ohje kontekstiksi:
 
-> _Tiivistä sinulle annettu sisältö toisluokkalaiselle. Pidä tulos yhdessä kappaleessa ja 3–5 bulletissa._
+> _Tiivistä annetun sisällön pääkohdat toisen luokan oppilaalle. Pidä tulos yhdessä kappaleessa ja 3–5 luettelokohdassa._
 
-Huomaatko, miten tulos on nyt muotoiltu halutun tavoitteen ja muodon mukaan? Opettaja voi käyttää tätä vastausta suoraan luokan dioissa.
+Näetkö, miten tulos on nyt viritetty vastaamaan haluttua tavoitetta ja muotoa? Opettaja voi nyt käyttää tätä vastausta suoraan tunnin dioissaan.
 
-![Instruction Tuned LLM Chat Completion](../../../translated_images/04-playground-chat-instructions.b30bbfbdf92f2d051639c9bc23f74a0e2482f8dc7f0dafc6cc6fda81b2b00534.fi.png)
+![Ohjeistettu LLM:n chat-täydennys](../../../translated_images/fi/04-playground-chat-instructions.b30bbfbdf92f2d05.webp)
 
-## Miksi Prompt Engineeringiä tarvitaan?
+## Miksi tarvitsemme promptin suunnittelua?
 
-Nyt kun tiedämme, miten kehotteet käsitellään LLM:ssä, pohditaan _miksi_ prompt engineering on tarpeen. Syynä on se, että nykyiset LLM:t tuovat mukanaan haasteita, jotka tekevät _luotettavien ja johdonmukaisten vastausten_ tuottamisesta vaikeampaa ilman panostusta kehotteiden suunnitteluun ja optimointiin. Esimerkiksi:
+Kun tiedämme, miten LLM:t käsittelevät prompteja, keskustellaan _miksi_ promptin suunnittelu on tarpeen. Vastaus löytyy siitä, että nykyiset LLM:t aiheuttavat haasteita, jotka tekevät _luotettavien ja johdonmukaisten vastausten_ saavuttamisesta haastavampaa ilman vaivannäköä promptien laadinnassa ja optimoinnissa. Esimerkiksi:
 
-1. **Mallien vastaukset ovat satunnaisia.** _Sama kehotus_ voi tuottaa eri vastauksia eri malleilla tai malliversioilla. Ja jopa _sama malli_ voi antaa eri tuloksen eri kerroilla. _Prompt engineeringin tekniikat auttavat vähentämään näitä vaihteluita antamalla parempia rajoja._
+1. **Mallin vastaukset ovat stokastisia.** _Sama prompti_ tuottaa todennäköisesti erilaisia vastauksia eri malleissa tai malliversioissa. Ja se saattaa tuottaa eri tuloksia _samalla mallilla_ eri aikoina. _Promptin suunnittelun tekniikat voivat auttaa minimoimaan näitä vaihteluita tarjoamalla parempia suojakaiteita_.
 
-1. **Mallit voivat keksiä vastauksia.** Mallit on koulutettu _laajoilla mutta rajallisilla_ aineistoilla, joten niiltä puuttuu tietoa aineiston ulkopuolisista asioista. Siksi ne voivat tuottaa vastauksia, jotka ovat epätarkkoja, kuvitteellisia tai ristiriidassa tunnetun tiedon kanssa. _Prompt engineeringin tekniikat auttavat tunnistamaan ja vähentämään tällaisia keksittyjä vastauksia, esim. pyytämällä tekoälyltä lähteitä tai perusteluja._
+2. **Mallien vastaukset voivat olla keksittyjä.** Mallit on esikoulutettu _suurella mutta rajallisella_ aineistolla, mikä tarkoittaa, etteivät ne tunne käsitteitä koulutusdatansa ulkopuolelta. Tämän seurauksena ne voivat tuottaa vastauksia, jotka ovat epätarkkoja, kuvitteellisia tai suoraan ristiriidassa tunnetun tiedon kanssa. _Promptin suunnittelun tekniikat auttavat käyttäjiä tunnistamaan ja lieventämään tällaisia keksintöjä, esim. pyytämällä tekoälyltä lähdeviitteitä tai perusteluja_.
 
-1. **Mallien kyvyt vaihtelevat.** Uudemmat mallit tai mallisukupolvet tarjoavat laajempia ominaisuuksia, mutta tuovat myös omat erityispiirteensä ja kompromissinsa kustannuksissa ja monimutkaisuudessa. _Prompt engineering auttaa kehittämään parhaita käytäntöjä ja työnkulkuja, jotka abstrahoivat erot ja mukautuvat mallikohtaisiin vaatimuksiin skaalautuvasti ja joustavasti._
+3. **Mallien kyvykkyydet vaihtelevat.** Uudemmat mallit tai mallisukupolvet tarjoavat monipuolisempia kykyjä, mutta samalla myös erityisiä luonteenpiirteitä ja kompromisseja kustannuksissa ja monimutkaisuudessa. _Promptin suunnittelu voi auttaa kehittämään parhaita käytäntöjä ja työnkulkuja, jotka abstrahoivat erot ja sopeutuvat mallikohtaisiin vaatimuksiin skaalautuvasti ja saumattomasti_.
 
-Kokeile tätä käytännössä OpenAI- tai Azure OpenAI Playgroundissa:
+Kokeillaan tätä käytännössä OpenAI:n tai Azure OpenAI Playgroundissa:
 
-- Käytä samaa kehotetta eri LLM-toteutuksilla (esim. OpenAI, Azure OpenAI, Hugging Face) – huomasitko vaihtelut?
-- Käytä samaa kehotetta toistuvasti _samalla_ LLM-toteutuksella (esim. Azure OpenAI playground) – miten tulokset erosivat toisistaan?
+- Käytä samaa promptia eri LLM-julkaisuissa (esim. OpenAI, Azure OpenAI, Hugging Face) – huomasitko vaihteluita?  
+- Käytä samaa promptia toistuvasti _samassa_ LLM-julkaisussa (esim. Azure OpenAI Playground) – kuinka nämä vaihtelut erosivat?
 
-### Keksityt vastaukset
+### Keksinnöt – esimerkki
 
-Tässä kurssissa käytämme termiä **"fabrication"** ilmiöstä, jossa LLM:t tuottavat joskus faktuaalisesti virheellistä tietoa johtuen koulutuksen rajoituksista tai muista syistä. Olet ehkä kuullut tästä myös nimitystä _"hallucination"_ artikkeleissa tai tutkimuksissa. Suosittelemme kuitenkin käyttämään termiä _"fabrication"_, jotta emme inhimillistäisi ilmiötä antamalla koneelle ihmismäisiä piirteitä. Tämä tukee myös [Vastuullisen tekoälyn periaatteita](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst) terminologian näkökulmasta, poistamalla termejä, joita voidaan pitää loukkaavina tai ei-sisällyttävinä joissain yhteyksissä.
+Tässä kurssissa käytämme termiä **"keksintö"** kuvaamaan ilmiötä, jossa LLM:t joskus luovat totuudenmukaisesti virheellistä tietoa koulutuksensa rajoitusten tai muiden syiden takia. Olet saattanut kuulla tätä kutsuttavan _"harhoiksi"_ suosituissa artikkeleissa tai tutkimuspapereissa. Suosittelemme kuitenkin käyttämään termiä _"keksintö"_, jotta emme vahingossa ihmisellistäisi käyttäytymistä antamalla koneohjatulle tulokselle ihmismäisiä piirteitä. Tämä myös vahvistaa [Vastuullisen tekoälyn ohjeita](https://www.microsoft.com/ai/responsible-ai?WT.mc_id=academic-105485-koreyst) terminologian näkökulmasta, poistamalla termejä, jotka voivat joissain konteksteissa olla loukkaavia tai ei-inklusiivisia.
 
-Haluatko nähdä, miten keksityt vastaukset syntyvät? Mieti kehotetta, jossa pyydetään tekoälyä tuottamaan sisältöä olemattomasta aiheesta (jotta sitä ei löydy koulutusaineistosta). Esimerkiksi – kokeilin tätä kehotetta:
-# Oppituntisuunnitelma: Marsin sota vuonna 2076
+Haluatko saada käsityksen siitä, miten keksinnöt toimivat? Ajattele promptia, joka ohjeistaa tekoälyä tuottamaan sisältöä olemattomasta aiheesta (varmistaakseen, ettei sitä löydy koulutusdatasta). Esimerkiksi – kokeilin tätä promptia:
 
-## Tavoite
+> **Prompt:** luo oppituntisuunnitelma Marsin sodasta vuonna 2076.
+Verkkohaku näytti, että Marsin sodista oli olemassa kuvitteellisia kertomuksia (esim. televisiosarjoja tai kirjoja) – mutta ei vuonna 2076. Terve järki myös kertoo, että vuosi 2076 on _tulevaisuudessa_, eikä sitä siten voi liittää todelliseen tapahtumaan.
 
-Tämän oppitunnin tarkoituksena on tutustua Marsin sotaan vuonna 2076, sen taustoihin, tärkeimpiin tapahtumiin ja vaikutuksiin ihmiskunnan tulevaisuudelle.
-
-## Johdanto
-
-- Lyhyt katsaus Marsin kolonisaatioon ennen vuotta 2076
-- Syyt, jotka johtivat jännitteisiin Marsin ja Maan välillä
-- Tärkeimmät osapuolet konfliktissa
-
-## Oppimistehtävät
-
-1. **Marsin sodan taustat**
-   - Miksi Marsin asukkaat halusivat itsenäisyyttä?
-   - Miten Maan hallinto reagoi Marsin vaatimuksiin?
-
-2. **Sodan kulku**
-   - Tärkeimmät taistelut ja strategiat
-   - Uudet teknologiat, joita sodassa käytettiin
-   - Sodan vaikutus Marsin ja Maan infrastruktuuriin
-
-3. **Sodan seuraukset**
-   - Poliittiset muutokset Marsissa ja Maassa
-   - Vaikutukset avaruusmatkailuun ja tuleviin kolonisaatioihin
-   - Rauhanneuvottelut ja niiden tulokset
-
-## Keskustelukysymyksiä
-
-- Olisiko Marsin sota voitu välttää? Miten?
-- Miten teknologian kehitys vaikutti sodan kulkuun?
-- Mitä voimme oppia Marsin sodasta tulevaisuuden konflikteja ajatellen?
-
-## Tehtävä
-
-Kirjoita lyhyt essee siitä, miten Marsin sota muutti ihmiskunnan käsitystä avaruuden valloituksesta ja itsenäisyydestä.
-
-## Lisämateriaali
-
-- Linkkejä artikkeleihin ja dokumentteihin Marsin sodasta
-- Aikajana sodan tärkeimmistä tapahtumista
-- Kartta Marsin tärkeimmistä kaupungeista ja taistelupaikoista
-
-## Yhteenveto
-
-Oppitunnin lopuksi käydään läpi tärkeimmät opit Marsin sodasta ja pohditaan, miten ne vaikuttavat tulevaisuuden avaruuspolitiikkaan.
-Verkkohaku osoitti, että Marsin sodista on olemassa fiktiivisiä kertomuksia (esim. televisiosarjoja tai kirjoja) – mutta ei vuodelta 2076. Järki sanoo myös, että vuosi 2076 on _tulevaisuudessa_, joten sitä ei voi liittää todelliseen tapahtumaan.
-
-Mitä siis tapahtuu, kun annamme tämän kehotteen eri LLM-palveluntarjoajille?
+Mitä siis tapahtuu, kun tätä kehotetta kokeillaan eri LLM-palveluntarjoajilla?
 
 > **Vastaus 1**: OpenAI Playground (GPT-35)
 
-![Vastaus 1](../../../translated_images/04-fabrication-oai.5818c4e0b2a2678c40e0793bf873ef4a425350dd0063a183fb8ae02cae63aa0c.fi.png)
+![Vastaus 1](../../../translated_images/fi/04-fabrication-oai.5818c4e0b2a2678c.webp)
 
 > **Vastaus 2**: Azure OpenAI Playground (GPT-35)
 
-![Vastaus 2](../../../translated_images/04-fabrication-aoai.b14268e9ecf25caf613b7d424c16e2a0dc5b578f8f960c0c04d4fb3a68e6cf61.fi.png)
+![Vastaus 2](../../../translated_images/fi/04-fabrication-aoai.b14268e9ecf25caf.webp)
 
-> **Vastaus 3**: Hugging Face Chat Playground (LLama-2)
+> **Vastaus 3**: : Hugging Face Chat Playground (LLama-2)
 
-![Vastaus 3](../../../translated_images/04-fabrication-huggingchat.faf82a0a512789565e410568bce1ac911075b943dec59b1ef4080b61723b5bf4.fi.png)
+![Vastaus 3](../../../translated_images/fi/04-fabrication-huggingchat.faf82a0a51278956.webp)
 
-Kuten odotettua, jokainen malli (tai malliversio) tuottaa hieman erilaisia vastauksia johtuen stokastisesta käyttäytymisestä ja mallien kyvykkyyksien eroista. Esimerkiksi yksi malli kohdistaa vastauksensa kahdeksasluokkalaisille, kun taas toinen olettaa käyttäjän olevan lukiolainen. Kaikki kolme mallia kuitenkin tuottivat vastauksia, jotka voisivat vakuuttaa tietämättömän käyttäjän siitä, että tapahtuma oli todellinen.
+Kuten odotettua, kukin malli (tai malliversio) tuottaa hieman erilaisia vastauksia stokastisen käyttäytymisen ja mallin kyvykkyyserojen vuoksi. Esimerkiksi eräs malli kohdistaa vastauksen 8. luokan tasolle, kun taas toinen olettaa lukioikäisen. Kaikki kolme mallia kuitenkin tuottivat vastauksia, jotka voisivat saada tietämättömän käyttäjän uskomaan, että tapahtuma oli todellinen.
 
-Kehotteen suunnittelun tekniikat, kuten _metaprompting_ ja _lämpötilan säätö_, voivat vähentää mallin sepityksiä jossain määrin. Uudet kehotteiden suunnittelun _arkkitehtuurit_ myös tuovat uusia työkaluja ja tekniikoita saumattomasti kehotteiden kulkuun, lieventäen tai vähentäen näitä vaikutuksia.
+Kehoteinsinöörauksen tekniikat kuten _metakehotteet_ ja _lämpötilan säätö_ voivat jossain määrin vähentää mallien keksimiä tietoja. Uudet kehotteiden suunnittelu _arkkitehtuurit_ myös yhdistävät saumattomasti uusia työkaluja ja tekniikoita kehotteen kulkuun, lieventäen tai vähentäen näitä ilmiöitä.
 
 ## Tapaustutkimus: GitHub Copilot
 
-Päätetään tämä osio tarkastelemalla, miten kehotteiden suunnittelua käytetään oikeissa ratkaisuissa yhden tapaustutkimuksen kautta: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
+Katsotaan lopuksi, miten kehotteiden suunnittelua hyödynnetään todellisissa ratkaisuissa, tarkastelemalla yhtä tapaustutkimusta: [GitHub Copilot](https://github.com/features/copilot?WT.mc_id=academic-105485-koreyst).
 
-GitHub Copilot on "tekoälypariohjelmoijasi" – se muuntaa tekstikehotteet koodiehdotuksiksi ja on integroitu kehitysympäristöösi (esim. Visual Studio Code) sujuvaa käyttökokemusta varten. Alla olevien blogien mukaan varhaisin versio perustui OpenAI Codex -malliin – insinöörit huomasivat nopeasti tarpeen hienosäätää mallia ja kehittää parempia kehotteiden suunnittelun tekniikoita koodin laadun parantamiseksi. Heinäkuussa [esiteltiin parannettu tekoälymalli, joka menee Codexin ohi](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst) entistä nopeampia ehdotuksia varten.
+GitHub Copilot on sinun "tekoälypari-ohjelmoijasi" – se muuntaa tekstikehotteet koodin täydentämisiksi ja on integroitu kehitysympäristöösi (esim. Visual Studio Code) sujuvan käyttökokemuksen takaamiseksi. Kuten alla olevissa blogisarjoissa dokumentoidaan, varhaisin versio perustui OpenAI Codex -malliin – ja insinöörit ymmärsivät nopeasti mallin hienosäädön ja parempien kehotteiden suunnittelutekniikoiden tarpeen parantaakseen koodin laatua. Heinäkuussa he [julkaisivat parannetun tekoälymallin, joka menee Codexin ohi](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst) tarjoten vielä nopeampia ehdotuksia.
 
-Lue julkaisut järjestyksessä, jotta voit seurata heidän oppimismatkaansa.
+Lue postaukset järjestyksessä heidän oppimisprosessinsa seuraamiseksi.
 
-- **Toukokuu 2023** | [GitHub Copilot ymmärtää koodiasi yhä paremmin](https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst)
-- **Toukokuu 2023** | [Kulissien takana: Työskentely GitHub Copilotin LLM-mallien kanssa](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **Kesäkuu 2023** | [Näin kirjoitat parempia kehotteita GitHub Copilotille](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst).
-- **Heinäkuu 2023** | [.. GitHub Copilot menee Codexin ohi parannetulla tekoälymallilla](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
+- **Toukokuu 2023** | [GitHub Copilot ymmärtää koodiasi paremmin](https://github.blog/2023-05-17-how-github-copilot-is-getting-better-at-understanding-your-code/?WT.mc_id=academic-105485-koreyst)
+- **Toukokuu 2023** | [GitHubin sisäpiirissä: Työskentely GitHub Copilotin taustalla olevien LLM-mallien kanssa](https://github.blog/2023-05-17-inside-github-working-with-the-llms-behind-github-copilot/?WT.mc_id=academic-105485-koreyst)
+- **Kesäkuu 2023** | [Miten kirjoittaa parempia kehotteita GitHub Copilotille](https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/?WT.mc_id=academic-105485-koreyst)
+- **Heinäkuu 2023** | [GitHub Copilot menee Codexin ohi parannetun tekoälymallin avulla](https://github.blog/2023-07-28-smarter-more-efficient-coding-github-copilot-goes-beyond-codex-with-improved-ai-model/?WT.mc_id=academic-105485-koreyst)
 - **Heinäkuu 2023** | [Kehittäjän opas kehotteiden suunnitteluun ja LLM-malleihin](https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/?WT.mc_id=academic-105485-koreyst)
-- **Syyskuu 2023** | [Näin rakennat yritystason LLM-sovelluksen: Oppeja GitHub Copilotilta](https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst)
+- **Syyskuu 2023** | [Miten rakentaa yritystason LLM-sovellus: Oppeja GitHub Copilotista](https://github.blog/2023-09-06-how-to-build-an-enterprise-llm-application-lessons-from-github-copilot/?WT.mc_id=academic-105485-koreyst)
 
-Voit myös selata heidän [Engineering-blogiaan](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) löytääksesi lisää julkaisuja, kuten [tämän](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst), jossa näytetään, miten näitä malleja ja tekniikoita _sovelletaan_ oikeiden sovellusten rakentamiseen.
+Voit myös selata heidän [Insinööriblogiaan](https://github.blog/category/engineering/?WT.mc_id=academic-105485-koreyst) löytääksesi lisää kirjoituksia, kuten [tämän](https://github.blog/2023-09-27-how-i-used-github-copilot-chat-to-build-a-reactjs-gallery-prototype/?WT.mc_id=academic-105485-koreyst), joka näyttää, miten näitä malleja ja tekniikoita _sovelletaan_ todellisten sovellusten luomisessa.
 
 ---
 
+<!--
+LESSON TEMPLATE:
+This unit should cover core concept #2.
+Reinforce the concept with examples and references.
+
+CONCEPT #2:
+Prompt Design.
+Illustrated with examples.
+-->
+
 ## Kehotteen rakentaminen
 
-Olemme nähneet, miksi kehotteiden suunnittelu on tärkeää – nyt ymmärretään, miten kehotteet _rakennetaan_, jotta voimme arvioida erilaisia tekniikoita tehokkaampaan kehotteiden suunnitteluun.
+Olemme nähneet, miksi kehotteiden suunnittelu on tärkeää – nyt ymmärretään, miten kehotteet _rakennetaan_, jotta voimme arvioida erilaisia tekniikoita tehokkaamman kehotesuunnittelun hyväksi.
 
-### Peruskehotus
+### Peruskehotteet
 
-Aloitetaan peruskehotteella: tekstisyöte, joka lähetetään mallille ilman muuta kontekstia. Tässä esimerkki – kun lähetämme Yhdysvaltain kansallislaulun ensimmäiset sanat OpenAI:n [Completion API:lle](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst), se _täydentää_ vastauksen välittömästi seuraavilla riveillä, mikä havainnollistaa perusennusteen toimintaa.
+Aloitetaan peruskehotteesta: teksti, joka lähetetään mallille ilman muuta kontekstia. Tässä esimerkki – kun lähetämme Yhdysvaltojen kansallislaulun ensimmäiset sanat OpenAI:n [Completion API:lle](https://platform.openai.com/docs/api-reference/completions?WT.mc_id=academic-105485-koreyst), se täydentää vastauksen heti seuraavilla riveillä, ilmaisten perusennustekäyttäytymisen.
 
-| Kehotus (Syöte)     | Täydennys (Vastaus)                                                                                                                        |
-| :------------------ | :----------------------------------------------------------------------------------------------------------------------------------------- |
-| Oh say can you see  | Kuulostaa siltä, että aloitat "The Star-Spangled Banner" -laulun sanat, joka on Yhdysvaltojen kansallislaulu. Täydet sanat ovat ...        |
+| Kehote (syöte)    | Täydennys (tuotos)                                                                                                                        |
+| :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| Oh say can you see | Näyttää siltä, että olet aloittamassa "The Star-Spangled Banner" -kansallislaulun sanoja. Laulu menee näin ... |
 
-### Monimutkainen kehotus
+### Monimutkainen kehotteet
 
-Lisätään nyt konteksti ja ohjeet peruskehotteeseen. [Chat Completion API](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) mahdollistaa monimutkaisen kehotteen rakentamisen _viestien_ kokoelmana, joissa on:
+Lisätään nyt peruskehotteeseen konteksti ja ohjeet. [Chat Completion API](https://learn.microsoft.com/azure/ai-services/openai/how-to/chatgpt?WT.mc_id=academic-105485-koreyst) antaa meidän rakentaa monimutkaisen kehotteen kokoelmana _viestejä_, joissa on
 
-- Syöte/vastaus-parit, jotka heijastavat _käyttäjän_ syötettä ja _avustajan_ vastausta.
-- Järjestelmäviesti, joka asettaa avustajan käyttäytymisen tai persoonallisuuden kontekstin.
+- Tulot/menot -parit, jotka heijastavat _käyttäjän_ syötettä ja _avustajan_ vastausta.
+- Järjestelmäviesti, joka asettaa kontekstin avustajan käyttäytymiselle tai persoonalle.
 
-Pyyntö on nyt alla olevan muotoinen, jossa _tokenisointi_ poimii olennaisen tiedon kontekstista ja keskustelusta. Nyt järjestelmän kontekstin muuttaminen voi vaikuttaa täydennysten laatuun yhtä paljon kuin käyttäjän syötteet.
+Pyyntö on nyt muotoa, jossa _tokenisointi_ vangitsee tehokkaasti olennaisen tiedon kontekstista ja keskustelusta. Järjestelmäkontekstin muuttaminen voi vaikuttaa yhtä paljon lopputuloksen laatuun kuin käyttäjältä saadut syötteet.
 
 ```python
 response = openai.chat.completions.create(
@@ -259,195 +215,195 @@ response = openai.chat.completions.create(
 )
 ```
 
-### Ohjekehotus
+### Ohjeistuskehotteet
 
-Yllä olevissa esimerkeissä käyttäjän kehotus oli yksinkertainen tekstikysely, joka voidaan tulkita tiedonpyynnöksi. _Ohjekehotuksilla_ voimme käyttää tekstiä tehtävän tarkempaan määrittelyyn ja antaa tekoälylle parempia ohjeita. Tässä esimerkki:
+Edellä esimerkeissä käyttäjän kehotteena oli yksinkertainen tekstikysely, joka voidaan tulkita tietopyyntönä. _Ohjeistus_kehotteilla voimme käyttää tekstiä tehtävän tarkempaan määrittelyyn ja antaa tekoälylle parempia ohjeita. Tässä esimerkki:
 
-| Kehotus (Syöte)                                                                                                                                                                                                                         | Täydennys (Vastaus)                                                                                                        | Ohjetyyppi          |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :------------------ |
-| Kirjoita kuvaus sisällissodasta                                                                                                                                                                                                         | _palautti yksinkertaisen kappaleen_                                                                                        | Yksinkertainen      |
-| Kirjoita kuvaus sisällissodasta. Anna tärkeimmät päivämäärät ja tapahtumat sekä kuvaile niiden merkitys                                                                                          | _palautti kappaleen ja listan tärkeistä tapahtumapäivistä kuvauksineen_                                                    | Monimutkainen       |
-| Kirjoita kuvaus sisällissodasta yhdessä kappaleessa. Anna 3 luetelmakohtaa tärkeimmistä päivämääristä ja niiden merkityksestä. Anna 3 luetelmakohtaa tärkeimmistä historiallisista henkilöistä ja heidän panoksestaan. Palauta tulos JSON-tiedostona | _palauttaa laajemmat tiedot tekstilaatikossa, muotoiltuna JSONiksi, jonka voi kopioida tiedostoon ja tarkistaa tarvittaessa_ | Monimutkainen. Muotoiltu. |
+| Kehote (Syöte)                                                                                                                                                                                                                         | Täydennys (Tuotos)                                                                                                        | Ohjetyyppi          |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :------------------ |
+| Kirjoita kuvaus sisällissodasta                                                                                                                                                                                                       | _palauttaa yksinkertaisen kappaleen_                                                                                       | Yksinkertainen      |
+| Kirjoita kuvaus sisällissodasta. Anna keskeiset päivämäärät ja tapahtumat ja kuvaa niiden merkitys                                                                                                                                     | _palauttaa kappaleen, jota seuraa luettelo tärkeistä päivämääristä ja tapahtumista kuvauksineen_                           | Monimutkainen       |
+| Kirjoita kuvaus sisällissodasta yhdessä kappaleessa. Anna 3 luettelokohtaa, joissa on tärkeät päivämäärät ja niiden merkitys. Anna 3 lisää luettelokohtaa tärkeistä historiallisista henkilöistä ja heidän panoksistaan. Palauta tulos JSON-tiedostona | _palauttaa yksityiskohtaisemman tekstikentän, joka on JSON-muodossa, jonka voi kopioida ja tarvittaessa validoida_          | Monimutkainen. Muotoiltu. |
 
-## Ensisijainen sisältö
+## Pääasiallinen sisältö
 
-Yllä olevissa esimerkeissä kehotus oli vielä melko avoin, jolloin LLM päätti itse, mikä osa sen esikoulutetusta aineistosta oli olennaista. _Ensisijaisen sisällön_ suunnittelumallissa syöte jaetaan kahteen osaan:
+Edellä esimerkeissä kehotteet olivat melko avoimia, jolloin LLM päätti itse, mikä osa sen esikoulutetusta aineistosta oli relevanttia. _Pääasiallinen sisältö_ -suunnittelumallissa syöteteksti jaetaan kahteen osaan:
 
-- ohje (toiminta)
-- olennainen sisältö (joka vaikuttaa toimintaan)
+- ohje (toiminto)
+- relevantti sisältö (joka ohjaa toimintaa)
 
-Tässä esimerkissä ohjeena on "tiivistä tämä kahteen lauseeseen".
+Tässä esimerkki, jossa ohjeena on "tiivistä tämä kahteen lauseeseen".
 
-| Kehotus (Syöte)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Täydennys (Vastaus)                                                                                                                                                                                                                                                                             |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Jupiter on viides planeetta Auringosta ja suurin aurinkokunnassa. Se on kaasuplaneetta, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa kaikkien muiden aurinkokunnan planeettojen yhteenlasketusta massasta. Jupiter on yksi kirkkaimmista paljain silmin näkyvistä kohteista yötaivaalla, ja se on tunnettu muinaisista ajoista lähtien. Se on nimetty roomalaisen jumala Jupiterin mukaan.[19] Maasta katsottuna Jupiter voi olla niin kirkas, että sen heijastama valo luo näkyviä varjoja,[20] ja se on keskimäärin kolmanneksi kirkkain luonnollinen kohde yötaivaalla Kuun ja Venuksen jälkeen. <br/> **Tiivistä tämä kahteen lyhyeen lauseeseen** | Jupiter, viides planeetta Auringosta, on suurin aurinkokunnassa ja tunnetaan yhtenä yötaivaan kirkkaimmista kohteista. Se on nimetty roomalaisen jumala Jupiterin mukaan ja on kaasuplaneetta, jonka massa on kaksi ja puoli kertaa muiden planeettojen yhteismassasta. |
+| Kehote (Syöte)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Täydennys (Tuotos)                                                                                                                                                                                                                                                                             |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Jupiter on aurinkoa lähin viides planeetta ja aurinkokunnan suurin. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa kaikkien muiden aurinkokunnan planeettojen massojen summa. Jupiter on yksi paljain silmin näkyvistä kirkkaimmista taivaankappaleista ja sitä on tunnettu muinaisista sivilisaatioista ennen kirjoitettua historiaa. Se on nimetty roomalaisen jumalan Jupiterin mukaan.[19] Maasta katsottuna Jupiter voi olla riittävän kirkas, jotta sen heijastama valo voi heittää näkyviä varjoja,[20] ja on keskimäärin kolmanneksi kirkain luonnollinen kohde yötaivaalla Kuun ja Venuksen jälkeen. <br/> **Tiivistä tämä kahteen lyhyeen lauseeseen** | Jupiter on aurinkokunnan suurin kaukokävely ja viides planeetta Auringosta. Se on kaasujättiläinen, jonka massa on kaksi ja puoli kertaa kaikkien muiden planeettojen yhteismassa, ja se on nimetty roomalaisen jumalan Jupiterin mukaan. |
 
-Ensisijaisen sisällön osuutta voi käyttää monin tavoin tehokkaampien ohjeiden antamiseen:
+Pääasiallista sisältöä voidaan käyttää monin tavoin tehokkaampien ohjeiden antamiseksi:
 
-- **Esimerkit** – sen sijaan, että kerrot mallille suoraan, mitä tehdä, anna sille esimerkkejä halutusta lopputuloksesta ja anna sen päätellä kaava.
-- **Vihjeet** – seuraa ohjetta "vihjeellä", joka ohjaa täydennystä ja ohjaa mallia kohti olennaisempia vastauksia.
-- **Pohjat** – nämä ovat toistettavia "reseptipohjia" kehotteille, joissa on paikkamerkkejä (muuttujia), joita voi räätälöidä tiettyihin käyttötarkoituksiin.
+- **Esimerkit** – sen sijaan, että kerrotaan mallille eksplisiittisesti, mitä tehdä, annetaan esimerkkejä ja mallin annetaan päätellä kaava.
+- **Vihjeet** – ohjeen perään annetaan "vihje" ensimmäisestä vastauksesta, joka ohjaa mallia kohti relevantimpia vastauksia.
+- **Mallit** – toistettavia 'resepti'-tyylisiä kehotteita, joissa on paikkoja (muuttujia) datalle, jota voidaan räätälöidä eri käyttötarkoituksiin.
 
-Katsotaan näitä käytännössä.
+Tutkitaan näitä konkreettisesti.
 
 ### Esimerkkien käyttö
 
-Tässä lähestymistavassa käytät ensisijaista sisältöä "syöttääksesi mallille" esimerkkejä halutusta lopputuloksesta annetulle ohjeelle ja annat sen päätellä halutun lopputuloksen kaavan. Esimerkkien määrän mukaan puhutaan zero-shot-, one-shot-, few-shot-kehotteista jne.
+Tässä lähestymistavassa käytetään pääasiallista sisältöä "ruokkimaan mallia" esimerkeillä halutusta lopputuloksesta annetulle ohjeelle, jolloin malli voi päätellä halutun lopputuloksen kaavan. Annettujen esimerkkien määrän perusteella voidaan erottaa nolla-, yhden- ja muutaman esimerkin kehotteet.
 
-Kehotus koostuu nyt kolmesta osasta:
+Kehote koostuu nyt kolmesta osasta:
 
 - Tehtävän kuvaus
 - Muutama esimerkki halutusta lopputuloksesta
-- Uuden esimerkin alku (joka toimii implisiittisenä tehtävän kuvauksena)
+- Uuden esimerkin alku (josta tulee implisiittinen tehtävän kuvaus)
 
-| Oppimistyyppi | Kehotus (Syöte)                                                                                                                                        | Täydennys (Vastaus)         |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------- |
-| Zero-shot     | "The Sun is Shining". Käännä espanjaksi                                                                                                                | "El Sol está brillando".    |
-| One-shot      | "The Sun is Shining" => ""El Sol está brillando". <br> "It's a Cold and Windy Day" =>                                                                 | "Es un día frío y ventoso". |
-| Few-shot      | Pelaaja juoksi pesät ympäri => Baseball <br/> Pelaaja löi ässän => Tennis <br/> Pelaaja löi kuutosen => Kriketti <br/> Pelaaja teki donkin =>         | Koripallo                   |
-|               |                                                                                                                                                        |                             |
+| Oppiminen    | Kehote (Syöte)                                                                                                                                        | Täydennys (Tuotos)         |
+| :----------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------- |
+| Nolla-esimerkkiä | "The Sun is Shining". Käännä espanjaksi                                                                                                            | "El Sol está brillando".    |
+| Yksi esimerkki  | "The Sun is Shining" => "El Sol está brillando". <br> "It's a Cold and Windy Day" =>                                                                 | "Es un día frío y ventoso". |
+| Muutamia esimerkkejä | Pelaaja juoksi pesät => Pesäpallo <br/> Pelaaja teki ässän => Tennis <br/> Pelaaja teki kuutosen => Kriketti <br/> Pelaaja teki donkin => Koripallo | Koripallo                  |
+|                |                                                                                                                                                       |                             |
 
-Huomaa, että zero-shot-kehotteessa piti antaa selkeä ohje ("Käännä espanjaksi"), mutta one-shot-esimerkissä se päätellään. Few-shot-esimerkki osoittaa, miten useamman esimerkin lisääminen mahdollistaa mallille tarkemmat päätelmät ilman lisäohjeita.
+Huomaa, että nolla-esimerkkitapauksessa piti antaa eksplisiittinen ohje ("Käännä espanjaksi"), mutta yhden esimerkin kehotteessa se pääteltiin. Muutama esimerkin esimerkki havainnollistaa, kuinka lisäämällä esimerkkejä mallit voivat tehdä tarkempia päätelmiä ilman lisäohjeita.
 
 ### Kehotevihjeet
 
-Toinen tapa käyttää ensisijaista sisältöä on antaa _vihjeitä_ esimerkkien sijaan. Tässä annamme mallille pienen sysäyksen oikeaan suuntaan _aloittamalla_ halutun vastausmuodon mukaisella katkelmalla. Malli "ottaa vihjeestä kiinni" ja jatkaa samalla linjalla.
+Toinen tapa käyttää pääasiallista sisältöä on antaa _vihjeitä_ esimerkkien sijaan. Tässä annamme mallille pienen sysäyksen oikeaan suuntaan antamalla aloituksen, joka kuvastaa haluttua vastausmuotoa. Malli "ottaa vihjeestä kiinni" ja jatkaa samalla tyylillä.
 
-| Vihjeiden määrä | Kehotus (Syöte)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Täydennys (Vastaus)                                                                                                                                                                                                                                                                                       |
+| Vihjeiden määrä | Kehote (Syöte)                                                                                                                                                                                                                                                                                                                                                                                                                                               | Täydennys (Tuotos)                                                                                                                                                                                                                                                                                       |
 | :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 0               | Jupiter on viides planeetta Auringosta ja suurin aurinkokunnassa. Se on kaasuplaneetta, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa kaikkien muiden aurinkokunnan planeettojen yhteenlasketusta massasta. Jupiter on yksi kirkkaimmista paljain silmin näkyvistä kohteista yötaivaalla, ja se on tunnettu muinaisista ajoista lähtien.
-
-**Tiivistä tämä**                                       | Jupiter on aurinkokuntamme suurin planeetta ja viides aurinkoon nähden. Se on kaasujättiläinen, jonka massa on 1/1000 Auringon massasta, mutta se on silti painavampi kuin kaikki muut planeetat yhteensä. Muinaiset sivilisaatiot ovat tunteneet Jupiterin jo pitkään, ja se näkyy helposti yötaivaalla. |
-| 1              | Jupiter on viides planeetta auringosta ja suurin aurinkokunnassa. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa enemmän kuin kaikkien muiden planeettojen yhteismassa. Jupiter on yksi kirkkaimmista paljain silmin näkyvistä kohteista yötaivaalla, ja se on ollut tunnettu jo ennen kirjoitettua historiaa. <br/>**Tiivistä tämä** <br/> Opimme, että Jupiter | on viides planeetta auringosta ja suurin aurinkokunnassa. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa enemmän kuin kaikkien muiden planeettojen yhteismassa. Se näkyy helposti paljain silmin ja on ollut tunnettu jo muinaisista ajoista lähtien.                        |
-| 2              | Jupiter on viides planeetta auringosta ja suurin aurinkokunnassa. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa enemmän kuin kaikkien muiden planeettojen yhteismassa. Jupiter on yksi kirkkaimmista paljain silmin näkyvistä kohteista yötaivaalla, ja se on ollut tunnettu jo ennen kirjoitettua historiaa. <br/>**Tiivistä tämä** <br/> 3 tärkeintä asiaa, jotka opimme:         | 1. Jupiter on viides planeetta auringosta ja suurin aurinkokunnassa. <br/> 2. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta...<br/> 3. Jupiter on ollut näkyvissä paljain silmin jo muinaisista ajoista lähtien ...                                                                       |
+| 0               | Jupiter on Aurinkoa lähin viides planeetta ja aurinkokunnan suurin. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringosta, mutta kaksi ja puoli kertaa kaikkien muiden aurinkokunnan planeettojen massojen summa. Jupiter on yksi kirkkaimmista paljain silmin nähtävistä taivaankappaleista ja sitä on tunnettu muinaisista sivilisaatioista ennen kirjoitettua historiaa. <br/>**Tiivistä tämä**                                       | Jupiter on aurinkokunnan suurin planeetta ja viides Auringosta. Se on kaasujättiläinen, jonka massa on 1/1000 osa Auringon massasta, mutta se painaa enemmän kuin kaikkien muiden planeettojen massa yhteensä. Muinaiset sivilisaatiot ovat tunteneet Jupiterin kauan, ja se on helposti nähtävissä yötaivaalla.. |
+| 1              | Jupiter on aurinkoa lähinnä viides planeetta ja aurinkokunnan suurin planeetta. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa kaikkien muiden aurinkokunnan planeettojen massan yhteismäärä. Jupiter on yksi kirkkaimmista paljain silmin nähtävistä kohteista yötaivaalla, ja se on ollut tunnettu muinaisista sivilisaatioista ennen kirjoitettua historiaa. <br/>**Tiivistä tämä** <br/> Mitä opimme, on että Jupiter | on aurinkoa lähinnä viides planeetta ja aurinkokunnan suurin planeetta. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa kaikkien muiden planeettojen yhteismäärä. Se näkyy helposti paljain silmin ja se on tunnettu jo muinaisajoilta.                        |
+| 2              | Jupiter on aurinkoa lähinnä viides planeetta ja aurinkokunnan suurin planeetta. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringon massasta, mutta kaksi ja puoli kertaa kaikkien muiden aurinkokunnan planeettojen massan yhteismäärä. Jupiter on yksi kirkkaimmista paljain silmin nähtävistä kohteista yötaivaalla, ja se on ollut tunnettu muinaisista sivilisaatioista ennen kirjoitettua historiaa. <br/>**Tiivistä tämä** <br/> Kolme tärkeintä faktaa, jotka opimme:         | 1. Jupiter on aurinkoa lähinnä viides planeetta ja suurin aurinkokunnassa. <br/> 2. Se on kaasujättiläinen, jonka massa on tuhannesosa Auringosta...<br/> 3. Jupiter on ollut paljain silmin nähtävissä jo muinaisajoista lähtien ...                                                                       |
 |                |                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                                                                                                                                                                                                                           |
 
-### Kehyspohjat
+### Kehotekstimalleja
 
-Kehyspohja on _ennalta määritelty resepti kehotteelle_, jonka voi tallentaa ja käyttää uudelleen tarpeen mukaan, jotta käyttäjäkokemukset pysyvät johdonmukaisina laajassa mittakaavassa. Yksinkertaisimmillaan se on kokoelma kehotteiden esimerkkejä kuten [tämä OpenAI:lta](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst), joka sisältää sekä interaktiiviset kehotteet (käyttäjän ja järjestelmän viestit) että API-pyynnön muodon – mahdollistaen uudelleenkäytön.
+Kehotekstimalli on _ennalta määritelty kaava kehotteelle_, jota voidaan tallentaa ja käyttää uudelleen tarpeen mukaan, tarjoten tasaisempia käyttäjäkokemuksia suuremmassa mittakaavassa. Yksinkertaisimmillaan se on kokoelma kehotteiden esimerkkejä kuten [tämä OpenAI:n esimerkki](https://platform.openai.com/examples?WT.mc_id=academic-105485-koreyst), joka sisältää interaktiiviset kehotteet (käyttäjä- ja järjestelmäviestit) sekä API-pohjaisen pyyntömuodon uudelleenkäyttöä varten.
 
-Monimutkaisemmassa muodossa, kuten [tässä LangChainin esimerkissä](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst), se sisältää _paikkamerkkejä_, jotka voidaan korvata tiedoilla eri lähteistä (käyttäjän syöte, järjestelmän konteksti, ulkoiset tietolähteet jne.) kehotteen dynaamiseen luomiseen. Näin voidaan rakentaa uudelleenkäytettäviä kehotekirjastoja, joilla johdonmukaiset käyttäjäkokemukset voidaan tuottaa **ohjelmallisesti** laajassa mittakaavassa.
+Monimutkaisemmassa muodossaan, kuten [tämä LangChainin esimerkki](https://python.langchain.com/docs/concepts/prompt_templates/?WT.mc_id=academic-105485-koreyst), se sisältää _paikkamerkkejä_, jotka voidaan korvata eri lähteistä saaduilla tiedoilla (käyttäjän syöttö, järjestelmän konteksti, ulkoiset tietolähteet jne.) dynaamisen kehotteen luomiseksi. Tämä mahdollistaa uudelleenkäytettävien kehotteiden kirjaston luomisen, joita voidaan käyttää ohjelmallisesti yhtenäisten käyttäjäkokemusten aikaansaamisessa suuressa mittakaavassa.
 
-Lopulta kehyspohjien todellinen arvo on siinä, että voidaan luoda ja julkaista _kehotekirjastoja_ eri sovellusalueille – jolloin kehyspohja on _optimoitu_ sovelluskohtaisella kontekstilla tai esimerkeillä, jotka tekevät vastauksista osuvampia ja tarkempia kohdeyleisölle. [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) -repo on hyvä esimerkki tästä lähestymistavasta, sillä se kokoaa kehotekirjaston opetusalalle painottaen tärkeitä tavoitteita kuten tuntisuunnittelu, opetussuunnitelman muotoilu, opiskelijoiden ohjaus jne.
+Lopuksi, mallien todellinen arvo on kyvyssä luoda ja julkaista _kehotekstejä_ vertikaalisiin sovellusalueisiin – missä kehotekstimalli on nyt _optimoitu_ heijastamaan sovelluskohtaisia konteksteja tai esimerkkejä, jotka tekevät vastauksista relevantimpia ja tarkempia kohdeyleisölle. [Prompts For Edu](https://github.com/microsoft/prompts-for-edu?WT.mc_id=academic-105485-koreyst) -arkisto on tästä hyvä esimerkki, se kokoaa koulutusalueen kehotekstikirjaston painottaen keskeisiä tavoitteita kuten oppituntisuunnittelua, opetussuunnitelman suunnittelua, opiskelijan ohjausta jne.
 
-## Tukisisältö
+## Tue materiaali
 
-Jos ajattelemme kehotteen rakentamista niin, että siinä on ohje (tehtävä) ja kohde (ensisijainen sisältö), niin _toissijainen sisältö_ on lisäkontekstia, jolla **vaikutetaan lopputulokseen jollain tavalla**. Se voi olla säätöparametreja, muotoiluohjeita, aiheiden luokitteluja jne., jotka auttavat mallia _räätälöimään_ vastauksensa haluttuihin tavoitteisiin tai odotuksiin.
+Jos ajatellaan kehotteiden rakennetta ohjeena (tehtävä) ja kohteena (ensisijainen sisältö), niin _toissijainen sisältö_ on kuin lisäkonteksti, jota annamme **vaikuttaaksemme tavalla tai toisella vastaukseen**. Se voi olla säätöparametreja, muotoiluohjeita, aiheiden taksonomioita jne., jotka auttavat mallia _räätälöimään_ vastauksensa käyttäjän haluttujen tavoitteiden tai odotusten mukaisiksi.
 
-Esimerkki: Jos meillä on kurssikatalogi, jossa on laajat metatiedot (nimi, kuvaus, taso, metatunnisteet, opettaja jne.) kaikista opetussuunnitelman kursseista:
+Esimerkiksi: Kun käytössämme on kurssiluettelo, jossa on laajat metatiedot (nimi, kuvaus, taso, metatunnisteet, opettaja jne.) kaikista saatavilla olevista kursseista opetussuunnitelmassa:
 
-- voimme antaa ohjeen "tiivistä kurssikatalogi syksylle 2023"
-- voimme käyttää ensisijaista sisältöä antamaan muutamia esimerkkejä halutusta lopputuloksesta
-- voimme käyttää toissijaista sisältöä tunnistamaan 5 tärkeintä "tunnistetta"
+- voimme määrittää ohjeen "tiivistä syksyn 2023 kurssiluettelo"
+- voimme käyttää ensisijaista sisältöä muutamina esimerkkeinä halutusta vastauksesta
+- voimme käyttää toissijaista sisältöä tunnistaaksemme kiinnostavimmat 5 "tunnistetta".
 
-Nyt malli voi antaa yhteenvedon esimerkkien mukaisessa muodossa – mutta jos tuloksessa on useita tunnisteita, se voi priorisoida ne 5, jotka toissijainen sisältö määritteli.
+Nyt malli voi antaa yhteenvedon esimerkkien mukaisessa muodossa – mutta jos tuloksessa on useita tunnisteita, se priorisoi toissijaisessa sisällössä määritellyt 5 tunnistetta.
 
 ---
 
 <!--
-OPETUSPOHJA:
-Tässä osiossa tulisi käsitellä ydinkäsite #1.
-Vahvista käsitettä esimerkeillä ja viittauksilla.
+OPPITUNNIN MALLI:
+Tämän osion tulisi kattaa ydinajatus #1.
+Vahvista ajatus esimerkeillä ja viitteillä.
 
-KÄSITE #3:
-Kehotetekniikat.
-Mitkä ovat perusmenetelmät kehotteiden suunnittelussa?
+KÄSITTEEN #3:
+Kehotekstin suunnittelutekniikat.
+Mitkä ovat joitakin perusmenetelmiä kehotekstin suunnittelussa?
 Havainnollista harjoituksilla.
 -->
 
-## Kehottamisen parhaat käytännöt
+## Kehotekstin parhaat käytännöt
 
-Nyt kun tiedämme, miten kehotteita voidaan _rakentaa_, voimme alkaa miettiä, miten ne _suunnitellaan_ parhaiden käytäntöjen mukaisesti. Voimme jakaa tämän kahteen osaan – oikean _ajattelutavan_ omaksumiseen ja oikeiden _tekniikoiden_ soveltamiseen.
+Nyt kun tiedämme, miten kehotteet voidaan _rakentaa_, voimme alkaa miettiä, miten ne _suunnitella_ parhaiden käytäntöjen mukaisesti. Voimme ajatella tätä kahdessa osassa – oikean _ajattelutavan_ omaksuminen ja oikeiden _tekniikoiden_ käyttäminen.
 
-### Kehotetekniikan ajattelutapa
+### Kehotekstin suunnittelun ajattelutapa
 
-Kehotetekniikka on kokeiluun perustuva prosessi, joten pidä mielessä kolme laajaa ohjaavaa tekijää:
+Kehotekstin suunnittelu on kokeiluprosessi, joten pidä mielessä kolme laajaa ohjaavaa tekijää:
 
-1. **Alueen ymmärrys on tärkeää.** Vastausten tarkkuus ja osuvuus riippuvat _alueesta_, jossa sovellus tai käyttäjä toimii. Hyödynnä omaa intuitiotasi ja asiantuntemustasi **räätälöidäksesi tekniikoita**. Esimerkiksi määrittele _aluekohtaisia persoonallisuuksia_ järjestelmäkehotteissa tai käytä _aluekohtaisia pohjia_ käyttäjäkehotteissa. Tarjoa toissijaista sisältöä, joka heijastaa alueen kontekstia, tai käytä _aluekohtaisia vihjeitä ja esimerkkejä_ ohjataksesi mallia tutumpiin käyttötapoihin.
+1. **Alueen ymmärrys on tärkeää.** Vastausten tarkkuus ja relevanssi riippuvat siitä _alueesta_, jolla sovellus tai käyttäjä toimii. Käytä intuitiotasi ja alan asiantuntemustasi _räätälöidäksesi tekniikoita_ edelleen. Esimerkiksi määritä _aluekohtaisia persoonia_ järjestelmäkehotteissasi tai käytä _aluekohtaisia malleja_ käyttäjäkehotteissa. Tarjoa toissijaista sisältöä, joka heijastaa alakohtaisia konteksteja, tai käytä _aluekohtaisia vihjeitä ja esimerkkejä_ ohjaamaan mallia tuttuun käyttötapaan.
 
-2. **Mallin ymmärrys on tärkeää.** Tiedämme, että mallit ovat luonteeltaan satunnaisia. Mutta mallien toteutukset voivat myös vaihdella sen mukaan, millä aineistolla ne on koulutettu (ennakkotieto), mitä ominaisuuksia ne tarjoavat (esim. API tai SDK) ja minkä tyyppiseen sisältöön ne on optimoitu (esim. koodi vs. kuvat vs. teksti). Ymmärrä käyttämäsi mallin vahvuudet ja rajoitukset, ja hyödynnä tätä tietoa _priorisoidaksesi tehtäviä_ tai rakentaaksesi _räätälöityjä pohjia_, jotka on optimoitu mallin ominaisuuksille.
+2. **Mallin ymmärrys on tärkeää.** Tiedämme, että mallit ovat luonteeltaan satunnaisia. Mallien toteutukset voivat myös vaihdella käyttämänsä opetusdatan (ennakkoon opetettu tieto), tarjoamiensa ominaisuuksien (API:n tai SDK:n kautta) ja niiden optimoiman sisällön tyypin (esim. koodi vs. kuvat vs. teksti) suhteen. Ymmärrä käyttämäsi mallin vahvuudet ja heikkoudet ja käytä tätä tietoa _priorisoidaksesi tehtäviä_ tai rakentaaksesi _räätälöityjä malleja_, jotka on optimoitu mallin ominaisuuksille.
 
-3. **Iterointi ja validointi ovat tärkeitä.** Mallit kehittyvät nopeasti, samoin kehotetekniikat. Alueasiantuntijana sinulla voi olla muuta kontekstia tai kriteerejä _omalle_ sovelluksellesi, jotka eivät päde laajemmin. Käytä kehotetekniikan työkaluja ja menetelmiä "aloittaaksesi" kehotteen rakentamisen, sitten iteroi ja validoi tulokset oman intuitiosi ja asiantuntemuksesi avulla. Tallenna havaintosi ja luo **tietopohja** (esim. kehotekirjastoja), joita muut voivat käyttää uutena lähtökohtana nopeampaan iterointiin jatkossa.
+3. **Iteraatio ja validointi ovat tärkeitä.** Mallit kehittyvät nopeasti, samoin kehotteen suunnittelutekniikat. Alan asiantuntijana sinulla saattaa olla muuta kontekstia tai kriteereitä _sinun_ sovelluksellesi, jotka eivät päde laajemmassa yhteisössä. Käytä kehotteen suunnittelun työkaluja ja tekniikoita aloittaaksesi kehotteen rakentamisen, sitten iteroi ja validoi tulokset omalla intuitiollasi ja asiantuntemuksellasi. Tallenna oivalluksesi ja luo **tietopohja** (esim. kehotekirjastoja), jota muut voivat käyttää uutena lähtökohtana nopeampiin iterointeihin tulevaisuudessa.
 
 ## Parhaat käytännöt
 
-Tarkastellaan nyt yleisiä parhaita käytäntöjä, joita suosittelevat [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) ja [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst) -asiantuntijat.
+Katsotaanpa nyt yleisiä parhaita käytäntöjä, joita suosittelevat [OpenAI](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-openai-api?WT.mc_id=academic-105485-koreyst) ja [Azure OpenAI](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering#best-practices?WT.mc_id=academic-105485-koreyst) -asiantuntijat.
 
-| Mitä                              | Miksi                                                                                                                                                                                                                                               |
+| Mikä                              | Miksi                                                                                                                                                                                                                                               |
 | :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Arvioi uusimmat mallit.       | Uusissa mallisukupolvissa on todennäköisesti parempia ominaisuuksia ja laatua – mutta ne voivat myös olla kalliimpia. Arvioi niiden vaikutus ja tee siirtymispäätökset sen mukaan.                                                                                |
-| Erottele ohjeet ja konteksti   | Tarkista, määritteleekö mallisi/toimittajasi _erottimia_, joilla ohjeet, ensisijainen ja toissijainen sisältö erotellaan selkeämmin. Tämä voi auttaa mallia painottamaan sanoja tarkemmin.                                                         |
-| Ole tarkka ja selkeä             | Anna yksityiskohtia halutusta kontekstista, lopputuloksesta, pituudesta, muodosta, tyylistä jne. Tämä parantaa vastausten laatua ja johdonmukaisuutta. Tallenna reseptit uudelleenkäytettäviin pohjiin.                                                          |
-| Ole kuvaileva, käytä esimerkkejä      | Mallit voivat reagoida paremmin "näytä ja kerro" -lähestymistapaan. Aloita `zero-shot`-menetelmällä, jossa annat ohjeen (ilman esimerkkejä), ja kokeile sitten `few-shot`-menetelmää, jossa annat muutamia esimerkkejä halutusta lopputuloksesta. Käytä analogioita. |
-| Käytä vihjeitä käynnistämään vastauksia | Ohjaa mallia haluttuun lopputulokseen antamalla sille alkusanoja tai lauseita, joita se voi käyttää vastauksen lähtökohtana.                                                                                                               |
-| Toista tarvittaessa                       | Joskus mallille täytyy toistaa ohjeita. Anna ohjeet ennen ja jälkeen ensisijaisen sisällön, käytä ohjetta ja vihjettä jne. Iteroi ja validoi, mikä toimii.                                                         |
-| Järjestyksellä on väliä                     | Tiedon esittämisjärjestys mallille voi vaikuttaa lopputulokseen, myös oppimisesimerkeissä, kiitos tuoreusvaikutuksen. Kokeile eri vaihtoehtoja ja katso, mikä toimii parhaiten.                                                               |
-| Anna mallille "varasuunnitelma"           | Anna mallille _varavastaus_, jonka se voi antaa, jos se ei pysty suorittamaan tehtävää. Tämä voi vähentää virheellisten tai keksittyjen vastausten riskiä.                                                         |
+| Arvioi uusin malli.               | Uudet mallisukupolvet sisältävät todennäköisesti parannettuja ominaisuuksia ja laatua – mutta ne saattavat myös nostaa kustannuksia. Arvioi niiden vaikutusta, ja tee siirtymispäätökset.                                                               |
+| Erota ohjeet ja konteksti         | Tarkista, määritteleekö mallisi/tarjoajasi _erottimet_, jotka selkeyttävät ohjeiden, ensisijaisen ja toissijaisen sisällön välistä rajaa. Tämä auttaa mallia asettamaan oikeammat painotukset sanoille.                                              |
+| Ole tarkka ja selkeä              | Anna enemmän tietoa halutusta kontekstista, lopputuloksesta, pituudesta, formaatista, tyylistä jne. Tämä parantaa vastausten laatua ja johdonmukaisuutta. Tallenna kaavat uudelleenkäytettäviksi malleiksi.                                            |
+| Ole kuvaileva, käytä esimerkkejä  | Mallit saattavat vastata paremmin "näytä ja kerro" -lähestymistapaan. Aloita `zero-shot`-menetelmällä, jossa annat ohjeen (mutta et esimerkkejä) ja kokeile sitten `few-shot` -menetelmää hienosäädönä, antaen muutaman esimerkin halutusta tuloksesta. Käytä analogioita. |
+| Käytä vihjeitä käynnistämään vastauksia | Tue vastausta antamalla ennakkosanoja tai lauseita, joita se voi käyttää vastauksen aloituspisteenä.                                                                                                            |
+| Toista tarvittaessa                | Joskus sinun täytyy toistaa tila mallille. Anna ohjeet ennen ja jälkeen ensisijaisen sisällön, käytä ohjetta ja vihjettä, jne. Iteroi ja validoi, mitä menetelmää malli parhaiten ymmärtää.                                                            |
+| Järjestyksellä on merkitystä      | Se, missä järjestyksessä esität tiedon mallille, voi vaikuttaa tulokseen, jopa oppimisesimerkeissä ajan vaikutuksen vuoksi. Kokeile erilaisia vaihtoehtoja parhaan lopputuloksen löytämiseksi.                                                           |
+| Anna mallille ”uloskäynti”        | Tarjoa mallille _varavastaus_, jonka se voi antaa jos se ei syystä tai toisesta saa tehtävää valmiiksi. Tämä vähentää mallin tuottamien epäluotettavien tai tekaistujen vastausten riskiä.                                                            |
 |                                   |                                                                                                                                                                                                                                                   |
 
-Kuten kaikissa parhaissa käytännöissä, muista että _tulokset voivat vaihdella_ mallin, tehtävän ja alueen mukaan. Käytä näitä lähtökohtana ja iteroi löytääksesi itsellesi parhaan tavan. Arvioi kehotetekniikan prosessiasi jatkuvasti, kun uusia malleja ja työkaluja tulee saataville, keskittyen prosessin skaalautuvuuteen ja vastausten laatuun.
+Kuten kaikissa parhaissa käytännöissä, muista että _kokemuksesi voi vaihdella_ mallin, tehtävän ja toimialan mukaan. Käytä näitä lähtökohtina ja iteroi löytääksesi sinulle parhaiten sopivan tavan. Arvioi jatkuvasti kehotteen suunnitteluprosessia uusien mallien ja työkalujen myötä, keskittyen prosessin skaalaavuuteen ja vastausten laatuun.
 
 <!--
-OPETUSPOHJA:
-Tässä osiossa tulisi olla kooditehtävä, jos soveltuu
+OPPITUNNIN MALLI:
+Tämän osion tulisi tarjota koodiharjoitus, jos se on sovellettavissa.
 
-TEHTÄVÄ:
-Linkki Jupyter Notebookiin, jossa vain koodikommentit ohjeissa (koodiosiot tyhjiä).
+HAASTE:
+Linkki Jupyter-kirjanmerkkiin, jossa on vain koodikommentit ohjeissa (koodiosat ovat tyhjiä).
 
 RATKAISU:
-Linkki kopioon Notebookista, jossa kehotteet täytetty ja ajettu, esimerkkinä yhdestä ratkaisusta.
+Linkki kopioon kyseisestä kirjanmerkistä, jossa kehotteet on täytetty ja suoritettu, näyttää yhden esimerkkituloksen.
 -->
 
 ## Tehtävä
 
-Onnittelut! Olet päässyt oppitunnin loppuun! Nyt on aika testata opittuja käsitteitä ja tekniikoita oikeilla esimerkeillä!
+Onneksi olkoon! Pääsit oppitunnin loppuun! Nyt on aika kokeilla joitakin opittuja käsitteitä ja tekniikoita käytännön esimerkkien avulla!
 
-Tehtävässä käytämme Jupyter Notebookia, jossa voit tehdä harjoituksia interaktiivisesti. Voit myös laajentaa Notebookia omilla Markdown- ja koodisoluilla tutkiaksesi ideoita ja tekniikoita itsenäisesti.
+Tehtävänämme on käyttää Jupyter Notebook -tiedostoa, jossa on harjoituksia, jotka voit suorittaa interaktiivisesti. Voit myös laajentaa Notebookia omilla Markdown- ja koodisoluillasi tutkiaksesi ideoita ja tekniikoita itseksesi.
 
-### Aloittaaksesi haarukoi repo, sitten
+### Aloittaaksesi haarauta repo, sitten
 
-- (Suositus) Käynnistä GitHub Codespaces
-- (Vaihtoehto) Kloonaa repo omalle laitteellesi ja käytä sitä Docker Desktopin kanssa
-- (Vaihtoehto) Avaa Notebook haluamallasi Notebook-ympäristöllä.
+- (Suositeltu) Käynnistä GitHub Codespaces
+- (Vaihtoehtoisesti) Kloonaa repo paikalliselle laitteellesi ja käytä sitä Docker Desktopin kanssa
+- (Vaihtoehtoisesti) Avaa Notebook haluamassasi ajoympäristössä.
 
 ### Seuraavaksi määritä ympäristömuuttujat
 
-- Kopioi `.env.copy` tiedosto reposta nimellä `.env` ja täytä `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` ja `AZURE_OPENAI_DEPLOYMENT` arvot. Palaa [Learning Sandbox -osioon](../../../04-prompt-engineering-fundamentals/04-prompt-engineering-fundamentals) oppiaksesi lisää.
+- Kopioi repohakemistosta `.env.copy` tiedosto nimeksi `.env` ja täytä `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_ENDPOINT` ja `AZURE_OPENAI_DEPLOYMENT` arvot. Palaa [Learning Sandbox -osioon](../../../04-prompt-engineering-fundamentals) oppiaksesi miten.
 
-### Seuraavaksi avaa Jupyter Notebook
+### Avaa sitten Jupyter Notebook
 
-- Valitse ajoympäristön ydin. Jos käytät vaihtoehtoja 1 tai 2, valitse vain oletus Python 3.10.x -ydin, jonka kehityskontti tarjoaa.
+- Valitse ajoympäristön ydin. Jos käytät vaihtoehtoja 1 tai 2, valitse kehityssäiliössä oletuksena oleva Python 3.10.x -ydin.
 
-Nyt voit suorittaa harjoitukset. Huomaa, että tässä ei ole _oikeita tai vääriä_ vastauksia – tarkoitus on kokeilla eri vaihtoehtoja ja kehittää intuitiota siitä, mikä toimii kullakin mallilla ja sovellusalueella.
+Olet valmis suorittamaan harjoitukset. Huomaa, että täällä ei ole varsinaisia _oikeita tai vääriä_ vastauksia – kyse on eri vaihtoehtojen kokeilemisesta ja intuitiosta sen löytämiseksi, mikä toimii parhaiten tietyssä mallissa ja sovellusalueessa.
 
-_Tämän vuoksi tässä oppitunnissa ei ole koodiratkaisuosioita. Sen sijaan Notebookissa on Markdown-solut otsikolla "Oma ratkaisuni:", joissa näytetään yksi esimerkkivastaus viitteeksi._
+_Tämän vuoksi tähän oppituntiin ei sisälly koodiratkaisujen osioita. Sen sijaan Notebookissa on Markdown-soluja otsikolla "My Solution:", jotka esittävät yhden esimerkkituloksen vertailua varten._
 
  <!--
-OPETUSPOHJA:
-Päätä osio yhteenvedolla ja resursseilla omaehtoiseen oppimiseen.
+OPPITUNNIN MALLI:
+Kokoa osio yhteenvedolla ja resurssilinkeillä itsenäiseen opiskeluun.
 -->
 
-## Tietotesti
+## Tietotarkistus
 
-Mikä seuraavista on hyvä kehotteiden esimerkki, joka noudattaa järkeviä parhaita käytäntöjä?
+Mikä seuraavista on hyvä kehotus, joka noudattaa kohtuullisia parhaita käytäntöjä?
 
-1. Näytä kuva punaisesta autosta
-2. Näytä kuva punaisesta Volvo XC90 -autosta, joka on pysäköity kallion viereen auringonlaskussa
-3. Näytä kuva punaisesta Volvo XC90 -autosta
+1. Näytä minulle kuva punaisesta autosta
+2. Näytä minulle kuva punaisesta Volvo-merkkisestä XC90-mallista, joka on pysäköity kallion reunalle auringonlaskun aikaan
+3. Näytä minulle kuva punaisesta Volvo-merkkisestä XC90-mallista
 
-Vastaus: 2, se on paras kehotteista, koska se kertoo tarkasti "mitä" ja menee yksityiskohtiin (ei vain mikä tahansa auto, vaan tietty merkki ja malli) ja kuvailee myös ympäristön. 3 on seuraavaksi paras, koska siinäkin on paljon kuvausta.
+Vastaus: 2, koska se on paras kehotus, jossa annetaan tietoja "mistä" ja mennään tarkkuuksiin (ei vain mikä tahansa auto, vaan tietty merkki ja malli) ja kuvaillaan myös koko tilanne. Seuraavaksi paras on 3, koska se sisältää myös paljon kuvausta.
 
 ## 🚀 Haaste
 
-Kokeile, voitko hyödyntää "vihje"-tekniikkaa kehotteella: Täydennä lause "Näytä kuva punaisesta Volvo-merkkisestä autosta ja ". Mitä malli vastaa, ja miten parantaisit sitä?
+Kokeile "vihje" -tekniikkaa kehotteella: Täydennä lause "Näytä minulle kuva punaisesta Volvo-merkkisestä autosta, joka on ". Miten malli vastaa, ja miten parantaisit sitä?
 
 ## Hienoa työtä! Jatka oppimista
 
-Haluatko oppia lisää kehotetekniikan eri käsitteistä? Siirry [jatko-opiskelusivulle](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst) löytääksesi lisää hyviä resursseja aiheesta.
+Haluatko oppia lisää erilaisista kehotekstin suunnittelun käsitteistä? Mene [jatko-opiskelusivulle](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), josta löydät muita hyviä resursseja aiheesta.
 
-Siirry oppituntiin 5, jossa käsittelemme [kehittyneitä kehotetekniikoita](../05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)!
+Siirry oppitunnille 5, jossa käsittelemme [kehittyneitä kehotetekniikoita](../05-advanced-prompts/README.md?WT.mc_id=academic-105485-koreyst)!
 
 ---
 
-**Vastuuvapauslauseke**:  
-Tämä asiakirja on käännetty käyttämällä tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Vaikka pyrimme tarkkuuteen, automaattiset käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen omalla kielellä tulee pitää ensisijaisena lähteenä. Tärkeissä asioissa suositellaan ammattimaista ihmiskääntäjää. Emme ole vastuussa tämän käännöksen käytöstä mahdollisesti aiheutuvista väärinkäsityksistä tai tulkintavirheistä.
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vastuuvapauslauseke**:
+Tämä asiakirja on käännetty käyttäen tekoälypohjaista käännöspalvelua [Co-op Translator](https://github.com/Azure/co-op-translator). Pyrimme tarkkuuteen, mutta automatisoidut käännökset saattavat sisältää virheitä tai epätarkkuuksia. Alkuperäistä asiakirjaa sen alkuperäiskielellä tulee pitää virallisena lähteenä. Tärkeissä tiedoissa suositellaan ammattimaista ihmiskäännöstä. Emme ole vastuussa tämän käännöksen käytöstä aiheutuvista väärinymmärryksistä tai tulkinnoista.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

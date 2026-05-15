@@ -1,128 +1,119 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f1413b349a65b4e9eda3f48807656a6d",
-  "translation_date": "2025-08-26T19:55:31+00:00",
-  "source_file": "00-course-setup/README.md",
-  "language_code": "my"
-}
--->
-# ဒီသင်တန်းကို စတင်အသုံးပြုခြင်း
+# ဒီသင်တန်းနဲ့ စတင်လိုက်ပါ
 
-သင် ဒီသင်တန်းကို စတင်လေ့လာဖို့ စိတ်လှုပ်ရှားနေကြောင်း ကျွန်ုပ်တို့ ဝမ်းသာပါတယ်။ Generative AI နဲ့ ဘာတွေ တည်ဆောက်နိုင်မလဲဆိုတာလည်း စောင့်မျှော်နေပါတယ်။
+ဒီသင်တန်းကို စတင်ကြည့်ရှုပြီး Generative AI နဲ့ ဘာတွေဖန်တီးဖို့ စိတ်အားထက်သန်လာမလဲဆိုတာ ကြည့်ရတာ ကျွန်တော်တို့အတွက် အရမ်းဝမ်းသာပါတယ်!
 
-သင်အောင်မြင်စွာ လေ့လာနိုင်ဖို့အတွက် ဒီစာမျက်နှာမှာ တပ်ဆင်မှုအဆင့်များ၊ နည်းပညာလိုအပ်ချက်များနဲ့ အကူအညီလိုအပ်လျှင် ဘယ်မှာ ရနိုင်မလဲဆိုတာ ဖော်ပြထားပါတယ်။
+သင်ကြားမှု အောင်မြင်စေရန် ဒီစာမျက်နှာမှာ အဆင့်ဆင့်ပြုပြင်ထောက်ပံ့မှု လိုအပ်ချက်တွေ၊ နည်းပညာဆိုင်ရာ လိုအပ်ချက်တွေ၊ လိုအပ်ရင် ကူညီပေးနိုင်မယ့် နေရာတွေကို ရှင်းလင်းဖော်ပြထားပါတယ်။
 
-## တပ်ဆင်မှုအဆင့်များ
+## ပြင်ဆင်လုပ်ဆောင်ရမည့်အဆင့်များ
 
-ဒီသင်တန်းကို စတင်လေ့လာဖို့ အောက်ပါအဆင့်များကို ပြီးမြောက်စေဖို့ လိုအပ်ပါတယ်။
+ဒီသင်တန်းကို စတင်ယူမယ့်အခါ အောက်ပါအဆင့်တွေကို ပြီးမြောက်စေရပါမယ်။
 
-### ၁။ ဒီ Repo ကို Fork လုပ်ပါ
+### 1. ဒီ Repo ကို Fork လုပ်ပါ
 
-[Fork လုပ်ပါ](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) ကိုယ်ပိုင် GitHub အကောင့်ထဲသို့ ပြောင်းယူပြီး code များ ပြင်ဆင်ခြင်း၊ စိန်ခေါ်မှုများ ပြီးမြောက်အောင်လုပ်နိုင်ပါမယ်။ [Star (🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst) လည်း ထားနိုင်ပါတယ်၊ ပြန်ရှာရလွယ်အောင်ပါ။
+[ဒီ repo အားလုံးကို Fork လုပ်ပါ](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) သင့်ရဲ့ GitHub အကောင့်မှာ၊ ကွန်ရက်ကုဒ်များပြောင်းလဲနိုင်ဖို့နှင့် စိန်ခေါ်မှုများကို ပြီးမြောက်စေရန်။ သင်ကြိုက်လျှင် [ဒီ repo ကို ⭐ star လုပ်ပါ](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst)၊ ဒါနဲ့ ဆက်စပ် repo တွေကိုလည်း ရှာဖွေရှူရှာဖို့ ပိုလွယ်ကူပါလိမ့်မယ်။
 
-### ၂။ Codespace တစ်ခု ဖန်တီးပါ
+### 2.  Codespace တစ်ခု ဖန်တီးပါ
 
-Code ကို run လုပ်တဲ့အခါ dependency ပြဿနာမဖြစ်စေရန် [GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst) မှာ သင်တန်းကို run လုပ်ဖို့ အကြံပြုပါတယ်။
+ကုဒ် run တဲ့အချိန်မှာ dependency ပြဿနာမဖြစ်အောင် ဒီသင်တန်းကို [GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst) မှာ သုံးဖို့ အကြံပြုပါတယ်။
 
-သင် fork လုပ်ထားတဲ့ repo မှာ - **Code -> Codespaces -> New on main** ကိုနှိပ်ပါ။
+သင့်fork အတွင်း: **Code -> Codespaces -> New on main**
 
-![Dialog showing buttons to create a codespace](../../../00-course-setup/images/who-will-pay.webp)
+![Dialog showing buttons to create a codespace](../../../translated_images/my/who-will-pay.4c0609b1c7780f44.webp)
 
-#### ၂.၁ Secret တစ်ခု ထည့်ပါ
+#### 2.1 Secret တစ်ခု ထည့်ပါ
 
-၁။ ⚙️ Gear icon -> Command Pallete-> Codespaces : Manage user secret -> Add a new secret.
-၂။ OPENAI_API_KEY လို့ နာမည်ပေးပြီး သင့် key ကို paste လုပ်ပါ၊ Save နှိပ်ပါ။
+1. ⚙️ သားငယ်ပုံသဏ္ဌာန် နဲ့ Gear icon -> Command Pallete -> Codespaces : Manage user secret -> Add a new secret။
+2. အမည် OPENAI_API_KEY ထည့်ပြီး သင့် key ကို paste လုပ်ပါ။ Save လုပ်ပါ။
 
-### ၃။ နောက်ထပ် ဘာလုပ်မလဲ?
+### 3. နောက်တစ်ခုဘာလဲ?
 
-| လုပ်ချင်တာ            | သွားရမယ့်နေရာ                                                      |
-|---------------------|--------------------------------------------------------------------|
-| Lesson 1 စတင်ချင်တယ် | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md) |
-| Offline လုပ်ချင်တယ်  | [`setup-local.md`](02-setup-local.md)                              |
-| LLM Provider တပ်ဆင်ချင်တယ် | [`providers.md`](providers.md)                                 |
-| တခြားလေ့လာသူတွေ့ချင်တယ် | [Join our Discord](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) |
+| ဘာလုပ်ချင်လဲ           | သွားရမယ့်နေရာ                                                        |
+|-------------------------|------------------------------------------------------------------------|
+| Lesson 1 စတင်လိုက်ပါ     | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
+| Offline အလုပ်လုပ်ချင်     | [`setup-local.md`](02-setup-local.md)                                  |
+| LLM Provider တစ်ခု ဖန်တီးချင် | [`providers.md`](03-providers.md)                                       |
+| အခြားလေ့လာသူတွေနဲ့တွေ့ချင် | [Join our Discord](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)       |
 
 ## ပြဿနာဖြေရှင်းခြင်း
 
-| လက္ခဏာ                                    | ဖြေရှင်းနည်း                                                    |
-|-------------------------------------------|-----------------------------------------------------------------|
-| Container build ၁၀ မိနစ်ကျော် တိတ်နေတယ်   | **Codespaces ➜ “Rebuild Container”**                            |
-| `python: command not found`               | Terminal မချိတ်သွားဘူး; **+** ➜ *bash* ကိုနှိပ်ပါ                |
-| OpenAI မှာ `401 Unauthorized`            | `OPENAI_API_KEY` မှား/သက်တမ်းကုန်သွားတယ်                       |
-| VS Code မှာ “Dev container mounting…”    | Browser tab ကို refresh လုပ်ပါ—Codespaces sometimes connection ပြတ်တတ်တယ် |
-| Notebook kernel မပေါ်ဘူး                  | Notebook menu ➜ **Kernel ▸ Select Kernel ▸ Python 3**           |
 
-   Unix-based systems:
+| ပြဿနာလက္ခဏာ                            | ဖြေရှင်းနည်း                                                       |
+|------------------------------------------|------------------------------------------------------------------|
+| Container build တစ်ခု ၁၀ မိနစ်ကျော် ရပ်တန့်နေခြင်း | **Codespaces ➜ “Rebuild Container”**                             |
+| `python: command not found`               | Terminal မပူးပေါင်းထားဝါ့ထား; **+** ကိုနှိပ်ပြီး *bash* ရွေးပါ   |
+| OpenAI ကနေ `401 Unauthorized` error     | မှားနေသော / သက်တမ်းကုန် `OPENAI_API_KEY`                        |
+| VS Code မှာ “Dev container mounting…” ပြနေခြင်း   | Browser tab ကို Refresh လုပ်ပါ—Codespaces တခါတရံ ချိတ်ဆက်မှု ပျောက်ကွက်နိုင်တယ်  |
+| Notebook kernel မရှိခြင်း                | Notebook menu ➜ **Kernel ▸ Select Kernel ▸ Python 3**              |
+
+   Unix-based စနစ်များအတွက်:
 
    ```bash
    touch .env
    ```
 
-   Windows:
+   Windows အတွက်:
 
    ```cmd
    echo . > .env
    ```
 
-၃။ **`.env` ဖိုင်ကို ပြင်ပါ** - `.env` ဖိုင်ကို text editor (ဥပမာ VS Code, Notepad++ သို့မဟုတ် အခြား editor) ဖြင့်ဖွင့်ပါ။ အောက်ပါလိုင်းကို ထည့်ပါ၊ `your_github_token_here` ကို သင့် GitHub token နဲ့ အစားထိုးပါ -
+3. **`.env` ဖိုင်ကို ပြုပြင်ချင်သလား**: `.env` ဖိုင်ကို VS Code, Notepad++, ဒါမှမဟုတ် အခြားတစ်ခုခု text editor ဖြင့်ဖွင့်ပါ။ “your_github_token_here” ကို သင့် GitHub token နဲ့ အစားထိုးပြီး အောက်ပါစာကြောင်းကို ထည့်ပါ။
 
    ```env
    GITHUB_TOKEN=your_github_token_here
    ```
 
-၄။ **ဖိုင်ကို သိမ်းပါ** - ပြင်ဆင်ပြီးရင် သိမ်းပြီး editor ကိုပိတ်ပါ။
+4. **ဖိုင်ကို သိမ်းပါ**: ပြင်ဆင်မှုများ သိမ်းပြီး text editor ကို ပိတ်ပါ။
 
-၅။ **`python-dotenv` ကို တပ်ဆင်ပါ** - မတပ်ရသေးရင် `python-dotenv` package ကို pip နဲ့ တပ်ဆင်ပါ -
+5. **`python-dotenv` ကို install လုပ်ပါ**: သင်မပြုလုပ်ထားပါက `.env` ဖိုင်မှာရှိတဲ့ environment variables ကို Python application ထဲသို့ သွင်းဖို့ `python-dotenv` package ကို `pip` နဲ့ install လုပ်ရန် လိုအပ်ပါသည်။
 
    ```bash
    pip install python-dotenv
    ```
 
-၆။ **Python Script ထဲမှာ Environment Variables ကို Load လုပ်ပါ** - Python script ထဲမှာ `python-dotenv` ကိုသုံးပြီး `.env` ဖိုင်ထဲက environment variables တွေကို load လုပ်ပါ -
+6. **Python script ထဲမှာ Environment Variables ကို load လုပ်ပါ**: Python script မှာ `python-dotenv` package ကိုအသုံးပြုပြီး `.env` ဖိုင်မှ variables များကို load လုပ်ပါ။
 
    ```python
    from dotenv import load_dotenv
    import os
 
-   # Load environment variables from .env file
+   # .env ဖိုင်ထဲကနေ ပတ်ဝန်းကျင် အလွှာများကို ဖတ်သည်
    load_dotenv()
 
-   # Access the GITHUB_TOKEN variable
+   # GITHUB_TOKEN အလွှာကို လက်လှမ်းရောက်စေသည်
    github_token = os.getenv("GITHUB_TOKEN")
 
    print(github_token)
    ```
 
-ဒါဆိုပြီးပါပြီ။ သင် `.env` ဖိုင်တစ်ခု ဖန်တီးပြီး GitHub token ထည့်ပြီး Python application ထဲသို့ load လုပ်နိုင်ပါပြီ။
+ဒါဆိုပြီးပါပြီ! `.env` ဖိုင်ကိုအောင်မြင်စွာ ဖန်တီးပြီး၊ GitHub token ထည့်ပြီး Python application ထဲသို့ load လုပ်ထားပါပြီ။
 
-## ကိုယ်ပိုင်ကွန်ပျူတာမှာ Local Run လုပ်နည်း
+## ကိုယ်ပိုင် ကွန်ပျူတာမှာ run မယ်ဆိုရင်
 
-Code ကို ကိုယ်ပိုင်ကွန်ပျူတာမှာ run လုပ်ချင်ရင် [Python တစ်ခုခု](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst) တပ်ဆင်ထားဖို့ လိုအပ်ပါတယ်။
+ကိုယ်ပိုင်ကွန်ပျူတာမှာ အဲဒီကုဒ်ကို run လုပ်ချင်ရင် [Python ရှိဖို့လိုပါမယ်](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst)။
 
-Repository ကို အသုံးပြုဖို့ clone လုပ်ပါ -
+အဲဒီပြီးရင် repo ကို clone ချပါ။
 
 ```shell
 git clone https://github.com/microsoft/generative-ai-for-beginners
 cd generative-ai-for-beginners
 ```
 
-အားလုံး ပြီးသွားရင် စတင်လေ့လာနိုင်ပါပြီ။
+အားလုံး စစ်ဆေးပြီးတဲ့နောက် စတင်လုပ်ဆောင်နိုင်ပါပြီ!
 
-## ရွေးချယ်နိုင်သော အဆင့်များ
+## ရွေးချယ်စရာအဆင့်များ
 
-### Miniconda တပ်ဆင်ခြင်း
+### Miniconda 설치하기
 
-[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) က [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst), Python နဲ့ အနည်းငယ်သော packages တွေကို တပ်ဆင်ဖို့ အလွယ်တကူ installer တစ်ခုပါ။
-Conda ကို package manager အနေနဲ့ သုံးနိုင်ပြီး Python [**virtual environments**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) နဲ့ packages တွေကို အလွယ်တကူ ပြောင်းလဲတပ်ဆင်နိုင်ပါတယ်။ pip နဲ့ မရနိုင်တဲ့ packages တွေကိုတောင် Conda နဲ့ တပ်ဆင်နိုင်ပါတယ်။
+[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst) သည် [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst)၊ Python နှင့် အခြား package များကို ထည့်သွင်းဖို့ အလေးချိန်လျှော့ installer တစ်ခုဖြစ်ပါတယ်။ Conda သည် package manager တစ်ခု ဖြစ်ပြီး Python တွင် [**virtual environments**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) နှင့် package များကို လွယ်ကူစွာ စီမံရန် အသုံးပြုသည့်စနစ်ဖြစ်ပါသည်။ pip မှာမရရှိနိုင်တဲ့ package များကို အထူးအဆင်ပြေစေပါတယ်။
 
-[MiniConda installation guide](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) ကိုလိုက်နာပြီး တပ်ဆင်နိုင်ပါတယ်။
+[MiniConda installation guide](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) ကို လိုက်နာပြီး အဆင့်ဆင့် ပြုလုပ်နိုင်ပါတယ်။
 
-Miniconda တပ်ဆင်ပြီးရင် [repository](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) ကို clone လုပ်ပါ (မလုပ်ရသေးရင်)။
+Miniconda ထည့်သွင်းပြီးနောက်၊ သင် cloned repository ရှိပြီးသား မဟုတ်ရင် [repository ကို clone လုပ်ပါ](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)။
 
-နောက်တစ်ဆင့်မှာ virtual environment တစ်ခုဖန်တီးရပါမယ်။ Conda နဲ့လုပ်မယ်ဆိုရင် environment file (_environment.yml_) အသစ်တစ်ခုဖန်တီးပါ။ Codespaces သုံးနေတယ်ဆိုရင် `.devcontainer` directory ထဲမှာ `.devcontainer/environment.yml` လို့ဖန်တီးပါ။
+နောက်တစ်ဆင့်မှာ virtual environment ဖန်တီးပါ။ Conda နဲ့ချိတ်ဆက်ဖို့ environment file (_environment.yml_) အသစ် ဖန်တီးပါ။ Codespaces သုံးနေကြတဲ့အခါ `.devcontainer` ဖိုလ်ဒါထဲမှာ, ဒါမှမဟုတ် `.devcontainer/environment.yml` လို့ ဖိုင်ထဲမှာ ပြုလုပ်ပါ။
 
-အောက်ပါ code snippet ကို သင့် environment file ထဲထည့်ပါ -
+အောက်ပါ code snippet နဲ့ environment file ကို ဖြည့်ပါ:
 
 ```yml
 name: <environment-name>
@@ -138,38 +129,38 @@ dependencies:
       - azure-ai-ml
 ```
 
-Conda သုံးတဲ့အခါ error တက်တယ်ဆိုရင် Microsoft AI Libraries ကို terminal မှာ အောက်ပါ command နဲ့ ကိုယ်တိုင်တပ်ဆင်နိုင်ပါတယ်။
+conda သုံးစဉ် error တွေ ကြုံရင် terminal မှာ အောက်ပါ command ဖြင့် Microsoft AI Libraries ကို manually install လုပ်နိုင်ပါတယ်။
 
 ```
 conda install -c microsoft azure-ai-ml
 ```
 
-Environment file မှာ လိုအပ်တဲ့ dependencies တွေ ဖော်ပြထားပါတယ်။ `<environment-name>` ဆိုတာ သင် Conda environment အတွက် သတ်မှတ်ချင်တဲ့နာမည်၊ `<python-version>` ကတော့ သုံးချင်တဲ့ Python version ပါ။ ဥပမာ `3` ဆိုရင် Python ရဲ့ နောက်ဆုံး major version ဖြစ်ပါတယ်။
+Environment file မှာ ကျွန်တော်တို့ အလိုအလျောက်လိုအပ်နေတဲ့ dependencies တွေ ဖော်ပြထားပါတယ်။ `<environment-name>` က သင် Conda environment အတွက် သတ်မှတ်ချင်တဲ့ အမည်ဖြစ်ပြီး `<python-version>` က သင်သုံးချင်တဲ့ Python ဗားရှင်းဖြစ်သည်။ ဥပမာအားဖြင့် `3` က Python နောက်ဆုံး major version ဖြစ်ပါတယ်။
 
-ပြီးသွားရင် အောက်ပါ command တွေကို command line/terminal မှာ run လုပ်ပြီး Conda environment ကို ဖန်တီးနိုင်ပါပြီ -
+ပြီးဆုံးရင် command line/terminal မှာ အောက်ပါ commands ဖြင့် Conda environment ကို ဖန်တီးလိုက်ပါ။
 
 ```bash
-conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer sub path applies to only Codespace setups
+conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer ရဲ့ သေးငယ်တဲ့ လမ်းကြောင်းက Codespace ပြင်ဆင်မှုတွေ အတွက်သာ ဖြစ်ပါတယ်။
 conda activate ai4beg
 ```
 
-ပြဿနာတက်ရင် [Conda environments guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst) ကို ကိုးကားပါ။
+ပြဿနာတွေရှိရင် [Conda environments guide](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst) ကို ကိုးကားပါ။
 
-### Visual Studio Code နဲ့ Python support extension သုံးခြင်း
+### Visual Studio Code ကို Python extension နဲ့သုံးခြင်း
 
-ဒီသင်တန်းအတွက် [Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) editor နဲ့ [Python support extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) တပ်ဆင်ထားဖို့ အကြံပြုပါတယ်။ ဒါပေမယ့် မဖြစ်မနေလိုအပ်တာတော့ မဟုတ်ပါဘူး။
+ဒီသင်တန်းအတွက် [Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) နဲ့ [Python support extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) ကို အသုံးပြုဖို့ အကြံပြုပါတယ်။ ဒါပေမယ့် ဤအကြံပြုချက်က တစ်ခုတည်းသောလိုအပ်ချက်မဟုတ်ပါ။
 
-> **Note**: VS Code ထဲမှာ သင်တန်း repository ကိုဖွင့်လိုက်တာနဲ့ project ကို container ထဲမှာတပ်ဆင်နိုင်တဲ့ option ရှိပါတယ်။ ဒါက သင်တန်း repository ထဲမှာ [အထူး `.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) directory ပါဝင်လို့ပါ။ နောက်ပိုင်းမှာ ပိုမိုရှင်းပြပါမယ်။
+> **မှတ်ချက်**: သင်သင်တန်း repo ကို VS Code ပါ ထည့်လိုက်ရင် ဒီ project ကို container အတွင်းမှာ setup လုပ်ဖို့ ရွေးချယ်နိုင်ပါတယ်။ ဒါဟာ repo ထဲမှာ ရှိတဲ့ [`.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) ပထမဦးဆုံး folder များကြောင့် ဖြစ်ပါတယ်။ နောက်ပိုင်း ဆက်လက်ရှင်းပြပါမယ်။
 
-> **Note**: Directory ကို clone လုပ်ပြီး VS Code ထဲမှာဖွင့်လိုက်တာနဲ့ Python support extension တပ်ဆင်ဖို့ အလိုအလျောက် အကြံပြုပါလိမ့်မယ်။
+> **မှတ်ချက်**: Repo ကို clone လုပ်ပြီး VS Code နဲ့ ဖွင့်တဲ့အခါ Python support extension ထည့်ရန် အလိုအလျောက် အကြံပြုပါလိမ့်မယ်။
 
-> **Note**: VS Code က repository ကို container ထဲမှာ ပြန်ဖွင့်ဖို့ အကြံပြုလာရင်၊ ကိုယ့်ကွန်ပျူတာမှာတပ်ဆင်ထားတဲ့ Python ကို သုံးချင်ရင် ငြင်းပယ်ပါ။
+> **မှတ်ချက်**: VS Code က repo ကို container ထဲ ထပ်ဖွင့်ဖို့ အကြံပြုရင် ဒါကို မလိုလားဘဲ ပြတ်စဲပြီး locally installed Python ကို သုံးပါ။
 
 ### Browser ထဲမှာ Jupyter သုံးခြင်း
 
-[Browser ထဲမှာ Jupyter environment](https://jupyter.org?WT.mc_id=academic-105485-koreyst) ကိုသုံးပြီးလည်း ဒီ project ကို လုပ်နိုင်ပါတယ်။ Jupyter နဲ့ [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst) နှစ်ခုလုံးမှာ auto-completion, code highlighting စတဲ့ အဆင်ပြေတဲ့ features တွေပါဝင်ပါတယ်။
+သင်တန်းကို ဘရောက်ဇာမှတဆင့် [Jupyter environment](https://jupyter.org?WT.mc_id=academic-105485-koreyst) သုံးပြီးလည်း development လုပ်နိုင်ပါတယ်။ Classic Jupyter နဲ့ [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst) နှစ်မျိုးလုံး auto-completion၊ code highlight စတာတွေ ပါဝင်တဲ့ တွန်းအားကောင်းတဲ့ဘက်ဒ်စတိုင်ပလက်ဖောင်းများ ဖြစ်ပါတယ်။
 
-Jupyter ကို local မှာစတင်ဖို့ terminal/command line ကိုသွားပြီး သင်တန်း directory ကိုသွားပါ၊ အောက်ပါ command ကို run လုပ်ပါ -
+အိမ်စောင့် Jupyter စတင်ဖို့ terminal/command line ကိုဖွင့်ပြီး သင်တန်း directory ကို သွားပါ၊ နောက် ထည့်သွင်းချင်သည့် command ကို run ပါ။
 
 ```bash
 jupyter notebook
@@ -181,58 +172,60 @@ jupyter notebook
 jupyterhub
 ```
 
-ဒါနဲ့ Jupyter instance တစ်ခုစတင်ပြီး URL ကို command line window ထဲမှာ ပြပါလိမ့်မယ်။
+ဒါက Jupyter instance ကို စတင်ပြီး URL ကို command line ပေါ်မှာ ပြပါလိမ့်မယ်။
 
-URL ကိုသွားရင် သင်တန်းအကြောင်းအရာတွေကို မြင်ရပြီး `*.ipynb` ဖိုင်တစ်ခုခုကို သွားနိုင်ပါပြီ။ ဥပမာ `08-building-search-applications/python/oai-solution.ipynb` လို့ပါ။
+URL ကို ဝင်ရောက်ပြီးနောက် သင်တန်း၊ ကိုယ်လို လိုင်း `*.ipynb` ဖိုင်တွေကို ရွှေ့နိုင်ပါပြီ။ ဥပမာ `08-building-search-applications/python/oai-solution.ipynb` ဟာပါ။
 
-### Container ထဲမှာ Run လုပ်ခြင်း
+### Container တစ်ခုထဲမှာ အလုပ်လုပ်ခြင်း
 
-ကိုယ့်ကွန်ပျူတာမှာ သို့မဟုတ် Codespace မှာ အားလုံးတပ်ဆင်စရာမလိုဘဲ [container](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>) ကိုသုံးနိုင်ပါတယ်။ သင်တန်း repository ထဲက `.devcontainer` folder ကြောင့် VS Code က project ကို container ထဲမှာတပ်ဆင်နိုင်ပါတယ်။ Codespaces မဟုတ်ဘူးဆိုရင် Docker တပ်ဆင်ဖို့လိုအပ်ပြီး အလုပ်အနည်းငယ်များပါတယ်။ ဒါကြောင့် container နဲ့အလုပ်လုပ်ဖူးသူတွေအတွက်သာ အကြံပြုပါတယ်။
+ကိုယ်ပိုင်ကွန်ပျူတာမှာ သို့မဟုတ် Codespace မှာ စီစဉ်ဖွဲ့စည်းဖို့ အစား [container](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>) သုံးနိုင်ပါတယ်။ သင်တန်း repo ထဲရှိ `.devcontainer` ဖိုလ်ဒါကြောင့် VS Code မှာ project ကို container အတွင်းမှာ setup လုပ်ဖို့ ခွင့်ရှိပါတယ်။ Codespaces မဟုတ်တဲ့ အခြေအနေမှာ Docker install လုပ်ရပါမည်။ ဒါကြောင့် container နဲ့ အတွေ့အကြုံရှိသူများအတွက်သာ အကြံပြုပါတယ်။
 
-GitHub Codespaces သုံးတဲ့အခါ API keys တွေကိုလုံခြုံစွာထားဖို့ Codespace Secrets ကိုသုံးတာ အကောင်းဆုံးနည်းလမ်းတစ်ခုပါ။ [Codespaces secrets management](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) guide ကိုလိုက်နာပါ။
+GitHub Codespaces သုံးတဲ့အခါ API key တွေ လုံခြုံစေရန်အတွက် Codespace Secrets ကို သုံးဖို့ အကောင်းဆုံးနည်းလမ်းဖြစ်ပါတယ်။ [Codespaces secrets management](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) လမ်းညွှန်ကို လိုက်နာပါ။
 
 ## သင်ခန်းစာများနှင့် နည်းပညာလိုအပ်ချက်များ
 
-သင်တန်းမှာ အယူအဆသင်ခန်းစာ ၆ ခုနဲ့ coding သင်ခန်းစာ ၆ ခု ပါဝင်ပါတယ်။
+ဒီသင်တန်းမှာ သိပ္ပံအခြေခံ 6 ခုနဲ့ ကွန်ပျူတာရေးသင်ခန်းစာ 6 ခုပါဝင်ပါတယ်။
 
-Coding သင်ခန်းစာများအတွက် Azure OpenAI Service ကိုသုံးထားပါတယ်။ ဒီ code ကို run လုပ်ဖို့ Azure OpenAI service နဲ့ API key လိုအပ်ပါတယ်။ [ဒီ application](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst) ဖြည့်ပြီး ဝင်ရောက်ခွင့်တောင်းနိုင်ပါတယ်။
+Coding သင်ခန်းစာများအတွက် Azure OpenAI Service ကို အသုံးပြုထားပါတယ်။ ဒီကုဒ်ကို run ဖို့ Azure OpenAI service ရယူထားပြီး API key လိုအပ်ပါမယ်။ [ဒီဖောင်ကို ဖြည့်ပြီး လျှောက်ထားနိုင်ပါတယ်](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst)။
 
-သင့် application ကို စစ်ဆေးနေချိန်မှာလည်း coding သင်ခန်းစာတိုင်းမှာ `README.md` ဖိုင်ပါဝင်ပြီး code နဲ့ output တွေကို ကြည့်နိုင်ပါတယ်။
+လျှောက်ထားချက်ကို စောင့်ဆိုင်းစဉ် Coding သင်ခန်းစာတစ်ခုချင်းစီမှာ `README.md` ဖိုင် ပါဝင်ပြီး ကုဒ်နဲ့ ထွက်ရှိချက်ကို ကြည့်ရှုနိုင်ပါတယ်။
 
-## Azure OpenAI Service ကို ပထမဆုံးအသုံးပြုခြင်း
+## Azure OpenAI Service ကို ပထမဆုံးသုံးစရာ
 
-Azure OpenAI service ကို ပထမဆုံးအသုံးပြုမယ်ဆိုရင် [Azure OpenAI Service resource တစ်ခု ဖန်တီးပြီး deploy လုပ်နည်း](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst) ကို လိုက်နာပါ။
+Azure OpenAI service ကို ပထမဆုံး သုံးစရာဖြစ်ရင် [Azure OpenAI Service resource ဖန်တီးနည်းနဲ့ အသုံးပြုနည်း](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst) လမ်းညွှန်ကိုလိုက်နာပါ။
 
-## OpenAI API ကို ပထမဆုံးအသုံးပြုခြင်း
+## OpenAI API ကို ပထမဆုံးသုံးစရာ
 
-OpenAI API ကို ပထမဆုံးအသုံးပြုမယ်ဆိုရင် [Interface တစ်ခု ဖန်တီးပြီး အသုံးပြုနည်း](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst) ကို လိုက်နာပါ။
+OpenAI API ပထမဆုံး သုံးမယ်ဆိုရင် [API ဖန်တီးနည်းနဲ့အသုံးပြုနည်း](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst) လမ်းညွှန်လိုက်နာပါ။
 
-## တခြားလေ့လာသူများနဲ့ တွေ့ဆုံခြင်း
+## အခြားလေ့လာသူတွေနဲ့တွေ့ဆုံခြင်း
 
-တခြားလေ့လာသူများနဲ့ တွေ့ဆုံနိုင်ဖို့ ကျွန်ုပ်တို့ရဲ့ [AI Community Discord server](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) မှာ channel တွေဖန်တီးထားပါတယ်။ Generative AI ကို စိတ်ဝင်စားတဲ့ စီးပွားရေးလုပ်ငန်းရှင်၊ တည်ဆောက်သူ၊ ကျောင်းသား၊ တိုးတက်ချင်သူတိုင်းအတွက် ကောင်းတဲ့ network ဖြစ်ပါတယ်။
+ကျွန်တော်တို့ရဲ့ [AI Community Discord server](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) မှာလေ့လာသူတွေ ဆက်ဆံဖို့ ချန်နယ်တွေဖွင့်ထားပါတယ်။ ဒီမှာ ကိုယ့်လိုပဲ စိတ်ဝင်စားသူများ၊ စိတ်အားထက်သန်သူများ၊ ကျောင်းသား၊ စီးပွားရေးရှင်၊ နည်းပညာရှင်တွေနဲ့ ဆက်သွယ်ပြီး Generative AI ထိပ်တန်းအတတ်ပညာကောင်းဖို့ ချိတ်ဆက်ရန် အကောင်းဆုံးနေရာပါ။
 
 [![Join discord channel](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)
 
-Project team လည်း ဒီ Discord server မှာ အကူအညီပေးဖို့ ရှိနေပါမယ်။
+ဒီ Discord server မှာ လေ့လာသူတွေကူညီရန် project အဖွဲ့သားများလည်း ရှိပါသည်။
 
-## ပူးပေါင်းပါ
+## အတူတူလုပ်ဆောင်ကြမယ်
 
-ဒီသင်တန်းက open-source initiative တစ်ခုပါ။ တိုးတက်စေချင်တာ၊ ပြဿနာတွေ တွေ့ရင် [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) တစ်ခုတင်ပါ၊ ဒါမှမဟုတ် [GitHub issue](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst) တင်နိုင်ပါတယ်။
+ဒီသင်တန်းကို open-source စရိတ်ဖြစ်ပါတယ်။ တိုးတက်အောင်မြင်ဖို့၊ ပြဿနာတွေရှိရင် [Pull Request တင်ပါ](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) သို့မဟုတ် [GitHub issue log လုပ်ပါ](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst)။
 
-Project team က ပူးပေါင်းမှုအားလုံးကို စောင့်ကြည့်နေပါမယ်။ Open source ကို ပူးပေါင်းခြင်းက Generative AI လောကမှာ ကိုယ့်အလုပ်အကိုင်တိုးတက်ဖို့ အကောင်းဆုံးနည်းလမ်းတစ်ခုပါ။
+Project အဖွဲ့က ဆက်လက်ကြိုတင်စောင့်ကြည့်မယ်။ Open source သုံးစွဲခြင်းက Generative AI ရဲ့ လုပ်ငန်းခွင်မှာ ကြီးမားတဲ့ အခွင့်အလမ်းတစ်ခုဖြစ်ပါတယ်။
 
-အများစုသော ပူးပေါင်းမှုတွေမှာ Contributor License Agreement (CLA) ကို သဘောတူဖို့လိုပါတယ်။ ဒါက သင့်ပေးအပ်မှုကို ကျွန်ုပ်တို့အသုံးပြုခွင့်ရှိကြောင်း သက်သေပြတာပါ။ အသေးစိတ်ကို [CLA, Contributor License Agreement website](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst) မှာ ဖတ်ရှုနိုင်ပါတယ်။
+အများစုသော အထောက်အထားများမှာ Contributor License Agreement (CLA) သို့လက်ခံပါရန် သတ်မှတ်ထားပြီး၊ သင်၏ အထောက်အထားအသုံးပြုခွင့်ရှိကြောင်းကြေညာရမည် ဖြစ်သည်။ ပိုမိုသိရှိလိုပါက [CLA, Contributor License Agreement website](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst) ကို သွားရောက် ဖတ်ရှုနိုင်ပါသည်။
 
-အရေးကြီးချက် - ဒီ repo ထဲက စာသားကို ဘာသာပြန်တဲ့အခါ machine translation မသုံးပါနဲ့။ Community က verify လုပ်မယ်၊ ကိုယ်တကယ်ကျွမ်းကျင်တဲ့ ဘာသာစကားတွေအတွက်သာ volunteer လုပ်ပါ။
+အရေးကြီးချက်- ဘာသာပြန်ခြင်းအတွက် အင်္ဂါရပ်တွင် မော်တော်ဖြင့်ဘာသာပြန်မှု (machine translation) မသုံးရပါ။ ကျွန်တော်တို့အဖွဲ့မှာ ဘာသာပြန်မှုများကို ပြည်သူများမှ သုံးသပ်စစ်ဆေးမည် ဖြစ်သောကြောင့် သင့်ဘာသာစကားကို ပြည့်စုံကျွမ်းကျင်စွာအသုံးပြုနိုင်သူများသာ တာဝန်ယူပါ။ 
 
-Pull request တင်တဲ့အခါ CLA-bot က CLA လိုအပ်/မလိုအပ် စစ်ပြီး PR ကို label, comment နဲ့ decorate လုပ်ပါလိမ့်မယ်။ Bot ရဲ့ညွှန်ကြားချက်ကို လိုက်နာပါ။ ဒီ CLA ကို Microsoft ရဲ့ repo အားလုံးမှာ တစ်ကြိမ်တည်းသာ လုပ်ရပါမယ်။
+pull request တင်တဲ့အခါ CLA-bot က သင် CLA ယူရန် လိုအပ်မလား စစ်ဆေးပြီး, သင့် PR ကို label, comment ဖြစ်စေခြင်းများ ပြုလုပ်ပါမည်။ bot ၏အညွှန်း လိုက်နာရန် လိုအပ်သည်။ Repo တစ်ခုလုံးတွင် ရှိသော CLA တစ်ခုချင်း စိစစ်မှုကို တစ်ကြိမ်တည်းသာ ပြုလုပ်ပါမည်။
 
-ဒီ project မှာ [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst) ကို လက်ခံအသုံးပြုထားပါတယ်။ အသေးစိတ်သိချင်ရင် Code of Conduct FAQ ကိုဖတ်ပါ၊ သို့မဟုတ် [Email opencode](opencode@microsoft.com) ကို မေးမြန်းနိုင်ပါတယ်။
+ဒီ project မှာ [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst) ကို လိုက်နာပါသည်။ အသေးစိတ်သိရှိလိုပါက Code of Conduct FAQ ကိုဖတ်ရှုပါ၊ ဒါမှမဟုတ် ပိုမိုမေးမြန်းလိုပါက [Email opencode](opencode@microsoft.com) ဆီ ဆက်သွယ်စုံစမ်းနိုင်ပါသည်။
 
-## စတင်လိုက်ကြစို့
-ဒီသင်တန်းကိုပြီးစီးဖို့လိုအပ်တဲ့အဆင့်တွေကိုပြီးမြောက်ပြီးသားဖြစ်ပြီဆိုတော့၊ အခုတော့ [Generative AI နဲ့ LLMs အကြောင်းမိတ်ဆက်](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst) ကိုစတင်လေ့လာကြမယ်။
+## စတင်ကြ ပါစို့!
+ယခု သင်သည် ဤသင်တန်းကို ပြီးမြောက်အောင် လိုအပ်သည့် အဆင့်များကို ပြီးမြောက်ခဲ့ပါပြီ။ ယခု မှ [Generative AI နှင့် LLMs အတွက် မိတ်ဆက်](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst) ကို ရယူကာ စတင်လိုက်ကြပါစို့။
 
 ---
 
-**သတိပေးချက်**:
-ဤစာရွက်စာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားပါသည်။ ကျွန်ုပ်တို့သည် တိကျမှုအတွက် ကြိုးစားနေသော်လည်း၊ အလိုအလျောက်ဘာသာပြန်မှုများတွင် အမှားများ သို့မဟုတ် မတိကျမှုများ ပါဝင်နိုင်သည်ကို သတိပြုပါ။ မူလစာရွက်စာတမ်းသည် မူရင်းဘာသာစကားဖြင့်သာ အာဏာရှိသော ရင်းမြစ်အဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော အချက်အလက်များအတွက် လူ့ဘာသာပြန်ပညာရှင်များကို အသုံးပြုရန် အကြံပြုပါသည်။ ဤဘာသာပြန်မှုကို အသုံးပြုခြင်းကြောင့် ဖြစ်ပေါ်လာသော နားလည်မှုမှားခြင်း သို့မဟုတ် အနားလည်မှားခြင်းများအတွက် ကျွန်ုပ်တို့သည် တာဝန်ယူမည်မဟုတ်ပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**အချိုးအစားချုပ်ချက်**  
+ဤစာတမ်းကို AI ဘာသာပြန်ဝန်ဆောင်မှု [Co-op Translator](https://github.com/Azure/co-op-translator) ကို အသုံးပြု၍ ဘာသာပြန်ထားခြင်းဖြစ်ပါသည်။ တိကျမှုရှိစေရန် ကြိုးစားသော်လည်း ကွန်ပျူတာဖြင့် အလိုအလျောက် ဘာသာပြန်မှုတွင် အမှားများ သို့မဟုတ် တိကျမှုမရှိမှုများ ပါဝင်နိုင်ကြောင်း သတိပြုပါရန် အသိပေးလိုပါသည်။ မူလစာတမ်းကို မိခင်ဘာသာဖြင့်သာ တရားဝင်အစွန်းအထင်း အခန်းကဏ္ဍအဖြစ် ယူဆသင့်ပါသည်။ အရေးကြီးသော သတင်းအချက်အလက်များအတွက် ပရော်ဖက်ရှင်နယ် လူသားဘာသာပြန်မှုကို အကြံပြုပါသည်။ ဤဘာသာပြန်မှု အသုံးပြုမှုကြောင့် ဖြစ်ပေါ်လာနိုင်သည့် နားလည်မှုမှားယွင်းမှုများ သို့မဟုတ် အနားမလွတ်သတ်ချက်များအတွက် ကျနော်တို့ တာဝန်မယူပါ။
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

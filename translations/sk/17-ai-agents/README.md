@@ -1,71 +1,62 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "11f03c81f190d9cbafd0f977dcbede6c",
-  "translation_date": "2025-07-09T17:30:51+00:00",
-  "source_file": "17-ai-agents/README.md",
-  "language_code": "sk"
-}
--->
-[![Open Source Models](../../../translated_images/17-lesson-banner.a5b918fb0920e4e6d8d391a100f5cb1d5929f4c2752c937d40392905dec82592.sk.png)](https://aka.ms/gen-ai-lesson17-gh?WT.mc_id=academic-105485-koreyst)
+[![Modely Open Source](../../../translated_images/sk/17-lesson-banner.a5b918fb0920e4e6.webp)](https://youtu.be/yAXVW-lUINc?si=bOtW9nL6jc3XJgOM)
 
 ## Úvod
 
-AI Agentov predstavujú vzrušujúci vývoj v oblasti Generatívnej AI, ktorý umožňuje veľkým jazykovým modelom (LLM) prejsť z asistentov na agentov schopných vykonávať akcie. Rámce pre AI Agentov umožňujú vývojárom vytvárať aplikácie, ktoré dávajú LLM prístup k nástrojom a správe stavu. Tieto rámce tiež zlepšujú prehľadnosť, čo umožňuje používateľom a vývojárom sledovať plánované akcie LLM, čím sa zlepšuje správa používateľského zážitku.
+AI Agenti predstavujú vzrušujúci vývoj v Generatívnej AI, ktorý umožňuje veľkým jazykovým modelom (LLM) vyvinúť sa z asistentov na agentov schopných vykonávať akcie. Rámce AI Agentov umožňujú vývojárom vytvárať aplikácie, ktoré poskytujú LLM prístup k nástrojom a správe stavu. Tieto rámce tiež zlepšujú viditeľnosť, čo umožňuje používateľom a vývojárom monitorovať akcie plánované LLM, čím sa zlepšuje správa používateľskej skúsenosti.
 
-Táto lekcia pokryje nasledujúce oblasti:
+Lekcia pokryje nasledujúce oblasti:
 
-- Pochopenie, čo je AI Agent – Čo presne znamená AI Agent?
-- Preskúmanie štyroch rôznych rámcov pre AI Agentov – Čím sú jedinečné?
-- Aplikovanie týchto AI Agentov na rôzne prípady použitia – Kedy by sme mali používať AI Agentov?
+- Pochopenie, čo je AI Agent - Čo presne je AI Agent?
+- Preskúmanie štyroch rôznych rámcov AI Agentov - Čím sú jedinečné?
+- Uplatnenie týchto AI Agentov na rôzne použitia - Kedy by sme mali používať AI Agentov?
 
 ## Ciele učenia
 
 Po absolvovaní tejto lekcie budete schopní:
 
-- Vysvetliť, čo sú AI Agenti a ako ich možno využiť.
-- Pochopiť rozdiely medzi niektorými populárnymi rámcami pre AI Agentov a ich odlišnosti.
-- Rozumieť fungovaniu AI Agentov, aby ste mohli s nimi vytvárať aplikácie.
+- Vysvetliť, čo sú AI Agenti a ako ich možno použiť.
+- Pochopiť rozdiely medzi niektorými populárnymi rámcami AI Agentov a aké sú ich odlišnosti.
+- Pochopiť, ako AI Agenti fungujú, aby ste s nimi mohli vytvárať aplikácie.
 
 ## Čo sú AI Agenti?
 
-AI Agenti sú veľmi vzrušujúcou oblasťou v svete Generatívnej AI. S týmto nadšením však niekedy prichádza zmätok v pojmoch a ich použití. Aby sme to zjednodušili a zahrnuli väčšinu nástrojov, ktoré sa označujú ako AI Agenti, použijeme túto definíciu:
+AI Agenti sú veľmi vzrušujúcou oblasťou v svete Generatívnej AI. S týmto vzrušením však niekedy prichádza zmätok v termínoch a ich použití. Aby sme to zjednodušili a zahrnuli väčšinu nástrojov, ktoré sa označujú ako AI Agenti, použijeme túto definíciu:
 
 AI Agenti umožňujú veľkým jazykovým modelom (LLM) vykonávať úlohy tým, že im poskytujú prístup k **stavu** a **nástrojom**.
 
-![Agent Model](../../../translated_images/what-agent.21f2893bdfd01e6a7fd09b0416c2b15594d97f44bbb2ab5a1ff8bf643d2fcb3d.sk.png)
+![Model Agenta](../../../translated_images/sk/what-agent.21f2893bdfd01e6a.webp)
 
-Definujme si tieto pojmy:
+Definujme tieto pojmy:
 
-**Veľké jazykové modely** – Sú to modely, o ktorých sa v tomto kurze hovorí, ako napríklad GPT-3.5, GPT-4, Llama-2 a podobne.
+**Veľké jazykové modely** - Tieto modely sú spomenuté v priebehu tohto kurzu, ako napríklad GPT-3.5, GPT-4, Llama-2 a pod.
 
-**Stav** – Označuje kontext, v ktorom LLM pracuje. LLM využíva kontext svojich predchádzajúcich akcií a aktuálny kontext, ktorý riadi jeho rozhodovanie pri ďalších krokoch. Rámce pre AI Agentov umožňujú vývojárom jednoduchšie udržiavať tento kontext.
+**Stav** - Znamená to kontext, v ktorom LLM pracuje. LLM používa kontext svojich predchádzajúcich akcií a aktuálny kontext na vedenie svojho rozhodovania pri následných akciách. Rámce AI Agentov umožňujú vývojárom jednoduchšie udržiavať tento kontext.
 
-**Nástroje** – Aby LLM mohol splniť úlohu, ktorú používateľ požaduje a ktorú si naplánoval, potrebuje prístup k nástrojom. Príkladmi nástrojov môžu byť databáza, API, externá aplikácia alebo dokonca iný LLM!
+**Nástroje** - Aby LLM dokončil úlohu, ktorú používateľ požiadal a ktorú LLM naplánoval, potrebuje prístup k nástrojom. Niektorými príkladmi nástrojov môžu byť databáza, API, externá aplikácia alebo dokonca ďalší LLM!
 
-Tieto definície vám dúfame poskytnú dobrý základ na ďalšie štúdium implementácie. Pozrime sa na niekoľko rôznych rámcov pre AI Agentov:
+Tieto definície vám dúfame poskytnú dobrý základ pre ďalšie preskúmanie ich implementácie. Pozrime sa na niekoľko rôznych rámcov AI Agentov:
 
-## LangChain Agents
+## LangChain Agenti
 
-[LangChain Agents](https://python.langchain.com/docs/how_to/#agents?WT.mc_id=academic-105485-koreyst) sú implementáciou vyššie uvedených definícií.
+[LangChain Agents](https://python.langchain.com/docs/how_to/#agents?WT.mc_id=academic-105485-koreyst) sú implementáciou definícií, ktoré sme poskytli vyššie.
 
-Na správu **stavu** používa vstavanú funkciu nazvanú `AgentExecutor`. Tá prijíma definovaného `agenta` a dostupné `nástroje`.
+Na správu **stavu** používa vstavanú funkciu nazývanú `AgentExecutor`. Táto prijíma definovaného `agenta` a dostupné `nástroje`.
 
-`AgentExecutor` tiež uchováva históriu chatu, aby poskytol kontext konverzácie.
+`AgentExecutor` tiež ukladá históriu chatu, aby poskytol kontext konverzácie.
 
-![Langchain Agents](../../../translated_images/langchain-agents.edcc55b5d5c437169a2037211284154561183c58bcec6d4ac2f8a79046fac9af.sk.png)
+![Langchain Agenti](../../../translated_images/sk/langchain-agents.edcc55b5d5c43716.webp)
 
-LangChain ponúka [katalóg nástrojov](https://integrations.langchain.com/tools?WT.mc_id=academic-105485-koreyst), ktoré je možné importovať do vašej aplikácie a ku ktorým môže LLM získať prístup. Tieto nástroje vytvára komunita aj tím LangChain.
+LangChain ponúka [katalóg nástrojov](https://integrations.langchain.com/tools?WT.mc_id=academic-105485-koreyst), ktoré je možné importovať do vašej aplikácie, ku ktorým môže LLM získať prístup. Tieto vytvára komunita a tím LangChain.
 
-Tieto nástroje potom môžete definovať a odovzdať do `AgentExecutor`.
+Tieto nástroje môžete potom definovať a odovzdať ich `AgentExecutor`.
 
-Prehľadnosť je ďalším dôležitým aspektom pri AI Agento. Je dôležité, aby vývojári aplikácií rozumeli, ktorý nástroj LLM používa a prečo. Preto tím LangChain vyvinul LangSmith.
+Viditeľnosť je ďalším dôležitým aspektom pri hovoroch o AI Agentocha. Je dôležité, aby vývojári aplikácií rozumeli, ktorý nástroj LLM používa a prečo. Preto tím LangChain vyvinul LangSmith.
 
 ## AutoGen
 
-Ďalším rámcom pre AI Agentov, ktorý si predstavíme, je [AutoGen](https://microsoft.github.io/autogen/?WT.mc_id=academic-105485-koreyst). Hlavným zameraním AutoGen sú konverzácie. Agenti sú zároveň **konverzační** a **prispôsobiteľní**.
+Ďalším rámcom AI Agentov, o ktorom budeme hovoriť, je [AutoGen](https://microsoft.github.io/autogen/?WT.mc_id=academic-105485-koreyst). Hlavným zameraním AutoGen sú konverzácie. Agenti sú **konverzační** a **prispôsobiteľní**.
 
-**Konverzační** – LLM môžu začať a pokračovať v konverzácii s iným LLM, aby splnili úlohu. Toto sa dosahuje vytváraním `AssistantAgents` a priradením konkrétnej systémovej správy.
+**Konverzační** - LLM môžu začať a pokračovať v konverzácii s iným LLM, aby dokončili úlohu. To sa robí vytvorením `AssistantAgents` a priradením špecifickej systémovej správy.
 
 ```python
 
@@ -73,19 +64,19 @@ autogen.AssistantAgent( name="Coder", llm_config=llm_config, ) pm = autogen.Assi
 
 ```
 
-**Prispôsobiteľní** – Agenti nemusia byť definovaní len ako LLM, ale môžu byť aj používateľ alebo nástroj. Ako vývojár môžete definovať `UserProxyAgent`, ktorý je zodpovedný za interakciu s používateľom a získavanie spätnej väzby pri plnení úlohy. Táto spätná väzba môže buď pokračovať v vykonávaní úlohy, alebo ju zastaviť.
+**Prispôsobiteľní** - Agentov možno definovať nielen ako LLM, ale môžu byť aj používateľmi alebo nástrojmi. Ako vývojár môžete definovať `UserProxyAgent`, ktorý je zodpovedný za interakciu s používateľom pre získanie spätnej väzby pri plnení úlohy. Táto spätná väzba môže pokračovať v vykonávaní úlohy alebo ju zastaviť.
 
 ```python
 user_proxy = UserProxyAgent(name="user_proxy")
 ```
 
-### Stav a nástroje
+### Stav a Nástroje
 
 Na zmenu a správu stavu generuje asistent Agent Python kód na dokončenie úlohy.
 
-Tu je príklad tohto procesu:
+Tu je príklad procesu:
 
-![AutoGen](../../../translated_images/autogen.dee9a25a45fde584fedd84b812a6e31de5a6464687cdb66bb4f2cb7521391856.sk.png)
+![AutoGen](../../../translated_images/sk/autogen.dee9a25a45fde584.webp)
 
 #### LLM definovaný systémovou správou
 
@@ -93,16 +84,16 @@ Tu je príklad tohto procesu:
 system_message="For weather related tasks, only use the functions you have been provided with. Reply TERMINATE when the task is done."
 ```
 
-Táto systémová správa usmerňuje konkrétny LLM, ktoré funkcie sú relevantné pre jeho úlohu. Pamätajte, že v AutoGen môžete mať viacero definovaných AssistantAgents s rôznymi systémovými správami.
+Táto systémová správa usmerňuje tento konkrétny LLM, ktoré funkcie sú relevantné pre jeho úlohu. Pamätajte, že s AutoGen môžete mať niekoľko definovaných AssistantAgents so rôznymi systémovými správami.
 
-#### Konverzácia je iniciovaná používateľom
+#### Chat je iniciovaný používateľom
 
 ```python
 user_proxy.initiate_chat( chatbot, message="I am planning a trip to NYC next week, can you help me pick out what to wear? ", )
 
 ```
 
-Táto správa od user_proxy (človeka) spustí proces, v ktorom Agent preskúma možné funkcie, ktoré by mal vykonať.
+Táto správa od user_proxy (človeka) spustí proces, v ktorom Agent skúma možné funkcie, ktoré by mal vykonať.
 
 #### Funkcia je vykonaná
 
@@ -115,21 +106,21 @@ chatbot (to user_proxy):
 
 ```
 
-Po spracovaní počiatočnej správy Agent navrhne nástroj na zavolanie. V tomto prípade ide o funkciu `get_weather`. Podľa vašej konfigurácie môže byť táto funkcia automaticky vykonaná a jej výsledok prečítaný Agentom, alebo sa vykoná na základe vstupu používateľa.
+Po spracovaní úvodného chatu Agent odošle navrhovaný nástroj na zavolanie. V tomto prípade je to funkcia nazvaná `get_weather`. V závislosti od konfigurácie môže byť táto funkcia automaticky vykonaná a interpretovaná Agentom, alebo vykonaná na základe vstupu používateľa.
 
-Pre ďalšie štúdium, ako začať s vývojom, nájdete zoznam [AutoGen ukážok kódu](https://microsoft.github.io/autogen/docs/Examples/?WT.mc_id=academic-105485-koreyst).
+Môžete nájsť zoznam [AutoGen ukážkových kódov](https://microsoft.github.io/autogen/docs/Examples/?WT.mc_id=academic-105485-koreyst), aby ste sa ďalej naučili, ako začať s tvorbou.
 
 ## Taskweaver
 
-Ďalším rámcom, ktorý preskúmame, je [Taskweaver](https://microsoft.github.io/TaskWeaver/?WT.mc_id=academic-105485-koreyst). Je známy ako „code-first“ agent, pretože namiesto práce výhradne so `stringami` môže pracovať s DataFrames v Pythone. To je mimoriadne užitočné pre úlohy analýzy a generovania dát, ako napríklad tvorba grafov, diagramov alebo generovanie náhodných čísel.
+Ďalší rámec agentov, ktorý preskúmame, je [Taskweaver](https://microsoft.github.io/TaskWeaver/?WT.mc_id=academic-105485-koreyst). Je známy ako „code-first“ agent, pretože namiesto práce výlučne so `stringami` môže pracovať s DataFrames v Pythone. To je veľmi užitočné pri analýze dát a generovaní úloh. Môžu to byť veci ako tvorba grafov, diagramov alebo generovanie náhodných čísel.
 
-### Stav a nástroje
+### Stav a Nástroje
 
-Na správu stavu konverzácie používa TaskWeaver koncept `Planner`. `Planner` je LLM, ktorý prijíma požiadavky od používateľov a mapuje úlohy, ktoré je potrebné splniť na ich realizáciu.
+Na správu stavu konverzácie TaskWeaver používa koncept `Planner`. `Planner` je LLM, ktorý prijíma požiadavku používateľov a mapuje úlohy, ktoré treba vykonať na splnenie tejto požiadavky.
 
-Na dokončenie úloh má `Planner` prístup ku kolekcii nástrojov nazývaných `Plugins`. Môžu to byť Python triedy alebo všeobecný kódový interpret. Tieto pluginy sú uložené ako embeddingy, aby LLM mohol efektívnejšie vyhľadávať správny plugin.
+Na dokončenie úloh je `Planner` vystavený zbierke nástrojov nazývaných `Plugins`. Môžu to byť Python triedy alebo všeobecný kódový interpret. Tieto pluginy sú uložené ako embeddingy, aby LLM lepšie vyhľadával vhodný plugin.
 
-![Taskweaver](../../../translated_images/taskweaver.da8559999267715a95b7677cf9b7d7dd8420aee6f3c484ced1833f081988dcd5.sk.png)
+![Taskweaver](../../../translated_images/sk/taskweaver.da8559999267715a.webp)
 
 Tu je príklad pluginu na detekciu anomálií:
 
@@ -137,37 +128,41 @@ Tu je príklad pluginu na detekciu anomálií:
 class AnomalyDetectionPlugin(Plugin): def __call__(self, df: pd.DataFrame, time_col_name: str, value_col_name: str):
 ```
 
-Kód je overený pred vykonaním. Ďalšou funkciou na správu kontextu v Taskweaver je `experience`. Experience umožňuje dlhodobé ukladanie kontextu konverzácie do YAML súboru. Toto je možné nakonfigurovať tak, aby sa LLM časom zlepšoval v určitých úlohách na základe predchádzajúcich konverzácií.
+Kód je overený pred vykonaním. Ďalšou funkciou na správu kontextu v Taskweaver je `experience`. Experience umožňuje, aby bol kontext konverzácie uložený dlhodobo v YAML súbore. Toto je možné konfigurovať tak, aby sa LLM časom zlepšoval pri určitých úlohách, keď je vystavený predchádzajúcim konverzáciám.
 
 ## JARVIS
 
-Posledným rámcom, ktorý preskúmame, je [JARVIS](https://github.com/microsoft/JARVIS?tab=readme-ov-file?WT.mc_id=academic-105485-koreyst). Čo robí JARVIS jedinečným, je to, že používa LLM na správu `stavu` konverzácie a `nástroje` sú iné AI modely. Každý z týchto AI modelov je špecializovaný na konkrétne úlohy, ako je detekcia objektov, prepis alebo popis obrázkov.
+Posledný rámec agentov, ktorý preskúmame, je [JARVIS](https://github.com/microsoft/JARVIS?tab=readme-ov-file&WT.mc_id=academic-105485-koreyst). Čo robí JARVIS jedinečným je, že používa LLM na správu `stavu` konverzácie a `nástroje` sú iné AI modely. Každý z týchto AI modelov je špecializovaný model, ktorý vykonáva určité úlohy, ako je detekcia objektov, prepis alebo tvorba popiskov obrázkov.
 
-![JARVIS](../../../translated_images/jarvis.762ddbadbd1a3a3364d4ca3db1a7a9c0d2180060c0f8da6f7bd5b5ea2a115aa7.sk.png)
+![JARVIS](../../../translated_images/sk/jarvis.762ddbadbd1a3a33.webp)
 
-LLM, ako model všeobecného určenia, prijíma požiadavku od používateľa, identifikuje konkrétnu úlohu a akékoľvek argumenty alebo dáta potrebné na jej splnenie.
+LLM, ako model všeobecného určenia, prijíme požiadavku od používateľa a identifikuje konkrétnu úlohu a akékoľvek argumenty/dáta potrebné na jej dokončenie.
 
 ```python
 [{"task": "object-detection", "id": 0, "dep": [-1], "args": {"image": "e1.jpg" }}]
 ```
 
-LLM potom formátuje požiadavku tak, aby ju špecializovaný AI model vedel interpretovať, napríklad vo formáte JSON. Keď AI model vráti predikciu na základe úlohy, LLM prijme odpoveď.
+LLM potom formátuje požiadavku tak, aby ju špecializovaný AI model mohol interpretovať, napríklad vo formáte JSON. Po tom, čo AI model vráti svoje predpovede na základe úlohy, LLM prijíma odpoveď.
 
-Ak je na splnenie úlohy potrebných viac modelov, LLM tiež interpretuje odpovede týchto modelov, než ich spojí do finálnej odpovede pre používateľa.
+Ak je potrebných viac modelov na dokončenie úlohy, LLM tiež interpretuje odpovede týchto modelov, skombinuje ich a následne vygeneruje odpoveď pre používateľa.
 
-Príklad nižšie ukazuje, ako by to fungovalo, keď používateľ žiada o popis a počet objektov na obrázku:
+Nižšie uvedený príklad ukazuje, ako by to fungovalo, keď používateľ žiada o popis a počet objektov na obrázku:
 
 ## Zadanie
 
-Na pokračovanie vo vašom učení o AI Agento môžete s AutoGen vytvoriť:
+Aby ste pokračovali vo svojom učení o AI Agentoch, môžete vytvoriť pomocou AutoGen:
 
-- Aplikáciu, ktorá simuluje obchodné stretnutie rôznych oddelení vzdelávacieho startupu.
-- Vytvoriť systémové správy, ktoré pomáhajú LLM pochopiť rôzne persony a priority a umožňujú používateľovi predstaviť nový produkt.
-- LLM by mal potom generovať doplňujúce otázky od každého oddelenia na upresnenie a zlepšenie prezentácie a produktového nápadu.
+- Aplikáciu, ktorá simuluje obchodné stretnutie s rôznymi oddeleniami vzdelávacieho startupu.
+- Vytvorte systémové správy, ktoré vedú LLM k pochopeniu rôznych osobností a priorít, a umožnia používateľovi predstaviť nový produkt.
+- LLM by mal následne generovať doplňujúce otázky od každého oddelenia, aby sa zlepšila a spresnila prezentácia a produktový nápad.
 
-## Učenie tu nekončí, pokračujte v ceste
+## Učenie tu nekončí, pokračujte na ďalšiu cestu
 
-Po dokončení tejto lekcie si pozrite našu [kolekciu Generatívnej AI](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), aby ste naďalej rozvíjali svoje znalosti v oblasti Generatívnej AI!
+Po dokončení tejto lekcie si pozrite našu [kolekciu učenia o Generatívnej AI](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), aby ste naďalej zvyšovali svoje vedomosti o Generatívnej AI!
 
-**Vyhlásenie o zodpovednosti**:  
-Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Hoci sa snažíme o presnosť, prosím, majte na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Originálny dokument v jeho pôvodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne interpretácie vyplývajúce z použitia tohto prekladu.
+---
+
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
+**Vyhlásenie o vylúčení zodpovednosti**:  
+Tento dokument bol preložený pomocou AI prekladateľskej služby [Co-op Translator](https://github.com/Azure/co-op-translator). Aj keď sa snažíme o presnosť, majte prosím na pamäti, že automatizované preklady môžu obsahovať chyby alebo nepresnosti. Pôvodný dokument v jeho rodnom jazyku by mal byť považovaný za autoritatívny zdroj. Pre kritické informácie sa odporúča profesionálny ľudský preklad. Nie sme zodpovední za akékoľvek nedorozumenia alebo nesprávne výklady vyplývajúce z použitia tohto prekladu.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

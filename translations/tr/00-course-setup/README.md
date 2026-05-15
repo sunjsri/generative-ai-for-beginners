@@ -1,57 +1,48 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "f1413b349a65b4e9eda3f48807656a6d",
-  "translation_date": "2025-08-26T16:47:57+00:00",
-  "source_file": "00-course-setup/README.md",
-  "language_code": "tr"
-}
--->
-# Bu kursa Başlarken
+# Bu kursa başlamak
 
-Bu kursa başlaman ve Üretken Yapay Zeka ile neler inşa edeceğini görmek için çok heyecanlıyız!
+Bu kursa başlamanız ve Üretken Yapay Zeka ile neler yaratacağınız konusunda ilham almanızı görmek için çok heyecanlıyız!
 
-Başarılı olman için, bu sayfada kurulum adımları, teknik gereksinimler ve ihtiyaç duyarsan nereden yardım alabileceğin anlatılıyor.
+Başarınızı sağlamak için, bu sayfa kurulum adımlarını, teknik gereksinimleri ve gerektiğinde nereden yardım alabileceğinizi özetlemektedir.
 
 ## Kurulum Adımları
 
-Bu kursa başlamak için aşağıdaki adımları tamamlaman gerekiyor.
+Bu kursa başlamanız için aşağıdaki adımları tamamlamanız gerekmektedir.
 
-### 1. Bu Depoyu Fork'la
+### 1. Bu Depoyu Forklayın
 
-Herhangi bir kodu değiştirebilmek ve görevleri tamamlayabilmek için [bu tüm depoyu kendi GitHub hesabına fork'la](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst). Ayrıca, [bu depoyu yıldızlayarak (🌟)](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst) hem bu depoyu hem de ilgili depoları daha kolay bulabilirsin.
+[Tüm bu depoyu forkladığınız GitHub hesabınıza](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) kodları değiştirebilmek ve görevleri tamamlayabilmek için. Ayrıca, [bu depoya 🌟 yıldıza basarak](https://docs.github.com/en/get-started/exploring-projects-on-github/saving-repositories-with-stars?WT.mc_id=academic-105485-koreyst) ve ilgili depolara daha kolay erişebilirsiniz.
 
-### 2. Bir codespace oluştur
+### 2. Bir Codespace Oluşturun
 
-Kodları çalıştırırken bağımlılık sorunları yaşamamak için, bu kursu [GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst) üzerinde çalıştırmanı öneriyoruz.
+Kodu çalıştırırken bağımlılık sorunlarından kaçınmak için bu kursu bir [GitHub Codespaces](https://github.com/features/codespaces?WT.mc_id=academic-105485-koreyst) içinde çalıştırmanızı öneririz.
 
-Kendi fork'unda: **Code -> Codespaces -> New on main**
+Forkunuzda: **Code -> Codespaces -> New on main**
 
-![Codespace oluşturma butonlarını gösteren diyalog](../../../00-course-setup/images/who-will-pay.webp)
+![Bir codespace oluşturmak için düğmeleri gösteren iletişim kutusu](../../../translated_images/tr/who-will-pay.4c0609b1c7780f44.webp)
 
-#### 2.1 Bir gizli anahtar ekle
+#### 2.1 Bir gizli anahtar ekleyin
 
-1. ⚙️ Dişli simgesi -> Komut Paleti -> Codespaces : Manage user secret -> Yeni bir gizli anahtar ekle.
-2. İsim olarak OPENAI_API_KEY yaz, anahtarını yapıştır, Kaydet.
+1. ⚙️ Dişli simgesi -> Komut Paleti -> Codespaces: Kullanıcı gizli anahtarını yönet -> Yeni gizli anahtar ekle.
+2. Ad olarak OPENAI_API_KEY yazın, anahtarınızı yapıştırın, Kaydet.
 
-### 3.  Sırada ne var?
+### 3. Sonra ne olacak?
 
-| Şunu yapmak istiyorum… | Şuraya git…                                                                |
-|------------------------|-----------------------------------------------------------------------------|
-| 1. Dersi başlat        | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)         |
-| Çevrimdışı çalışmak    | [`setup-local.md`](02-setup-local.md)                                       |
-| Bir LLM Sağlayıcı kurmak | [`providers.md`](providers.md)                                            |
-| Diğer katılımcılarla tanışmak | [Discord'a katıl](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) |
+| Yapmak istiyorum…       | Gitmek istediğim yer…                                                   |
+|------------------------|------------------------------------------------------------------------|
+| Ders 1’e başla         | [`01-introduction-to-genai`](../01-introduction-to-genai/README.md)     |
+| Çevrimdışı çalış        | [`setup-local.md`](02-setup-local.md)                                   |
+| Bir LLM Sağlayıcısı Ayarla | [`providers.md`](03-providers.md)                                        |
+| Diğer öğrencilerle tanış | [Discord’umuza katıl](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) |
 
 ## Sorun Giderme
 
-| Belirti                                    | Çözüm                                                            |
-|---------------------------------------------|------------------------------------------------------------------|
-| Konteyner kurulumu 10 dakikadan uzun sürüyor| **Codespaces ➜ “Rebuild Container”**                             |
-| `python: command not found`                 | Terminal bağlanmamış; **+** ➜ *bash* tıkla                       |
-| OpenAI'dan `401 Unauthorized`               | Yanlış / süresi dolmuş `OPENAI_API_KEY`                          |
-| VS Code “Dev container mounting…” gösteriyor| Tarayıcı sekmesini yenile—Codespaces bazen bağlantıyı kaybediyor |
-| Notebook çekirdeği eksik                    | Notebook menüsü ➜ **Kernel ▸ Select Kernel ▸ Python 3**          |
+| Belirti                                        | Çözüm                                                              |
+|------------------------------------------------|-------------------------------------------------------------------|
+| Konteyner yapımı 10 dakikadan uzun sürüyorsa   | **Codespaces ➜ “Rebuild Container” (Konteyneri Yeniden İnşa Et)** |
+| `python: command not found` hatası alırsanız    | Terminal bağlanmamış; **+** → *bash* tıklayın                      |
+| OpenAI’dan `401 Unauthorized` hatası alırsanız | Yanlış veya süresi dolmuş `OPENAI_API_KEY`                         |
+| VS Code “Dev container mounting…” gösteriyorsa | Tarayıcı sekmesini yenileyin — Codespaces bazen bağlantıyı kaybedebilir |
+| Notebook çekirdeği eksikse                       | Notebook menüsü ➜ **Kernel ▸ Select Kernel ▸ Python 3**           |
 
    Unix tabanlı sistemler:
 
@@ -65,64 +56,63 @@ Kendi fork'unda: **Code -> Codespaces -> New on main**
    echo . > .env
    ```
 
-3. **`.env` Dosyasını Düzenle**: `.env` dosyasını bir metin düzenleyicide (ör. VS Code, Notepad++ veya başka bir editör) aç. Aşağıdaki satırı dosyaya ekle, `your_github_token_here` kısmını kendi GitHub token'ın ile değiştir:
+3. **`.env` Dosyasını Düzenleyin**: `.env` dosyasını bir metin düzenleyicide (ör. VS Code, Notepad++ veya başka bir editör) açın. Dosyaya aşağıdaki satırı ekleyin, `your_github_token_here` kısmını gerçek GitHub tokenınızla değiştirin:
 
    ```env
    GITHUB_TOKEN=your_github_token_here
    ```
 
-4. **Dosyayı Kaydet**: Değişiklikleri kaydet ve metin editörünü kapat.
+4. **Dosyayı Kaydedin**: Değişiklikleri kaydedin ve metin düzenleyiciyi kapatın.
 
-5. **`python-dotenv` Kurulumu**: Henüz kurmadıysan, `.env` dosyasındaki ortam değişkenlerini Python uygulamana yüklemek için `python-dotenv` paketini kurman gerekir. `pip` ile kurabilirsin:
+5. **`python-dotenv` Paketini Yükleyin**: Henüz yüklemediyseniz, `.env` dosyasındaki ortam değişkenlerini Python uygulamanıza yüklemek için `python-dotenv` paketini yükleyin. Bunu `pip` ile yükleyebilirsiniz:
 
    ```bash
    pip install python-dotenv
    ```
 
-6. **Python Scriptinde Ortam Değişkenlerini Yükle**: Python scriptinde, `.env` dosyasındaki ortam değişkenlerini yüklemek için `python-dotenv` paketini kullan:
+6. **Python Kodunuzda Ortam Değişkenlerini Yükleyin**: Python scriptinizde `.env` dosyasından ortam değişkenlerini yüklemek için `python-dotenv` paketini kullanın:
 
    ```python
    from dotenv import load_dotenv
    import os
 
-   # Load environment variables from .env file
+   # .env dosyasından ortam değişkenlerini yükle
    load_dotenv()
 
-   # Access the GITHUB_TOKEN variable
+   # GITHUB_TOKEN değişkenine eriş
    github_token = os.getenv("GITHUB_TOKEN")
 
    print(github_token)
    ```
 
-Hepsi bu kadar! Başarıyla bir `.env` dosyası oluşturdun, GitHub token'ını ekledin ve Python uygulamana yükledin.
+İşte bu kadar! Başarıyla bir `.env` dosyası oluşturdunuz, GitHub tokenınızı eklediniz ve Python uygulamanıza yüklediniz.
 
-## Kendi Bilgisayarında Yerel Olarak Çalıştırma
+## Kodunuzu Bilgisayarınızda Yerel Olarak Çalıştırma
 
-Kodları kendi bilgisayarında çalıştırmak için, [Python'un bir sürümünün kurulu olması](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst) gerekir.
+Kodunuzu bilgisayarınızda yerel olarak çalıştırmak için [Python’un bir sürümünün yüklü olması gerekir](https://www.python.org/downloads/?WT.mc_id=academic-105485-koreyst).
 
-Depoyu kullanmak için, önce klonlaman gerekir:
+Depoyu kullanmak için, onu klonlamanız gerekir:
 
 ```shell
 git clone https://github.com/microsoft/generative-ai-for-beginners
 cd generative-ai-for-beginners
 ```
 
-Her şeyi indirdikten sonra, hemen başlayabilirsin!
+Her şeyi hallettikten sonra başlamaya hazırsınız!
 
-## Opsiyonel Adımlar
+## İsteğe Bağlı Adımlar
 
 ### Miniconda Kurulumu
 
-[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst), [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst), Python ve birkaç paketi kurmak için hafif bir kurucudur.
-Conda'nın kendisi bir paket yöneticisidir ve farklı Python [**sanallaştırılmış ortamlar**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) ve paketler arasında kolayca geçiş yapmanı sağlar. Ayrıca, `pip` ile bulunmayan paketleri kurmak için de kullanışlıdır.
+[Miniconda](https://conda.io/en/latest/miniconda.html?WT.mc_id=academic-105485-koreyst), [Conda](https://docs.conda.io/en/latest?WT.mc_id=academic-105485-koreyst), Python ve bazı paketleri kurmak için hafif bir yükleyicidir. Conda kendisi, farklı Python [**sanal ortamlarını**](https://docs.python.org/3/tutorial/venv.html?WT.mc_id=academic-105485-koreyst) ve paketleri kurup yönetmeyi kolaylaştıran bir paket yöneticisidir. Ayrıca `pip` ile bulunmayan paketlerin kurulumu için faydalıdır.
 
-Kurmak için [MiniConda kurulum rehberini](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) takip edebilirsin.
+Kurulum için [MiniConda kurulum rehberini](https://docs.anaconda.com/free/miniconda/#quick-command-line-install?WT.mc_id=academic-105485-koreyst) takip edebilirsiniz.
 
-Miniconda kurulduktan sonra, [depo](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst)'yu klonlaman gerekir (henüz yapmadıysan).
+Miniconda yüklüyse, [depoyu](https://github.com/microsoft/generative-ai-for-beginners/fork?WT.mc_id=academic-105485-koreyst) klonlayın (henüz yapmadıysanız).
 
-Sonrasında, bir sanal ortam oluşturman gerekir. Conda ile bunu yapmak için yeni bir ortam dosyası (_environment.yml_) oluştur. Codespaces kullanıyorsan, bunu `.devcontainer` dizininde oluştur, yani `.devcontainer/environment.yml`.
+Sonra bir sanal ortam oluşturmanız gerekir. Conda ile bunu yapmak için yeni bir ortam dosyası oluşturun (_environment.yml_). Codespaces kullanıyorsanız, bunu `.devcontainer` dizini içinde, yani `.devcontainer/environment.yml` olarak oluşturun.
 
-Aşağıdaki kod parçası ile ortam dosyanı doldurabilirsin:
+Ortam dosyanızı aşağıdaki örnekle doldurun:
 
 ```yml
 name: <environment-name>
@@ -138,101 +128,103 @@ dependencies:
       - azure-ai-ml
 ```
 
-Eğer conda kullanırken hata alırsan, Microsoft AI Kütüphanelerini aşağıdaki komutla terminalden manuel olarak kurabilirsin.
+Conda kullanırken hata alırsanız, Microsoft AI Kütüphanelerini el ile terminalde aşağıdaki komutla yükleyebilirsiniz.
 
 ```
 conda install -c microsoft azure-ai-ml
 ```
 
-Ortam dosyası, ihtiyacımız olan bağımlılıkları belirtir. `<environment-name>` Conda ortamına vermek istediğin isim, `<python-version>` ise kullanmak istediğin Python sürümüdür; örneğin, `3` en güncel ana sürümdür.
+Ortam dosyası ihtiyaç duyulan bağımlılıkları belirler. `<environment-name>` Conda ortamı için kullanmak istediğiniz isim, `<python-version>` kullanmak istediğiniz Python sürümüdür, örneğin `3` Python’un en son büyük sürümüdür.
 
-Bunları yaptıktan sonra, aşağıdaki komutları komut satırında/terminalde çalıştırarak Conda ortamını oluşturabilirsin:
+Bununla, aşağıdaki komutları terminalinizde çalıştırarak Conda ortamınızı oluşturabilirsiniz:
 
 ```bash
-conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer sub path applies to only Codespace setups
+conda env create --name ai4beg --file .devcontainer/environment.yml # .devcontainer alt yolu yalnızca Codespace kurulumu için geçerlidir
 conda activate ai4beg
 ```
 
-Herhangi bir sorun yaşarsan [Conda ortamları rehberine](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst) göz atabilirsin.
+Herhangi bir sorun yaşarsanız, [Conda ortam rehberine](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html?WT.mc_id=academic-105485-koreyst) bakabilirsiniz.
 
-### Python desteğiyle Visual Studio Code kullanmak
+### Visual Studio Code ve Python destek eklentisini kullanmak
 
-Bu kurs için [Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) editörünü ve [Python destek eklentisini](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) kullanmanı öneriyoruz. Ancak bu bir öneri, zorunluluk değil.
+Bu kurs için [Visual Studio Code (VS Code)](https://code.visualstudio.com/?WT.mc_id=academic-105485-koreyst) editörü ve [Python destek uzantısı](https://marketplace.visualstudio.com/items?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) kullanmanızı öneririz. Ancak bu bir zorunluluk değil, bir öneridir.
 
-> **Not**: Kurs deposunu VS Code'da açtığında, projeyi bir konteyner içinde kurma seçeneğin olur. Bunun nedeni, kurs deposunda bulunan [özel `.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) dizinidir. Buna daha sonra değineceğiz.
+> **Not**: Kurs deposunu VS Code’da açarsanız, projeyi bir konteyner içinde kurmayı seçebilirsiniz. Bunun sebebi, kurs deposunun içinde bulunan [özel `.devcontainer`](https://code.visualstudio.com/docs/devcontainers/containers?itemName=ms-python.python&WT.mc_id=academic-105485-koreyst) dizinidir. Buna daha sonra değineceğiz.
 
-> **Not**: Depoyu klonlayıp VS Code'da açtığında, otomatik olarak Python destek eklentisini kurmanı önerecektir.
+> **Not**: Depoyu klonlayıp VS Code’da açtığınızda Python destek uzantısı yüklemenizi otomatik önerir.
 
-> **Not**: VS Code, depoyu bir konteynerde yeniden açmanı önerirse, yerel Python sürümünü kullanmak için bu isteği reddet.
+> **Not**: VS Code depoyu bir konteyner içinde açmayı önerirse, yerel Python sürümünü kullanmak için bu teklifi reddedin.
 
 ### Tarayıcıda Jupyter Kullanmak
 
-Projede [Jupyter ortamını](https://jupyter.org?WT.mc_id=academic-105485-koreyst) doğrudan tarayıcında da kullanabilirsin. Hem klasik Jupyter hem de [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst), otomatik tamamlama, kod vurgulama gibi özelliklerle oldukça keyifli bir geliştirme ortamı sunar.
+Proje üzerinde ayrıca tarayıcınız içinde bulunan [Jupyter ortamını](https://jupyter.org?WT.mc_id=academic-105485-koreyst) kullanarak da çalışabilirsiniz. Hem klasik Jupyter hem de [Jupyter Hub](https://jupyter.org/hub?WT.mc_id=academic-105485-koreyst) otomatik tamamlama, kod vurgulama gibi özelliklerle oldukça keyifli bir geliştirme ortamı sunar.
 
-Jupyter'ı yerel olarak başlatmak için terminal/komut satırına git, kurs dizinine geç ve şunu çalıştır:
+Jupyter’ı yerelde çalıştırmak için terminale gidip kurs dizinine geçtikten sonra şunu çalıştırın:
 
 ```bash
 jupyter notebook
 ```
 
-veya
+ya da
 
 ```bash
 jupyterhub
 ```
 
-Bu, bir Jupyter oturumu başlatır ve erişim için URL'yi komut satırında gösterir.
+Bu, bir Jupyter örneğini başlatır ve erişim URL’si komut satırı penceresinde gösterilir.
 
-URL'ye eriştiğinde, kursun içeriğini görebilir ve istediğin herhangi bir `*.ipynb` dosyasına gidebilirsin. Örneğin, `08-building-search-applications/python/oai-solution.ipynb`.
+URL’ye eriştiğinizde kurs içeriği görünmeli ve herhangi bir `*.ipynb` dosyasına gidebilmelisiniz. Örneğin, `08-building-search-applications/python/oai-solution.ipynb`.
 
 ### Bir konteynerde çalıştırmak
 
-Her şeyi bilgisayarında veya Codespace'te kurmak yerine, [konteyner](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>) kullanabilirsin. Kurs deposundaki özel `.devcontainer` klasörü, VS Code'un projeyi bir konteynerde kurmasını sağlar. Codespaces dışında, bunun için Docker kurulumu gerekir ve biraz uğraştırıcı olabilir, bu yüzden konteynerlerle deneyimi olanlara öneriyoruz.
+Her şeyi bilgisayarınızda veya Codespace üzerinde kurmak yerine [konteyner](../../../00-course-setup/<https:/en.wikipedia.org/wiki/Containerization_(computing)?WT.mc_id=academic-105485-koreyst>) kullanabilirsiniz. Kurs deposundaki özel `.devcontainer` klasörü, VS Code’un projeyi bir konteyner içinde kurmasını sağlar. Codespaces dışında bunu yapmak için Docker kurulumu şarttır ve biraz uğraş gerektirir; bu yüzden konteynerle çalışmaya deneyimli olanlara öneririz.
 
-GitHub Codespaces kullanırken API anahtarlarını güvenli tutmanın en iyi yollarından biri Codespace Secrets kullanmaktır. Daha fazla bilgi için [Codespaces secrets yönetimi](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) rehberini inceleyebilirsin.
+GitHub Codespaces kullanırken API anahtarlarınızı güvende tutmanın en iyi yollarından biri Codespaces Secrets kullanmaktır. Daha fazla bilgi için [Codespaces gizli anahtar yönetimi](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-secrets-for-your-codespaces?WT.mc_id=academic-105485-koreyst) rehberini takip edin.
 
 ## Dersler ve Teknik Gereksinimler
 
-Kurs 6 kavramsal ders ve 6 kodlama dersi içeriyor.
+Kurs, 6 kavramsal ders ve 6 kodlama dersinden oluşur.
 
-Kodlama derslerinde Azure OpenAI Servisi kullanıyoruz. Bu kodu çalıştırmak için Azure OpenAI servisine erişimin ve bir API anahtarın olması gerekiyor. [Bu başvuruyu tamamlayarak](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst) erişim talebinde bulunabilirsin.
+Kodlama dersleri için Azure OpenAI Servisi kullanıyoruz. Bu kodu çalıştırmak için Azure OpenAI servisine erişim ve bir API anahtarı gereklidir. Erişim almak için [bu başvuruyu tamamlayarak](https://azure.microsoft.com/products/ai-services/openai-service?WT.mc_id=academic-105485-koreyst) talepte bulunabilirsiniz.
 
-Başvurunun işlenmesini beklerken, her kodlama dersinde kodu ve çıktıları görebileceğin bir `README.md` dosyası da bulunuyor.
+Başvurunuz işlenirken, her kodlama dersi içinde kodları ve çıktılarını görebileceğiniz bir `README.md` dosyası da yer alır.
 
-## Azure OpenAI Servisini ilk kez kullanmak
+## Azure OpenAI Servisini ilk kez kullanıyorsanız
 
-Azure OpenAI servisini ilk kez kullanıyorsan, [Azure OpenAI Servis kaynağı oluşturma ve dağıtma](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst) rehberini takip et.
+Azure OpenAI servisi ile ilk kez çalışıyorsanız, [Azure OpenAI Hizmet Kaynağı oluşturma ve dağıtma](https://learn.microsoft.com/azure/ai-services/openai/how-to/create-resource?pivots=web-portal&WT.mc_id=academic-105485-koreyst) rehberini takip edin.
 
-## OpenAI API'sini ilk kez kullanmak
+## OpenAI API’yi ilk kez kullanıyorsanız
 
-OpenAI API'sini ilk kez kullanıyorsan, [Arayüz oluşturma ve kullanma rehberini](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst) takip et.
+OpenAI API ile ilk kez çalışıyorsanız, [Arabirim oluşturma ve kullanma](https://platform.openai.com/docs/quickstart?context=pythont&WT.mc_id=academic-105485-koreyst) rehberini izleyin.
 
-## Diğer Katılımcılarla Tanış
+## Diğer Öğrencilerle Tanışın
 
-Resmi [AI Community Discord sunucumuzda](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) diğer katılımcılarla tanışabileceğin kanallar oluşturduk. Bu, benzer düşünen girişimciler, geliştiriciler, öğrenciler ve Üretken Yapay Zeka'da kendini geliştirmek isteyen herkesle ağ kurmak için harika bir yol.
+Resmi [AI Community Discord sunucumuzda](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst) diğer öğrencilerle tanışmak için kanallar açtık. Bu, ortak düşünen girişimciler, geliştiriciler, öğrenciler ve Üretken Yapay Zeka’da gelişmek isteyen herkesle network kurmak için harika bir fırsat.
 
 [![Discord kanalına katıl](https://dcbadge.limes.pink/api/server/ByRwuEEgH4)](https://aka.ms/genai-discord?WT.mc_id=academic-105485-koreyst)
 
-Proje ekibi de bu Discord sunucusunda olacak ve katılımcılara yardımcı olacak.
+Proje ekibi de bu Discord sunucusunda öğrencilerin sorularını yanıtlamak için olacak.
 
-## Katkıda Bulun
+## Katkıda Bulunmak
 
-Bu kurs açık kaynaklı bir girişimdir. Geliştirilmesi gereken veya sorunlu gördüğün alanlar varsa, lütfen bir [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) oluştur veya bir [GitHub issue](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst) bildir.
+Bu ders açık kaynak bir girişimdir. İyileştirme alanları veya sorunlar görürseniz, lütfen [Pull Request](https://github.com/microsoft/generative-ai-for-beginners/pulls?WT.mc_id=academic-105485-koreyst) oluşturun veya bir [GitHub sorunu](https://github.com/microsoft/generative-ai-for-beginners/issues?WT.mc_id=academic-105485-koreyst) kaydedin.
 
-Proje ekibi tüm katkıları takip edecek. Açık kaynağa katkı sağlamak, Üretken Yapay Zeka alanında kariyerini geliştirmek için harika bir yoldur.
+Proje ekibi tüm katkıları takip edecek. Açık kaynak katkısı, Üretken Yapay Zeka alanında kariyer inşa etmek için harika bir yoldur.
 
-Çoğu katkı, Katılımcı Lisans Sözleşmesi'ni (CLA) kabul etmeni gerektirir. Bu, katkını kullanma hakkına sahip olduğunu ve bu hakkı bize verdiğini beyan eder. Detaylar için [CLA, Katılımcı Lisans Sözleşmesi web sitesini](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst) ziyaret et.
+Çoğu katkı için, katkınızı kullanma hakkı verdiğinizi beyan eden bir Katkı Lisansı Anlaşması’na (CLA) uymanız gerekir. Ayrıntılar için [CLA, Katkı Lisansı Anlaşması websitesine](https://cla.microsoft.com?WT.mc_id=academic-105485-koreyst) bakabilirsiniz.
 
-Önemli: Bu depodaki metinleri çevirirken, makine çevirisi kullanmadığından emin ol. Çeviriler topluluk tarafından doğrulanacaktır, bu yüzden yalnızca yetkin olduğun dillerde çeviri gönüllüsü ol.
+Önemli: Bu depoda metin çevirirken, lütfen makine çevirisi kullanmayın. Topluluk tarafından çeviriler doğrulanacaktır, bu nedenle yalnızca iyi bildiğiniz dillerde çeviri gönüllüsü olun.
 
-Pull request gönderdiğinde, bir CLA-bot otomatik olarak CLA gerekip gerekmediğini belirleyecek ve PR'ı uygun şekilde işaretleyecek (ör. etiket, yorum). Botun verdiği talimatları takip etmen yeterli. Bunu, CLA kullanan tüm depolarda yalnızca bir kez yapman gerekir.
+Pull request gönderdiğinizde, CLA-bot otomatik olarak CLA gerekip gerekmediğini kontrol edecek ve PR’yı uygun şekilde etiketleyecek (örneğin, etiket, yorum). Botun talimatlarını izleyin. Tüm depolarda CLA uygulaması için bunu yalnızca bir kez yapmanız yeterlidir.
 
-Bu proje [Microsoft Açık Kaynak Davranış Kuralları'nı](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst) benimsemiştir. Daha fazla bilgi için Davranış Kuralları SSS'yi oku veya ek soruların/yorumların için [Email opencode](opencode@microsoft.com) ile iletişime geç.
+Bu proje [Microsoft Açık Kaynak Davranış Kuralları](https://opensource.microsoft.com/codeofconduct/?WT.mc_id=academic-105485-koreyst) ile uyumludur. Daha fazla bilgi için Davranış Kuralları SSS’yı okuyun veya ek sorularınız için [Email opencode](opencode@microsoft.com) ile iletişime geçin.
 
 ## Haydi Başlayalım
-Artık bu kursu tamamlamak için gereken adımları tamamladığınıza göre, [Üretken Yapay Zeka ve Büyük Dil Modellerine giriş](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst) ile başlayalım.
+Bu kursu tamamlamak için gereken adımları tamamladığınıza göre, [Generatif Yapay Zeka ve LLM'lere giriş](../01-introduction-to-genai/README.md?WT.mc_id=academic-105485-koreyst) ile başlayalım.
 
 ---
 
+<!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Feragatname**:  
-Bu belge, yapay zeka çeviri hizmeti [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerde hata veya yanlışlıklar bulunabilir. Belgenin orijinal dili, yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi önerilir. Bu çevirinin kullanımından doğabilecek yanlış anlamalar veya yanlış yorumlamalardan sorumlu değiliz.
+Bu belge, AI çeviri servisi [Co-op Translator](https://github.com/Azure/co-op-translator) kullanılarak çevrilmiştir. Doğruluk için çaba göstersek de, otomatik çevirilerin hata veya yanlışlık içerebileceğini lütfen unutmayınız. Orijinal belge, kendi dilinde yetkili kaynak olarak kabul edilmelidir. Kritik bilgiler için profesyonel insan çevirisi tavsiye edilmektedir. Bu çevirinin kullanımı sonucu ortaya çıkabilecek herhangi bir yanlış anlama veya yorum hatasından sorumlu olmayız.
+<!-- CO-OP TRANSLATOR DISCLAIMER END -->

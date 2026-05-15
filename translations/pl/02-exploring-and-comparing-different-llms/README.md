@@ -1,215 +1,209 @@
-<!--
-CO_OP_TRANSLATOR_METADATA:
-{
-  "original_hash": "e2f686f2eb794941761252ac5e8e090b",
-  "translation_date": "2025-07-09T08:24:43+00:00",
-  "source_file": "02-exploring-and-comparing-different-llms/README.md",
-  "language_code": "pl"
-}
--->
-# Eksploracja i porównanie różnych LLM
+# Eksploracja i porównanie różnych LLM-ów
 
-[![Eksploracja i porównanie różnych LLM](../../../translated_images/02-lesson-banner.ef94c84979f97f60f07e27d905e708cbcbdf78707120553ccab27d91c947805b.pl.png)](https://aka.ms/gen-ai-lesson2-gh?WT.mc_id=academic-105485-koreyst)
+[![Eksploracja i porównanie różnych LLM-ów](../../../translated_images/pl/02-lesson-banner.ef94c84979f97f60.webp)](https://youtu.be/KIRUeDKscfI?si=8BHX1zvwzQBn-PlK)
 
-> _Kliknij powyższy obraz, aby obejrzeć wideo z tej lekcji_
+> _Kliknij obrazek powyżej, aby obejrzeć wideo z tej lekcji_
 
-W poprzedniej lekcji zobaczyliśmy, jak Generative AI zmienia krajobraz technologiczny, jak działają duże modele językowe (LLM) oraz jak firma – taka jak nasz startup – może je zastosować do swoich przypadków użycia i rozwijać się! W tym rozdziale porównamy i skonfrontujemy różne typy dużych modeli językowych (LLM), aby zrozumieć ich zalety i wady.
+W poprzedniej lekcji dowiedzieliśmy się, jak Generatywna AI zmienia krajobraz technologiczny, jak działają duże modele językowe (LLM) oraz jak firma - taka jak nasz startup - może je zastosować w swoich przypadkach użycia i rozwijać się! W tym rozdziale zamierzamy porównać różne typy dużych modeli językowych (LLM), aby zrozumieć ich zalety i wady.
 
-Kolejnym krokiem w podróży naszego startupu jest zbadanie obecnego krajobrazu LLM i zrozumienie, które z nich są odpowiednie dla naszego przypadku użycia.
+Kolejnym krokiem w podróży naszego startupu jest eksploracja obecnego krajobrazu LLM-ów i zrozumienie, które z nich są odpowiednie dla naszego przypadku użycia.
 
 ## Wprowadzenie
 
 Ta lekcja obejmie:
 
-- Różne typy LLM dostępne obecnie na rynku.
-- Testowanie, iterowanie i porównywanie różnych modeli dla Twojego przypadku użycia w Azure.
+- Różne typy LLM-ów w obecnym krajobrazie.
+- Testowanie, iterację i porównanie różnych modeli dla Twojego przypadku użycia w Azure.
 - Jak wdrożyć LLM.
 
 ## Cele nauki
 
-Po ukończeniu tej lekcji będziesz potrafił:
+Po ukończeniu tej lekcji będziesz w stanie:
 
 - Wybrać odpowiedni model dla swojego przypadku użycia.
-- Zrozumieć, jak testować, iterować i poprawiać wydajność modelu.
+- Zrozumieć, jak testować, iterować i poprawiać wydajność swojego modelu.
 - Wiedzieć, jak firmy wdrażają modele.
 
-## Zrozumienie różnych typów LLM
+## Zrozumienie różnych typów LLM-ów
 
-LLM można podzielić na różne kategorie w zależności od ich architektury, danych treningowych i zastosowania. Zrozumienie tych różnic pomoże naszemu startupowi wybrać odpowiedni model do danego scenariusza oraz zrozumieć, jak testować, iterować i poprawiać wydajność.
+LLM-y można klasyfikować na różne sposoby w zależności od ich architektury, danych treningowych i przypadku użycia. Zrozumienie tych różnic pomoże naszemu startupowi wybrać odpowiedni model dla danego scenariusza oraz zrozumieć, jak testować, iterować i poprawiać wydajność.
 
-Istnieje wiele różnych typów modeli LLM, a wybór zależy od tego, do czego chcesz ich używać, jakie masz dane, ile jesteś gotów zapłacić i innych czynników.
+Istnieje wiele różnych typów modeli LLM, a wybór odpowiedniego zależy od tego, do czego zamierzasz ich używać, jakie dane posiadasz, ile jesteś gotów zapłacić i innych czynników.
 
-W zależności od tego, czy chcesz używać modeli do tekstu, dźwięku, wideo, generowania obrazów itp., możesz wybrać inny typ modelu.
+W zależności od tego, czy zamierzasz używać modeli do generowania tekstu, dźwięku, wideo, obrazów i tak dalej, możesz wybrać inny typ modelu.
 
-- **Rozpoznawanie dźwięku i mowy**. Do tego celu świetnie nadają się modele typu Whisper, ponieważ są uniwersalne i przeznaczone do rozpoznawania mowy. Model jest trenowany na różnorodnych danych audio i potrafi rozpoznawać mowę w wielu językach. Dowiedz się więcej o [modelach typu Whisper tutaj](https://platform.openai.com/docs/models/whisper?WT.mc_id=academic-105485-koreyst).
+- **Rozpoznawanie dźwięku i mowy**. W tym celu modele typu Whisper są świetnym wyborem, ponieważ są uniwersalne i przeznaczone do rozpoznawania mowy. Są trenowane na różnorodnych danych audio i potrafią rozpoznawać mowę w wielu językach. Dowiedz się więcej o [modelach typu Whisper tutaj](https://platform.openai.com/docs/models/whisper?WT.mc_id=academic-105485-koreyst).
 
-- **Generowanie obrazów**. Do generowania obrazów bardzo popularne są DALL-E i Midjourney. DALL-E jest dostępny w Azure OpenAI. [Przeczytaj więcej o DALL-E tutaj](https://platform.openai.com/docs/models/dall-e?WT.mc_id=academic-105485-koreyst) oraz w rozdziale 9 tego kursu.
+- **Generowanie obrazów**. Do generowania obrazów DALL-E i Midjourney to dwa bardzo znane wybory. DALL-E jest oferowany przez Azure OpenAI. [Przeczytaj więcej o DALL-E tutaj](https://platform.openai.com/docs/models/dall-e?WT.mc_id=academic-105485-koreyst) oraz w rozdziale 9 tego kursu.
 
-- **Generowanie tekstu**. Większość modeli jest trenowana do generowania tekstu i masz szeroki wybór od GPT-3.5 do GPT-4. Koszty różnią się, przy czym GPT-4 jest najdroższy. Warto sprawdzić [Azure OpenAI playground](https://oai.azure.com/portal/playground?WT.mc_id=academic-105485-koreyst), aby ocenić, które modele najlepiej odpowiadają Twoim potrzebom pod względem możliwości i kosztów.
+- **Generowanie tekstu**. Większość modeli jest trenowana do generowania tekstu i masz szeroki wybór od GPT-3.5 do GPT-4. Koszty są różne, przy czym GPT-4 jest najdroższy. Warto zajrzeć do [Azure OpenAI playground](https://oai.azure.com/portal/playground?WT.mc_id=academic-105485-koreyst), aby ocenić, które modele najlepiej odpowiadają Twoim potrzebom pod względem możliwości i kosztów.
 
-- **Multi-modalność**. Jeśli chcesz obsługiwać różne typy danych na wejściu i wyjściu, warto zainteresować się modelami takimi jak [gpt-4 turbo z wizją lub gpt-4o](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models?WT.mc_id=academic-105485-koreyst) – najnowszymi modelami OpenAI – które łączą przetwarzanie języka naturalnego z rozumieniem wizualnym, umożliwiając interakcje przez interfejsy multimodalne.
+- **Multi-modalność**. Jeśli chcesz obsługiwać wiele typów danych w wejściu i wyjściu, możesz rozważyć modele takie jak [gpt-4 turbo z wizją lub gpt-4o](https://learn.microsoft.com/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-models?WT.mc_id=academic-105485-koreyst) - najnowsze wersje modeli OpenAI - które łączą przetwarzanie języka naturalnego ze zrozumieniem wizualnym, umożliwiając interakcje przez interfejsy multi-modalne.
 
-Wybór modelu oznacza, że otrzymujesz podstawowe możliwości, które jednak mogą nie wystarczyć. Często masz dane specyficzne dla firmy, o których musisz w jakiś sposób poinformować LLM. Istnieje kilka sposobów podejścia do tego tematu, o czym więcej w kolejnych sekcjach.
+Wybór modelu oznacza uzyskanie pewnych podstawowych możliwości, które jednak mogą nie być wystarczające. Często posiadasz dane specyficzne dla firmy, które w jakiś sposób musisz przekazać LLM. Istnieje kilka różnych podejść do tego, więcej na ten temat w kolejnych sekcjach.
 
-### Modele Foundation a LLM
+### Modele bazowe a LLM-y
 
-Termin Foundation Model został [wprowadzony przez badaczy ze Stanford](https://arxiv.org/abs/2108.07258?WT.mc_id=academic-105485-koreyst) i definiuje model AI spełniający pewne kryteria, takie jak:
+Termin Model Bazowy został [wprowadzony przez badaczy z Uniwersytetu Stanforda](https://arxiv.org/abs/2108.07258?WT.mc_id=academic-105485-koreyst) i zdefiniowany jako model AI spełniający pewne kryteria, takie jak:
 
-- **Są trenowane za pomocą uczenia bez nadzoru lub samonadzoru**, co oznacza, że uczą się na nieoznakowanych, multimodalnych danych i nie wymagają ręcznego oznaczania danych przez ludzi.
+- **Są trenowane za pomocą uczenia niesuperwizowanego lub samonadzorowanego**, co oznacza, że są trenowane na nieoznaczonych danych multimodalnych i nie wymagają ludzkiego oznaczania danych w procesie treningowym.
 - **Są bardzo dużymi modelami**, opartymi na bardzo głębokich sieciach neuronowych trenowanych na miliardach parametrów.
-- **Zazwyczaj służą jako „podstawa” dla innych modeli**, co oznacza, że mogą być punktem wyjścia do budowy innych modeli poprzez dostrajanie (fine-tuning).
+- **Zazwyczaj służą jako „podstawa” dla innych modeli**, co oznacza, że mogą być używane jako punkt wyjścia do budowy innych modeli, co można osiągnąć poprzez ich dostrajanie.
 
-![Modele Foundation a LLM](../../../translated_images/FoundationModel.e4859dbb7a825c94b284f17eae1c186aabc21d4d8644331f5b007d809cf8d0f2.pl.png)
+![Modele bazowe a LLM-y](../../../translated_images/pl/FoundationModel.e4859dbb7a825c94.webp)
 
-Źródło obrazu: [Essential Guide to Foundation Models and Large Language Models | by Babar M Bhatti | Medium](https://thebabar.medium.com/essential-guide-to-foundation-models-and-large-language-models-27dab58f7404)
+Źródło obrazu: [Essential Guide to Foundation Models and Large Language Models | by Babar M Bhatti | Medium
+](https://thebabar.medium.com/essential-guide-to-foundation-models-and-large-language-models-27dab58f7404)
 
-Aby lepiej wyjaśnić tę różnicę, weźmy za przykład ChatGPT. Do stworzenia pierwszej wersji ChatGPT wykorzystano model GPT-3.5 jako model bazowy. Oznacza to, że OpenAI użyło danych specyficznych dla czatu, aby stworzyć dostosowaną wersję GPT-3.5, specjalizującą się w dobrym działaniu w scenariuszach konwersacyjnych, takich jak chatboty.
+Aby lepiej wyjaśnić tę różnicę, weźmy jako przykład ChatGPT. Aby zbudować pierwszą wersję ChatGPT, model GPT-3.5 posłużył jako model bazowy. Oznacza to, że OpenAI użyło danych specyficznych dla czatu, aby stworzyć dostrojony wariant GPT-3.5, który był wyspecjalizowany w osiąganiu dobrych wyników w scenariuszach konwersacyjnych, takich jak chatboty.
 
-![Model Foundation](../../../translated_images/Multimodal.2c389c6439e0fc51b0b7b226d95d7d900d372ae66902d71b8ce5ec4951b8efbe.pl.png)
+![Model bazowy](../../../translated_images/pl/Multimodal.2c389c6439e0fc51.webp)
 
 Źródło obrazu: [2108.07258.pdf (arxiv.org)](https://arxiv.org/pdf/2108.07258.pdf?WT.mc_id=academic-105485-koreyst)
 
 ### Modele open source a modele własnościowe
 
-Innym sposobem kategoryzacji LLM jest podział na modele open source i własnościowe.
+Innym sposobem klasyfikacji LLM-ów jest podział na modele open source i własnościowe.
 
-Modele open source to modele udostępnione publicznie i mogą być używane przez każdego. Często są udostępniane przez firmę, która je stworzyła, lub przez społeczność badawczą. Modele te można przeglądać, modyfikować i dostosowywać do różnych zastosowań. Jednak nie zawsze są zoptymalizowane do użytku produkcyjnego i mogą nie być tak wydajne jak modele własnościowe. Finansowanie modeli open source może być ograniczone, a ich utrzymanie i aktualizacje nie zawsze są długoterminowe. Przykładami popularnych modeli open source są [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html?WT.mc_id=academic-105485-koreyst), [Bloom](https://huggingface.co/bigscience/bloom) oraz [LLaMA](https://llama.meta.com).
+Modele open source to modele udostępniane publicznie, które mogą być używane przez każdego. Często są udostępniane przez firmę, która je stworzyła, lub przez społeczność badawczą. Te modele można przeglądać, modyfikować i dostosowywać do różnych przypadków użycia LLM-ów. Jednak nie zawsze są one zoptymalizowane do użytku produkcyjnego i mogą nie być tak wydajne jak modele własnościowe. Ponadto finansowanie modeli open source może być ograniczone, a ich długoterminowe utrzymanie lub aktualizacje zgodne z najnowszymi badaniami mogą być niepewne. Przykłady popularnych modeli open source to [Alpaca](https://crfm.stanford.edu/2023/03/13/alpaca.html?WT.mc_id=academic-105485-koreyst), [Bloom](https://huggingface.co/bigscience/bloom) i [LLaMA](https://llama.meta.com).
 
-Modele własnościowe to modele należące do firm i niedostępne publicznie. Są często zoptymalizowane do użytku produkcyjnego. Nie można ich przeglądać, modyfikować ani dostosowywać do różnych zastosowań. Zazwyczaj nie są dostępne za darmo i mogą wymagać subskrypcji lub opłaty za korzystanie. Użytkownicy nie mają kontroli nad danymi używanymi do trenowania modelu, co oznacza, że muszą zaufać właścicielowi modelu w kwestii ochrony prywatności danych i odpowiedzialnego użycia AI. Przykładami popularnych modeli własnościowych są [modele OpenAI](https://platform.openai.com/docs/models/overview?WT.mc_id=academic-105485-koreyst), [Google Bard](https://sapling.ai/llm/bard?WT.mc_id=academic-105485-koreyst) czy [Claude 2](https://www.anthropic.com/index/claude-2?WT.mc_id=academic-105485-koreyst).
+Modele własnościowe to modele należące do firmy i nieudostępniane publicznie. Te modele są często zoptymalizowane do użytku produkcyjnego. Jednak nie można ich przeglądać, modyfikować ani dostosowywać do różnych przypadków użycia. Ponadto nie zawsze są dostępne za darmo i mogą wymagać subskrypcji lub opłaty za korzystanie. Użytkownicy nie mają również kontroli nad danymi używanymi do trenowania modelu, co oznacza, że muszą zaufać właścicielowi modelu w kwestii zapewnienia prywatności danych i odpowiedzialnego korzystania z AI. Przykłady popularnych modeli własnościowych to [modele OpenAI](https://platform.openai.com/docs/models/overview?WT.mc_id=academic-105485-koreyst), [Google Bard](https://sapling.ai/llm/bard?WT.mc_id=academic-105485-koreyst) czy [Claude 2](https://www.anthropic.com/index/claude-2?WT.mc_id=academic-105485-koreyst).
 
 ### Embedding a generowanie obrazów a generowanie tekstu i kodu
 
-LLM można również podzielić ze względu na rodzaj generowanego wyjścia.
+LLM-y można również klasyfikować według rodzaju generowanego wyjścia.
 
-Embeddingi to zestaw modeli, które potrafią przekształcić tekst w formę numeryczną, zwaną embeddingiem, czyli reprezentacją liczbową tekstu wejściowego. Embeddingi ułatwiają maszynom rozumienie relacji między słowami lub zdaniami i mogą być wykorzystywane jako dane wejściowe dla innych modeli, takich jak modele klasyfikacyjne czy klastrowania, które lepiej radzą sobie z danymi numerycznymi. Modele embeddingowe często stosuje się w transfer learningu, gdzie model jest trenowany na zadaniu zastępczym, dla którego jest dużo danych, a następnie wagi modelu (embeddingi) są wykorzystywane do innych zadań. Przykładem są [embeddingi OpenAI](https://platform.openai.com/docs/models/embeddings?WT.mc_id=academic-105485-koreyst).
+Embeddings to zestaw modeli, które mogą konwertować tekst na formę numeryczną, zwaną embeddingiem, czyli numeryczną reprezentację wejściowego tekstu. Embeddings ułatwiają maszynom zrozumienie relacji między słowami lub zdaniami i mogą być wykorzystywane jako dane wejściowe przez inne modele, takie jak modele klasyfikacyjne czy modele klastrowania, które lepiej radzą sobie z danymi numerycznymi. Modele embedding są często używane w uczeniu transferowym, gdzie model jest budowany dla zadania zastępczego, dla którego dostępne są obfite dane, a następnie wagi modelu (embeddingi) są ponownie wykorzystywane do innych zadań. Przykładem tej kategorii są [embeddingi OpenAI](https://platform.openai.com/docs/models/embeddings?WT.mc_id=academic-105485-koreyst).
 
-![Embedding](../../../translated_images/Embedding.c3708fe988ccf76073d348483dbb7569f622211104f073e22e43106075c04800.pl.png)
+![Embedding](../../../translated_images/pl/Embedding.c3708fe988ccf760.webp)
 
-Modele generujące obrazy to modele, które tworzą obrazy. Często są wykorzystywane do edycji obrazów, syntezy czy tłumaczenia obrazów. Modele te są trenowane na dużych zbiorach obrazów, takich jak [LAION-5B](https://laion.ai/blog/laion-5b/?WT.mc_id=academic-105485-koreyst), i mogą generować nowe obrazy lub edytować istniejące za pomocą technik takich jak inpainting, super-rozdzielczość czy koloryzacja. Przykłady to [DALL-E-3](https://openai.com/dall-e-3?WT.mc_id=academic-105485-koreyst) oraz [Stable Diffusion](https://github.com/Stability-AI/StableDiffusion?WT.mc_id=academic-105485-koreyst).
+Modele generowania obrazów to modele, które generują obrazy. Te modele są często używane do edycji obrazów, syntezy obrazów i tłumaczenia obrazów. Modele generowania obrazów są często trenowane na dużych zbiorach danych obrazów, takich jak [LAION-5B](https://laion.ai/blog/laion-5b/?WT.mc_id=academic-105485-koreyst), i mogą być używane do generowania nowych obrazów lub edycji istniejących obrazów za pomocą technik takich jak inpainting, super-rozdzielczość i kolorowanie. Przykłady to [DALL-E-3](https://openai.com/dall-e-3?WT.mc_id=academic-105485-koreyst) i [Stable Diffusion models](https://github.com/Stability-AI/StableDiffusion?WT.mc_id=academic-105485-koreyst).
 
-![Generowanie obrazów](../../../translated_images/Image.349c080266a763fd255b840a921cd8fc526ed78dc58708fa569ff1873d302345.pl.png)
+![Generowanie obrazów](../../../translated_images/pl/Image.349c080266a763fd.webp)
 
-Modele generujące tekst i kod to modele, które tworzą tekst lub kod. Często są wykorzystywane do streszczania tekstu, tłumaczeń czy odpowiadania na pytania. Modele generujące tekst są trenowane na dużych zbiorach tekstów, takich jak [BookCorpus](https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Zhu_Aligning_Books_and_ICCV_2015_paper.html?WT.mc_id=academic-105485-koreyst), i mogą generować nowy tekst lub odpowiadać na pytania. Modele generujące kod, takie jak [CodeParrot](https://huggingface.co/codeparrot?WT.mc_id=academic-105485-koreyst), są trenowane na dużych zbiorach kodu, np. z GitHub, i mogą generować nowy kod lub naprawiać błędy w istniejącym.
+Modele generowania tekstu i kodu to modele, które generują tekst lub kod. Te modele są często używane do streszczania tekstu, tłumaczenia i odpowiadania na pytania. Modele generowania tekstu są często trenowane na dużych zbiorach danych tekstowych, takich jak [BookCorpus](https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Zhu_Aligning_Books_and_ICCV_2015_paper.html?WT.mc_id=academic-105485-koreyst), i mogą być używane do generowania nowego tekstu lub odpowiadania na pytania. Modele generowania kodu, takie jak [CodeParrot](https://huggingface.co/codeparrot?WT.mc_id=academic-105485-koreyst), są często trenowane na dużych zbiorach danych kodu, takich jak GitHub, i mogą być używane do generowania nowego kodu lub naprawiania błędów w istniejącym kodzie.
 
-![Generowanie tekstu i kodu](../../../translated_images/Text.a8c0cf139e5cc2a0cd3edaba8d675103774e6ddcb3c9fc5a98bb17c9a450e31d.pl.png)
+![Generowanie tekstu i kodu](../../../translated_images/pl/Text.a8c0cf139e5cc2a0.webp)
 
-### Encoder-Decoder a tylko Decoder
+### Encoder-Decoder versus Decoder-only
 
-Aby omówić różne typy architektur LLM, posłużmy się analogią.
+Aby omówić różne typy architektur LLM-ów, użyjmy analogii.
 
-Wyobraź sobie, że Twój przełożony zlecił Ci przygotowanie quizu dla studentów. Masz dwóch współpracowników; jeden zajmuje się tworzeniem treści, a drugi ich przeglądem.
+Wyobraź sobie, że Twój menedżer zlecił Ci zadanie napisania quizu dla studentów. Masz dwóch kolegów; jeden zajmuje się tworzeniem treści, a drugi ich recenzowaniem.
 
-Twórca treści jest jak model tylko Decoder, może spojrzeć na temat i to, co już napisałeś, a następnie stworzyć kurs na tej podstawie. Są bardzo dobrzy w pisaniu angażujących i informacyjnych treści, ale nie radzą sobie najlepiej ze zrozumieniem tematu i celów nauczania. Przykładami modeli tylko Decoder są modele z rodziny GPT, takie jak GPT-3.
+Twórca treści jest jak model typu Decoder-only, może spojrzeć na temat i to, co już napisałeś, a następnie stworzyć kurs na tej podstawie. Są bardzo dobrzy w pisaniu angażujących i informacyjnych treści, ale nie są zbyt dobrzy w rozumieniu tematu i celów nauczania. Przykładami modeli typu Decoder są modele z rodziny GPT, takie jak GPT-3.
 
-Recenzent jest jak model tylko Encoder, analizuje napisany kurs i odpowiedzi, zauważa relacje między nimi i rozumie kontekst, ale nie potrafi generować treści. Przykładem modelu tylko Encoder jest BERT.
+Recenzent jest jak model typu Encoder-only, patrzy na napisany kurs i odpowiedzi, zauważając relacje między nimi i rozumiejąc kontekst, ale nie jest dobry w generowaniu treści. Przykładem modelu typu Encoder-only byłby BERT.
 
-Wyobraź sobie, że mamy kogoś, kto potrafi zarówno tworzyć, jak i recenzować quiz – to jest model Encoder-Decoder. Przykładami są BART i T5.
+Wyobraź sobie, że mamy kogoś, kto mógłby zarówno tworzyć, jak i recenzować quiz, to jest model typu Encoder-Decoder. Przykładami takich modeli byłyby BART i T5.
 
-### Usługa a model
+### Usługa versus Model
 
-Teraz porozmawiajmy o różnicy między usługą a modelem. Usługa to produkt oferowany przez dostawcę chmury i często jest kombinacją modeli, danych i innych komponentów. Model to podstawowy element usługi, często model bazowy, taki jak LLM.
+Teraz porozmawiajmy o różnicy między usługą a modelem. Usługa to produkt oferowany przez dostawcę usług w chmurze, który często jest kombinacją modeli, danych i innych komponentów. Model jest podstawowym elementem usługi i często jest modelem bazowym, takim jak LLM.
 
-Usługi są zazwyczaj zoptymalizowane do użytku produkcyjnego i łatwiejsze w użyciu niż modele, dzięki interfejsowi graficznemu. Jednak usługi nie zawsze są dostępne za darmo i mogą wymagać subskrypcji lub opłaty, w zamian za korzystanie ze sprzętu i zasobów właściciela usługi, co pozwala optymalizować koszty i łatwo skalować. Przykładem usługi jest [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=academic-105485-koreyst), która oferuje model rozliczeń pay-as-you-go, czyli użytkownicy płacą proporcjonalnie do wykorzystania usługi. Azure OpenAI Service zapewnia też bezpieczeństwo klasy korporacyjnej oraz ramy odpowiedzialnego AI, oprócz możliwości modeli.
+Usługi są często zoptymalizowane do użytku produkcyjnego i często łatwiejsze w użyciu niż modele, dzięki graficznemu interfejsowi użytkownika. Jednak usługi nie zawsze są dostępne za darmo i mogą wymagać subskrypcji lub opłaty za korzystanie, w zamian za wykorzystanie sprzętu i zasobów właściciela usługi, optymalizację kosztów i łatwe skalowanie. Przykładem usługi jest [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/overview?WT.mc_id=academic-105485-koreyst), która oferuje plan opłat proporcjonalnych do wykorzystania usługi. Ponadto Azure OpenAI Service oferuje bezpieczeństwo klasy korporacyjnej i ramy odpowiedzialnego korzystania z AI, które uzupełniają możliwości modeli.
 
-Modele to tylko sieć neuronowa z parametrami, wagami i innymi elementami. Firmy mogą uruchamiać je lokalnie, ale muszą wtedy kupić sprzęt, zbudować infrastrukturę do skalowania oraz kupić licencję lub użyć modelu open source. Model taki jak LLaMA jest dostępny do użytku, ale wymaga mocy obliczeniowej do działania.
+Modele to tylko sieci neuronowe, z parametrami, wagami i innymi elementami. Pozwalają firmom na lokalne uruchamianie, jednak wymagają zakupu sprzętu, budowy infrastruktury do skalowania oraz zakupu licencji lub korzystania z modelu open source. Model taki jak LLaMA jest dostępny do użycia, ale wymaga mocy obliczeniowej do uruchomienia.
 
-## Jak testować i iterować z różnymi modelami, aby zrozumieć ich wydajność w Azure
+## Jak testować i iterować różne modele, aby zrozumieć ich wydajność w Azure
 
-Gdy nasz zespół zbada obecny krajobraz LLM i wyłoni kilka dobrych kandydatów do swoich scenariuszy, kolejnym krokiem jest testowanie ich na własnych danych i obciążeniu. To proces iteracyjny, realizowany poprzez eksperymenty i pomiary.
-Większość modeli, o których wspomnieliśmy w poprzednich akapitach (modele OpenAI, modele open source takie jak Llama2 oraz transformery Hugging Face), jest dostępna w [Model Catalog](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview?WT.mc_id=academic-105485-koreyst) w [Azure AI Studio](https://ai.azure.com/?WT.mc_id=academic-105485-koreyst).
+Gdy nasz zespół zbada krajobraz LLM-ów i zidentyfikuje kilka dobrych kandydatów dla swoich scenariuszy, kolejnym krokiem jest ich testowanie na własnych danych i obciążeniach. Jest to proces iteracyjny, realizowany poprzez eksperymenty i pomiary.
+Większość modeli, które wspomnieliśmy w poprzednich akapitach (modele OpenAI, modele open source, takie jak Llama2, oraz transformery Hugging Face), jest dostępna w [Katalogu Modeli](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview?WT.mc_id=academic-105485-koreyst) w [Azure AI Studio](https://ai.azure.com/?WT.mc_id=academic-105485-koreyst).
 
-[Azure AI Studio](https://learn.microsoft.com/azure/ai-studio/what-is-ai-studio?WT.mc_id=academic-105485-koreyst) to platforma chmurowa zaprojektowana dla deweloperów, umożliwiająca tworzenie aplikacji generatywnej AI oraz zarządzanie całym cyklem rozwoju – od eksperymentów po ewaluację – łącząc wszystkie usługi Azure AI w jednym miejscu z wygodnym interfejsem GUI. Model Catalog w Azure AI Studio pozwala użytkownikowi na:
+[Azure AI Studio](https://learn.microsoft.com/azure/ai-studio/what-is-ai-studio?WT.mc_id=academic-105485-koreyst) to platforma chmurowa zaprojektowana dla programistów, umożliwiająca tworzenie aplikacji generatywnej AI oraz zarządzanie całym cyklem rozwoju - od eksperymentowania po ocenę - poprzez połączenie wszystkich usług Azure AI w jednym centrum z wygodnym interfejsem graficznym. Katalog Modeli w Azure AI Studio pozwala użytkownikowi na:
 
-- Znalezienie interesującego Foundation Model w katalogu – zarówno własnościowego, jak i open source, z możliwością filtrowania według zadania, licencji lub nazwy. Aby ułatwić wyszukiwanie, modele są pogrupowane w kolekcje, takie jak kolekcja Azure OpenAI, kolekcja Hugging Face i inne.
+- Znalezienie interesującego modelu bazowego w katalogu - zarówno własnościowego, jak i open source, filtrując według zadania, licencji lub nazwy. Aby ułatwić wyszukiwanie, modele są zorganizowane w kolekcje, takie jak kolekcja Azure OpenAI, kolekcja Hugging Face i inne.
 
-![Model catalog](../../../translated_images/AzureAIStudioModelCatalog.3cf8a499aa8ba0314f2c73d4048b3225d324165f547525f5b7cfa5f6c9c68941.pl.png)
+![Katalog modeli](../../../translated_images/pl/AzureAIStudioModelCatalog.3cf8a499aa8ba031.webp)
 
-- Przejrzenie karty modelu, zawierającej szczegółowy opis przeznaczenia i danych treningowych, przykłady kodu oraz wyniki ewaluacji w wewnętrznej bibliotece ocen.
+- Przeglądanie karty modelu, w tym szczegółowego opisu zamierzonego zastosowania i danych treningowych, przykładów kodu oraz wyników oceny w wewnętrznej bibliotece ewaluacyjnej.
 
-![Model card](../../../translated_images/ModelCard.598051692c6e400d681a713ba7717e8b6e5e65f08d12131556fcec0f1789459b.pl.png)
+![Karta modelu](../../../translated_images/pl/ModelCard.598051692c6e400d.webp)
 
-- Porównanie benchmarków modeli i zestawów danych dostępnych w branży, aby ocenić, który model najlepiej odpowiada scenariuszowi biznesowemu, za pomocą panelu [Model Benchmarks](https://learn.microsoft.com/azure/ai-studio/how-to/model-benchmarks?WT.mc_id=academic-105485-koreyst).
+- Porównywanie wyników benchmarków między modelami i zestawami danych dostępnymi w branży, aby ocenić, który z nich najlepiej odpowiada na potrzeby biznesowe, za pomocą panelu [Model Benchmarks](https://learn.microsoft.com/azure/ai-studio/how-to/model-benchmarks?WT.mc_id=academic-105485-koreyst).
 
-![Model benchmarks](../../../translated_images/ModelBenchmarks.254cb20fbd06c03a4ca53994585c5ea4300a88bcec8eff0450f2866ee2ac5ff3.pl.png)
+![Benchmarki modeli](../../../translated_images/pl/ModelBenchmarks.254cb20fbd06c03a.webp)
 
-- Dostosowanie modelu (fine-tuning) na własnych danych treningowych, aby poprawić jego wydajność w konkretnym zadaniu, korzystając z możliwości eksperymentowania i śledzenia w Azure AI Studio.
+- Dostosowanie modelu do własnych danych treningowych, aby poprawić jego wydajność w określonym obciążeniu, korzystając z możliwości eksperymentowania i śledzenia w Azure AI Studio.
 
-![Model fine-tuning](../../../translated_images/FineTuning.aac48f07142e36fddc6571b1f43ea2e003325c9c6d8e3fc9d8834b771e308dbf.pl.png)
+![Dostosowanie modelu](../../../translated_images/pl/FineTuning.aac48f07142e36fd.webp)
 
-- Wdrożenie oryginalnego modelu wstępnie wytrenowanego lub wersji dostosowanej na zdalny endpoint do inferencji w czasie rzeczywistym – zarządzany compute – lub bezserwerowy endpoint API – [pay-as-you-go](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview#model-deployment-managed-compute-and-serverless-api-pay-as-you-go?WT.mc_id=academic-105485-koreyst) – aby umożliwić aplikacjom korzystanie z modelu.
+- Wdrożenie oryginalnego modelu wstępnie wytrenowanego lub jego dostosowanej wersji do zdalnego wnioskowania w czasie rzeczywistym - zarządzanej infrastruktury obliczeniowej - lub serwerowego punktu końcowego API - [pay-as-you-go](https://learn.microsoft.com/azure/ai-studio/how-to/model-catalog-overview#model-deployment-managed-compute-and-serverless-api-pay-as-you-go?WT.mc_id=academic-105485-koreyst) - aby umożliwić aplikacjom korzystanie z niego.
 
-![Model deployment](../../../translated_images/ModelDeploy.890da48cbd0bccdb4abfc9257f3d884831e5d41b723e7d1ceeac9d60c3c4f984.pl.png)
-
+![Wdrożenie modelu](../../../translated_images/pl/ModelDeploy.890da48cbd0bccdb.webp)
 
 > [!NOTE]
-> Nie wszystkie modele w katalogu są obecnie dostępne do fine-tuningu i/lub wdrożenia w modelu pay-as-you-go. Sprawdź kartę modelu, aby poznać szczegóły dotyczące możliwości i ograniczeń modelu.
+> Nie wszystkie modele w katalogu są obecnie dostępne do dostosowania i/lub wdrożenia w modelu pay-as-you-go. Sprawdź kartę modelu, aby uzyskać szczegóły dotyczące możliwości i ograniczeń modelu.
 
 ## Poprawa wyników LLM
 
-Nasz zespół startupowy testował różne rodzaje LLM oraz platformę chmurową (Azure Machine Learning), która pozwala porównywać modele, oceniać je na danych testowych, poprawiać ich wydajność i wdrażać na endpointach inferencyjnych.
+Razem z zespołem startupowym zbadaliśmy różne rodzaje LLM oraz platformę chmurową (Azure Machine Learning), która umożliwia porównywanie różnych modeli, ocenę ich na danych testowych, poprawę wydajności i wdrożenie ich na punktach końcowych wnioskowania.
 
-Kiedy jednak warto rozważyć fine-tuning modelu zamiast korzystania z modelu wstępnie wytrenowanego? Czy istnieją inne metody poprawy wydajności modelu w konkretnych zadaniach?
+Ale kiedy warto rozważyć dostosowanie modelu zamiast korzystania z wstępnie wytrenowanego? Czy istnieją inne podejścia do poprawy wydajności modelu w określonych obciążeniach?
 
-Istnieje kilka podejść, które firma może zastosować, aby uzyskać oczekiwane wyniki z LLM. Można wybrać różne typy modeli o różnym stopniu wytrenowania podczas wdrażania LLM w produkcji, z różnym poziomem złożoności, kosztów i jakości. Oto kilka podejść:
+Istnieje kilka podejść, które firma może zastosować, aby uzyskać oczekiwane wyniki z LLM. Można wybrać różne typy modeli z różnym stopniem wytrenowania podczas wdrażania LLM w produkcji, z różnym poziomem złożoności, kosztów i jakości. Oto kilka różnych podejść:
 
-- **Inżynieria promptów z kontekstem**. Chodzi o dostarczenie wystarczającego kontekstu w promptcie, aby uzyskać potrzebne odpowiedzi.
+- **Inżynieria promptów z kontekstem**. Chodzi o dostarczenie wystarczającego kontekstu podczas promptowania, aby zapewnić uzyskanie potrzebnych odpowiedzi.
 
-- **Retrieval Augmented Generation, RAG**. Twoje dane mogą istnieć np. w bazie danych lub na endpointzie webowym; aby zapewnić, że te dane lub ich podzbiór są uwzględnione podczas promptowania, można pobrać odpowiednie dane i dołączyć je do promptu użytkownika.
+- **Retrieval Augmented Generation, RAG**. Twoje dane mogą znajdować się na przykład w bazie danych lub punkcie końcowym w sieci. Aby upewnić się, że te dane lub ich podzbiór są uwzględnione podczas promptowania, możesz pobrać odpowiednie dane i uczynić je częścią promptu użytkownika.
 
-- **Model dostosowany (fine-tuned)**. Tutaj model jest dalej trenowany na własnych danych, co sprawia, że jest bardziej precyzyjny i lepiej odpowiada na potrzeby, ale może być kosztowne.
+- **Dostosowany model**. Tutaj model jest dodatkowo trenowany na własnych danych, co sprawia, że jest bardziej precyzyjny i dostosowany do Twoich potrzeb, ale może być kosztowny.
 
-![LLMs deployment](../../../translated_images/Deploy.18b2d27412ec8c02871386cbe91097c7f2190a8c6e2be88f66392b411609a48c.pl.png)
+![Wdrożenie LLM](../../../translated_images/pl/Deploy.18b2d27412ec8c02.webp)
 
 Źródło obrazka: [Four Ways that Enterprises Deploy LLMs | Fiddler AI Blog](https://www.fiddler.ai/blog/four-ways-that-enterprises-deploy-llms?WT.mc_id=academic-105485-koreyst)
 
 ### Inżynieria promptów z kontekstem
 
-Wstępnie wytrenowane LLM świetnie radzą sobie z ogólnymi zadaniami języka naturalnego, nawet przy krótkim promptcie, np. zdaniu do dokończenia lub pytaniu – tzw. „zero-shot” learning.
+Wstępnie wytrenowane LLM bardzo dobrze radzą sobie z ogólnymi zadaniami związanymi z językiem naturalnym, nawet gdy są wywoływane za pomocą krótkiego promptu, takiego jak zdanie do uzupełnienia lub pytanie – tak zwane uczenie „zero-shot”.
 
-Jednak im bardziej użytkownik potrafi sformułować zapytanie, podając szczegółowe żądanie i przykłady – czyli kontekst – tym odpowiedź będzie dokładniejsza i bliższa oczekiwaniom. Mówimy wtedy o „one-shot” learning, jeśli prompt zawiera jeden przykład, oraz „few-shot learning”, jeśli zawiera ich kilka.
-Inżynieria promptów z kontekstem to najbardziej opłacalne podejście na start.
+Jednak im bardziej użytkownik potrafi sformułować swoje zapytanie, podając szczegółowe żądanie i przykłady – Kontekst – tym bardziej precyzyjna i zgodna z oczekiwaniami użytkownika będzie odpowiedź. W takim przypadku mówimy o uczeniu „one-shot”, jeśli prompt zawiera tylko jeden przykład, oraz o „few-shot learning”, jeśli zawiera wiele przykładów. Inżynieria promptów z kontekstem jest najbardziej opłacalnym podejściem na początek.
 
 ### Retrieval Augmented Generation (RAG)
 
-LLM mają ograniczenie, że mogą korzystać tylko z danych, na których były trenowane, aby wygenerować odpowiedź. Oznacza to, że nie znają faktów, które wydarzyły się po procesie treningu, ani nie mają dostępu do informacji niepublicznych (np. danych firmowych).
-Można to obejść dzięki RAG, technice, która wzbogaca prompt o zewnętrzne dane w formie fragmentów dokumentów, z uwzględnieniem limitów długości promptu. Wspierają to narzędzia baz danych wektorowych (np. [Azure Vector Search](https://learn.microsoft.com/azure/search/vector-search-overview?WT.mc_id=academic-105485-koreyst)), które wyszukują przydatne fragmenty z różnych zdefiniowanych źródeł danych i dodają je do kontekstu promptu.
+LLM mają ograniczenie polegające na tym, że mogą korzystać tylko z danych użytych podczas ich treningu do generowania odpowiedzi. Oznacza to, że nie wiedzą nic o faktach, które miały miejsce po procesie treningowym, i nie mają dostępu do informacji niepublicznych (np. danych firmowych). 
 
-Ta technika jest bardzo pomocna, gdy firma nie ma wystarczająco dużo danych, czasu lub zasobów na fine-tuning LLM, ale chce poprawić wydajność w konkretnym zadaniu i zmniejszyć ryzyko generowania fałszywych informacji, czyli zniekształcenia rzeczywistości lub szkodliwych treści.
+Można to przezwyciężyć za pomocą RAG, techniki, która wzbogaca prompt o zewnętrzne dane w formie fragmentów dokumentów, uwzględniając ograniczenia długości promptu. Jest to wspierane przez narzędzia baz danych wektorowych (takie jak [Azure Vector Search](https://learn.microsoft.com/azure/search/vector-search-overview?WT.mc_id=academic-105485-koreyst)), które pobierają użyteczne fragmenty z różnych zdefiniowanych źródeł danych i dodają je do kontekstu promptu.
 
-### Model dostosowany (fine-tuned)
+Ta technika jest bardzo pomocna, gdy firma nie ma wystarczającej ilości danych, czasu lub zasobów, aby dostosować LLM, ale nadal chce poprawić wydajność w określonym obciążeniu i zmniejszyć ryzyko fałszerstw, czyli zniekształceń rzeczywistości lub szkodliwych treści.
 
-Fine-tuning to proces wykorzystujący transfer learning do „dopasowania” modelu do konkretnego zadania lub problemu. W przeciwieństwie do few-shot learning i RAG, skutkuje wygenerowaniem nowego modelu z zaktualizowanymi wagami i biasami. Wymaga zestawu przykładów treningowych składających się z pojedynczego wejścia (promptu) i odpowiadającego mu wyjścia (completion).
-To podejście jest preferowane, gdy:
+### Dostosowany model
 
-- **Korzysta się z modeli fine-tuned**. Firma chce używać dostosowanych, mniej zaawansowanych modeli (np. modeli embeddingowych) zamiast modeli o wysokiej wydajności, co daje bardziej ekonomiczne i szybsze rozwiązanie.
+Dostosowanie modelu to proces, który wykorzystuje transfer learning do „adaptacji” modelu do zadania końcowego lub rozwiązania konkretnego problemu. W przeciwieństwie do uczenia few-shot i RAG, skutkuje to wygenerowaniem nowego modelu z zaktualizowanymi wagami i przesunięciami. Wymaga zestawu przykładów treningowych składających się z pojedynczego wejścia (promptu) i powiązanego z nim wyjścia (wyniku).
 
-- **Ważna jest latencja**. Latencja ma znaczenie w danym zastosowaniu, więc nie można używać bardzo długich promptów lub liczba przykładów, które model powinien się nauczyć, nie mieści się w limicie długości promptu.
+To podejście byłoby preferowane, jeśli:
 
-- **Chce się być na bieżąco**. Firma dysponuje dużą ilością wysokiej jakości danych i etykiet ground truth oraz zasobami do utrzymania tych danych aktualnych w czasie.
+- **Używanie dostosowanych modeli**. Firma chciałaby używać dostosowanych mniej zaawansowanych modeli (np. modeli osadzających) zamiast modeli o wysokiej wydajności, co prowadzi do bardziej opłacalnego i szybszego rozwiązania.
 
-### Model trenowany od podstaw
+- **Rozważanie opóźnień**. Opóźnienia są istotne dla konkretnego przypadku użycia, więc nie jest możliwe użycie bardzo długich promptów lub liczba przykładów, które model powinien się nauczyć, nie mieści się w ograniczeniach długości promptu.
 
-Trenowanie LLM od zera to bez wątpienia najtrudniejsze i najbardziej złożone podejście, wymagające ogromnych ilości danych, wykwalifikowanych zasobów i odpowiedniej mocy obliczeniowej. Opcja ta powinna być rozważana tylko wtedy, gdy firma ma specyficzne zastosowanie domenowe i dużą ilość danych skoncentrowanych na tej dziedzinie.
+- **Aktualność danych**. Firma dysponuje dużą ilością wysokiej jakości danych i etykietami prawdy podstawowej oraz zasobami potrzebnymi do utrzymania tych danych na bieżąco.
 
-## Sprawdzenie wiedzy
+### Trenowany model
 
-Jakie podejście może być dobre do poprawy wyników generowanych przez LLM?
+Trenowanie LLM od podstaw jest bez wątpienia najtrudniejszym i najbardziej złożonym podejściem, wymagającym ogromnych ilości danych, wykwalifikowanych zasobów i odpowiedniej mocy obliczeniowej. Ta opcja powinna być rozważana tylko w scenariuszu, w którym firma ma specyficzny przypadek użycia dla danej dziedziny i dużą ilość danych związanych z tą dziedziną.
+
+## Sprawdź swoją wiedzę
+
+Jakie podejście może być dobre, aby poprawić wyniki generowane przez LLM?
 
 1. Inżynieria promptów z kontekstem  
 1. RAG  
-1. Model dostosowany (fine-tuned)
+1. Dostosowany model  
 
-Odpowiedź: 3 – jeśli masz czas, zasoby i wysokiej jakości dane, fine-tuning jest lepszą opcją, aby być na bieżąco. Jednak jeśli chcesz szybko poprawić wyniki i brakuje Ci czasu, warto najpierw rozważyć RAG.
+Odpowiedź: 3, jeśli masz czas, zasoby i wysokiej jakości dane, dostosowanie modelu jest lepszą opcją, aby być na bieżąco. Jednak jeśli chcesz poprawić wyniki, a brakuje Ci czasu, warto najpierw rozważyć RAG.
 
 ## 🚀 Wyzwanie
 
-Dowiedz się więcej o tym, jak możesz [wykorzystać RAG](https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview?WT.mc_id=academic-105485-koreyst) w swojej firmie.
+Przeczytaj więcej o tym, jak możesz [używać RAG](https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview?WT.mc_id=academic-105485-koreyst) w swojej firmie.
 
 ## Świetna robota, kontynuuj naukę
 
-Po ukończeniu tej lekcji sprawdź naszą [kolekcję Generative AI Learning](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), aby dalej rozwijać swoją wiedzę o Generative AI!
+Po ukończeniu tej lekcji, sprawdź naszą [kolekcję nauki o generatywnej AI](https://aka.ms/genai-collection?WT.mc_id=academic-105485-koreyst), aby dalej rozwijać swoją wiedzę na temat generatywnej AI!
 
-Przejdź do Lekcji 3, gdzie omówimy, jak [budować z Generative AI odpowiedzialnie](../03-using-generative-ai-responsibly/README.md?WT.mc_id=academic-105485-koreyst)!
+Przejdź do Lekcji 3, gdzie przyjrzymy się, jak [budować z Generatywną AI w sposób odpowiedzialny](../03-using-generative-ai-responsibly/README.md?WT.mc_id=academic-105485-koreyst)!
+
+---
 
 **Zastrzeżenie**:  
-Niniejszy dokument został przetłumaczony przy użyciu automatycznej usługi tłumaczeniowej AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mimo że dokładamy starań, aby tłumaczenie było jak najbardziej precyzyjne, prosimy mieć na uwadze, że tłumaczenia automatyczne mogą zawierać błędy lub nieścisłości. Oryginalny dokument w języku źródłowym należy traktować jako źródło wiążące. W przypadku informacji o kluczowym znaczeniu zalecane jest skorzystanie z profesjonalnego tłumaczenia wykonanego przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z korzystania z tego tłumaczenia.
+Ten dokument został przetłumaczony za pomocą usługi tłumaczenia AI [Co-op Translator](https://github.com/Azure/co-op-translator). Chociaż dokładamy wszelkich starań, aby tłumaczenie było precyzyjne, prosimy pamiętać, że automatyczne tłumaczenia mogą zawierać błędy lub nieścisłości. Oryginalny dokument w jego rodzimym języku powinien być uznawany za autorytatywne źródło. W przypadku informacji krytycznych zaleca się skorzystanie z profesjonalnego tłumaczenia przez człowieka. Nie ponosimy odpowiedzialności za jakiekolwiek nieporozumienia lub błędne interpretacje wynikające z użycia tego tłumaczenia.
